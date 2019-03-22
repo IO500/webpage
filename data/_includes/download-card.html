@@ -1,0 +1,46 @@
+{% assign download = include.download %}
+
+{% if download.link %}
+    {% assign download_url = download.link %}
+{% else %}
+    {% capture download_url %}{{site.base}}{{download.url}}.html{% endcapture %}
+{% endif %}
+
+<div class="card download">
+  <div class="card-header">
+        {% if download.notitle != true %}
+            <h4 class="card-title">
+              <!--<a class='postLink' href="{{site.baseurl}}{{download.url}}">-->
+                {{download.title}}
+              <!-- </a>-->
+            </h4>
+        {% endif %}
+        {% if download.subtitle != null and download.subtitle != "" %}
+            <h6 class="card-subtitle mb-2 text-muted">
+                {{  download.subtitle }}
+            </h6>
+        {% endif %}
+        {% if download.date != null %}
+        <div>
+            Date: {{ download.date | date: "%Y-%m-%d"}}
+        </div>
+        {% endif %}
+        {% if download.version != null %}
+        <div>
+            Version: {{ download.version }}
+        </div>
+        {% endif %}
+
+  </div>
+    <div class="card-body">
+        {% if download.description != null %}
+        <div class="card-text">
+            {{ download.description | markdownify }}
+        </div>
+        {% endif %}
+        {% if download.download_type %}
+            {% capture init %}{{ download.image | slice: 0,1 }}{% endcapture %}
+            <a href="{{ download.download_uri }}" class="mediafile {{download.download_type}}">{{download.download_type | upcase }}</a>
+        {% endif %}
+    </div>
+</div>

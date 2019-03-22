@@ -1,0 +1,22 @@
+{% assign institution = include.institution %}
+
+{% if institution.image != null %}
+  {% capture address %}<img src="{{institution.image}}" alt="{{institution.name}}"/>{% endcapture %}
+{% else %}
+  {% assign address = {{institution.name}} %}
+{% endif %}
+
+<div class="col-md-2">
+  {% if institution.url != null %}
+  <a href="{{institution.url}}">
+    {{address}}
+  </a>
+  {% else %}
+    {{address}}
+  {% endif %}
+  {% if institution.description != null %}
+  <div class="body">
+      {{ institution.description | markdownify }}
+  </div>
+  {% endif %}
+</div>

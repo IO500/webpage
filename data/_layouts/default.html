@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  {% if page.backgroundID != null %}
+  <body id="{{page.backgroundID}}">
+  {%else%}
+  <body>
+  {%endif%}
+  {% include header.html %}
+
+        {% if page.noContainer %}
+        <div id="main" style="margin-top:80px">
+        {{ content }}
+        </div>
+
+        {%else%}
+
+        <main role="main" class="container">
+
+        <div class="row justify-content-md-center">
+        {% if page.containerType != null %}
+        <div class="{{page.containerType}}" id="main">
+        {%else%}
+        <div class="col-md-10" id="main">
+        {%endif%}
+        {{ content }}
+        </div>
+        </div>
+        </main>
+
+        {%endif%}
+
+    {% include footer.html %}
+  </body>
+
+</html>

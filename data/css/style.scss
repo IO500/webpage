@@ -1,0 +1,186 @@
+---
+# Front matter comment to ensure Jekyll properly reads file.
+---
+body {
+  padding-top: 70px;
+}
+
+footer{
+  margin-top:10px;
+  font-size: small;
+}
+
+nav a{
+  color: gray;
+  text-decoration: normal;
+  margin: 1px;
+}
+
+nav a.navbar-brand:hover{
+  border: none;
+  text-decoration: none;
+  margin: 1px;
+  margin-right: 1rem;
+}
+
+div#main{
+  background: rgba(230,230,230,0.95);
+  box-shadow: 5px 5px 10px gray;
+}
+
+div.institutions div div{
+  /* border:1px solid gray; */
+  display: inline-block;
+
+  a{
+    vertical-align: middle;
+  }
+
+  img {
+    vertical-align: middle;
+    width: 100%;
+  }
+}
+
+nav a:hover{
+  border: 1px solid blue;
+  text-decoration: none;
+  margin: 0px;
+}
+
+footer{
+  margin-top:-2px;
+}
+
+footer a{
+  color: white;
+}
+
+body{
+  background: url(/assets/img/accomplishment-ceremony-college-267885.jpg);
+  background-size: 100vw;
+}
+
+body#rack{
+  background: url(/assets/img/airport-business-cabinets-236093.jpg);
+  background-size: 100vw;
+}
+
+body#books{
+  background: url(/assets/img/blur-book-stack-books-590493.jpg);
+  background-size: 100vw;
+}
+
+body#participate{
+  background: url(/assets/img/ground-group-growth-461049.jpg);
+  background-size: 100vw;
+}
+
+a.mediafile{
+  background-repeat: no-repeat;
+  background-position: 0 center;
+  padding: 0 0 0 18px;
+}
+
+a.pdf{
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAhFBMVEUAAAD///8AAAAAAAAAAAAAAAAAAAAAAABmZmaUlJSVlZWZmZlUVFRmZmZfX1/4+Pj5+fn5+fn7+/v8/PxmZmaKioqLi4vm5ubn5+fp6enq6urr6+vs7Ozt7e3v7+/w8PDx8fHy8vLz8/P09PT19fX29vb39/f4+Pj5+fn7+/v8/Pz////WBPdaAAAAFHRSTlMAAAIcIDI0Nn6RkZGbv83x8/X9/b9Y2vAAAACQSURBVBgZBcExTgMxEADA2fU5PgUaRGEq+P+36NwiBQhgm5mIXTIBc20HeS0vYL7/rl1CbU9rzvv9dt1/S+F4VcTe6zwev1dCSiVDbW/lgAixSv1Y89kBQSQxC3HWBoD8PGrrhm7ojJXZGJ3RGYNLog+gQ2IABuQd6AP4ibM2AMRXxL48ZAeMeYvYpQSAtf4BGyczgtpbtDIAAAAASUVORK5CYII=);
+}
+
+div.download div.card-text{
+  font-style:italic;
+}
+
+.navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.navbar-brand{
+  background-image: url("/assets/logo/logo-small.png");
+  background-repeat: no-repeat;
+  width: 165px;
+  height: 30px;
+  background-size: 165px 30px;
+}
+
+.table-striped{
+  margin-bottom: 1em;
+}
+
+#navbarCollapse{
+  margin-left: 30px;
+}
+
+.pagination{
+  border-top: 1px solid black;
+  margin-top: 1em;
+  a{
+    margin: 2px;
+    padding: 5px;
+  }
+  a:hover{
+    margin: 1px;
+  }
+  em{
+    padding: 7px;
+  }
+}
+
+div.post{
+  margin-top: 7px;
+}
+
+span.postDate{
+  font-weight: bold;
+}
+
+span.postExt{
+  font-style: italic;
+  margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+  .navbar-brand{
+    background-image: url("/assets/logo/logo-small.png");
+    background-repeat: no-repeat;
+    width: 165px;
+    height: 30px;
+    background-size: 165px 30px;
+  }
+
+
+  body{
+    background: url(/assets/img/airport-business-cabinets-236093.jpg);
+      background-size: 100vw;
+  }
+
+  body#rack{
+    background: url(/assets/img/airport-business-cabinets-236093.jpg);
+      background-size: 100vw;
+  }
+
+  body#books{
+    background: url(/assets/img/airport-business-cabinets-236093.jpg);
+      background-size: 100vw;
+  }
+
+  /* PICK ONE */
+  /* don't expand nested items, which pushes down the rest of the page when navigating */
+  /*nav[data-toggle='toc'] .nav .active .nav {
+    display: none;
+  }*/
+  /* alternatively, if you *do* want the second-level navigation to be shown (as seen on this page on mobile), use this */
+  nav[data-toggle='toc'] .nav .nav {
+    display: none;
+  }
+}
+
+
+div#headbar{
+  background-color: #6610f2;
+  width:100%;
+  height:5px;
+  position: fixed;
+  left: 0px;
+  top: 55px;
+  opacity: 0.5;
+}

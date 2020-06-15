@@ -66,6 +66,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
 
     $builder->connect('/about', ['controller' => 'Pages', 'action' => 'display', 'about']);
     $builder->connect('/news', ['controller' => 'Pages', 'action' => 'display', 'news']);
+    $builder->connect('/bofs', ['controller' => 'Pages', 'action' => 'display', 'bofs']);
     $builder->connect('/steering', ['controller' => 'Pages', 'action' => 'display', 'steering']);
     $builder->connect('/rules', ['controller' => 'Pages', 'action' => 'display', 'rules']);
     $builder->connect('/rules-submission', ['controller' => 'Pages', 'action' => 'display', 'rules-submission']);

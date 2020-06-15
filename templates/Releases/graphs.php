@@ -1,12 +1,37 @@
-<nav id="breadcrumb">
-    <p>YOU ARE HERE</p>
+<div class="landing landing-graphs">
+    <h1><?php echo __('Graphs') ?></h1>
 
-    <?php
-    $this->Breadcrumbs->add(__('STATISTICS'), ['controller' => 'releases', 'action' => 'statistics']);
+    <p>
+        Explore some of the  <strong>IO500</strong> plots!<br>
+        You can also download a CSV with all the data and create your own plots in R to share with the community.
+    </p>
 
-    echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
-    ?>
-</nav>
+    <ul>
+        <li>
+            <?php
+            echo $this->Html->link(__('Download CSV'), [
+                'controller' => 'releases',
+                'action' => 'full'
+            ], [
+                'class' => 'button-highlight'
+            ]);
+            ?>
+        </li>
+        <li>
+            <?php
+            echo $this->Html->link(__('Create Graphs'), [
+                'controller' => 'pages',
+                'action' => 'display',
+                'about'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
+    </ul>
+
+    <a href="https://www.freepik.com/free-photos-vectors/business" class="credits">Business vector created by stories - www.freepik.com</a>
+</div>
 
 <div class="releases index content">
     <ul class="plots">

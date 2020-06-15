@@ -608,3 +608,11 @@ footer > .container{
     box-sizing: border-box;
     width: 500px;
 }
+
+#error-404 {
+    background-image: url('../img/404.svg');
+    background-size: 600px;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 400px;
+}

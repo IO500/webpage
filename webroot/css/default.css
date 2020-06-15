@@ -40,7 +40,7 @@ footer {
 }
 
 .link {
-    color: #e63946;    
+    color: #a00;    
 }
 
 .landing {
@@ -77,6 +77,20 @@ footer {
 .landing-lists {
     background-image: url('../img/lists.svg');
     background-size: 600px;
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+
+.landing-graphs {
+    background-image: url('../img/graphs.svg');
+    background-size: 600px;
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+
+.landing-bofs {
+    background-image: url('../img/meeting.svg');
+    background-size: 550px;
     background-repeat: no-repeat;
     background-position: center right;
 }
@@ -288,7 +302,7 @@ input[type=submit] {
 
 h3 {
     border-bottom: #ddd dashed 1px;
-    padding: 0 0 5px;
+    padding: 10px 0 5px;
 }
 
 p {
@@ -557,4 +571,40 @@ footer > .container{
 
 .social-links svg:hover {
     fill: #e63946;
+}
+
+.news {
+    margin: 0;
+    padding: 0;
+}
+
+.news li {
+    list-style: none;
+}
+
+.date {
+    background-color: #f8f8f8;
+    background-image: url('../img/calendar.svg');
+    background-size: 10px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    border-radius: 3px;
+    color: #777;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 5px 3px 30px;    
+    margin: 0 10px 0 0;
+}
+
+.gallery {
+    display: flex;
+}
+
+.gallery > div {
+    width: 50%;
+}
+
+.gallery img {
+    box-sizing: border-box;
+    width: 500px;
 }

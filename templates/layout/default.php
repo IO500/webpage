@@ -62,10 +62,28 @@
                 </li>
                 <li>
                     <?php
+                    echo $this->Html->link(__('BoFs'), [
+                        'controller' => 'pages',
+                        'action' => 'display',
+                        'bofs'
+                    ]);
+                    ?>
+                </li>
+                <li>
+                    <?php
                     echo $this->Html->link(__('Rules'), [
                         'controller' => 'pages',
                         'action' => 'display',
                         'rules'
+                    ]);
+                    ?>
+                </li>
+                <li>
+                    <?php
+                    echo $this->Html->link(__('News'), [
+                        'controller' => 'pages',
+                        'action' => 'display',
+                        'news'
                     ]);
                     ?>
                 </li>

@@ -303,8 +303,6 @@ class ReleasesController extends AppController
         ]);
 
         $target_files = [
-            'io500.sh',
-            'io-500-summary',
             'ior_easy_read',
             'ior_easy_write',
             'ior_hard_read',

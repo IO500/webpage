@@ -616,3 +616,14 @@ footer > .container{
     background-position: center;
     height: 400px;
 }
+
+.file-buttons {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.file-buttons li {
+    display: inline-block;
+    padding: 0 10px 0 0;
+}

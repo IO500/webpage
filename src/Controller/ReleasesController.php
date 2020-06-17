@@ -296,17 +296,46 @@ class ReleasesController extends AppController
      */
     public function view($id = null)
     {
+        $prefix = '/home/jbez/jbez.io500.org/storage/';
+
         $release = $this->Releases->get($id, [
             'contain' => [],
         ]);
 
-        $dir = new Folder('../webroot/files/tarballs/' . $release->information_);
-        $files = $dir->find('.*\.txt');
+        $target_files = [
+            'io500.sh',
+            'io-500-summary',
+            'ior_easy_read',
+            'ior_easy_write',
+            'ior_hard_read',
+            'ior_hard_write',
+            'mdtest_easy_delete',
+            'mdtest_easy_stat',
+            'mdtest_easy_write',
+            'mdtest_hard_delete',
+            'mdtest_hard_stat',
+            'mdtest_hard_write',
+            'mdtest_hard_read',
+            'result_summary'
+        ];
 
-        $submitted_files = [];
+        $selected_files = [];
 
-        foreach ($files as $file) {
-            $file = new File($dir->pwd() . DS . $file);
+        $dir_iterator = new \RecursiveDirectoryIterator($prefix . $release->information_list_name . '/' . str_replace('.zip', '', $release->storage_data));
+        $iterator = new \RecursiveIteratorIterator($dir_iterator, \RecursiveIteratorIterator::SELF_FIRST);
+        
+        foreach ($iterator as $file) {
+            if ($file->isFile()) {
+                foreach ($target_files as $target) {
+                    if (strpos($file->getPathname(), $target) !== false) {
+                        $selected_files[] = $file->getPathname();
+                    }
+                }
+            }
+        }
+
+        foreach ($selected_files as $file) {
+            $file = new File($file);
             $submitted_files[$file->name()] = $file->read();
             $file->close();
         }

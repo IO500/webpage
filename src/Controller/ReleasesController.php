@@ -325,7 +325,7 @@ class ReleasesController extends AppController
         foreach ($iterator as $file) {
             if ($file->isFile()) {
                 foreach ($target_files as $target) {
-                    if (strpos($file->getPathname(), $target) !== false && $file->getPathname()[0] != '.') {
+                    if (strpos($file->getPathname(), $target) !== false && strpos($file->getPathname(), '._') === false) {
                         $selected_files[] = $file->getPathname();
                     }
                 }

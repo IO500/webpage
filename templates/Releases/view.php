@@ -255,16 +255,32 @@
 
             <h3>Submitted Files</h3>
 
-            <?php
-            echo $this->Html->link(
-                _('Browse Files'),
-                'http://localhost/io500-files/' . $release->information_identifier,
-                [
-                    'target' => '_blank',
-                    'class' => 'button'
-                ]
-            );
-            ?>
+            <ul class="file-buttons">
+                <li>
+                    <?php
+                    echo $this->Html->link(
+                        _('Browse Files'),
+                        'https://jbez.io500.org/storage/' . $release->information_list_name . '/' . str_replace('.zip', '', $release->storage_data),
+                        [
+                            'target' => '_blank',
+                            'class' => 'button'
+                        ]
+                    );
+                    ?>
+                </li>
+                <li>
+                    <?php
+                    echo $this->Html->link(
+                        _('Download ZIP'),
+                        'https://jbez.io500.org/storage/' . $release->information_list_name . '/' . $release->storage_data,
+                        [
+                            'target' => '_blank',
+                            'class' => 'button-highlight'
+                        ]
+                    );
+                    ?>
+                </li>
+            </ul>
 
             <?php if (empty($submitted_files)) { ?>
             <p><?php echo _('No files were found for this submmision.'); ?></p>

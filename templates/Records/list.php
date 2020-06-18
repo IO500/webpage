@@ -16,7 +16,7 @@
     <div class="both"></div>
 
     <p>
-        Made by <?php echo h($record->author); ?>
+        By <?php echo h($record->author); ?> - <?php echo h($record->created); ?>
     </p>
 
     <div class="table-responsive custom-table">

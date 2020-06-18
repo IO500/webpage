@@ -15,6 +15,18 @@ use Ramsey\Uuid\Uuid;
 class RecordsController extends AppController
 {
     /**
+     * Index method
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
+    public function index()
+    {
+        $records = $this->paginate($this->Records);
+
+        $this->set(compact('records'));
+    }
+
+    /**
      * Save method
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.

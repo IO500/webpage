@@ -216,6 +216,17 @@ class ReleasesController extends AppController
     {
         $limit = 20;
 
+        $lists = [
+            'sc17',
+            'isc18',
+            'sc18',
+            'isc19',
+            'sc19'
+        ];
+
+        $index = array_search($list, $lists);
+        $lists =  array_slice($lists, 0, $index + 1);
+
         $settings = [
             'order' => [
                 'io500_score' => 'DESC'
@@ -228,7 +239,7 @@ class ReleasesController extends AppController
 
         $releases = $this->Releases->find('all')
             ->where([
-                'Releases.information_list_name IS NOT' => NULL
+                'Releases.information_list_name IN' => $lists
             ])
             ->limit($limit);
 
@@ -241,9 +252,20 @@ class ReleasesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function full()
+    public function full($list = null)
     {
         $limit = 20;
+
+        $lists = [
+            'sc17',
+            'isc18',
+            'sc18',
+            'isc19',
+            'sc19'
+        ];
+
+        $index = array_search($list, $lists);
+        $lists =  array_slice($lists, 0, $index + 1);
 
         $settings = [
             'order' => [
@@ -258,7 +280,7 @@ class ReleasesController extends AppController
         $releases = $this->Releases->find('all')
             ->where([
                 'Releases.status' => 'VALID',
-                'Releases.information_list_name IS NOT' => NULL
+                'Releases.information_list_name IN' => $lists
             ])
             ->limit($limit);
 
@@ -278,7 +300,7 @@ class ReleasesController extends AppController
         $lists = [
             'sc17',
             'isc18',
-            'sc18',            
+            'sc18',
             'isc19',
             'sc19'
         ];

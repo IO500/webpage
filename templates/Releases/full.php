@@ -53,10 +53,24 @@
                 <?php foreach ($releases as $i => $release) { ?>
                 <tr>
                     <td class="tb-id">
-                        <b class="rank"><?php echo (($this->Paginator->current('Releases') - 1) * $limit) + ($i + 1) ?></b>
+                        <?php
+                        echo $this->Html->link((($this->Paginator->current('Releases') - 1) * $limit) + ($i + 1), [
+                            'controller' => 'releases',
+                            'action' => 'view',
+                            $release->id
+                        ], [
+                            'class' => 'rank'
+                        ]);
+                        ?>
                     </td>
                     <td class="tb-id">
-                        <?php echo strtoupper($release->information_list_name) ?>
+                        <?php
+                        echo $this->Html->link(strtoupper($release->information_list_name), [
+                            'controller' => 'releases',
+                            'action' => 'list',
+                            $release->information_list_name
+                        ]);
+                        ?>
                     </td>
                     <td>
                         <?php
@@ -84,11 +98,11 @@
 
     <div class="paginator">
         <ul class="pagination">
-            <?php echo $this->Paginator->first('<< ' . _('first')) ?>
-            <?php echo $this->Paginator->prev('< ' . _('previous')) ?>
+            <?php echo $this->Paginator->first('<<') ?>
+            <?php echo $this->Paginator->prev('<') ?>
             <?php echo $this->Paginator->numbers() ?>
-            <?php echo $this->Paginator->next(_('next') . ' >') ?>
-            <?php echo $this->Paginator->last(_('last') . ' >>') ?>
+            <?php echo $this->Paginator->next('>') ?>
+            <?php echo $this->Paginator->last('>>') ?>
         </ul>
     </div>
 

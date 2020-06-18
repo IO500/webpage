@@ -168,7 +168,15 @@
                 <?php foreach ($releases as $i => $release) { ?>
                 <tr>
                     <td class="tb-id">
-                        <b class="rank"><?php echo (($this->Paginator->current('Releases') - 1) * $limit) + ($i + 1) ?></b>
+                        <?php
+                        echo $this->Html->link((($this->Paginator->current('Releases') - 1) * $limit) + ($i + 1), [
+                            'controller' => 'releases',
+                            'action' => 'view',
+                            $release->id
+                        ], [
+                            'class' => 'rank'
+                        ]);
+                        ?>
                     </td>
 
                     <?php
@@ -230,11 +238,11 @@
 
     <div class="paginator">
         <ul class="pagination">
-            <?php echo $this->Paginator->first('<< ' . __('first')) ?>
-            <?php echo $this->Paginator->prev('< ' . __('previous')) ?>
+            <?php echo $this->Paginator->first('<<') ?>
+            <?php echo $this->Paginator->prev('<') ?>
             <?php echo $this->Paginator->numbers() ?>
-            <?php echo $this->Paginator->next(__('next') . ' >') ?>
-            <?php echo $this->Paginator->last(__('last') . ' >>') ?>
+            <?php echo $this->Paginator->next('>') ?>
+            <?php echo $this->Paginator->last('>>') ?>
         </ul>
     </div>
 

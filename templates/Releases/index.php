@@ -81,9 +81,9 @@
         </li>
         <li>
             <?php
-            echo $this->Html->link(__('Customized List'), [
-                'controller' => 'releases',
-                'action' => 'customize'
+            echo $this->Html->link(__('Used-Defined Lists'), [
+                'controller' => 'records',
+                'action' => 'index'
             ], [
                 'class' => 'button'
             ]);

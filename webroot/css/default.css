@@ -163,9 +163,11 @@ nav .links > li {
 }
 
 /* Paginator */
+
 .paginator {
     text-align: right;
 }
+
 .pagination {
     display: flex;
     justify-content: center;
@@ -173,22 +175,53 @@ nav .links > li {
     padding: 0;
     margin: 20px 0 1rem;
 }
+
 .pagination li {
-    margin: 0 0.5rem;
+    margin: 0 5px;
 }
+
+.pagination li a {
+    border: #bbb solid 1px;
+    border-radius: 50px;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    height: 20px;
+    line-height: 18px;    
+    text-align: center;
+    transition: 0.2s;
+    width: 20px;
+}
+
+.pagination li a:hover {
+    background: #444;
+    border-color: #444;
+    color: #fff;
+}
+
+.pagination li.active a {
+    border-color: #e74446;
+    background: #e74446;
+    border-radius: 50px;
+    color: #fff;
+}
+
 .prev.disabled a,
 .next.disabled a {
     cursor: not-allowed;
     color: #606c76;
 }
+
 .asc:after {
     content: " \2193";
 }
+
 .desc:after {
     content: " \2191";
 }
 
 /* Error */
+
 .error-container {
     align-items: center;
     display: flex;
@@ -197,6 +230,21 @@ nav .links > li {
     justify-content: center;
 }
 
+#error-404 {
+    background-image: url('../img/404.svg');
+    background-size: 600px;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 400px;
+}
+
+#error-500 {
+    background-image: url('../img/500.svg');
+    background-size: 600px;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 400px;
+}
 
 /* Tables */
 
@@ -269,9 +317,15 @@ table {
     color: #fff;
     display: inline-block;
     font-size: 12px;
+    font-weight: bold;
     height: 20px;
     line-height: 18px;
+    transition: 0.2s;
     width: 20px;
+}
+
+.rank:hover{
+    background: #444;
 }
 
 input[type=submit], .button-highlight {
@@ -607,14 +661,6 @@ footer > .container{
 .gallery img {
     box-sizing: border-box;
     width: 500px;
-}
-
-#error-404 {
-    background-image: url('../img/404.svg');
-    background-size: 600px;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 400px;
 }
 
 .file-buttons {

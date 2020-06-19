@@ -64,16 +64,86 @@ $routes->scope('/', function (RouteBuilder $builder) {
      */
     $builder->connect('/', ['controller' => 'Releases', 'action' => 'latest']);
 
-    $builder->connect('/about', ['controller' => 'Pages', 'action' => 'display', 'about']);
-    $builder->connect('/news', ['controller' => 'Pages', 'action' => 'display', 'news']);
-    $builder->connect('/bofs', ['controller' => 'Pages', 'action' => 'display', 'bofs']);
-    $builder->connect('/steering', ['controller' => 'Pages', 'action' => 'display', 'steering']);
-    $builder->connect('/rules', ['controller' => 'Pages', 'action' => 'display', 'rules']);
-    $builder->connect('/rules-submission', ['controller' => 'Pages', 'action' => 'display', 'rules-submission']);
-    $builder->connect('/rules-scc-submission', ['controller' => 'Pages', 'action' => 'display', 'rules-scc-submission']);
-    $builder->connect('/rules-benchmark', ['controller' => 'Pages', 'action' => 'display', 'rules-benchmark']);
-    $builder->connect('/rules-committee', ['controller' => 'Pages', 'action' => 'display', 'rules-committee']);
-    $builder->connect('/rules-membership', ['controller' => 'Pages', 'action' => 'display', 'rules-membership']);
+    $builder->connect(
+        '/about',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'about',
+        ]
+    );
+    $builder->connect(
+        '/news',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'news',
+        ]
+    );
+    $builder->connect(
+        '/bofs',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'bofs',
+        ]
+    );
+    $builder->connect(
+        '/steering',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'steering',
+        ]
+    );
+    $builder->connect(
+        '/rules',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'rules',
+        ]
+    );
+    $builder->connect(
+        '/rules-submission',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'rules-submission',
+        ]
+    );
+    $builder->connect(
+        '/rules-scc-submission',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'rules-scc-submission',
+        ]
+    );
+    $builder->connect(
+        '/rules-benchmark',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'rules-benchmark',
+        ]
+    );
+    $builder->connect(
+        '/rules-committee',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'rules-committee',
+        ]
+    );
+    $builder->connect(
+        '/rules-membership',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'rules-membership',
+        ]
+    );
 
     /*
      * ...and connect the rest of 'Pages' controller's URLs.

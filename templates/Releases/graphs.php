@@ -9,12 +9,12 @@
     <ul>
         <li>
             <?php
-            echo $this->Html->link(__('Download CSV'), [
-                'controller' => 'releases',
-                'action' => 'full'
-            ], [
-                'class' => 'button-highlight'
-            ]);
+            echo $this->Html->link(__('Download CSV'),
+                '/webroot/files/releases.csv',
+                [
+                    'class' => 'button-highlight'
+                ]
+            );
             ?>
         </li>
         <li>
@@ -23,6 +23,39 @@
                 'controller' => 'pages',
                 'action' => 'display',
                 'about'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            <?php
+            echo $this->Html->link(__('IOR Graphs'), [
+                'controller' => 'releases',
+                'action' => 'ior'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
+        <li>
+            <?php
+            echo $this->Html->link(__('MDtest Graphs'), [
+                'controller' => 'releases',
+                'action' => 'mdtest'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
+        <li>
+            <?php
+            echo $this->Html->link(__('PFind Graphs'), [
+                'controller' => 'releases',
+                'action' => 'pfind'
             ], [
                 'class' => 'button'
             ]);

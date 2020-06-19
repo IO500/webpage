@@ -56,6 +56,7 @@ class RecordsController extends AppController
     /**
      * List method
      *
+     * @param string|null $hash Record hash.
      * @return \Cake\Http\Response|null|void Renders view
      */
     public function list($hash = null)
@@ -64,7 +65,7 @@ class RecordsController extends AppController
 
         $record = $this->Records->find('all')
             ->where([
-                'Records.hash' => $hash
+                'Records.hash' => $hash,
             ])
             ->first();
 
@@ -78,19 +79,19 @@ class RecordsController extends AppController
 
         // Get a single table (instance of Schema\TableSchema)
         $tableSchema = $collection->describe('releases');
-        
+
         // Get columns list from table
         $columns = $tableSchema->columns();
 
         // Decode the JSON with the field list into an associative array (true)
         $display = json_decode($record->fields, true);
-        
+
         $releases = $this->Releases->find('all')
             ->where([
-                'Releases.information_list_name IS NOT' => NULL
+                'Releases.information_list_name IS NOT' => null,
             ])
             ->order([
-                'Releases.io500_score' => 'DESC'
+                'Releases.io500_score' => 'DESC',
             ])
             ->limit($limit);
 

@@ -4,9 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Datasource\ConnectionManager;
-use Cake\Filesystem\Folder;
 use Cake\Filesystem\File;
-
 
 /**
  * Releases Controller
@@ -16,7 +14,6 @@ use Cake\Filesystem\File;
  */
 class ReleasesController extends AppController
 {
-    
     /**
      * Lastest method
      *
@@ -31,8 +28,8 @@ class ReleasesController extends AppController
 
         $settings = [
             'order' => [
-                'io500_score' => 'DESC'
-            ]
+                'io500_score' => 'DESC',
+            ],
         ];
 
         if ($this->request->getParam('?')['sort']) {
@@ -45,15 +42,15 @@ class ReleasesController extends AppController
                 'Releases.information_system',
                 'Releases.information_institution',
                 'Releases.information_system',
-                'Releases.information_filesystem_type'
+                'Releases.information_filesystem_type',
             ])
             ->where([
                 'LOWER(Releases.information_list_name)' => strtolower($list),
-                'Releases.information_10_node_challenge IS' => FALSE,
-                'Releases.status' => 'VALID'
+                'Releases.information_10_node_challenge IS' => false,
+                'Releases.status' => 'VALID',
             ])
             ->order([
-                'Releases.io500_score' => 'DESC'
+                'Releases.io500_score' => 'DESC',
             ])
             ->limit($limit);
 
@@ -62,7 +59,9 @@ class ReleasesController extends AppController
 
         // We need to remove duplicate entries from submissions of the same system
         foreach ($releases as $release) {
-            $key = $release->information_institution . ' ' . $release->information_system . ' ' . $release->information_filesystem_type;
+            $key = $release->information_institution . ' ' .
+                $release->information_system . ' ' .
+                $release->information_filesystem_type;
 
             if (!in_array($key, $storages)) {
                 $storages[] = $key;
@@ -74,29 +73,29 @@ class ReleasesController extends AppController
 
         $releases = $this->Releases->find('all')
             ->where([
-                'Releases.id IN' => $valid_records
+                'Releases.id IN' => $valid_records,
             ])
             ->limit($limit);
 
         $this->set('limit', $limit);
         $this->set('list', $list);
         $this->set('releases', $this->paginate($releases, $settings));
-
     }
 
     /**
      * Ten method
      *
+     * @param string|null $list Release information_list_name.
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function ten($list)
+    public function ten($list = null)
     {
         $limit = 1000;
 
         $settings = [
             'order' => [
-                'io500_score' => 'DESC'
-            ]
+                'io500_score' => 'DESC',
+            ],
         ];
 
         if ($this->request->getParam('?')['sort']) {
@@ -108,15 +107,15 @@ class ReleasesController extends AppController
                 'Releases.id',
                 'Releases.information_institution',
                 'Releases.information_system',
-                'Releases.information_filesystem_type'
+                'Releases.information_filesystem_type',
             ])
             ->where([
                 'LOWER(Releases.information_list_name)' => strtolower($list),
                 'Releases.status' => 'VALID',
-                'Releases.information_client_nodes' => 10
+                'Releases.information_client_nodes' => 10,
             ])
             ->order([
-                'Releases.io500_score' => 'DESC'
+                'Releases.io500_score' => 'DESC',
             ])
             ->limit($limit);
 
@@ -125,19 +124,21 @@ class ReleasesController extends AppController
 
         // We need to remove duplicate entries from submissions of the same system
         foreach ($releases as $release) {
-            $key = $release->information_institution . ' ' . $release->information_system . ' ' . $release->information_filesystem_type;
+            $key = $release->information_institution . ' ' .
+                $release->information_system . ' ' .
+                $release->information_filesystem_type;
 
             if (!in_array($key, $storages)) {
                 $storages[] = $key;
                 $valid_records[] = $release->id;
             }
         }
-        
+
         $limit = 20;
 
         $releases = $this->Releases->find('all')
             ->where([
-                'Releases.id IN' => $valid_records
+                'Releases.id IN' => $valid_records,
             ])
             ->limit($limit);
 
@@ -148,16 +149,17 @@ class ReleasesController extends AppController
     /**
      * List method
      *
+     * @param string|null $list Release information_list_name.
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function list($list)
+    public function list($list = null)
     {
         $limit = 1000;
 
         $settings = [
             'order' => [
-                'io500_score' => 'DESC'
-            ]
+                'io500_score' => 'DESC',
+            ],
         ];
 
         if ($this->request->getParam('?')['sort']) {
@@ -170,15 +172,15 @@ class ReleasesController extends AppController
                 'Releases.information_system',
                 'Releases.information_institution',
                 'Releases.information_system',
-                'Releases.information_filesystem_type'
+                'Releases.information_filesystem_type',
             ])
             ->where([
                 'LOWER(Releases.information_list_name)' => strtolower($list),
-                'Releases.information_10_node_challenge IS' => FALSE,
-                'Releases.status' => 'VALID'
+                'Releases.information_10_node_challenge IS' => false,
+                'Releases.status' => 'VALID',
             ])
             ->order([
-                'Releases.io500_score' => 'DESC'
+                'Releases.io500_score' => 'DESC',
             ])
             ->limit($limit);
 
@@ -187,7 +189,9 @@ class ReleasesController extends AppController
 
         // We need to remove duplicate entries from submissions of the same system
         foreach ($releases as $release) {
-            $key = $release->information_institution . ' ' . $release->information_system . ' ' . $release->information_filesystem_type;
+            $key = $release->information_institution . ' ' .
+                $release->information_system . ' ' .
+                $release->information_filesystem_type;
 
             if (!in_array($key, $storages)) {
                 $storages[] = $key;
@@ -199,7 +203,7 @@ class ReleasesController extends AppController
 
         $releases = $this->Releases->find('all')
             ->where([
-                'Releases.id IN' => $valid_records
+                'Releases.id IN' => $valid_records,
             ])
             ->limit($limit);
 
@@ -210,9 +214,10 @@ class ReleasesController extends AppController
     /**
      * Historical method
      *
+     * @param string|null $list Release information_list_name.
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function historical()
+    public function historical($list = null)
     {
         $limit = 20;
 
@@ -221,16 +226,16 @@ class ReleasesController extends AppController
             'isc18',
             'sc18',
             'isc19',
-            'sc19'
+            'sc19',
         ];
 
         $index = array_search($list, $lists);
-        $lists =  array_slice($lists, 0, $index + 1);
+        $lists = array_slice($lists, 0, $index + 1);
 
         $settings = [
             'order' => [
-                'io500_score' => 'DESC'
-            ]
+                'io500_score' => 'DESC',
+            ],
         ];
 
         if ($this->request->getParam('?')['sort']) {
@@ -239,7 +244,7 @@ class ReleasesController extends AppController
 
         $releases = $this->Releases->find('all')
             ->where([
-                'Releases.information_list_name IN' => $lists
+                'Releases.information_list_name IN' => $lists,
             ])
             ->limit($limit);
 
@@ -250,6 +255,7 @@ class ReleasesController extends AppController
     /**
      * Full method
      *
+     * @param string|null $list Release information_list_name.
      * @return \Cake\Http\Response|null|void Renders view
      */
     public function full($list = null)
@@ -261,16 +267,16 @@ class ReleasesController extends AppController
             'isc18',
             'sc18',
             'isc19',
-            'sc19'
+            'sc19',
         ];
 
         $index = array_search($list, $lists);
-        $lists =  array_slice($lists, 0, $index + 1);
+        $lists = array_slice($lists, 0, $index + 1);
 
         $settings = [
             'order' => [
-                'io500_score' => 'DESC'
-            ]
+                'io500_score' => 'DESC',
+            ],
         ];
 
         if ($this->request->getParam('?')['sort']) {
@@ -280,7 +286,7 @@ class ReleasesController extends AppController
         $releases = $this->Releases->find('all')
             ->where([
                 'Releases.status' => 'VALID',
-                'Releases.information_list_name IN' => $lists
+                'Releases.information_list_name IN' => $lists,
             ])
             ->limit($limit);
 
@@ -302,7 +308,7 @@ class ReleasesController extends AppController
             'isc18',
             'sc18',
             'isc19',
-            'sc19'
+            'sc19',
         ];
 
         $this->set('lists', $lists);
@@ -336,18 +342,23 @@ class ReleasesController extends AppController
             'mdtest_hard_stat',
             'mdtest_hard_write',
             'mdtest_hard_read',
-            'result_summary'
+            'result_summary',
         ];
 
         $selected_files = [];
 
-        $dir_iterator = new \RecursiveDirectoryIterator($prefix . $release->information_list_name . '/' . str_replace('.zip', '', $release->storage_data));
+        $dir_iterator = new \RecursiveDirectoryIterator(
+            $prefix . $release->information_list_name . '/' . str_replace('.zip', '', $release->storage_data)
+        );
         $iterator = new \RecursiveIteratorIterator($dir_iterator, \RecursiveIteratorIterator::SELF_FIRST);
-        
+
         foreach ($iterator as $file) {
             if ($file->isFile()) {
                 foreach ($target_files as $target) {
-                    if (strpos($file->getPathname(), $target) !== false && strpos($file->getPathname(), '._') === false) {
+                    if (
+                        strpos($file->getPathname(), $target) !== false &&
+                        strpos($file->getPathname(), '._') === false
+                    ) {
                         $selected_files[] = $file->getPathname();
                     }
                 }
@@ -376,15 +387,90 @@ class ReleasesController extends AppController
         $lists = [
             'sc17',
             'isc18',
-            'sc18',            
+            'sc18',
             'isc19',
-            'sc19'
+            'sc19',
         ];
 
         $releases = $this->Releases->find('all')
             ->where([
                 'LOWER(Releases.information_list_name) IN' => $lists,
-                'Releases.status' => 'VALID'
+                'Releases.status' => 'VALID',
+            ]);
+
+        $this->set('lists', $lists);
+        $this->set(compact('releases'));
+    }
+
+    /**
+     * IOR method
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
+    public function ior()
+    {
+        $lists = [
+            'sc17',
+            'isc18',
+            'sc18',
+            'isc19',
+            'sc19',
+        ];
+
+        $releases = $this->Releases->find('all')
+            ->where([
+                'LOWER(Releases.information_list_name) IN' => $lists,
+                'Releases.status' => 'VALID',
+            ]);
+
+        $this->set('lists', $lists);
+        $this->set(compact('releases'));
+    }
+
+    /**
+     * MDtest method
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
+    public function mdtest()
+    {
+        $lists = [
+            'sc17',
+            'isc18',
+            'sc18',
+            'isc19',
+            'sc19',
+        ];
+
+        $releases = $this->Releases->find('all')
+            ->where([
+                'LOWER(Releases.information_list_name) IN' => $lists,
+                'Releases.status' => 'VALID',
+            ]);
+
+        $this->set('lists', $lists);
+        $this->set(compact('releases'));
+    }
+
+    /**
+     * Pfind method
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
+    public function pfind()
+    {
+        $lists = [
+            'sc17',
+            'isc18',
+            'sc18',
+            'isc19',
+            'sc19',
+        ];
+
+        $releases = $this->Releases->find('all')
+            ->where([
+                'LOWER(Releases.information_list_name) IN' => $lists,
+                'Releases.status' => 'VALID',
             ]);
 
         $this->set('lists', $lists);
@@ -394,6 +480,7 @@ class ReleasesController extends AppController
     /**
      * Customize method
      *
+     * @param string|null $hash Record hash.
      * @return \Cake\Http\Response|null|void Renders view
      */
     public function customize($hash = null)
@@ -407,13 +494,13 @@ class ReleasesController extends AppController
 
         // Get a single table (instance of Schema\TableSchema)
         $tableSchema = $collection->describe('releases');
-        
+
         // Get columns list from table
         $columns = $tableSchema->columns();
 
         $display = [];
 
-        $selected_fields = NULL;
+        $selected_fields = null;
 
         if ($this->request->is('post')) {
             $selected_to_display = $this->request->getData();
@@ -445,17 +532,17 @@ class ReleasesController extends AppController
                     'information_client_total_procs',
                     'io500_score',
                     'io500_bw',
-                    'io500_md'
-                ]
+                    'io500_md',
+                ],
             ];
         }
 
         $releases = $this->Releases->find('all')
             ->where([
-                'Releases.information_list_name IS NOT' => NULL
+                'Releases.information_list_name IS NOT' => null,
             ])
             ->order([
-                'Releases.io500_score' => 'DESC'
+                'Releases.io500_score' => 'DESC',
             ])
             ->limit($limit);
 

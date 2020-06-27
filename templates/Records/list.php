@@ -19,11 +19,24 @@
         By <?php echo h($record->author); ?> - <?php echo h($record->created); ?>
     </p>
 
+    <p>
+        <strong>Ranking:</strong> 
+        <?php if ($equation) { ?>
+            <span class="code"><?php echo $display['custom-equation']; ?></span>
+        <?php } else {?>
+            <span class="code">io500_score</span>
+        <?php } ?>
+    </p>
+
     <div class="table-responsive custom-table">
         <table class="tb">
             <thead>
                 <tr>
-                    <th rowspan="2" class="tb-id"><?php echo $this->Paginator->sort('rank', '#') ?></th>
+                    <th rowspan="2" class="tb-id">#</th>
+
+                    <?php if ($equation) { ?>
+                    <th rowspan="2" class="tb-id">Ranking (<?php echo $display['custom-order']; ?>)</th>
+                    <?php } ?>
 
                     <?php
                     $total_information = 0;
@@ -90,7 +103,7 @@
                             if (strpos($field, 'information_') !== false) {
                     ?>
 
-                    <th rowspan="2"><?php echo $this->Paginator->sort($field, str_replace('_', ' ', str_replace('information_', '', $field))); ?></th>
+                    <th rowspan="2"><?php echo str_replace('_', ' ', str_replace('information_', '', $field)); ?></th>
 
                     <?php
                             }
@@ -102,7 +115,7 @@
                             if (strpos($field, 'io500_') !== false) {
                     ?>
 
-                    <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort($field, str_replace('_', ' ', str_replace('io500_', '', $field))); ?></th>
+                    <th rowspan="2" class="tb-number"><?php echo str_replace('_', ' ', str_replace('io500_', '', $field)); ?></th>
 
                     <?php
                             }
@@ -114,7 +127,7 @@
                             if (strpos($field, 'mdtest_') !== false) {
                     ?>
 
-                    <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort($field, str_replace('_', ' ', str_replace('mdtest_', '', $field))); ?></th>
+                    <th rowspan="2" class="tb-number"><?php echo str_replace('_', ' ', str_replace('mdtest_', '', $field)); ?></th>
 
                     <?php
                             }
@@ -126,7 +139,7 @@
                             if (strpos($field, 'ior_') !== false) {
                     ?>
 
-                    <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort($field, str_replace('_', ' ', str_replace('ior_', '', $field))); ?></th>
+                    <th rowspan="2" class="tb-number"><?php echo str_replace('_', ' ', str_replace('ior_', '', $field)); ?></th>
 
                     <?php
                             }
@@ -138,7 +151,7 @@
                             if (strpos($field, 'find_') !== false) {
                     ?>
 
-                    <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort($field, str_replace('_', ' ', str_replace('find_', '', $field))); ?></th>
+                    <th rowspan="2" class="tb-number"><?php echo str_replace('_', ' ', str_replace('find_', '', $field)); ?></th>
 
                     <?php
                             }
@@ -151,10 +164,16 @@
                 <?php foreach ($releases as $i => $release) { ?>
                 <tr>
                     <td class="tb-id">
-                        <b class="rank"><?php echo (($this->Paginator->current('Releases') - 1) * $limit) + ($i + 1) ?></b>
+                        <b class="rank"><?php echo ($i + 1) ?></b>
                     </td>
 
                     <?php
+                    if ($release->equation) {
+                    ?>
+                    <td class="tb-number"><?php echo $this->Number->format($release->equation, ['places' => 2, 'precision' => 2]) ?></td>
+                    <?php
+                    }
+
                     if ($total_information) {
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'information_') !== false) {
@@ -209,16 +228,6 @@
                 <?php } ?>
             </tbody>
         </table>
-    </div>
-
-    <div class="paginator">
-        <ul class="pagination">
-            <?php echo $this->Paginator->first('<< ' . __('first')) ?>
-            <?php echo $this->Paginator->prev('< ' . __('previous')) ?>
-            <?php echo $this->Paginator->numbers() ?>
-            <?php echo $this->Paginator->next(__('next') . ' >') ?>
-            <?php echo $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
     </div>
 
     <div id="disqus_thread"></div>

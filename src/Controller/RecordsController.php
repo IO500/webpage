@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use Cake\Datasource\ConnectionManager;
 use Ramsey\Uuid\Uuid;
+use NXP\MathExecutor;
 
 /**
  * Records Controller
@@ -61,8 +62,6 @@ class RecordsController extends AppController
      */
     public function list($hash = null)
     {
-        $limit = 20;
-
         $record = $this->Records->find('all')
             ->where([
                 'Records.hash' => $hash,
@@ -92,8 +91,33 @@ class RecordsController extends AppController
             ])
             ->order([
                 'Releases.io500_score' => 'DESC',
-            ])
-            ->limit($limit);
+            ]);
+
+        $equation = false;
+
+        if (isset($display['custom-equation'])) {
+            $equation = true;
+
+            $executor = new MathExecutor();
+
+            foreach ($releases as $release) {
+                // We need to set all the variables available for calculation
+                foreach ($columns as $key => $column) {
+                    if (
+                        strpos($column, 'io500_') !== false ||
+                        strpos($column, 'mdtest_') !== false ||
+                        strpos($column, 'ior_') !== false ||
+                        strpos($column, 'find_') !== false
+                    ) {
+                        if (is_numeric($release->{$column})) {
+                            $executor->setVar($column, $release->{$column});
+                        }
+                    }
+                }
+
+                $release->equation = $executor->execute($display['custom-equation']);
+            }
+        }
 
         $options = [];
 
@@ -107,10 +131,30 @@ class RecordsController extends AppController
             $options[$column] = $column;
         }
 
-        $this->set('limit', $limit);
+        $releases = $releases->toArray();
+
+        if ($equation) {
+            // Sort by the result of the equation
+            if ($display['custom-order'] == 'DESC') {
+                usort($releases, function($a, $b) {
+                    return $a->equation < $b->equation;
+                });
+            } else {
+                usort($releases, function($a, $b) {
+                    return $a->equation > $b->equation;
+                });
+            }
+        } else {
+            // Sort by the IO500 score
+            usort($releases, function($a, $b) {
+                return $a->io500_score < $b->io500_score;
+            });
+        }
+
         $this->set('options', $options);
         $this->set('display', $display);
         $this->set('record', $record);
-        $this->set('releases', $this->paginate($releases));
+        $this->set('equation', $equation);
+        $this->set('releases', $releases);
     }
 }

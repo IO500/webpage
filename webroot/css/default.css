@@ -318,10 +318,10 @@ table {
     display: inline-block;
     font-size: 12px;
     font-weight: bold;
-    height: 20px;
-    line-height: 18px;
+    height: 23px;
+    line-height: 22px;
     transition: 0.2s;
-    width: 20px;
+    width: 23px;
 }
 
 .rank:hover{
@@ -338,10 +338,20 @@ input[type=submit], .button-highlight {
 }
 
 input[type=text] {
+    border: 1px solid #d0d0d0;
+    box-sizing: border-box;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.1);
     border-radius: 3px;
-    border: #bbb solid 1px;
-    padding: 7px 10px;
+    font-size: 13px;
+    color: #303030;
+    display: inline-block;    
+    margin: 0 0 5px;
+    padding: 8px 8px;
     width: 100%;
+}
+
+input[type=text]:read-only {
+    background-color: #f7f7f7;
 }
 
 label {
@@ -672,4 +682,9 @@ footer > .container{
 .file-buttons li {
     display: inline-block;
     padding: 0 10px 0 0;
+}
+
+.customize label {
+    display: block;
+    margin: 10px 5px 5px;
 }

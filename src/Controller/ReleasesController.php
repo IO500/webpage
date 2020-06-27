@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use Cake\Datasource\ConnectionManager;
 use Cake\Filesystem\File;
+use NXP\MathExecutor;
 
 /**
  * Releases Controller
@@ -485,8 +486,6 @@ class ReleasesController extends AppController
      */
     public function customize($hash = null)
     {
-        $limit = 20;
-
         $db = ConnectionManager::get('default');
 
         // Create a schema collection.
@@ -500,7 +499,16 @@ class ReleasesController extends AppController
 
         $display = [];
 
+        $releases = $this->Releases->find('all')
+            ->where([
+                'Releases.information_list_name IS NOT' => null,
+            ])
+            ->order([
+                'Releases.io500_score' => 'DESC',
+            ]);
+
         $selected_fields = null;
+        $equation = false;
 
         if ($this->request->is('post')) {
             $selected_to_display = $this->request->getData();
@@ -517,6 +525,33 @@ class ReleasesController extends AppController
                 } else {
                     $display['custom-fields'][$option] = $option;
                 }
+            }
+
+            if ($selected_to_display['custom-equation']) {
+                $equation = true;
+
+                $executor = new MathExecutor();
+
+                foreach ($releases as $release) {
+                    // We need to set all the variables available for calculation
+                    foreach ($columns as $key => $column) {
+                        if (
+                            strpos($column, 'io500_') !== false ||
+                            strpos($column, 'mdtest_') !== false ||
+                            strpos($column, 'ior_') !== false ||
+                            strpos($column, 'find_') !== false
+                        ) {
+                            if (is_numeric($release->{$column})) {
+                                $executor->setVar($column, $release->{$column});
+                            }
+                        }
+                    }
+
+                    $release->equation = $executor->execute($selected_to_display['custom-equation']);
+                }
+
+                $display['custom-equation'] = $selected_to_display['custom-equation'];
+                $display['custom-order'] = $selected_to_display['custom-order'];
             }
 
             $selected_fields = json_encode($display);
@@ -537,15 +572,6 @@ class ReleasesController extends AppController
             ];
         }
 
-        $releases = $this->Releases->find('all')
-            ->where([
-                'Releases.information_list_name IS NOT' => null,
-            ])
-            ->order([
-                'Releases.io500_score' => 'DESC',
-            ])
-            ->limit($limit);
-
         $options = [];
 
         $options['information_*'] = 'information_*';
@@ -558,10 +584,30 @@ class ReleasesController extends AppController
             $options[$column] = $column;
         }
 
-        $this->set('limit', $limit);
+        $releases = $releases->toArray();
+
+        if ($equation) {
+            // Sort by the result of the equation
+            if ($selected_to_display['custom-order'] == 'DESC') {
+                usort($releases, function($a, $b) {
+                    return $a->equation < $b->equation;
+                });
+            } else {
+                usort($releases, function($a, $b) {
+                    return $a->equation > $b->equation;
+                });
+            }
+        } else {
+            // Sort by the IO500 score
+            usort($releases, function($a, $b) {
+                return $a->io500_score < $b->io500_score;
+            });
+        }
+
         $this->set('options', $options);
         $this->set('display', $display);
         $this->set('selected_fields', $selected_fields);
-        $this->set('releases', $this->paginate($releases));
+        $this->set('equation', $equation);
+        $this->set('releases', $releases);
     }
 }

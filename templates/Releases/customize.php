@@ -31,6 +31,29 @@
                 'val' => $display['custom-fields']
             ]
         );
+        echo $this->Form->control(
+            'custom-equation',
+            [
+                'label' => 'Custom Equation (used for ranking)'
+            ]
+        );
+        echo $this->Form->select(
+            'custom-order',
+            [
+                'DESC' => 'Higher value is better',
+                'ASC' => 'Lower value is better'
+            ],
+            [
+                'id' => 'custom-order'
+            ]
+        );
+        ?>
+
+        <p>
+            You can use any columns with numeric values for the custom equation. It has support for <span class="code">+</span>, <span class="code">-</span>, <span class="code">*</span>, <span class="code">/</span> and power (<span class="code">^</span>) operators plus <span class="code">()</span>.
+        </p>
+
+        <?php
         echo $this->Form->submit(__('Create'));
         echo $this->Form->end();
         ?>
@@ -40,7 +63,11 @@
         <table class="tb">
             <thead>
                 <tr>
-                    <th rowspan="2" class="tb-id"><?php echo $this->Paginator->sort('rank', '#') ?></th>
+                    <th rowspan="2" class="tb-id">#</th>
+
+                    <?php if ($equation) { ?>
+                    <th rowspan="2" class="tb-id">Custom Equation</th>
+                    <?php } ?>
 
                     <?php
                     $total_information = 0;
@@ -107,7 +134,7 @@
                             if (strpos($field, 'information_') === 0) {
                     ?>
 
-                    <th rowspan="2"><?php echo $this->Paginator->sort($field, str_replace('_', ' ', str_replace('information_', '', $field))); ?></th>
+                    <th rowspan="2"><?php echo str_replace('_', ' ', str_replace('information_', '', $field)); ?></th>
 
                     <?php
                             }
@@ -119,7 +146,7 @@
                             if (strpos($field, 'io500_') === 0) {
                     ?>
 
-                    <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort($field, str_replace('_', ' ', str_replace('io500_', '', $field))); ?></th>
+                    <th rowspan="2" class="tb-number"><?php echo str_replace('_', ' ', str_replace('io500_', '', $field)); ?></th>
 
                     <?php
                             }
@@ -131,7 +158,7 @@
                             if (strpos($field, 'mdtest_') === 0) {
                     ?>
 
-                    <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort($field, str_replace('_', ' ', str_replace('mdtest_', '', $field))); ?></th>
+                    <th rowspan="2" class="tb-number"><?php echo str_replace('_', ' ', str_replace('mdtest_', '', $field)); ?></th>
 
                     <?php
                             }
@@ -143,7 +170,7 @@
                             if (strpos($field, 'ior_') === 0) {
                     ?>
 
-                    <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort($field, str_replace('_', ' ', str_replace('ior_', '', $field))); ?></th>
+                    <th rowspan="2" class="tb-number"><?php echo str_replace('_', ' ', str_replace('ior_', '', $field)); ?></th>
 
                     <?php
                             }
@@ -155,7 +182,7 @@
                             if (strpos($field, 'find_') === 0) {
                     ?>
 
-                    <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort($field, str_replace('_', ' ', str_replace('find_', '', $field))); ?></th>
+                    <th rowspan="2" class="tb-number"><?php echo str_replace('_', ' ', str_replace('find_', '', $field)); ?></th>
 
                     <?php
                             }
@@ -169,7 +196,7 @@
                 <tr>
                     <td class="tb-id">
                         <?php
-                        echo $this->Html->link((($this->Paginator->current('Releases') - 1) * $limit) + ($i + 1), [
+                        echo $this->Html->link(($i + 1), [
                             'controller' => 'releases',
                             'action' => 'view',
                             $release->id
@@ -180,6 +207,12 @@
                     </td>
 
                     <?php
+                    if ($release->equation) {
+                    ?>
+                    <td class="tb-number"><?php echo $this->Number->format($release->equation, ['places' => 2, 'precision' => 2]) ?></td>
+                    <?php
+                    }
+
                     if ($total_information) {
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'information_') === 0) {
@@ -236,20 +269,10 @@
         </table>
     </div>
 
-    <div class="paginator">
-        <ul class="pagination">
-            <?php echo $this->Paginator->first('<<') ?>
-            <?php echo $this->Paginator->prev('<') ?>
-            <?php echo $this->Paginator->numbers() ?>
-            <?php echo $this->Paginator->next('>') ?>
-            <?php echo $this->Paginator->last('>>') ?>
-        </ul>
-    </div>
-
     <?php if ($selected_fields) {?>
 
     <p>
-        You can save this list and share it with your collegues!
+        You can save this list and share it with your collegues! You will be provided with a permanent URL.
     </p>
 
     <div class="customize">
@@ -263,7 +286,8 @@
         echo $this->Form->control('name');
         echo $this->Form->control('author');
         echo $this->Form->control('fields', [
-            'value' => $selected_fields
+            'value' => $selected_fields,
+            'readonly'
         ]);
 
         echo $this->Form->submit(__('Save'));

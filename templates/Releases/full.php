@@ -27,7 +27,7 @@
         <table class="tb">
             <thead>
                 <tr>
-                    <th rowspan="3" class="tb-id"><?php echo $this->Paginator->sort('rank', '#') ?></th>
+                    <th rowspan="3" class="tb-id"><?php echo $this->Paginator->sort('io500_score', '#') ?></th>
                     <th colspan="7" class="tb-center">Information</th>
                     <th colspan="3" class="tb-center">IO500</th>
                 </tr>

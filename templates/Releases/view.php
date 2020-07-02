@@ -1,0 +1,328 @@
+<nav id="breadcrumb">
+    <p>YOU ARE HERE</p>
+
+    <?php
+    $this->Breadcrumbs->add(_('LISTS'), ['controller' => 'releases', 'action' => 'index']);
+    $this->Breadcrumbs->add(strtoupper($release->information_list_name), ['controller' => 'releases', 'action' => 'full', strtolower($release->information_list_name)]);
+    $this->Breadcrumbs->add(strtoupper($release->information_system), ['controller' => 'releases', 'action' => 'view', $release->id]);
+
+    echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
+    ?>
+</nav>
+
+<div class="row">
+    <div class="column-responsive column-80">
+        <div class="releases view content">
+            <h3><?php echo h($release->information_system) ?></h3>
+
+            <div class="information">
+                <div class="information-metadata">
+                    <h4>INFORMATION</h4>
+
+                    <table class="tb tb-info">
+                        <tr>
+                            <th><?php echo _('System') ?></th>
+                            <td><?php echo h($release->information_system) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Storage Vendor') ?></th>
+                            <td><?php echo h($release->information_storage_vendor) ?></td>
+                        </tr>
+
+                            <th><?php echo _('Filesystem Type') ?></th>
+                            <td><?php echo h($release->information_filesystem_type) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Filesystem Name') ?></th>
+                            <td><?php echo h($release->information_filesystem_name) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Filesystem Version') ?></th>
+                            <td><?php echo h($release->information_filesystem_version) ?></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="information-data">
+                    <table class="tb tb-info">                        
+                        <tr>
+                            <th><?php echo _('Institution') ?></th>
+                            <td><?php echo h($release->information_institution) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Client Procs Per Node') ?></th>
+                            <td><?php echo h($release->information_procs_per_node) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Client Operating System') ?></th>
+                            <td><?php echo h($release->information_client_operating_system) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Client Operating System Version') ?></th>
+                            <td><?php echo h($release->information_client_operating_system_version) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Client Kernel Version') ?></th>
+                            <td><?php echo h($release->information_client_kernel_version) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="information">
+                <div class="information-metadata">
+                    <h4>METADATA SERVER</h4>
+
+                    <table class="tb tb-info">
+                        <tr>
+                            <th><?php echo _('Storage Type') ?></th>
+                            <td><?php echo h($release->information_md_storage_type) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Volatile Memory') ?></th>
+                            <td><?php echo h($release->information_md_volatile_memory_capacity) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Storage Interface') ?></th>
+                            <td><?php echo h($release->information_md_storage_interface) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Network') ?></th>
+                            <td><?php echo h($release->information_md_network) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Software Version') ?></th>
+                            <td><?php echo h($release->information_md_software_version) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('OS Version') ?></th>
+                            <td><?php echo h($release->information_md_operating_system_version) ?></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="information-data">
+                    <h4>DATA SERVER</h4>
+
+                    <table class="tb tb-info">
+                        <tr>
+                            <th><?php echo _('Storage Type') ?></th>
+                            <td><?php echo h($release->information_ds_storage_type) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Volatile Memory') ?></th>
+                            <td><?php echo h($release->information_ds_volatile_memory_capacity) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Storage Interface') ?></th>
+                            <td><?php echo h($release->information_ds_storage_interface) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Network') ?></th>
+                            <td><?php echo h($release->information_ds_network) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Software Version') ?></th>
+                            <td><?php echo h($release->information_ds_software_version) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('OS Version') ?></th>
+                            <td><?php echo h($release->information_ds_operating_system_version) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="information">
+                <div class="information-metadata">
+                    <h4>IO500 SCORES</h4>
+
+                    <table class="tb tb-info">
+                        <tr>
+                            <th><?php echo _('Io500 Score') ?></th>
+                            <td><?php echo $this->Number->format($release->io500_score, ['places' => 2, 'precision' => 2]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Io500 Iops') ?></th>
+                            <td><?php echo $this->Number->format($release->io500_tot_iops, ['places' => 2, 'precision' => 2]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Io500 Bw') ?></th>
+                            <td><?php echo $this->Number->format($release->io500_bw, ['places' => 2, 'precision' => 2]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Io500 Md') ?></th>
+                            <td><?php echo $this->Number->format($release->io500_md, ['places' => 2, 'precision' => 2]) ?></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="information-data">
+                    <h4>INFORMATION</h4>
+
+                    <table class="tb tb-info">
+                        <tr>
+                            <th><?php echo _('Client Nodes') ?></th>
+                            <td><?php echo $this->Number->format($release->information_client_nodes) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Client Total Procs') ?></th>
+                            <td><?php echo $this->Number->format($release->information_client_total_procs) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Metadata Nodes') ?></th>
+                            <td><?php echo $this->Number->format($release->information_md_nodes) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Metadata Storage Devices') ?></th>
+                            <td><?php echo $this->Number->format($release->information_md_storage_devices) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Metadata Nodes') ?></th>
+                            <td><?php echo $this->Number->format($release->information_ds_nodes) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Metadata Storage Devices') ?></th>
+                            <td><?php echo $this->Number->format($release->information_ds_storage_devices) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="information">
+                <div class="information-metadata">
+                    <h4>IOR</h4>
+
+                    <table class="tb tb-info">
+                        <tr>
+                            <th><?php echo _('Easy Write') ?></th>
+                            <td><?php echo $this->Number->format($release->ior_easy_write, ['places' => 2, 'precision' => 2]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Easy Read') ?></th>
+                            <td><?php echo $this->Number->format($release->ior_easy_read, ['places' => 2, 'precision' => 2]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Hard Write') ?></th>
+                            <td><?php echo $this->Number->format($release->ior_hard_write, ['places' => 2, 'precision' => 2]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Hard Read') ?></th>
+                            <td><?php echo $this->Number->format($release->ior_hard_read, ['places' => 2, 'precision' => 2]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Find Easy') ?></th>
+                            <td><?php echo $this->Number->format($release->pfind_easy, ['places' => 2, 'precision' => 2]) ?></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="information-data">
+                    <h4>METADATA</h4>
+
+                    <table class="tb tb-info">
+                        <tr>
+                            <th><?php echo _('Easy Write') ?></th>
+                            <td><?php echo $this->Number->format($release->mdtest_easy_write, ['places' => 2, 'precision' => 2]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Easy Stat') ?></th>
+                            <td><?php echo $this->Number->format($release->mdtest_easy_stat, ['places' => 2, 'precision' => 2]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Easy Delete') ?></th>
+                            <td><?php echo $this->Number->format($release->mdtest_easy_delete, ['places' => 2, 'precision' => 2]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Hard Write') ?></th>
+                            <td><?php echo $this->Number->format($release->mdtest_hard_write, ['places' => 2, 'precision' => 2]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Hard Read') ?></th>
+                            <td><?php echo $this->Number->format($release->mdtest_hard_read, ['places' => 2, 'precision' => 2]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Hard Stat') ?></th>
+                            <td><?php echo $this->Number->format($release->mdtest_hard_stat, ['places' => 2, 'precision' => 2]) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo _('Hard Delete') ?></th>
+                            <td><?php echo $this->Number->format($release->mdtest_hard_delete, ['places' => 2, 'precision' => 2]) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <h3>Submitted Files</h3>
+
+            <ul class="file-buttons">
+                <li>
+                    <?php
+                    echo $this->Html->link(
+                        _('Browse Files'),
+                        'https://jbez.io500.org/storage/' . $release->information_list_name . '/' . str_replace('.zip', '', $release->storage_data),
+                        [
+                            'target' => '_blank',
+                            'class' => 'button'
+                        ]
+                    );
+                    ?>
+                </li>
+                <li>
+                    <?php
+                    echo $this->Html->link(
+                        _('Download ZIP'),
+                        'https://jbez.io500.org/storage/' . $release->information_list_name . '/' . $release->storage_data,
+                        [
+                            'target' => '_blank',
+                            'class' => 'button-highlight'
+                        ]
+                    );
+                    ?>
+                </li>
+            </ul>
+
+            <?php if (empty($submitted_files)) { ?>
+            <p><?php echo _('No files were found for this submmision.'); ?></p>
+            <?php }?>
+
+            <dl>
+                <?php foreach ($submitted_files as $name => $file) { ?>
+                <dt class="file"><?php echo h($name); ?></dt>
+                <dd>
+                    <pre class=code-block><?php echo $file; ?></pre>
+                </dd>
+                <?php } ?>
+            </dl>
+        </div>
+    </div>
+
+    <div id="disqus_thread"></div>
+</div>
+
+<?php
+$this->Html->scriptBlock(
+"
+$(document).ready(function() {
+    $('dt').click(function() {
+        $(this).next('dd').toggle('slow');
+    });
+});
+", [
+    'block' => true
+]);
+?>
+
+<script>
+var disqus_config = function () {
+    this.page.url = "<?php echo $this->Url->build($this->request->getRequestTarget(), ['fullBase' => true]); ?>";
+    this.page.identifier = "<?php echo $this->Url->build($this->request->getRequestTarget()); ?>";
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://io500.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>

@@ -137,16 +137,15 @@ nav .links > li {
 
 /* Flash messages */
 .message {
-    padding: 1rem;
-
+    padding: 10px;
     background: #eff8ff;
     color: #2779bd;
-
     border-color: #6cb2eb;
     border-width: 1px;
     border-style: solid;
     border-radius: 4px;
-    margin-bottom: 2rem;
+    margin: 20px 0 10px;
+    text-align: center;
 }
 .message.hidden {
     display: none;

@@ -641,8 +641,12 @@ footer > .container{
     padding: 0;
 }
 
-.news li {
+.news > li {
     list-style: none;
+}
+
+.news ul {
+    padding: 0 0 0 130px;
 }
 
 .date {

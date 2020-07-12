@@ -98,11 +98,15 @@
 
     <div class="paginator">
         <ul class="pagination">
-            <?php echo $this->Paginator->first('<<') ?>
-            <?php echo $this->Paginator->prev('<') ?>
-            <?php echo $this->Paginator->numbers() ?>
-            <?php echo $this->Paginator->next('>') ?>
-            <?php echo $this->Paginator->last('>>') ?>
+            <?php
+            if ($this->Paginator->total() > 1) {
+                echo $this->Paginator->first('<<');
+                echo $this->Paginator->prev('<');
+                echo $this->Paginator->numbers();
+                echo $this->Paginator->next('>');
+                echo $this->Paginator->last('>>');
+            }
+            ?>
         </ul>
     </div>
 

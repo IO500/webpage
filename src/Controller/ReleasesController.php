@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 use Cake\Filesystem\File;
 use NXP\MathExecutor;
@@ -30,16 +31,6 @@ class ReleasesController extends AppController
 
         // Define which is the latest list to display
         $list = 'SC19';
-
-        $settings = [
-            'order' => [
-                'io500_score' => 'DESC',
-            ],
-        ];
-
-        if ($this->request->getParam('?')['sort']) {
-            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
-        }
 
         $releases = $this->Releases->find('all')
             ->select([
@@ -74,7 +65,18 @@ class ReleasesController extends AppController
             }
         }
 
-        $limit = 20;
+        $limit = Configure::read('IO500.pagination');
+
+        $settings = [
+            'order' => [
+                'io500_score' => 'DESC',
+            ],
+            'limit' => $limit
+        ];
+
+        if (isset($this->request->getParam('?')['sort'])) {
+            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
+        }
 
         $releases = $this->Releases->find('all')
             ->where([
@@ -96,16 +98,6 @@ class ReleasesController extends AppController
     public function ten($list = null)
     {
         $limit = 1000;
-
-        $settings = [
-            'order' => [
-                'io500_score' => 'DESC',
-            ],
-        ];
-
-        if ($this->request->getParam('?')['sort']) {
-            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
-        }
 
         $releases = $this->Releases->find('all')
             ->select([
@@ -139,7 +131,18 @@ class ReleasesController extends AppController
             }
         }
 
-        $limit = 20;
+        $limit = Configure::read('IO500.pagination');
+
+        $settings = [
+            'order' => [
+                'io500_score' => 'DESC',
+            ],
+            'limit' => $limit
+        ];
+
+        if (isset($this->request->getParam('?')['sort'])) {
+            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
+        }
 
         $releases = $this->Releases->find('all')
             ->where([
@@ -160,16 +163,6 @@ class ReleasesController extends AppController
     public function list($list = null)
     {
         $limit = 1000;
-
-        $settings = [
-            'order' => [
-                'io500_score' => 'DESC',
-            ],
-        ];
-
-        if ($this->request->getParam('?')['sort']) {
-            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
-        }
 
         $releases = $this->Releases->find('all')
             ->select([
@@ -204,7 +197,18 @@ class ReleasesController extends AppController
             }
         }
 
-        $limit = 20;
+        $limit = Configure::read('IO500.pagination');
+
+        $settings = [
+            'order' => [
+                'io500_score' => 'DESC',
+            ],
+            'limit' => $limit
+        ];
+
+        if (isset($this->request->getParam('?')['sort'])) {
+            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
+        }
 
         $releases = $this->Releases->find('all')
             ->where([
@@ -224,7 +228,7 @@ class ReleasesController extends AppController
      */
     public function historical($list = null)
     {
-        $limit = 20;
+        $limit = Configure::read('IO500.pagination');
 
         $lists = [
             'sc17',
@@ -241,9 +245,10 @@ class ReleasesController extends AppController
             'order' => [
                 'io500_score' => 'DESC',
             ],
+            'limit' => $limit
         ];
 
-        if ($this->request->getParam('?')['sort']) {
+        if (isset($this->request->getParam('?')['sort'])) {
             $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
         }
 
@@ -265,7 +270,7 @@ class ReleasesController extends AppController
      */
     public function full($list = null)
     {
-        $limit = 20;
+        $limit = Configure::read('IO500.pagination');
 
         $lists = [
             'sc17',
@@ -282,9 +287,10 @@ class ReleasesController extends AppController
             'order' => [
                 'io500_score' => 'DESC',
             ],
+            'limit' => $limit
         ];
 
-        if ($this->request->getParam('?')['sort']) {
+        if (isset($this->request->getParam('?')['sort'])) {
             $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
         }
 

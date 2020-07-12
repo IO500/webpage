@@ -101,6 +101,7 @@ if (Configure::read('debug')) {
 }
 
 Configure::write('IO500.custom_lists', false);
+Configure::write('IO500.pagination', 100);
 
 /*
  * Set the default server timezone. Using UTC makes time calculations / conversions easier.

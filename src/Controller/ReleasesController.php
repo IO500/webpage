@@ -347,32 +347,35 @@ class ReleasesController extends AppController
         ];
 
         $selected_files = [];
+        $submitted_files = [];
 
-        $dir_iterator = new \RecursiveDirectoryIterator(
-            $prefix . $release->information_list_name . '/' . str_replace('.zip', '', $release->storage_data)
-        );
-        $iterator = new \RecursiveIteratorIterator($dir_iterator, \RecursiveIteratorIterator::SELF_FIRST);
+        $path = $prefix . $release->information_list_name . '/' . str_replace('.zip', '', $release->storage_data);
 
-        foreach ($iterator as $file) {
-            if ($file->isFile()) {
-                foreach ($target_files as $target) {
-                    if (
-                        strpos($file->getPathname(), $target) !== false &&
-                        strpos($file->getPathname(), '._') === false
-                    ) {
-                        $selected_files[] = $file->getPathname();
+        if (is_dir($path)) {
+            $dir_iterator = new \RecursiveDirectoryIterator($path);
+            $iterator = new \RecursiveIteratorIterator($dir_iterator, \RecursiveIteratorIterator::SELF_FIRST);
+
+            foreach ($iterator as $file) {
+                if ($file->isFile()) {
+                    foreach ($target_files as $target) {
+                        if (
+                            strpos($file->getPathname(), $target) !== false &&
+                            strpos($file->getPathname(), '._') === false
+                        ) {
+                            $selected_files[] = $file->getPathname();
+                        }
                     }
                 }
             }
-        }
 
-        foreach ($selected_files as $file) {
-            $file = new File($file);
-            $submitted_files[$file->name()] = $file->read();
-            $file->close();
-        }
+            foreach ($selected_files as $file) {
+                $file = new File($file);
+                $submitted_files[$file->name()] = $file->read();
+                $file->close();
+            }
 
-        ksort($submitted_files);
+            ksort($submitted_files);
+        }
 
         $this->set('release', $release);
         $this->set('submitted_files', $submitted_files);

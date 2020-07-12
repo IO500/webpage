@@ -24,8 +24,19 @@
 <body>
     <nav>
         <div class="container navigation">
-            <div class="logo">
-                IO<sup>500</sup></a>
+            <div class="logo">                
+                <?php
+                echo $this->Html->link(
+                    $this->Html->image('logo.png'), 
+                    [
+                        'controller' => 'releases',
+                        'action' => 'latest'
+                    ],
+                    [
+                        'escape' => false
+                    ]
+                );
+                ?>
             </div>
 
             <ul class="links">

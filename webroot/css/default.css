@@ -96,9 +96,9 @@ footer {
 }
 
 .button {
-    border: #e74446 solid 1px;
+    border: #d63b1e solid 1px;
     border-radius: 3px;
-    color: #e74446;
+    color: #d63b1e;
     font-weight: bold;
     padding: 5px 10px;
     box-sizing: border-box;
@@ -199,8 +199,8 @@ nav .links > li {
 }
 
 .pagination li.active a {
-    border-color: #e74446;
-    background: #e74446;
+    border-color: #d63b1e;
+    background: #d63b1e;
     border-radius: 50px;
     color: #fff;
 }
@@ -311,7 +311,7 @@ table {
 }
 
 .rank {
-    background: #e74446;    
+    background: #d63b1e;    
     border-radius: 50px;
     color: #fff;
     display: inline-block;
@@ -328,9 +328,9 @@ table {
 }
 
 input[type=submit], .button-highlight {
-    background: #e74446;
+    background: #d63b1e;
     border-radius: 3px;
-    border: #e74446 solid 1px;
+    border: #d63b1e solid 1px;
     color: #fff;
     font-weight: bold;
     padding: 5px 10px;
@@ -419,7 +419,7 @@ li {
 
 .information h4 {
     background: #fff;
-    color: #e74446;
+    color: #d63b1e;
     display: block;
     font-size: 12px;
     left: 20px;
@@ -505,8 +505,8 @@ dd {
 }
 
 .releases-lists ul > li:hover{
-    background: #e74446;
-    border-color: #e74446;
+    background: #d63b1e;
+    border-color: #d63b1e;
 }
 
 .releases-lists ul > li > a {

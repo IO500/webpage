@@ -14,14 +14,12 @@
 
     <div class="releases-action">
         <?php
-        if ($this->Configure->read('IO500.custom_lists')) {
-            echo $this->Html->link(__('Customize'), [
-                'controller' => 'releases',
-                'action' => 'customize'
-            ], [
-                'class' => 'button'
-            ]);
-        }
+        echo $this->Html->link(__('Customize'), [
+            'controller' => 'releases',
+            'action' => 'customize'
+        ], [
+            'class' => 'button'
+        ]);
         ?>
     </div>
 

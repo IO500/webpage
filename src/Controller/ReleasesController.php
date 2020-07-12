@@ -6,6 +6,10 @@ namespace App\Controller;
 use Cake\Datasource\ConnectionManager;
 use Cake\Filesystem\File;
 use NXP\MathExecutor;
+use NXP\Exception\IncorrectExpressionException;
+use NXP\Exception\IncorrectBracketsException;
+use NXP\Exception\UnknownOperatorException;
+use NXP\Exception\UnknownVariableException;
 
 /**
  * Releases Controller
@@ -550,7 +554,39 @@ class ReleasesController extends AppController
                         }
                     }
 
-                    $release->equation = $executor->execute($selected_to_display['custom-equation']);
+                    try {
+                        $release->equation = $executor->execute($selected_to_display['custom-equation']);
+                    } catch (IncorrectExpressionException $e) {
+                        $valid = false;
+
+                        $this->Flash->error(__('Sorry, but the expression is invalid! Please, make sure that your are using the correct syntax.'));
+
+                        break;
+                    } catch (IncorrectBracketsException $e) {
+                        $valid = false;
+
+                        $this->Flash->error(__('Sorry, but there are incorrect brackets! Please, make sure that your are using the correct syntax.'));
+
+                        break;
+                    } catch (UnknownOperatorException $e) {
+                        $valid = false;
+
+                        $this->Flash->error(__('Sorry, but the operator "{0}" is unknown! Please, make sure that your are using the correct syntax.', $e->getMessage()));
+
+                        break;
+                    } catch (UnknownVariableException $e) {
+                        $valid = false;
+
+                        $this->Flash->error(__('Sorry, but the variable "{0}" is unknown! Please, make sure that your are using the variable names.', $e->getMessage()));
+
+                        break;
+                    } catch (\Exception $e) {
+                        $valid = false;
+
+                        $this->Flash->error(__('Sorry, but there was an error when creating the custom list! Please, make sure you are using the correct variables and syntax.'));
+
+                        break;
+                    }
                 }
 
                 $display['custom-equation'] = $selected_to_display['custom-equation'];
@@ -611,6 +647,7 @@ class ReleasesController extends AppController
         $this->set('display', $display);
         $this->set('selected_fields', $selected_fields);
         $this->set('equation', $equation);
+        $this->set('valid', $valid);
         $this->set('releases', $releases);
     }
 }

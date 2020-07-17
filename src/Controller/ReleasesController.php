@@ -548,15 +548,8 @@ class ReleasesController extends AppController
                 foreach ($releases as $release) {
                     // We need to set all the variables available for calculation
                     foreach ($columns as $key => $column) {
-                        if (
-                            strpos($column, 'io500_') !== false ||
-                            strpos($column, 'mdtest_') !== false ||
-                            strpos($column, 'ior_') !== false ||
-                            strpos($column, 'find_') !== false
-                        ) {
-                            if (is_numeric($release->{$column})) {
-                                $executor->setVar($column, $release->{$column});
-                            }
+                        if (is_numeric($release->{$column})) {
+                            $executor->setVar($column, $release->{$column});
                         }
                     }
 

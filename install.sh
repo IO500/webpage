@@ -1,7 +1,8 @@
 #!/bin/bash
 
-wget https://getcomposer.org/installer | xargs php
+wget https://getcomposer.org/installer
 
+php installer
 php composer.phar install
 
 cp config/app_local.example.php config/app_local.php

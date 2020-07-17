@@ -16,7 +16,9 @@
 
     <p>
         You can build your customized list by selecting any of the available fields.<br/>
+        <?php if ($this->Configure->read('IO500.custom_lists')) { ?>
         Once you satisfied with your list, scroll down to save it and share with the community. Explore!
+        <?php } ?>
     </p>
 
     <div class="customize">
@@ -65,7 +67,7 @@
                 <tr>
                     <th rowspan="2" class="tb-id">#</th>
 
-                    <?php if ($equation) { ?>
+                    <?php if ($equation && $valid) { ?>
                     <th rowspan="2" class="tb-id">Custom Equation</th>
                     <?php } ?>
 
@@ -207,7 +209,7 @@
                     </td>
 
                     <?php
-                    if ($release->equation) {
+                    if ($release->equation && $valid) {
                     ?>
                     <td class="tb-number"><?php echo $this->Number->format($release->equation, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
@@ -269,33 +271,39 @@
         </table>
     </div>
 
-    <?php if ($selected_fields) {?>
+    <?php
+    if ($this->Configure->read('IO500.custom_lists')) {
+        if ($selected_fields) {
+    ?>
 
-    <p>
-        You can save this list and share it with your collegues! You will be provided with a permanent URL.
-    </p>
+            <p>
+                You can save this list and share it with your collegues! You will be provided with a permanent URL.
+            </p>
 
-    <div class="customize">
-        <?php
-        echo $this->Form->create(null, [
-            'url' => [
-                'controller' => 'records',
-                'action' => 'save'
-            ]
-        ]);
-        echo $this->Form->control('name');
-        echo $this->Form->control('author');
-        echo $this->Form->control('fields', [
-            'value' => $selected_fields,
-            'readonly'
-        ]);
+            <div class="customize">
+                <?php
+                echo $this->Form->create(null, [
+                    'url' => [
+                        'controller' => 'records',
+                        'action' => 'save'
+                    ]
+                ]);
+                echo $this->Form->control('name');
+                echo $this->Form->control('author');
+                echo $this->Form->control('fields', [
+                    'value' => $selected_fields,
+                    'readonly'
+                ]);
 
-        echo $this->Form->submit(__('Save'));
-        echo $this->Form->end();
-        ?>
-    </div>
+                echo $this->Form->submit(__('Save'));
+                echo $this->Form->end();
+                ?>
+            </div>
 
-    <?php } ?>
+    <?php
+        }
+    }
+    ?>
 
     <div id="disqus_thread"></div>
 </div>

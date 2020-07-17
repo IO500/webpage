@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Core\Configure;
+use Cake\Event\EventInterface;
 use Cake\Datasource\ConnectionManager;
 use Ramsey\Uuid\Uuid;
 use NXP\MathExecutor;
@@ -15,6 +17,21 @@ use NXP\MathExecutor;
  */
 class RecordsController extends AppController
 {
+    /**
+     * beforeFilter callback.
+     *
+     * @param \Cake\Event\EventInterface $event Event.
+     * @return \Cake\Http\Response|null|void
+     */
+    public function beforeFilter(EventInterface $event)
+    {
+        if (!Configure::read('IO500.custom_lists')) {
+            $this->Flash->error(__('Sorry, but this feature is not yet available!'));
+
+            return $this->redirect(['controller' => 'releases', 'action' => 'index']);
+        }
+    }
+
     /**
      * Index method
      *

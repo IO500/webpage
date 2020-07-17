@@ -28,7 +28,7 @@
         <table class="tb">
             <thead>
                 <tr>
-                    <th rowspan="3" class="tb-id"><?php echo $this->Paginator->sort('rank', '#') ?></th>
+                    <th rowspan="3" class="tb-id"><?php echo $this->Paginator->sort('io500_score', '#') ?></th>
                     <th colspan="6" class="tb-center">Information</th>
                     <th colspan="3" class="tb-center">IO500</th>
                 </tr>
@@ -89,11 +89,15 @@
 
     <div class="paginator">
         <ul class="pagination">
-            <?php echo $this->Paginator->first('<<') ?>
-            <?php echo $this->Paginator->prev('<') ?>
-            <?php echo $this->Paginator->numbers() ?>
-            <?php echo $this->Paginator->next('>') ?>
-            <?php echo $this->Paginator->last('>>') ?>
+            <?php
+            if ($this->Paginator->total() > 1) {
+                echo $this->Paginator->first('<<');
+                echo $this->Paginator->prev('<');
+                echo $this->Paginator->numbers();
+                echo $this->Paginator->next('>');
+                echo $this->Paginator->last('>>');
+            }
+            ?>
         </ul>
     </div>
 

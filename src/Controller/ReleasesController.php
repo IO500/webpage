@@ -3,9 +3,14 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 use Cake\Filesystem\File;
 use NXP\MathExecutor;
+use NXP\Exception\IncorrectExpressionException;
+use NXP\Exception\IncorrectBracketsException;
+use NXP\Exception\UnknownOperatorException;
+use NXP\Exception\UnknownVariableException;
 
 /**
  * Releases Controller
@@ -26,16 +31,6 @@ class ReleasesController extends AppController
 
         // Define which is the latest list to display
         $list = 'SC19';
-
-        $settings = [
-            'order' => [
-                'io500_score' => 'DESC',
-            ],
-        ];
-
-        if ($this->request->getParam('?')['sort']) {
-            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
-        }
 
         $releases = $this->Releases->find('all')
             ->select([
@@ -70,7 +65,18 @@ class ReleasesController extends AppController
             }
         }
 
-        $limit = 20;
+        $limit = Configure::read('IO500.pagination');
+
+        $settings = [
+            'order' => [
+                'io500_score' => 'DESC',
+            ],
+            'limit' => $limit
+        ];
+
+        if (isset($this->request->getParam('?')['sort'])) {
+            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
+        }
 
         $releases = $this->Releases->find('all')
             ->where([
@@ -92,16 +98,6 @@ class ReleasesController extends AppController
     public function ten($list = null)
     {
         $limit = 1000;
-
-        $settings = [
-            'order' => [
-                'io500_score' => 'DESC',
-            ],
-        ];
-
-        if ($this->request->getParam('?')['sort']) {
-            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
-        }
 
         $releases = $this->Releases->find('all')
             ->select([
@@ -135,7 +131,18 @@ class ReleasesController extends AppController
             }
         }
 
-        $limit = 20;
+        $limit = Configure::read('IO500.pagination');
+
+        $settings = [
+            'order' => [
+                'io500_score' => 'DESC',
+            ],
+            'limit' => $limit
+        ];
+
+        if (isset($this->request->getParam('?')['sort'])) {
+            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
+        }
 
         $releases = $this->Releases->find('all')
             ->where([
@@ -156,16 +163,6 @@ class ReleasesController extends AppController
     public function list($list = null)
     {
         $limit = 1000;
-
-        $settings = [
-            'order' => [
-                'io500_score' => 'DESC',
-            ],
-        ];
-
-        if ($this->request->getParam('?')['sort']) {
-            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
-        }
 
         $releases = $this->Releases->find('all')
             ->select([
@@ -200,7 +197,18 @@ class ReleasesController extends AppController
             }
         }
 
-        $limit = 20;
+        $limit = Configure::read('IO500.pagination');
+
+        $settings = [
+            'order' => [
+                'io500_score' => 'DESC',
+            ],
+            'limit' => $limit
+        ];
+
+        if (isset($this->request->getParam('?')['sort'])) {
+            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
+        }
 
         $releases = $this->Releases->find('all')
             ->where([
@@ -220,7 +228,7 @@ class ReleasesController extends AppController
      */
     public function historical($list = null)
     {
-        $limit = 20;
+        $limit = Configure::read('IO500.pagination');
 
         $lists = [
             'sc17',
@@ -237,9 +245,10 @@ class ReleasesController extends AppController
             'order' => [
                 'io500_score' => 'DESC',
             ],
+            'limit' => $limit
         ];
 
-        if ($this->request->getParam('?')['sort']) {
+        if (isset($this->request->getParam('?')['sort'])) {
             $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
         }
 
@@ -261,7 +270,7 @@ class ReleasesController extends AppController
      */
     public function full($list = null)
     {
-        $limit = 20;
+        $limit = Configure::read('IO500.pagination');
 
         $lists = [
             'sc17',
@@ -278,9 +287,10 @@ class ReleasesController extends AppController
             'order' => [
                 'io500_score' => 'DESC',
             ],
+            'limit' => $limit
         ];
 
-        if ($this->request->getParam('?')['sort']) {
+        if (isset($this->request->getParam('?')['sort'])) {
             $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
         }
 
@@ -347,32 +357,35 @@ class ReleasesController extends AppController
         ];
 
         $selected_files = [];
+        $submitted_files = [];
 
-        $dir_iterator = new \RecursiveDirectoryIterator(
-            $prefix . $release->information_list_name . '/' . str_replace('.zip', '', $release->storage_data)
-        );
-        $iterator = new \RecursiveIteratorIterator($dir_iterator, \RecursiveIteratorIterator::SELF_FIRST);
+        $path = $prefix . $release->information_list_name . '/' . str_replace('.zip', '', $release->storage_data);
 
-        foreach ($iterator as $file) {
-            if ($file->isFile()) {
-                foreach ($target_files as $target) {
-                    if (
-                        strpos($file->getPathname(), $target) !== false &&
-                        strpos($file->getPathname(), '._') === false
-                    ) {
-                        $selected_files[] = $file->getPathname();
+        if (is_dir($path)) {
+            $dir_iterator = new \RecursiveDirectoryIterator($path);
+            $iterator = new \RecursiveIteratorIterator($dir_iterator, \RecursiveIteratorIterator::SELF_FIRST);
+
+            foreach ($iterator as $file) {
+                if ($file->isFile()) {
+                    foreach ($target_files as $target) {
+                        if (
+                            strpos($file->getPathname(), $target) !== false &&
+                            strpos($file->getPathname(), '._') === false
+                        ) {
+                            $selected_files[] = $file->getPathname();
+                        }
                     }
                 }
             }
-        }
 
-        foreach ($selected_files as $file) {
-            $file = new File($file);
-            $submitted_files[$file->name()] = $file->read();
-            $file->close();
-        }
+            foreach ($selected_files as $file) {
+                $file = new File($file);
+                $submitted_files[$file->name()] = $file->read();
+                $file->close();
+            }
 
-        ksort($submitted_files);
+            ksort($submitted_files);
+        }
 
         $this->set('release', $release);
         $this->set('submitted_files', $submitted_files);
@@ -535,19 +548,44 @@ class ReleasesController extends AppController
                 foreach ($releases as $release) {
                     // We need to set all the variables available for calculation
                     foreach ($columns as $key => $column) {
-                        if (
-                            strpos($column, 'io500_') !== false ||
-                            strpos($column, 'mdtest_') !== false ||
-                            strpos($column, 'ior_') !== false ||
-                            strpos($column, 'find_') !== false
-                        ) {
-                            if (is_numeric($release->{$column})) {
-                                $executor->setVar($column, $release->{$column});
-                            }
+                        if (is_numeric($release->{$column})) {
+                            $executor->setVar($column, $release->{$column});
                         }
                     }
 
-                    $release->equation = $executor->execute($selected_to_display['custom-equation']);
+                    try {
+                        $release->equation = $executor->execute($selected_to_display['custom-equation']);
+                    } catch (IncorrectExpressionException $e) {
+                        $valid = false;
+
+                        $this->Flash->error(__('Sorry, but the expression is invalid! Please, make sure that your are using the correct syntax.'));
+
+                        break;
+                    } catch (IncorrectBracketsException $e) {
+                        $valid = false;
+
+                        $this->Flash->error(__('Sorry, but there are incorrect brackets! Please, make sure that your are using the correct syntax.'));
+
+                        break;
+                    } catch (UnknownOperatorException $e) {
+                        $valid = false;
+
+                        $this->Flash->error(__('Sorry, but the operator "{0}" is unknown! Please, make sure that your are using the correct syntax.', $e->getMessage()));
+
+                        break;
+                    } catch (UnknownVariableException $e) {
+                        $valid = false;
+
+                        $this->Flash->error(__('Sorry, but the variable "{0}" is unknown! Please, make sure that your are using the variable names.', $e->getMessage()));
+
+                        break;
+                    } catch (\Exception $e) {
+                        $valid = false;
+
+                        $this->Flash->error(__('Sorry, but there was an error when creating the custom list! Please, make sure you are using the correct variables and syntax.'));
+
+                        break;
+                    }
                 }
 
                 $display['custom-equation'] = $selected_to_display['custom-equation'];
@@ -608,6 +646,7 @@ class ReleasesController extends AppController
         $this->set('display', $display);
         $this->set('selected_fields', $selected_fields);
         $this->set('equation', $equation);
+        $this->set('valid', $valid);
         $this->set('releases', $releases);
     }
 }

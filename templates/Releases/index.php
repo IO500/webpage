@@ -79,6 +79,7 @@
             ]);
             ?>
         </li>
+        <?php if ($this->Configure->read('IO500.custom_lists')) { ?>
         <li>
             <?php
             echo $this->Html->link(__('Used-Defined Lists'), [
@@ -89,6 +90,7 @@
             ]);
             ?>
         </li>
+        <?php } ?>
     </ul>
 
     <p class="note">

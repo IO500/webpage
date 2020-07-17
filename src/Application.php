@@ -21,6 +21,7 @@ use Cake\Core\Exception\MissingPluginException;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
 use Cake\Http\MiddlewareQueue;
+use Cake\Http\Middleware\SecurityHeadersMiddleware;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 
@@ -65,7 +66,17 @@ class Application extends BaseApplication
      */
     public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
     {
+        $securityHeaders = new SecurityHeadersMiddleware();
+        $securityHeaders
+            ->setCrossDomainPolicy()
+            ->setReferrerPolicy()
+            ->setXFrameOptions()
+            ->setXssProtection()
+            ->noOpen()
+            ->noSniff();
+
         $middlewareQueue
+            ->add($securityHeaders)
             // Catch any exceptions in the lower layers,
             // and make an error page/response
             ->add(new ErrorHandlerMiddleware(Configure::read('Error')))

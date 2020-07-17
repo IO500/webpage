@@ -13,12 +13,15 @@
         </li>
         <li>
             <span class="date">2018-11-14</span> The third IO-500 list is released.
-        </li>
-        <li>
-            <span class="date"></span>Congrats to ORNL for their Summit machine which took over the #1 overall spot and also won the “10 Node Challenge”.
-        </li>
-        <li>
-            <span class="date"></span>A total of 54 new submissions from 19 different institutions!
+
+            <ul>
+                <li>
+                    Congrats to ORNL for their Summit machine which took over the #1 overall spot and also won the "10 Node Challenge".
+                </li>
+                <li>
+                    A total of 54 new submissions from 19 different institutions!
+                </li>
+            </ul>
         </li>
         <li>
             <span class="date">2018-09-27</span> The schedule for our Supercomputing <a class="link" href="https://sc18.supercomputing.org/presentation/?id=bof134&sess=sess390" target="_blank">Birds-of-a-Feather</a> session is now defined

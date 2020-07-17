@@ -139,20 +139,20 @@
 
                     <table class="tb tb-info">
                         <tr>
-                            <th><?php echo _('Io500 Score') ?></th>
+                            <th><?php echo _('IO500 Score') ?></th>
                             <td><?php echo $this->Number->format($release->io500_score, ['places' => 2, 'precision' => 2]) ?></td>
                         </tr>
                         <tr>
-                            <th><?php echo _('Io500 Iops') ?></th>
-                            <td><?php echo $this->Number->format($release->io500_tot_iops, ['places' => 2, 'precision' => 2]) ?></td>
+                            <th><?php echo _('IO500 IOPS') ?></th>
+                            <td><?php echo $this->Number->format($release->io500_tot_iops, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
                         </tr>
                         <tr>
-                            <th><?php echo _('Io500 Bw') ?></th>
-                            <td><?php echo $this->Number->format($release->io500_bw, ['places' => 2, 'precision' => 2]) ?></td>
+                            <th><?php echo _('IO500 BW') ?></th>
+                            <td><?php echo $this->Number->format($release->io500_bw, ['places' => 2, 'precision' => 2]) ?> GiB/s</td>
                         </tr>
                         <tr>
-                            <th><?php echo _('Io500 Md') ?></th>
-                            <td><?php echo $this->Number->format($release->io500_md, ['places' => 2, 'precision' => 2]) ?></td>
+                            <th><?php echo _('IO500 MD') ?></th>
+                            <td><?php echo $this->Number->format($release->io500_md, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
                         </tr>
                     </table>
                 </div>
@@ -191,28 +191,28 @@
 
             <div class="information">
                 <div class="information-metadata">
-                    <h4>IOR</h4>
+                    <h4>IOR & FIND</h4>
 
                     <table class="tb tb-info">
                         <tr>
                             <th><?php echo _('Easy Write') ?></th>
-                            <td><?php echo $this->Number->format($release->ior_easy_write, ['places' => 2, 'precision' => 2]) ?></td>
+                            <td><?php echo $this->Number->format($release->ior_easy_write, ['places' => 2, 'precision' => 2]) ?> GiB/s</td>
                         </tr>
                         <tr>
                             <th><?php echo _('Easy Read') ?></th>
-                            <td><?php echo $this->Number->format($release->ior_easy_read, ['places' => 2, 'precision' => 2]) ?></td>
+                            <td><?php echo $this->Number->format($release->ior_easy_read, ['places' => 2, 'precision' => 2]) ?> GiB/s</td>
                         </tr>
                         <tr>
                             <th><?php echo _('Hard Write') ?></th>
-                            <td><?php echo $this->Number->format($release->ior_hard_write, ['places' => 2, 'precision' => 2]) ?></td>
+                            <td><?php echo $this->Number->format($release->ior_hard_write, ['places' => 2, 'precision' => 2]) ?> GiB/s</td>
                         </tr>
                         <tr>
                             <th><?php echo _('Hard Read') ?></th>
-                            <td><?php echo $this->Number->format($release->ior_hard_read, ['places' => 2, 'precision' => 2]) ?></td>
+                            <td><?php echo $this->Number->format($release->ior_hard_read, ['places' => 2, 'precision' => 2]) ?> GiB/s</td>
                         </tr>
                         <tr>
                             <th><?php echo _('Find Easy') ?></th>
-                            <td><?php echo $this->Number->format($release->pfind_easy, ['places' => 2, 'precision' => 2]) ?></td>
+                            <td><?php echo $this->Number->format($release->pfind_easy, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
                         </tr>
                     </table>
                 </div>
@@ -223,31 +223,31 @@
                     <table class="tb tb-info">
                         <tr>
                             <th><?php echo _('Easy Write') ?></th>
-                            <td><?php echo $this->Number->format($release->mdtest_easy_write, ['places' => 2, 'precision' => 2]) ?></td>
+                            <td><?php echo $this->Number->format($release->mdtest_easy_write, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
                         </tr>
                         <tr>
                             <th><?php echo _('Easy Stat') ?></th>
-                            <td><?php echo $this->Number->format($release->mdtest_easy_stat, ['places' => 2, 'precision' => 2]) ?></td>
+                            <td><?php echo $this->Number->format($release->mdtest_easy_stat, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
                         </tr>
                         <tr>
                             <th><?php echo _('Easy Delete') ?></th>
-                            <td><?php echo $this->Number->format($release->mdtest_easy_delete, ['places' => 2, 'precision' => 2]) ?></td>
+                            <td><?php echo $this->Number->format($release->mdtest_easy_delete, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
                         </tr>
                         <tr>
                             <th><?php echo _('Hard Write') ?></th>
-                            <td><?php echo $this->Number->format($release->mdtest_hard_write, ['places' => 2, 'precision' => 2]) ?></td>
+                            <td><?php echo $this->Number->format($release->mdtest_hard_write, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
                         </tr>
                         <tr>
                             <th><?php echo _('Hard Read') ?></th>
-                            <td><?php echo $this->Number->format($release->mdtest_hard_read, ['places' => 2, 'precision' => 2]) ?></td>
+                            <td><?php echo $this->Number->format($release->mdtest_hard_read, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
                         </tr>
                         <tr>
                             <th><?php echo _('Hard Stat') ?></th>
-                            <td><?php echo $this->Number->format($release->mdtest_hard_stat, ['places' => 2, 'precision' => 2]) ?></td>
+                            <td><?php echo $this->Number->format($release->mdtest_hard_stat, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
                         </tr>
                         <tr>
                             <th><?php echo _('Hard Delete') ?></th>
-                            <td><?php echo $this->Number->format($release->mdtest_hard_delete, ['places' => 2, 'precision' => 2]) ?></td>
+                            <td><?php echo $this->Number->format($release->mdtest_hard_delete, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
                         </tr>
                     </table>
                 </div>

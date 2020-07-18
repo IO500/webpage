@@ -1,3 +1,5 @@
+<?php $this->assign('title', 'Rules'); ?>
+
 <nav id="breadcrumb">
     <p>YOU ARE HERE</p>
 

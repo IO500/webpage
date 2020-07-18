@@ -1,3 +1,5 @@
+<?php $this->assign('title', 'Birds-of-a-Feather - SC 18'); ?>
+
 <nav id="breadcrumb">
     <p>YOU ARE HERE</p>
 

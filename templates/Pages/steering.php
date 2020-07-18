@@ -1,3 +1,5 @@
+<?php $this->assign('title', 'Steering'); ?>
+
 <div class="content">
     <h2>Steering</h2>
 

@@ -1,3 +1,5 @@
+<?php $this->assign('title', 'News'); ?>
+
 <div class="content">
     <h2>News</h2>
 

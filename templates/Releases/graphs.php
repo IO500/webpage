@@ -17,6 +17,7 @@
             );
             ?>
         </li>
+        <!--
         <li>
             <?php
             echo $this->Html->link(__('Create Graphs'), [
@@ -28,6 +29,7 @@
             ]);
             ?>
         </li>
+        -->
     </ul>
 
     <ul>

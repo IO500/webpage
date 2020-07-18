@@ -649,4 +649,46 @@ class ReleasesController extends AppController
         $this->set('valid', $valid);
         $this->set('releases', $releases);
     }
+
+    /**
+     * Export method
+     *
+     * @return \Cake\Http\Response|null|void Downloads a CSV
+     */
+    public function export()
+    {
+        $db = ConnectionManager::get('default');
+
+        // Create a schema collection.
+        $collection = $db->getSchemaCollection();
+
+        // Get a single table (instance of Schema\TableSchema)
+        $tableSchema = $collection->describe('releases');
+
+        // Get columns list from table
+        $columns = $tableSchema->columns();
+
+        $lists = [
+            'sc17',
+            'isc18',
+            'sc18',
+            'isc19',
+            'sc19',
+        ];
+
+        $releases = $this->Releases->find('all')
+            ->where([
+                'LOWER(Releases.information_list_name) IN' => $lists
+            ]);
+
+        $this->set(compact('releases'));
+
+        $this->setResponse($this->getResponse()->withDownload('io500-full-list.csv'));
+        $this->viewBuilder()
+            ->setClassName('CsvView.Csv')
+            ->setOptions([
+                'header' => $columns,
+                'serialize' => 'releases'
+            ]);
+    }
 }

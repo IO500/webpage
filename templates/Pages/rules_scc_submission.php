@@ -1,3 +1,5 @@
+<?php $this->assign('title', 'Student Cluster Competition'); ?>
+
 <nav id="breadcrumb">
     <p>YOU ARE HERE</p>
 

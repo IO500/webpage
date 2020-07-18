@@ -1,3 +1,5 @@
+<?php $this->assign('title', 'About'); ?>
+
 <div class="content">
     <h2>IO500</h2>
 

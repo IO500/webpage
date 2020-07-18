@@ -1,3 +1,5 @@
+<?php $this->assign('title', 'Committee'); ?>
+
 <nav id="breadcrumb">
     <p>YOU ARE HERE</p>
 

@@ -1,3 +1,5 @@
+<?php $this->assign('title', 'Birds-of-a-Feather'); ?>
+
 <div class="landing landing-bofs">
     <h1><?php echo __('BoFs') ?></h1>
 

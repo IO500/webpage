@@ -1,3 +1,5 @@
+<?php $this->assign('title', 'Submission Rules'); ?>
+
 <nav id="breadcrumb">
     <p>YOU ARE HERE</p>
 

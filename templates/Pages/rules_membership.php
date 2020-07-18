@@ -1,3 +1,5 @@
+<?php $this->assign('title', 'Membership'); ?>
+
 <nav id="breadcrumb">
     <p>YOU ARE HERE</p>
 

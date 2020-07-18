@@ -95,6 +95,22 @@ $routes->scope('/', function (RouteBuilder $builder) {
             'action' => 'display',
             'steering',
         ]
+    );    
+    $builder->connect(
+        '/submission',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'submission',
+        ]
+    );       
+    $builder->connect(
+        '/cfs',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'cfs',
+        ]
     );
     $builder->connect(
         '/rules',

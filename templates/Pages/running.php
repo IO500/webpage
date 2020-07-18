@@ -1,3 +1,5 @@
+<?php $this->assign('title', 'Running'); ?>
+
 <div class="landing landing-running">
     <h1><?php echo __('Run IO500') ?></h1>
 

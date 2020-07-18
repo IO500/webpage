@@ -1,0 +1,1077 @@
+#+TITLE: IO500 Plots
+#+AUTHOR: Jean Bez
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+STARTUP: overview indent
+#+OPTIONS: ^:nil
+#+OPTIONS: _:ni
+#+PROPERTY: header-args :eval never-export
+
+* IO500 Base Plots
+
+#+begin_src R :results output :session :exports both
+library(plyr)
+
+df <- read.csv(file = "releases.csv", sep = ";")
+
+df$list_name <- toupper(df$information_list_name)
+df$list_name <- factor(df$list_name, levels = c("SC17", "ISC18", "SC18", "ISC19", "SC19"))
+
+df$entry <- paste(df$information_system, df$information_filesystem, df$information_institution, sep = " | ")
+
+df$text <- paste(
+  'List: ', df$list_name, '<br>',
+  'System: ', df$information_system, '<br>',
+  'File System: ', df$information_filesystem, '<br>',
+  'Institution: ', df$information_institution
+)
+
+str(df$entry)
+str(df$text)
+#+end_src
+
+#+RESULTS:
+: 
+:  chr [1:158] "WekaIO on AWS |  | WekaIO" "Wolf |  | Intel" ...
+: 
+:  chr [1:158] "List:  SC19 <
+: System:  WekaIO on AWS <
+: File System:   <
+: Institution:  WekaIO" ...
+
+** IO500 Score
+
+#+begin_src R :results output graphics :file "images/io500-score.png" :exports both :width 500 :height 300 :session
+library(ggplot2)
+library(dplyr)
+
+plot <- ggplot(
+  df,
+  aes(
+    x = list_name,
+    y = io500_score,
+    text = text
+  )) + 
+  geom_jitter(width = 0.3, color = "#d5515b") +
+  scale_colour_manual(
+    values = c(
+      "#e48f95",
+      "#df7a82",
+      "#da666e",
+      "#d5515b"
+    )
+  ) +
+  xlab("") +
+  ylab("IO500 Score") + 
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.title.y = element_text(vjust = 0.4), 
+    strip.background = element_rect(colour = NA, fill = NA)
+  )
+
+plot
+#+end_src
+
+#+RESULTS:
+[[file:images/io500-score.png]]
+
+#+begin_src R :results output :session :exports both
+library(plotly)
+library(htmlwidgets)
+
+p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
+  layout(margin = list(pad = 0)) %>%
+  layout(autosize = FALSE) %>%
+  toWebGL()
+
+p$sizingPolicy$padding <- "0"
+
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-score.html"))
+#+end_src
+
+#+RESULTS:
+: 
+: Warning message:
+: 'scattergl' objects don't have these attributes: 'hoveron'
+: Valid attributes include:
+: 'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
+** IO500 Bandwidth
+
+#+begin_src R :results output graphics :file "images/io500-bandwidth.png" :exports both :width 500 :height 300 :session
+library(ggplot2)
+library(dplyr)
+
+plot <- ggplot(
+  df,
+  aes(
+    x = list_name,
+    y = io500_bw,
+    text = text
+  )) + 
+  geom_jitter(width = 0.3, color = "#d5515b") +
+  scale_colour_manual(
+    values = c(
+      "#e48f95",
+      "#df7a82",
+      "#da666e",
+      "#d5515b"
+    )
+  ) +
+  xlab("") +
+  ylab("IO500 Bandwidth (GiB/s)") + 
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.title.y = element_text(vjust = 0.4), 
+    strip.background = element_rect(colour = NA, fill = NA)
+  )
+
+plot
+#+end_src
+
+#+RESULTS:
+[[file:images/io500-bandwidth.png]]
+
+#+begin_src R :results output :session :exports both
+library(plotly)
+library(htmlwidgets)
+
+p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
+  layout(margin = list(pad = 0)) %>%
+  layout(autosize = FALSE) %>%
+  toWebGL()
+
+p$sizingPolicy$padding <- "0"
+
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-bandwidth.html"))
+#+end_src
+
+#+RESULTS:
+: 
+: Warning message:
+: 'scattergl' objects don't have these attributes: 'hoveron'
+: Valid attributes include:
+: 'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
+** IO500 Metadata
+
+#+begin_src R :results output graphics :file "images/io500-metadata.png" :exports both :width 500 :height 300 :session
+library(ggplot2)
+library(dplyr)
+
+plot <- ggplot(
+  df,
+  aes(
+    x = list_name,
+    y = io500_md,
+    text = text
+  )) + 
+  geom_jitter(width = 0.3, color = "#d5515b") +
+  scale_colour_manual(
+    values = c(
+      "#e48f95",
+      "#df7a82",
+      "#da666e",
+      "#d5515b"
+    )
+  ) +
+  xlab("") +
+  ylab("IO500 Metadata (KIOP/s)") + 
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.title.y = element_text(vjust = 0.4), 
+    strip.background = element_rect(colour = NA, fill = NA)
+  )
+
+plot
+#+end_src
+
+#+RESULTS:
+[[file:images/io500-metadata.png]]
+
+#+begin_src R :results output :session :exports both
+library(plotly)
+library(htmlwidgets)
+
+p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
+  layout(margin = list(pad = 0)) %>%
+  layout(autosize = FALSE) %>%
+  toWebGL()
+
+p$sizingPolicy$padding <- "0"
+
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-metadata.html"))
+#+end_src
+
+#+RESULTS:
+: 
+: Warning message:
+: 'scattergl' objects don't have these attributes: 'hoveron'
+: Valid attributes include:
+: 'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
+* IO500 IOR Plots
+
+#+begin_src R :results output :session :exports both
+library(plyr)
+
+df <- read.csv(file = "releases.csv", sep = ";")
+
+df$list_name <- toupper(df$information_list_name)
+df$list_name <- factor(df$list_name, levels = c("SC17", "ISC18", "SC18", "ISC19", "SC19"))
+
+df$entry <- paste(df$information_system, df$information_filesystem, df$information_institution, sep = " | ")
+
+df$text <- paste(
+  'List: ', df$list_name, '<br>',
+  'System: ', df$information_system, '<br>',
+  'File System: ', df$information_filesystem, '<br>',
+  'Institution: ', df$information_institution
+)
+
+str(df$entry)
+str(df$text)
+#+end_src
+
+#+RESULTS:
+: 
+:  chr [1:158] "WekaIO on AWS |  | WekaIO" "Wolf |  | Intel" ...
+: 
+:  chr [1:158] "List:  SC19 <
+: System:  WekaIO on AWS <
+: File System:   <
+: Institution:  WekaIO" ...
+
+** IO500 Easy Write
+
+#+begin_src R :results output graphics :file "images/io500-ior-easy-write.png" :exports both :width 500 :height 300 :session
+library(ggplot2)
+library(dplyr)
+
+plot <- ggplot(
+  df,
+  aes(
+    x = list_name,
+    y = as.numeric(as.character(ior_easy_write)),
+    text = text
+  )) + 
+  geom_jitter(width = 0.3, color = "#d5515b") +
+  scale_colour_manual(
+    values = c(
+      "#e48f95",
+      "#df7a82",
+      "#da666e",
+      "#d5515b"
+    )
+  ) +
+  xlab("") +
+  ylab("IOR Easy Write (GiB/s)") + 
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.title.y = element_text(vjust = 0.4), 
+    strip.background = element_rect(colour = NA, fill = NA)
+  )
+
+plot
+#+end_src
+
+#+RESULTS:
+[[file:images/io500-ior-easy-write.png]]
+
+#+begin_src R :results output :session :exports both
+library(plotly)
+library(htmlwidgets)
+
+p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
+  layout(margin = list(pad = 0)) %>%
+  layout(autosize = FALSE) %>%
+  toWebGL()
+
+p$sizingPolicy$padding <- "0"
+
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-ior-easy-write.html"))
+#+end_src
+
+#+RESULTS:
+: 
+: Warning message:
+: 'scattergl' objects don't have these attributes: 'hoveron'
+: Valid attributes include:
+: 'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
+** IO500 Easy Read
+
+#+begin_src R :results output graphics :file "images/io500-ior-easy-read.png" :exports both :width 500 :height 300 :session
+library(ggplot2)
+library(dplyr)
+
+plot <- ggplot(
+  df,
+  aes(
+    x = list_name,
+    y = as.numeric(as.character(ior_easy_read)),
+    text = text
+  )) + 
+  geom_jitter(width = 0.3, color = "#d5515b") +
+  scale_colour_manual(
+    values = c(
+      "#e48f95",
+      "#df7a82",
+      "#da666e",
+      "#d5515b"
+    )
+  ) +
+  xlab("") +
+  ylab("IOR Easy Read (GiB/s)") + 
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.title.y = element_text(vjust = 0.4), 
+    strip.background = element_rect(colour = NA, fill = NA)
+  )
+
+plot
+#+end_src
+
+#+RESULTS:
+[[file:images/io500-ior-easy-read.png]]
+
+#+begin_src R :results output :session :exports both
+library(plotly)
+library(htmlwidgets)
+
+p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
+  layout(margin = list(pad = 0)) %>%
+  layout(autosize = FALSE) %>%
+  toWebGL()
+
+p$sizingPolicy$padding <- "0"
+
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-ior-easy-read.html"))
+#+end_src
+
+#+RESULTS:
+: 
+: Warning message:
+: 'scattergl' objects don't have these attributes: 'hoveron'
+: Valid attributes include:
+: 'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
+** IO500 Hard Write
+
+#+begin_src R :results output graphics :file "images/io500-ior-hard-write.png" :exports both :width 500 :height 300 :session
+library(ggplot2)
+library(dplyr)
+
+plot <- ggplot(
+  df,
+  aes(
+    x = list_name,
+    y = as.numeric(as.character(ior_hard_write)),
+    text = text
+  )) + 
+  geom_jitter(width = 0.3, color = "#d5515b") +
+  scale_colour_manual(
+    values = c(
+      "#e48f95",
+      "#df7a82",
+      "#da666e",
+      "#d5515b"
+    )
+  ) +
+  xlab("") +
+  ylab("IOR Hard Write (GiB/s)") + 
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.title.y = element_text(vjust = 0.4), 
+    strip.background = element_rect(colour = NA, fill = NA)
+  )
+
+plot
+#+end_src
+
+#+RESULTS:
+[[file:images/io500-ior-hard-write.png]]
+
+#+begin_src R :results output :session :exports both
+library(plotly)
+library(htmlwidgets)
+
+p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
+  layout(margin = list(pad = 0)) %>%
+  layout(autosize = FALSE) %>%
+  toWebGL()
+
+p$sizingPolicy$padding <- "0"
+
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-ior-hard-write.html"))
+#+end_src
+
+#+RESULTS:
+: 
+: Warning message:
+: 'scattergl' objects don't have these attributes: 'hoveron'
+: Valid attributes include:
+: 'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
+** IO500 Hard Read
+
+#+begin_src R :results output graphics :file "images/io500-ior-hard-read.png" :exports both :width 500 :height 300 :session
+library(ggplot2)
+library(dplyr)
+
+plot <- ggplot(
+  df,
+  aes(
+    x = list_name,
+    y = as.numeric(as.character(ior_hard_read)),
+    text = text
+  )) + 
+  geom_jitter(width = 0.3, color = "#d5515b") +
+  scale_colour_manual(
+    values = c(
+      "#e48f95",
+      "#df7a82",
+      "#da666e",
+      "#d5515b"
+    )
+  ) +
+  xlab("") +
+  ylab("IOR Hard Read (GiB/s)") + 
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.title.y = element_text(vjust = 0.4), 
+    strip.background = element_rect(colour = NA, fill = NA)
+  )
+
+plot
+#+end_src
+
+#+RESULTS:
+[[file:images/io500-ior-hard-read.png]]
+
+#+begin_src R :results output :session :exports both
+library(plotly)
+library(htmlwidgets)
+
+p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
+  layout(margin = list(pad = 0)) %>%
+  layout(autosize = FALSE) %>%
+  toWebGL()
+
+p$sizingPolicy$padding <- "0"
+
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-ior-hard-read.html"))
+#+end_src
+
+#+RESULTS:
+: 
+: Warning message:
+: 'scattergl' objects don't have these attributes: 'hoveron'
+: Valid attributes include:
+: 'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
+* IO500 MDtest Plots
+
+#+begin_src R :results output :session :exports both
+library(plyr)
+
+df <- read.csv(file = "releases.csv", sep = ";")
+
+df$list_name <- toupper(df$information_list_name)
+df$list_name <- factor(df$list_name, levels = c("SC17", "ISC18", "SC18", "ISC19", "SC19"))
+
+df$entry <- paste(df$information_system, df$information_filesystem, df$information_institution, sep = " | ")
+
+df$text <- paste(
+  'List: ', df$list_name, '<br>',
+  'System: ', df$information_system, '<br>',
+  'File System: ', df$information_filesystem, '<br>',
+  'Institution: ', df$information_institution
+)
+
+str(df$entry)
+str(df$text)
+#+end_src
+
+#+RESULTS:
+: 
+:  chr [1:158] "WekaIO on AWS |  | WekaIO" "Wolf |  | Intel" ...
+: 
+:  chr [1:158] "List:  SC19 <
+: System:  WekaIO on AWS <
+: File System:   <
+: Institution:  WekaIO" ...
+
+** IO500 MDtest Easy Write
+
+#+begin_src R :results output graphics :file "images/io500-mdtest-easy-write.png" :exports both :width 500 :height 300 :session
+library(ggplot2)
+library(dplyr)
+
+plot <- ggplot(
+  df,
+  aes(
+    x = list_name,
+    y = as.numeric(as.character(mdtest_easy_write)),
+    text = text
+  )) + 
+  geom_jitter(width = 0.3, color = "#d5515b") +
+  scale_colour_manual(
+    values = c(
+      "#e48f95",
+      "#df7a82",
+      "#da666e",
+      "#d5515b"
+    )
+  ) +
+  xlab("") +
+  ylab("MDtest Easy Write (kIOP/s)") + 
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.title.y = element_text(vjust = 0.4), 
+    strip.background = element_rect(colour = NA, fill = NA)
+  )
+
+plot
+#+end_src
+
+#+RESULTS:
+[[file:images/io500-mdtest-easy-write.png]]
+
+#+begin_src R :results output :session :exports both
+library(plotly)
+library(htmlwidgets)
+
+p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
+  layout(margin = list(pad = 0)) %>%
+  layout(autosize = FALSE) %>%
+  toWebGL()
+
+p$sizingPolicy$padding <- "0"
+
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-mdtest-easy-write.html"))
+#+end_src
+
+#+RESULTS:
+: 
+: Warning messages:
+: 1: In FUN(X[[i]], ...) : NAs introduced by coercion
+: 2: In FUN(X[[i]], ...) : NAs introduced by coercion
+: 
+: Warning message:
+: 'scattergl' objects don't have these attributes: 'hoveron'
+: Valid attributes include:
+: 'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
+** IO500 MDtest Easy Stat
+
+#+begin_src R :results output graphics :file "images/io500-mdtest-easy-stat.png" :exports both :width 500 :height 300 :session
+library(ggplot2)
+library(dplyr)
+
+plot <- ggplot(
+  df,
+  aes(
+    x = list_name,
+    y = as.numeric(as.character(mdtest_easy_stat)),
+    text = text
+  )) + 
+  geom_jitter(width = 0.3, color = "#d5515b") +
+  scale_colour_manual(
+    values = c(
+      "#e48f95",
+      "#df7a82",
+      "#da666e",
+      "#d5515b"
+    )
+  ) +
+  xlab("") +
+  ylab("MDtest Easy Stat (kIOP/s)") + 
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.title.y = element_text(vjust = 0.4), 
+    strip.background = element_rect(colour = NA, fill = NA)
+  )
+
+plot
+#+end_src
+
+#+RESULTS:
+[[file:images/io500-mdtest-easy-stat.png]]
+
+#+begin_src R :results output :session :exports both
+library(plotly)
+library(htmlwidgets)
+
+p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
+  layout(margin = list(pad = 0)) %>%
+  layout(autosize = FALSE) %>%
+  toWebGL()
+
+p$sizingPolicy$padding <- "0"
+
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-mdtest-easy-stat.html"))
+#+end_src
+
+#+RESULTS:
+: 
+: Warning message:
+: 'scattergl' objects don't have these attributes: 'hoveron'
+: Valid attributes include:
+: 'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
+** IO500 MDtest Easy Delete
+
+#+begin_src R :results output graphics :file "images/io500-mdtest-easy-delete.png" :exports both :width 500 :height 300 :session
+library(ggplot2)
+library(dplyr)
+
+plot <- ggplot(
+  df,
+  aes(
+    x = list_name,
+    y = as.numeric(as.character(mdtest_easy_delete)),
+    text = text
+  )) + 
+  geom_jitter(width = 0.3, color = "#d5515b") +
+  scale_colour_manual(
+    values = c(
+      "#e48f95",
+      "#df7a82",
+      "#da666e",
+      "#d5515b"
+    )
+  ) +
+  xlab("") +
+  ylab("MDtest Easy Delete (kIOP/s)") + 
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.title.y = element_text(vjust = 0.4), 
+    strip.background = element_rect(colour = NA, fill = NA)
+  )
+
+plot
+#+end_src
+
+#+RESULTS:
+[[file:images/io500-mdtest-easy-delete.png]]
+
+#+begin_src R :results output :session :exports both
+library(plotly)
+library(htmlwidgets)
+
+p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
+  layout(margin = list(pad = 0)) %>%
+  layout(autosize = FALSE) %>%
+  toWebGL()
+
+p$sizingPolicy$padding <- "0"
+
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-mdtest-easy-delete.html"))
+#+end_src
+
+#+RESULTS:
+: 
+: Warning message:
+: 'scattergl' objects don't have these attributes: 'hoveron'
+: Valid attributes include:
+: 'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
+** IO500 MDtest Hard Write
+
+#+begin_src R :results output graphics :file "images/io500-mdtest-hard-write.png" :exports both :width 500 :height 300 :session
+library(ggplot2)
+library(dplyr)
+
+plot <- ggplot(
+  df,
+  aes(
+    x = list_name,
+    y = as.numeric(as.character(mdtest_hard_write)),
+    text = text
+  )) + 
+  geom_jitter(width = 0.3, color = "#d5515b") +
+  scale_colour_manual(
+    values = c(
+      "#e48f95",
+      "#df7a82",
+      "#da666e",
+      "#d5515b"
+    )
+  ) +
+  xlab("") +
+  ylab("MDtest Hard Write (kIOP/s)") + 
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.title.y = element_text(vjust = 0.4), 
+    strip.background = element_rect(colour = NA, fill = NA)
+  )
+
+plot
+#+end_src
+
+#+RESULTS:
+[[file:images/io500-mdtest-hard-write.png]]
+
+#+begin_src R :results output :session :exports both
+library(plotly)
+library(htmlwidgets)
+
+p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
+  layout(margin = list(pad = 0)) %>%
+  layout(autosize = FALSE) %>%
+  toWebGL()
+
+p$sizingPolicy$padding <- "0"
+
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-mdtest-hard-write.html"))
+#+end_src
+
+#+RESULTS:
+: 
+: Warning messages:
+: 1: In FUN(X[[i]], ...) : NAs introduced by coercion
+: 2: In FUN(X[[i]], ...) : NAs introduced by coercion
+: 
+: Warning message:
+: 'scattergl' objects don't have these attributes: 'hoveron'
+: Valid attributes include:
+: 'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
+** IO500 MDtest Hard Read
+
+#+begin_src R :results output graphics :file "images/io500-mdtest-hard-read.png" :exports both :width 500 :height 300 :session
+library(ggplot2)
+library(dplyr)
+
+plot <- ggplot(
+  df,
+  aes(
+    x = list_name,
+    y = as.numeric(as.character(mdtest_hard_read)),
+    text = text
+  )) + 
+  geom_jitter(width = 0.3, color = "#d5515b") +
+  scale_colour_manual(
+    values = c(
+      "#e48f95",
+      "#df7a82",
+      "#da666e",
+      "#d5515b"
+    )
+  ) +
+  xlab("") +
+  ylab("MDtest Hard Read (kIOP/s)") + 
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.title.y = element_text(vjust = 0.4), 
+    strip.background = element_rect(colour = NA, fill = NA)
+  )
+
+plot
+#+end_src
+
+#+RESULTS:
+[[file:images/io500-mdtest-hard-read.png]]
+
+#+begin_src R :results output :session :exports both
+library(plotly)
+library(htmlwidgets)
+
+p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
+  layout(margin = list(pad = 0)) %>%
+  layout(autosize = FALSE) %>%
+  toWebGL()
+
+p$sizingPolicy$padding <- "0"
+
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-mdtest-hard-read.html"))
+#+end_src
+
+#+RESULTS:
+: 
+: Warning message:
+: 'scattergl' objects don't have these attributes: 'hoveron'
+: Valid attributes include:
+: 'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
+** IO500 MDtest Hard Stat
+
+#+begin_src R :results output graphics :file "images/io500-mdtest-hard-stat.png" :exports both :width 500 :height 300 :session
+library(ggplot2)
+library(dplyr)
+
+plot <- ggplot(
+  df,
+  aes(
+    x = list_name,
+    y = as.numeric(as.character(mdtest_hard_stat)),
+    text = text
+  )) + 
+  geom_jitter(width = 0.3, color = "#d5515b") +
+  scale_colour_manual(
+    values = c(
+      "#e48f95",
+      "#df7a82",
+      "#da666e",
+      "#d5515b"
+    )
+  ) +
+  xlab("") +
+  ylab("MDtest Hard Stat (kIOP/s)") + 
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.title.y = element_text(vjust = 0.4), 
+    strip.background = element_rect(colour = NA, fill = NA)
+  )
+
+plot
+#+end_src
+
+#+RESULTS:
+[[file:images/io500-mdtest-hard-stat.png]]
+
+#+begin_src R :results output :session :exports both
+library(plotly)
+library(htmlwidgets)
+
+p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
+  layout(margin = list(pad = 0)) %>%
+  layout(autosize = FALSE) %>%
+  toWebGL()
+
+p$sizingPolicy$padding <- "0"
+
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-mdtest-hard-stat.html"))
+#+end_src
+
+#+RESULTS:
+: 
+: Warning message:
+: 'scattergl' objects don't have these attributes: 'hoveron'
+: Valid attributes include:
+: 'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
+** IO500 MDtest Hard Delete
+
+#+begin_src R :results output graphics :file "images/io500-mdtest-hard-delete.png" :exports both :width 500 :height 300 :session
+library(ggplot2)
+library(dplyr)
+
+plot <- ggplot(
+  df,
+  aes(
+    x = list_name,
+    y = as.numeric(as.character(mdtest_hard_delete)),
+    text = text
+  )) + 
+  geom_jitter(width = 0.3, color = "#d5515b") +
+  scale_colour_manual(
+    values = c(
+      "#e48f95",
+      "#df7a82",
+      "#da666e",
+      "#d5515b"
+    )
+  ) +
+  xlab("") +
+  ylab("MDtest Hard Delete (kIOP/s)") + 
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.title.y = element_text(vjust = 0.4), 
+    strip.background = element_rect(colour = NA, fill = NA)
+  )
+
+plot
+#+end_src
+
+#+RESULTS:
+[[file:images/io500-mdtest-hard-delete.png]]
+
+#+begin_src R :results output :session :exports both
+library(plotly)
+library(htmlwidgets)
+
+p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
+  layout(margin = list(pad = 0)) %>%
+  layout(autosize = FALSE) %>%
+  toWebGL()
+
+p$sizingPolicy$padding <- "0"
+
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-mdtest-hard-delete.html"))
+#+end_src
+
+#+RESULTS:
+: 
+: Warning message:
+: 'scattergl' objects don't have these attributes: 'hoveron'
+: Valid attributes include:
+: 'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
+* IO500 Find Plots
+
+#+begin_src R :results output :session :exports both
+library(plyr)
+
+df <- read.csv(file = "releases.csv", sep = ";")
+
+df$list_name <- toupper(df$information_list_name)
+df$list_name <- factor(df$list_name, levels = c("SC17", "ISC18", "SC18", "ISC19", "SC19"))
+
+df$entry <- paste(df$information_system, df$information_filesystem, df$information_institution, sep = " | ")
+
+df$text <- paste(
+  'List: ', df$list_name, '<br>',
+  'System: ', df$information_system, '<br>',
+  'File System: ', df$information_filesystem, '<br>',
+  'Institution: ', df$information_institution
+)
+
+str(df$entry)
+str(df$text)
+#+end_src
+
+#+RESULTS:
+: 
+:  chr [1:158] "WekaIO on AWS |  | WekaIO" "Wolf |  | Intel" ...
+: 
+:  chr [1:158] "List:  SC19 <
+: System:  WekaIO on AWS <
+: File System:   <
+: Institution:  WekaIO" ...
+
+** IO500 Find Easy
+
+#+begin_src R :results output graphics :file "images/io500-find-easy.png" :exports both :width 500 :height 300 :session
+library(ggplot2)
+library(dplyr)
+
+plot <- ggplot(
+  df,
+  aes(
+    x = list_name,
+    y = as.numeric(as.character(find_easy)),
+    text = text
+  )) + 
+  geom_jitter(width = 0.3, color = "#d5515b") +
+  scale_colour_manual(
+    values = c(
+      "#e48f95",
+      "#df7a82",
+      "#da666e",
+      "#d5515b"
+    )
+  ) +
+  xlab("") +
+  ylab("Find Easy (kIOP/s)") + 
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.title.y = element_text(vjust = 0.4), 
+    strip.background = element_rect(colour = NA, fill = NA)
+  )
+
+plot
+#+end_src
+
+#+RESULTS:
+[[file:images/io500-find-easy.png]]
+
+#+begin_src R :results output :session :exports both
+library(plotly)
+library(htmlwidgets)
+
+p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
+  layout(margin = list(pad = 0)) %>%
+  layout(autosize = FALSE) %>%
+  toWebGL()
+
+p$sizingPolicy$padding <- "0"
+
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-find-easy.html"))
+#+end_src
+
+#+RESULTS:
+: 
+: Warning messages:
+: 1: In FUN(X[[i]], ...) : NAs introduced by coercion
+: 2: In FUN(X[[i]], ...) : NAs introduced by coercion
+: 
+: Warning message:
+: 'scattergl' objects don't have these attributes: 'hoveron'
+: Valid attributes include:
+: 'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
+** IO500 Find Hard
+
+#+begin_src R :results output graphics :file "images/io500-ior-hard-read.png" :exports both :width 500 :height 300 :session
+library(ggplot2)
+library(dplyr)
+
+plot <- ggplot(
+  df,
+  aes(
+    x = list_name,
+    y = as.numeric(as.character(ior_hard_read)),
+    text = text
+  )) + 
+  geom_jitter(width = 0.3, color = "#d5515b") +
+  scale_colour_manual(
+    values = c(
+      "#e48f95",
+      "#df7a82",
+      "#da666e",
+      "#d5515b"
+    )
+  ) +
+  xlab("") +
+  ylab("IOR Hard Read (GiB/s)") + 
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.title.y = element_text(vjust = 0.4), 
+    strip.background = element_rect(colour = NA, fill = NA)
+  )
+
+plot
+#+end_src
+
+#+RESULTS:
+[[file:images/io500-ior-hard-read.png]]
+
+#+begin_src R :results output :session :exports both
+library(plotly)
+library(htmlwidgets)
+
+p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
+  layout(margin = list(pad = 0)) %>%
+  layout(autosize = FALSE) %>%
+  toWebGL()
+
+p$sizingPolicy$padding <- "0"
+
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-ior-hard-read.html"))
+#+end_src
+
+#+RESULTS:
+: 
+: Warning message:
+: 'scattergl' objects don't have these attributes: 'hoveron'
+: Valid attributes include:
+: 'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'

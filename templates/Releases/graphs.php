@@ -53,7 +53,7 @@
         </li>
         <li>
             <?php
-            echo $this->Html->link(__('PFind Graphs'), [
+            echo $this->Html->link(__('Find Graphs'), [
                 'controller' => 'releases',
                 'action' => 'pfind'
             ], [

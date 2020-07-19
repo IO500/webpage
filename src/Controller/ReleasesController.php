@@ -522,6 +522,7 @@ class ReleasesController extends AppController
 
         $selected_fields = null;
         $equation = false;
+        $valid = true;
 
         if ($this->request->is('post')) {
             $selected_to_display = $this->request->getData();

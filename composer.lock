@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "020bf3bd4b0767f30c6a3ce7650eb42a",
+    "content-hash": "4e00ce7f06d80cca625aa9f3ef3fe3e3",
     "packages": [
         {
             "name": "aura/intl",
@@ -401,6 +401,80 @@
             "time": "2020-04-08T08:27:21+00:00"
         },
         {
+            "name": "friendsofcake/cakephp-csvview",
+            "version": "4.0.0-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfCake/cakephp-csvview.git",
+                "reference": "f44814a1bd1d6abe20c01d537be01f405cead062"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfCake/cakephp-csvview/zipball/f44814a1bd1d6abe20c01d537be01f405cead062",
+                "reference": "f44814a1bd1d6abe20c01d537be01f405cead062",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^4.0"
+            },
+            "require-dev": {
+                "cakephp/cakephp-codesniffer": "^4.0",
+                "phpunit/phpunit": "~8.5.0"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "CsvView\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jose Diaz-Gonzalez",
+                    "email": "email@josediazgonzalez.com",
+                    "homepage": "https://josediazgonzalez.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "ADmad",
+                    "homepage": "https://github.com/admad",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "https://github.com/dereuromark",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "Joshua Paling",
+                    "homepage": "https://github.com/joshuapaling",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "Gaurish Sharma",
+                    "homepage": "https://github.com/gaurish",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "Gregory Gaskill",
+                    "homepage": "https://github.com/chronon",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "A CSV View class for CakePHP",
+            "homepage": "https://github.com/friendsofcake/cakephp-csvview",
+            "keywords": [
+                "cakephp",
+                "csv",
+                "export",
+                "view"
+            ],
+            "time": "2019-12-21T20:31:52+00:00"
+        },
+        {
             "name": "laminas/laminas-diactoros",
             "version": "2.2.3",
             "source": {
@@ -646,6 +720,105 @@
                 "php mobile detect"
             ],
             "time": "2019-09-18T18:44:20+00:00"
+        },
+        {
+            "name": "mossadal/math-parser",
+            "version": "v1.3.16",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mossadal/math-parser.git",
+                "reference": "981b03ca603fd281049e092d75245ac029e13dec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mossadal/math-parser/zipball/981b03ca603fd281049e092d75245ac029e13dec",
+                "reference": "981b03ca603fd281049e092d75245ac029e13dec",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpdocumentor/phpdocumentor": "2.*",
+                "phpunit/php-code-coverage": "6.0.*",
+                "phpunit/phpunit": "7.3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MathParser\\": "src/MathParser"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Frank Wikström",
+                    "email": "frank@mossadal.se",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP parser for mathematical expressions, including elementary functions, variables and implicit multiplication. Also supports symbolic differentiation.",
+            "homepage": "https://github.com/mossadal/math-parser",
+            "keywords": [
+                "mathematics",
+                "parser"
+            ],
+            "time": "2018-09-15T22:20:34+00:00"
+        },
+        {
+            "name": "nxp/math-executor",
+            "version": "V2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/neonxp/MathExecutor.git",
+                "reference": "aa8ffe19f2eb6f194b3e6ee1aac4c2706659e6b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/neonxp/MathExecutor/zipball/aa8ffe19f2eb6f194b3e6ee1aac4c2706659e6b9",
+                "reference": "aa8ffe19f2eb6f194b3e6ee1aac4c2706659e6b9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "NXP": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander 'NeonXP' Kiryukhin",
+                    "email": "a.kiryukhin@mail.ru"
+                },
+                {
+                    "name": "Bruce Wells",
+                    "email": "brucekwells@gmail.com"
+                }
+            ],
+            "description": "Simple math expressions calculator",
+            "homepage": "http://github.com/NeonXP/MathExecutor",
+            "keywords": [
+                "calculator",
+                "expression",
+                "formula",
+                "math",
+                "mathmatics",
+                "parser"
+            ],
+            "time": "2020-06-04T15:43:16+00:00"
         },
         {
             "name": "psr/container",

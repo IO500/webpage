@@ -9,6 +9,7 @@
         "cakephp/cakephp": "^4.0",
         "cakephp/migrations": "^3.0",
         "cakephp/plugin-installer": "^1.2",
+        "friendsofcake/cakephp-csvview": "^4.0",
         "mobiledetect/mobiledetectlib": "^2.8",
         "mossadal/math-parser": "^1.3",
         "nxp/math-executor": "^2.0",

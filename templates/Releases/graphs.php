@@ -9,8 +9,10 @@
     <ul>
         <li>
             <?php
-            echo $this->Html->link(__('Download CSV'),
-                '/webroot/files/releases.csv',
+            echo $this->Html->link(__('Download CSV'), [
+                    'controller' => 'releases',
+                    'action' => 'export'
+                ],
                 [
                     'class' => 'button-highlight'
                 ]

@@ -2,11 +2,11 @@
     <ul class="plots">
         <li>
             <h3>PFind Easy</h3>
-            <iframe src="/plots/plotly/io500-find-easy.html"></iframe>
+            <iframe src="<?php echo $this->Url->build('/'); ?>/plots/plotly/io500-find-easy.html"></iframe>
         </li>
         <li>
             <h3>PFind Hard</h3>
-            <iframe src="/plots/plotly/io500-find-hard.html"></iframe>
+            <iframe src="<?php echo $this->Url->build('/'); ?>/plots/plotly/io500-find-hard.html"></iframe>
         </li>
     </ul>
 

@@ -19,19 +19,17 @@
             );
             ?>
         </li>
-        <!--
         <li>
             <?php
-            echo $this->Html->link(__('Create Graphs'), [
-                'controller' => 'pages',
-                'action' => 'display',
-                'about'
-            ], [
-                'class' => 'button'
-            ]);
+            echo $this->Html->link(__('Create Graphs'),
+                'https://github.com/VI4IO/io-500-webpage/blob/main/webroot/plots/plots.org',
+                [
+                    'target' => '_blank',
+                    'class' => 'button'
+                ]
+            );
             ?>
         </li>
-        -->
     </ul>
 
     <ul>

@@ -30,7 +30,54 @@ footer {
 
 .container {
     margin: 0 auto;
-    width: 1024px;
+    padding: 0 20px;
+}
+
+@media ( min-width: 1024px ) {
+  .container {
+      width: 1100px;
+      padding: 0 ;
+  }
+
+  div.landing {
+      padding: 100px 650px 0 0  
+  }
+
+  div.landing-lists, div.landing-bofs, div.landing-graphs , div.landing-running {
+      background-position: center right;
+      margin: 0;
+      text-align: left;
+  }
+
+  nav div.container {
+      display: flex;
+  }
+  nav div.logo {
+      text-align: left;
+      width: 25%;
+  }
+  nav ul.links {
+      text-align: right;
+      width: 75%;
+  }
+}
+
+@media (min-width: 550px) {
+    div.landing-lists {
+        background-size: 600px;
+    }
+
+    div.landing-bofs {
+        background-size: 550px;
+    }
+
+    div.landing-graphs {
+        background-size: 600px;
+    }
+
+    div.landing-running {
+        background-size: 500px;
+    }
 }
 
 .content {
@@ -44,9 +91,13 @@ footer {
 }
 
 .landing {
-    height: 400px;
-    padding: 100px 650px 0 0;
+    height: 350px;
+    padding: 375px 0 0 0;
+    margin: 50px 0 0 0;
     position: relative;
+    background-position: center top;
+    background-repeat: no-repeat;
+    text-align: center;
 }
 
 .landing ul {
@@ -62,30 +113,22 @@ footer {
 
 .landing-page {
     background-image: url('../img/landing.svg');
-    background-size: 600px;
-    background-repeat: no-repeat;
-    background-position: center right;
+    background-size: contain;
 }
 
 .landing-running {
     background-image: url('../img/running.svg');
-    background-size: 500px;
-    background-repeat: no-repeat;
-    background-position: center right;
+    background-size: contain;
 }
 
 .landing-lists {
     background-image: url('../img/lists.svg');
-    background-size: 600px;
-    background-repeat: no-repeat;
-    background-position: center right;
+    background-size: contain;
 }
 
 .landing-graphs {
     background-image: url('../img/graphs.svg');
-    background-size: 600px;
-    background-repeat: no-repeat;
-    background-position: center right;
+    background-size: contain;
 }
 
 .landing-bofs {
@@ -109,7 +152,7 @@ nav {
 }
 
 nav .container {
-    display: flex;
+    display: block;
 }
 
 nav .logo {
@@ -117,7 +160,8 @@ nav .logo {
     font-size: 64px;
     font-weight: bold;
     user-select: none;
-    width: 25%;
+    min-width: 180px;
+    text-align: center;
 }
 
 nav .logo sup {
@@ -126,8 +170,7 @@ nav .logo sup {
 
 nav .links {
     list-style: none;
-    text-align: right;
-    width: 75%;
+    text-align: center;
 }
 
 nav .links > li {
@@ -478,9 +521,12 @@ dd {
 
 .releases-lists ol {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .releases-lists li {
+    flex-grow: 1;
+    flex-basis: 150px;
     background: #fafaf9;
     border: #dadbd8 solid 1px;
     border-radius: 3px;

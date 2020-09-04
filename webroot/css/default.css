@@ -529,10 +529,9 @@ dd {
     background: #fafaf9;
     border: #dadbd8 solid 1px;
     flex-grow: 1;
-    flex-basis: 150px;
+    flex-basis: 140px;
     border-radius: 3px;
     margin: 5px;
-    width: 50%;
 }
 
 .submissions-lists h4 {

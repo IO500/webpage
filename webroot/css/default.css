@@ -2,6 +2,8 @@ html {
     color: #222;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
+    overflow-x: auto;
+    overflow-y: scroll;
 }
 
 body {
@@ -31,6 +33,11 @@ footer {
 .container {
     margin: 0 auto;
     padding: 0 20px;
+}
+
+.table-responsive {
+    overflow: auto;
+    width: 100%;
 }
 
 @media (min-width: 1024px) {
@@ -80,6 +87,13 @@ footer {
     div.landing-running {
         background-size: 500px;
     }
+}
+
+.logo a {
+    background: url('../img/logo.png');
+    display: inline-block;
+    height: 75px;
+    width: 178px;
 }
 
 .content {

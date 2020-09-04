@@ -5,16 +5,16 @@
 
     <ul class="news">
         <li>
-            <span class="date">2019-11-19</span> The new IO-500 list is released.
+            <span class="date">2019-11-19</span> The new IO-500 list is submissiond.
         </li>
         <li>
             <span class="date">2019-11-10</span> The schedule for our Supercomputing Birds-of-a-feather session is now defined
         </li>
         <li>            
-            <span class="date">2019-06-08</span> We released the call for submissions for the IO-500 list at ISC 2019.
+            <span class="date">2019-06-08</span> We submissiond the call for submissions for the IO-500 list at ISC 2019.
         </li>
         <li>
-            <span class="date">2018-11-14</span> The third IO-500 list is released.
+            <span class="date">2018-11-14</span> The third IO-500 list is submissiond.
 
             <ul>
                 <li>
@@ -29,22 +29,28 @@
             <span class="date">2018-09-27</span> The schedule for our Supercomputing <a class="link" href="https://sc18.supercomputing.org/presentation/?id=bof134&sess=sess390" target="_blank">Birds-of-a-Feather</a> session is now defined
         </li>
         <li>
-            <span class="date">2018-08-20</span> We released the <a class="link" href="https://www.vi4io.org/io500/submission/cfs">call for submissions</a> for the IO-500 list at Supercomputing 2018.
+            <span class="date">2018-08-20</span> We submissiond the <a class="link" href="https://www.vi4io.org/io500/submission/cfs">call for submissions</a> for the IO-500 list at Supercomputing 2018.
         </li>
         <li>
-            <span class="date">2018-06-28</span> The second IO-500 list is released. Congrats again to Oakforest-PACS.
+            <span class="date">2018-06-28</span> The second IO-500 list is submissiond. Congrats again to Oakforest-PACS.
         </li>
         <li>
-            <span class="date">2018-05-20</span> We released the <a class="link" href="https://www.vi4io.org/io500/submission/cfs">call for submissions</a> for the second IO-500 list.
+            <span class="date">2018-05-20</span> We submissiond the <a class="link" href="https://www.vi4io.org/io500/submission/cfs">call for submissions</a> for the second IO-500 list.
         </li>
         <li>
-            <span class="date">2017-11-15</span> The first IO-500 list is released, we congratulate Oakforest-PACS.
+            <span class="date">2017-11-15</span> The first IO-500 list is submissiond, we congratulate Oakforest-PACS.
         </li>
     </ul>
 
     <h3>Press</h3>
 
     <ul class="news">
+        <li>
+            <span class="date">2020-07-31</span> <a class="link" href="http://r.sib-thinkparq.com/mk/mr/viWS5JF2TimqIJf0fp4QtrOdOczUOgyIm3aA55sjNPc-CXS50xUer6nSU7T_ZpPhePCtm5Ra61VsXiIBF1vvfGJAxri0TLWnYXFxfkY" target="_blank">BeeGFS Newsletter announces their position in IO500</a>
+        </li>
+        <li>
+            <span class="date">2020-07-23</span> <a class="link" href="https://www.suse.com/c/ses-best_ceph_arm_benchmarkenterprise-storage-delivers-best-cephfs-benchmark-on-arm/" target="_blank">SUSE Enterprise Storage delivers best CephFS benchmark on Arm</a>
+        </li>
         <li>
             <span class="date">2019-11-29</span> <a class="link" href="https://storagenewsletter.com/2019/11/29/sc19-virtual-institute-for-i-o-ranking-combination-of-system-institution-file-system/" target="_blank">Storage newsletter: SC19: Virtual Institute for I/O Ranking Combination of System/Institution/File System</a>
         </li>

@@ -10,7 +10,7 @@
         <li>
             <?php
             echo $this->Html->link(__('Download CSV'), [
-                    'controller' => 'releases',
+                    'controller' => 'submissions',
                     'action' => 'export'
                 ],
                 [
@@ -36,7 +36,7 @@
         <li>
             <?php
             echo $this->Html->link(__('IOR Graphs'), [
-                'controller' => 'releases',
+                'controller' => 'submissions',
                 'action' => 'ior'
             ], [
                 'class' => 'button'
@@ -46,7 +46,7 @@
         <li>
             <?php
             echo $this->Html->link(__('MDtest Graphs'), [
-                'controller' => 'releases',
+                'controller' => 'submissions',
                 'action' => 'mdtest'
             ], [
                 'class' => 'button'
@@ -56,7 +56,7 @@
         <li>
             <?php
             echo $this->Html->link(__('Find Graphs'), [
-                'controller' => 'releases',
+                'controller' => 'submissions',
                 'action' => 'pfind'
             ], [
                 'class' => 'button'
@@ -68,7 +68,7 @@
     <a href="https://www.freepik.com/free-photos-vectors/business" class="credits">Business vector created by stories - www.freepik.com</a>
 </div>
 
-<div class="releases index content">
+<div class="submissions index content">
     <ul class="plots">
         <li>
             <h3>IO500 Score</h3>

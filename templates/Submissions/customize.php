@@ -2,14 +2,14 @@
     <p>YOU ARE HERE</p>
 
     <?php
-    $this->Breadcrumbs->add(__('LISTS'), ['controller' => 'releases', 'action' => 'index']);
-    $this->Breadcrumbs->add(__('CUSTOM LIST'), ['controller' => 'releases', 'action' => 'customize']);
+    $this->Breadcrumbs->add(__('LISTS'), ['controller' => 'submissions', 'action' => 'index']);
+    $this->Breadcrumbs->add(__('CUSTOM LIST'), ['controller' => 'submissions', 'action' => 'customize']);
 
     echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
     ?>
 </nav>
 
-<div class="releases index content">
+<div class="submissions index content">
     <h2>Your Customized List</h2>
 
     <div class="both"></div>
@@ -194,14 +194,23 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($releases as $i => $release) { ?>
+                <?php
+                foreach ($submissions as $i => $submission) { 
+                    $url = $this->Url->build([
+                            'controller' => 'submissions',
+                            'action' => 'view',
+                            $submission->id
+                        ]
+                    );
+                ?>
+                <tr onclick="window.location='<?php echo $url; ?>';">
                 <tr>
                     <td class="tb-id">
                         <?php
                         echo $this->Html->link(($i + 1), [
-                            'controller' => 'releases',
+                            'controller' => 'submissions',
                             'action' => 'view',
-                            $release->id
+                            $submission->id
                         ], [
                             'class' => 'rank'
                         ]);
@@ -209,9 +218,9 @@
                     </td>
 
                     <?php
-                    if ($release->equation && $valid) {
+                    if ($submission->equation && $valid) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($release->equation, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->equation, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                     }
 
@@ -219,7 +228,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'information_') === 0) {
                     ?>
-                    <td><?php echo h($release->{$field}) ?></td>
+                    <td><?php echo h($submission->{$field}) ?></td>
                     <?php
                             }
                         }
@@ -229,7 +238,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'io500_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($release->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -239,7 +248,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'mdtest_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($release->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -249,7 +258,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'ior_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($release->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -259,7 +268,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'find_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($release->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }

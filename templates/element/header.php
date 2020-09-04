@@ -5,7 +5,7 @@
             echo $this->Html->link(
                 $this->Html->image('logo.png'), 
                 [
-                    'controller' => 'releases',
+                    'controller' => 'submissions',
                     'action' => 'latest'
                 ],
                 [
@@ -86,7 +86,7 @@
             <li>
                 <?php
                 echo $this->Html->link(__('Graphs'), [
-                    'controller' => 'releases',
+                    'controller' => 'submissions',
                     'action' => 'graphs'
                 ]);
                 ?>

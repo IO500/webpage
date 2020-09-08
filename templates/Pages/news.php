@@ -46,6 +46,9 @@
 
     <ul class="news">
         <li>
+            <span class="date">2020-08-11</span> <a class="link" href="https://www.hpcwire.com/2020/08/11/intels-optane-daos-tops-latest-io500/" target="_blank">Intel's Optane/DAOS Solution Tops Latest IO500</a>
+        </li>
+        <li>
             <span class="date">2020-07-31</span> <a class="link" href="http://r.sib-thinkparq.com/mk/mr/viWS5JF2TimqIJf0fp4QtrOdOczUOgyIm3aA55sjNPc-CXS50xUer6nSU7T_ZpPhePCtm5Ra61VsXiIBF1vvfGJAxri0TLWnYXFxfkY" target="_blank">BeeGFS Newsletter announces their position in IO500</a>
         </li>
         <li>

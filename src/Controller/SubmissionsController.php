@@ -100,6 +100,12 @@ class SubmissionsController extends AppController
     {
         $limit = 1000;
 
+        $release = $this->Submissions->Releases->find('all')
+            ->where([
+                'Releases.acronym' => strtoupper($list)
+            ])
+            ->first();
+
         $submissions = $this->Submissions->find('all')
             ->select([
                 'Submissions.id',
@@ -108,9 +114,15 @@ class SubmissionsController extends AppController
                 'Submissions.information_filesystem_type',
             ])
             ->where([
-                'LOWER(Submissions.information_list_name)' => strtolower($list),
-                'Submissions.status' => 'VALID',
+                'Submissions.information_submission_date <=' => $release->release_date->format('Y-m-d'),
+                'Submissions.valid_from <=' => $release->release_date,
+                'OR' => [
+                    'Submissions.valid_to IS NULL',
+                    'Submissions.valid_to >=' => $release->release_date,
+                ],
                 'Submissions.information_client_nodes' => 10,
+                'Submissions.information_10_node_challenge IS' => true,
+                'Submissions.status' => 'VALID'
             ])
             ->order([
                 'Submissions.io500_score' => 'DESC',

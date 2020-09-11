@@ -199,7 +199,6 @@ class SubmissionsController extends AppController
                     'Submissions.valid_to >=' => $release->release_date,
                 ],
                 'Submissions.include_in_io500 IS' => true,
-                'Submissions.information_10_node_challenge IS' => false,
                 'Submissions.status' => 'VALID',
             ])
             ->order([

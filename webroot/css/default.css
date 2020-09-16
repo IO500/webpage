@@ -582,6 +582,13 @@ dd {
     width: 80%;
 }
 
+.submissions > h2 span {
+    background: #d63b1e;
+    padding: 3px 7px;
+    color: #fff;
+    border-radius: 3px;
+}
+
 .submissions-action {
     float: right;
     margin: 22px 0;

@@ -11,7 +11,7 @@
 </nav>
 
 <div class="submissions index content">
-    <h2>IO500 <?php echo strtoupper($release->acronym); ?> List</h2>
+    <h2>IO500 <span><?php echo strtoupper($release->acronym); ?></span> List</h2>
 
     <div class="submissions-action">
         <?php

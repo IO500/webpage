@@ -62,7 +62,7 @@
             <?php
             echo $this->Html->link(__('Lastest List'), [
                 'controller' => 'submissions',
-                'action' => 'full'
+                'action' => 'latest'
             ], [
                 'class' => 'button-highlight'
             ]);

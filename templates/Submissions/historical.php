@@ -2,15 +2,16 @@
     <p>YOU ARE HERE</p>
 
     <?php
-    $this->Breadcrumbs->add(__('LISTS'), ['controller' => 'submissions', 'action' => 'index']);
-    $this->Breadcrumbs->add(__('HISTORICAL LIST'), ['controller' => 'submissions', 'action' => 'historical']);
+    $this->Breadcrumbs->add(_('LISTS'), ['controller' => 'releases', 'action' => 'index']);
+    $this->Breadcrumbs->add(_('HISTORICAL LIST'), ['controller' => 'releases', 'action' => 'index']);
+    $this->Breadcrumbs->add(strtoupper($this->request->getParam('pass')[0]), ['controller' => 'submissions', 'action' => 'historical', $this->request->getParam('pass')[0]]);
 
     echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
     ?>
 </nav>
 
 <div class="submissions index content">
-    <h2>Historical List</h2>
+    <h2><?php echo strtoupper($this->request->getParam('pass')[0]); ?> Historical List</h2>
 
     <div class="submissions-action">
         <?php

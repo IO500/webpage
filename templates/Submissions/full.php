@@ -2,15 +2,16 @@
     <p>YOU ARE HERE</p>
 
     <?php
-    $this->Breadcrumbs->add(_('LISTS'), ['controller' => 'submissions', 'action' => 'index']);
-    $this->Breadcrumbs->add(_('FULL LIST'), ['controller' => 'submissions', 'action' => 'full']);
+    $this->Breadcrumbs->add(_('LISTS'), ['controller' => 'releases', 'action' => 'index']);
+    $this->Breadcrumbs->add(_('FULL LIST'), ['controller' => 'releases', 'action' => 'index']);
+    $this->Breadcrumbs->add(strtoupper($this->request->getParam('pass')[0]), ['controller' => 'submissions', 'action' => 'full', $this->request->getParam('pass')[0]]);
 
     echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
     ?>
 </nav>
 
 <div class="submissions index content">
-    <h2>Full List</h2>
+    <h2><?php echo strtoupper($this->request->getParam('pass')[0]); ?> Full List</h2>
 
     <div class="submissions-action">
         <?php

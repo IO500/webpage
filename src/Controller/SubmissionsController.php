@@ -271,16 +271,47 @@ class SubmissionsController extends AppController
     {
         $limit = Configure::read('IO500.pagination');
 
-        $lists = [
-            'sc17',
-            'isc18',
-            'sc18',
-            'isc19',
-            'sc19',
-        ];
+        $limit = 1000;
 
-        $index = array_search($list, $lists);
-        $lists = array_slice($lists, 0, $index + 1);
+        $release = $this->Submissions->Releases->find('all')
+            ->where([
+                'Releases.acronym' => strtoupper($list)
+            ])
+            ->first();
+
+        $submissions = $this->Submissions->find('all')
+            ->select([
+                'Submissions.id',
+                'Submissions.information_system',
+                'Submissions.information_institution',
+                'Submissions.information_system',
+                'Submissions.information_filesystem_type',
+            ])
+            ->where([
+                'Submissions.information_submission_date <=' => $release->release_date->format('Y-m-d'),
+                'Submissions.valid_from <=' => $release->release_date
+            ])
+            ->order([
+                'Submissions.io500_score' => 'DESC',
+            ])
+            ->limit($limit);
+
+        $storages = [];
+        $valid_records = [];
+        
+        // We need to remove duplicate entries from submissions of the same system
+        foreach ($submissions as $submission) {
+            $key = $submission->information_institution . ' ' .
+                $submission->information_system . ' ' .
+                $submission->information_filesystem_type;
+
+            if (!in_array($key, $storages)) {
+                $storages[] = $key;
+                $valid_records[] = $submission->id;
+            }
+        }
+
+        $limit = Configure::read('IO500.pagination');
 
         $settings = [
             'order' => [
@@ -293,13 +324,17 @@ class SubmissionsController extends AppController
             $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
         }
 
-        $submissions = $this->Submissions->find('all')
+        $submissions = $this->Submissions->find('all')        
+            ->contain([
+                'Releases'
+            ])
             ->where([
-                'Submissions.information_list_name IN' => $lists,
+                'Submissions.id IN' => $valid_records,
             ])
             ->limit($limit);
 
         $this->set('limit', $limit);
+        $this->set('release', $release);
         $this->set('submissions', $this->paginate($submissions, $settings));
     }
 
@@ -313,16 +348,48 @@ class SubmissionsController extends AppController
     {
         $limit = Configure::read('IO500.pagination');
 
-        $lists = [
-            'sc17',
-            'isc18',
-            'sc18',
-            'isc19',
-            'sc19',
-        ];
+        $limit = 1000;
 
-        $index = array_search($list, $lists);
-        $lists = array_slice($lists, 0, $index + 1);
+        $release = $this->Submissions->Releases->find('all')
+            ->where([
+                'Releases.acronym' => strtoupper($list)
+            ])
+            ->first();
+
+        $submissions = $this->Submissions->find('all')
+            ->select([
+                'Submissions.id',
+                'Submissions.information_system',
+                'Submissions.information_institution',
+                'Submissions.information_system',
+                'Submissions.information_filesystem_type',
+            ])
+            ->where([
+                'Submissions.information_submission_date <=' => $release->release_date->format('Y-m-d'),
+                'Submissions.valid_from <=' => $release->release_date,
+                'Submissions.status' => 'VALID'
+            ])
+            ->order([
+                'Submissions.io500_score' => 'DESC',
+            ])
+            ->limit($limit);
+
+        $storages = [];
+        $valid_records = [];
+        
+        // We need to remove duplicate entries from submissions of the same system
+        foreach ($submissions as $submission) {
+            $key = $submission->information_institution . ' ' .
+                $submission->information_system . ' ' .
+                $submission->information_filesystem_type;
+
+            if (!in_array($key, $storages)) {
+                $storages[] = $key;
+                $valid_records[] = $submission->id;
+            }
+        }
+
+        $limit = Configure::read('IO500.pagination');
 
         $settings = [
             'order' => [
@@ -335,14 +402,17 @@ class SubmissionsController extends AppController
             $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
         }
 
-        $submissions = $this->Submissions->find('all')
+        $submissions = $this->Submissions->find('all')        
+            ->contain([
+                'Releases'
+            ])
             ->where([
-                'Submissions.status' => 'VALID',
-                'Submissions.information_list_name IN' => $lists,
+                'Submissions.id IN' => $valid_records,
             ])
             ->limit($limit);
 
         $this->set('limit', $limit);
+        $this->set('release', $release);
         $this->set('submissions', $this->paginate($submissions, $settings));
     }
 

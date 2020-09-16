@@ -4,14 +4,14 @@
     <?php
     $this->Breadcrumbs->add(__('LISTS'), ['controller' => 'submissions', 'action' => 'index']);
     $this->Breadcrumbs->add(__('IO500 LIST'), ['controller' => 'submissions', 'action' => 'index']);
-    $this->Breadcrumbs->add(__('LATEST'), ['controller' => 'submissions', 'action' => 'list', $list]);
+    $this->Breadcrumbs->add(__('LATEST'), ['controller' => 'submissions', 'action' => 'list', $release->acronym]);
 
     echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
     ?>
 </nav>
 
 <div class="submissions index content">
-    <h2>IO500 <?php echo strtoupper($list); ?> List</h2>
+    <h2>IO500 <?php echo strtoupper($release->acronym); ?> List</h2>
 
     <div class="submissions-action">
         <?php

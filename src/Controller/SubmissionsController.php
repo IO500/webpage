@@ -30,8 +30,14 @@ class SubmissionsController extends AppController
     {
         $limit = 1000;
 
-        // Define which is the latest list to display
-        $list = 'SC19';
+        $release = $this->Submissions->Releases->find('all')
+            ->where([
+                'Releases.release_date <=' => date('Y-m-d')
+            ])
+            ->order([
+                'Releases.release_date' => 'DESC'
+            ])
+            ->first();
 
         $submissions = $this->Submissions->find('all')
             ->select([
@@ -42,8 +48,13 @@ class SubmissionsController extends AppController
                 'Submissions.information_filesystem_type',
             ])
             ->where([
-                'LOWER(Submissions.information_list_name)' => strtolower($list),
-                'Submissions.information_10_node_challenge IS' => false,
+                'Submissions.information_submission_date <=' => $release->release_date->format('Y-m-d'),
+                'Submissions.valid_from <=' => $release->release_date,
+                'OR' => [
+                    'Submissions.valid_to IS NULL',
+                    'Submissions.valid_to >=' => $release->release_date,
+                ],
+                'Submissions.include_in_io500 IS' => true,
                 'Submissions.status' => 'VALID',
             ])
             ->order([
@@ -53,7 +64,7 @@ class SubmissionsController extends AppController
 
         $storages = [];
         $valid_records = [];
-
+        
         // We need to remove duplicate entries from submissions of the same system
         foreach ($submissions as $submission) {
             $key = $submission->information_institution . ' ' .
@@ -79,14 +90,17 @@ class SubmissionsController extends AppController
             $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
         }
 
-        $submissions = $this->Submissions->find('all')
+        $submissions = $this->Submissions->find('all')        
+            ->contain([
+                'Releases'
+            ])
             ->where([
                 'Submissions.id IN' => $valid_records,
             ])
             ->limit($limit);
 
         $this->set('limit', $limit);
-        $this->set('list', $list);
+        $this->set('release', $release);
         $this->set('submissions', $this->paginate($submissions, $settings));
     }
 

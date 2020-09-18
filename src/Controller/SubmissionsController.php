@@ -472,7 +472,7 @@ class SubmissionsController extends AppController
 
         $path = $prefix . $submission->information_list_name . '/' . str_replace('.zip', '', $submission->storage_data);
 
-        if (is_dir($path)) {
+        if ($submission->storage_data && is_dir($path)) {
             $dir_iterator = new \RecursiveDirectoryIterator($path);
             $iterator = new \RecursiveIteratorIterator($dir_iterator, \RecursiveIteratorIterator::SELF_FIRST);
 

@@ -258,7 +258,6 @@
             <ul class="file-buttons">
                 <li>
                     <?php
-                    echo $submission->storage_data; die();
                     echo $this->Html->link(
                         _('Browse Files'),
                         'https://jbez.io500.org/storage/' . $submission->information_list_name . '/' . str_replace('.zip', '', $submission->storage_data),

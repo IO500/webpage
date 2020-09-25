@@ -67,9 +67,7 @@
                         </tr>
                     </table>
                 </div>
-            </div>
 
-            <div class="information">
                 <div class="information-metadata">
                     <h4>METADATA SERVER</h4>
 
@@ -131,9 +129,7 @@
                         </tr>
                     </table>
                 </div>
-            </div>
 
-            <div class="information">
                 <div class="information-metadata">
                     <h4>IO500 SCORES</h4>
 
@@ -187,9 +183,7 @@
                         </tr>
                     </table>
                 </div>
-            </div>
 
-            <div class="information">
                 <div class="information-metadata">
                     <h4>IOR & FIND</h4>
 

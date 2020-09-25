@@ -467,8 +467,11 @@ li {
 }
 
 .information {
-    display: flex;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 20px;
     margin: 20px 0;
+    width: 100%;
 }
 
 .information tr {
@@ -493,15 +496,9 @@ li {
     box-sizing: border-box;
     padding: 15px 20px;
     position: relative;
-    width: 50%;
-}
-
-.information-metadata {
-    margin: 0 10px 0 0;
-}
-
-.information-data {
-    margin: 0 0 0 10px;
+    flex-basis: 400px;
+    flex-grow: 1;
+    width: 45%;
 }
 
 dt {

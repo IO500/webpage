@@ -780,17 +780,9 @@ class SubmissionsController extends AppController
         // Get columns list from table
         $columns = $tableSchema->columns();
 
-        $lists = [
-            'sc17',
-            'isc18',
-            'sc18',
-            'isc19',
-            'sc19',
-        ];
-
         $submissions = $this->Submissions->find('all')
             ->where([
-                'LOWER(Submissions.information_list_name) IN' => $lists
+                'Submissions.status' => 'VALID'
             ]);
 
         $this->set(compact('submissions'));

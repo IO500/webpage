@@ -2,8 +2,8 @@
     <p>YOU ARE HERE</p>
 
     <?php
-    $this->Breadcrumbs->add(__('LISTS'), ['controller' => 'submissions', 'action' => 'index']);
-    $this->Breadcrumbs->add(__('IO500 LIST'), ['controller' => 'submissions', 'action' => 'index']);
+    $this->Breadcrumbs->add(__('LISTS'), ['controller' => 'releases', 'action' => 'index']);
+    $this->Breadcrumbs->add(__('IO500 LIST'), ['controller' => 'releases', 'action' => 'index']);
     $this->Breadcrumbs->add(__('LATEST'), ['controller' => 'submissions', 'action' => 'list', $release->acronym]);
 
     echo $this->Breadcrumbs->render([], ['separator' => ' / ']);

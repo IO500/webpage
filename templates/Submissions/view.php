@@ -2,7 +2,7 @@
     <p>YOU ARE HERE</p>
 
     <?php
-    $this->Breadcrumbs->add(_('LISTS'), ['controller' => 'submissions', 'action' => 'index']);
+    $this->Breadcrumbs->add(_('LISTS'), ['controller' => 'releases', 'action' => 'index']);
     $this->Breadcrumbs->add(strtoupper($submission->information_list_name), ['controller' => 'submissions', 'action' => 'full', strtolower($submission->information_list_name)]);
     $this->Breadcrumbs->add(strtoupper($submission->information_system), ['controller' => 'submissions', 'action' => 'view', $submission->id]);
 

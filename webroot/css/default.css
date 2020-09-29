@@ -114,6 +114,9 @@ footer {
     margin: 50px 0 0 0;
     text-align: center;
     position: relative;
+    background-position: center top;
+    background-repeat: no-repeat;
+    text-align: center;
 }
 
 .landing ul {

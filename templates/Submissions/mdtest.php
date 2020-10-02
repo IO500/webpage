@@ -1,5 +1,5 @@
 <div class="submissions index content">
-    <ul class="webroot/plots">
+    <ul class="plots">
         <li>
             <h3>MDtest Easy Write</h3>
             <iframe src="<?php echo $this->Url->build('/'); ?>/webroot/plots/plotly/io500-mdtest-easy-write.html"></iframe>

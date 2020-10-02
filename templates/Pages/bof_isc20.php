@@ -4,7 +4,7 @@
     <p>YOU ARE HERE</p>
 
     <?php
-    $this->Breadcrumbs->add(__('HOME'), ['controller' => 'releases', 'action' => 'latest']);
+    $this->Breadcrumbs->add(__('HOME'), ['controller' => 'submissions', 'action' => 'latest']);
     $this->Breadcrumbs->add(__('BOF'), ['controller' => 'pages', 'action' => 'display', 'bofs']);
     $this->Breadcrumbs->add(__("ISC'20"), ['controller' => 'pages', 'action' => 'display', 'bof-isc20']);
 
@@ -42,17 +42,17 @@
     </table>
 
     <p class="link">
-        <strong>Impact of COVID-19</strong>: The release of the list will take place regardless of ISC canceling BoF sessions.
+        <strong>Impact of COVID-19</strong>: The submission of the list will take place regardless of ISC canceling BoF sessions.
     </p>
 
     <p>
-        This is the periodic ISC'20 list release but earlier than the <a class="link" href="http://isc-hpc.com/" target="_blank">ISC-HPC conference</a> when we typically release the list to prevent conflict with their digital program.
+        This is the periodic ISC'20 list submission but earlier than the <a class="link" href="http://isc-hpc.com/" target="_blank">ISC-HPC conference</a> when we typically submission the list to prevent conflict with their digital program.
     </p>
 
     <h3>Abstract</h3>
 
     <p>
-        The IO500 is quickly becoming the de facto benchmarking standard for HPC storage. Developed two years ago, the IO500 has released two official lists so far. A BoF highlight is the presentation of the fourth IO-500 list.
+        The IO500 is quickly becoming the de facto benchmarking standard for HPC storage. Developed two years ago, the IO500 has submissiond two official lists so far. A BoF highlight is the presentation of the fourth IO-500 list.
     </p>
 
     <p>

@@ -105,7 +105,7 @@
     <a href="https://www.freepik.com/free-photos-vectors/business" class="credits">Business vector created by stories - www.freepik.com</a>
 </div>
 
-<div class="releases index content">
+<div class="submissions index content">
     <div id="disqus_thread"></div>
 </div>
 

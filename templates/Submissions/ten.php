@@ -3,20 +3,20 @@
 
     <?php
     $this->Breadcrumbs->add(_('LISTS'), ['controller' => 'releases', 'action' => 'index']);
-    $this->Breadcrumbs->add(_('IO500 LIST'), ['controller' => 'releases', 'action' => 'index']);
-    $this->Breadcrumbs->add(strtoupper($this->request->getParam('pass')[0]), ['controller' => 'releases', 'action' => 'list', $this->request->getParam('pass')[0]]);
+    $this->Breadcrumbs->add(_('10 NODE LIST'), ['controller' => 'releases', 'action' => 'index']);
+    $this->Breadcrumbs->add(strtoupper($this->request->getParam('pass')[0]), ['controller' => 'submissions', 'action' => 'ten', $this->request->getParam('pass')[0]]);
 
     echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
     ?>
 </nav>
 
-<div class="releases index content">
-    <h2>IO500 <?php echo strtoupper($this->request->getParam('pass')[0]); ?> List</h2>
+<div class="submissions index content">
+    <h2>10 Node Challenge <?php echo strtoupper($this->request->getParam('pass')[0]); ?> List</h2>
 
-    <div class="releases-action">
+    <div class="submissions-action">
         <?php
         echo $this->Html->link(_('Customize'), [
-            'controller' => 'releases',
+            'controller' => 'submissions',
             'action' => 'customize'
         ], [
             'class' => 'button'
@@ -28,7 +28,7 @@
         <table class="tb">
             <thead>
                 <tr>
-                    <th rowspan="3" class="tb-id"><?php echo $this->Paginator->sort('io500_score', '#') ?></th>
+                    <th rowspan="3" class="tb-id"><?php echo $this->Paginator->sort('rank', '#') ?></th>
                     <th colspan="6" class="tb-center">Information</th>
                     <th colspan="3" class="tb-center">IO500</th>
                 </tr>
@@ -50,14 +50,23 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($releases as $i => $release) { ?>
+                <?php
+                foreach ($submissions as $i => $submission) { 
+                    $url = $this->Url->build([
+                            'controller' => 'submissions',
+                            'action' => 'view',
+                            $submission->id
+                        ]
+                    );
+                ?>
+                <tr onclick="window.location='<?php echo $url; ?>';">
                 <tr>
                     <td class="tb-id">
                         <?php
-                        echo $this->Html->link((($this->Paginator->current('Releases') - 1) * $limit) + ($i + 1), [
-                            'controller' => 'releases',
+                        echo $this->Html->link((($this->Paginator->current('Submissions') - 1) * $limit) + ($i + 1), [
+                            'controller' => 'submissions',
                             'action' => 'view',
-                            $release->id
+                            $submission->id
                         ], [
                             'class' => 'rank'
                         ]);
@@ -65,22 +74,22 @@
                     </td>
                     <td>
                         <?php
-                        echo $this->Html->link($release->information_institution, [
-                            'controller' => 'releases',
+                        echo $this->Html->link($submission->information_institution, [
+                            'controller' => 'submissions',
                             'action' => 'view',
-                            $release->id
+                            $submission->id
                         ]);
                         ?>
                     </td>
-                    <td><?php echo h($release->information_system) ?></td>
-                    <td><?php echo h($release->information_storage_vendor) ?></td>
-                    <td><?php echo h($release->information_filesystem_type) ?></td>
-                    <td class="tb-number"><?php echo $this->Number->format($release->information_client_nodes) ?></td>
-                    <td class="tb-number"><?php echo $this->Number->format($release->information_client_total_procs) ?></td>
+                    <td><?php echo h($submission->information_system) ?></td>
+                    <td><?php echo h($submission->information_storage_vendor) ?></td>
+                    <td><?php echo h($submission->information_filesystem_type) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->information_client_nodes) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->information_client_total_procs) ?></td>
 
-                    <td class="tb-number"><?php echo $this->Number->format($release->io500_score, ['places' => 2, 'precision' => 2]) ?></td>
-                    <td class="tb-number"><?php echo $this->Number->format($release->io500_bw, ['places' => 2, 'precision' => 2]) ?></td>
-                    <td class="tb-number"><?php echo $this->Number->format($release->io500_md, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->io500_score, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->io500_bw, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->io500_md, ['places' => 2, 'precision' => 2]) ?></td>
                 </tr>
                 <?php } ?>
             </tbody>
@@ -131,16 +140,16 @@ $max_io500_md = 0;
 $max_nodes = 0;
 $max_procs = 0;
 
-foreach ($releases as $i => $release) {
+foreach ($submissions as $i => $submission) {
     if ($i >= $LIMIT) {
        break;
     }
 
-    $max_io500_score = max($max_io500_score, $release->io500_score);
-    $max_io500_bw = max($max_io500_bw, $release->io500_bw);
-    $max_io500_md = max($max_io500_md, $release->io500_md);
-    $max_nodes = max($max_nodes, $release->information_client_nodes);
-    $max_procs = max($max_procs, $release->information_client_total_procs);
+    $max_io500_score = max($max_io500_score, $submission->io500_score);
+    $max_io500_bw = max($max_io500_bw, $submission->io500_bw);
+    $max_io500_md = max($max_io500_md, $submission->io500_md);
+    $max_nodes = max($max_nodes, $submission->information_client_nodes);
+    $max_procs = max($max_procs, $submission->information_client_total_procs);
 }
 
 $plot_border[0] = 'rgb(86, 166, 186)';
@@ -175,19 +184,19 @@ var myRadarChart = new Chart(ctx, {
         ],
         datasets: [
             <?php
-            foreach ($releases as $i => $release) {
+            foreach ($submissions as $i => $submission) {
                 if ($i >= $LIMIT) {
                     break;
                 }
             ?>
             {
-                'label': '#<?php echo (($this->Paginator->current('Releases') - 1) * $limit) + ($i + 1) . " - " . $release->information_system . " from " . $release->information_institution; ?>',
+                'label': '#<?php echo (($this->Paginator->current('Submissions') - 1) * $limit) + ($i + 1) . " - " . $submission->information_system . " from " . $submission->information_institution; ?>',
                 'data': [
-                    <?php echo $release->io500_score / $max_io500_score * 100.0; ?>,
-                    <?php echo $release->io500_bw / $max_io500_bw * 100.0; ?>,
-                    <?php echo $release->io500_md / $max_io500_md * 100.0; ?>,
-                    <?php echo $release->information_client_nodes / $max_nodes * 100.0; ?>,
-                    <?php echo $release->information_client_total_procs / $max_procs * 100.0; ?>
+                    <?php echo $submission->io500_score / $max_io500_score * 100.0; ?>,
+                    <?php echo $submission->io500_bw / $max_io500_bw * 100.0; ?>,
+                    <?php echo $submission->io500_md / $max_io500_md * 100.0; ?>,
+                    <?php echo $submission->information_client_nodes / $max_nodes * 100.0; ?>,
+                    <?php echo $submission->information_client_total_procs / $max_procs * 100.0; ?>
                 ],
                 'fill': true,
                 'borderColor': '<?php echo $plot_border[$i]; ?>',

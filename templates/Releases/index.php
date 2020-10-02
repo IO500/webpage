@@ -1,44 +1,44 @@
-<div class="releases index content">
-    <div class="releases-lists">
+<div class="submissions index content">
+    <div class="submissions-lists">
         <ol>
-            <?php foreach ($lists as $list) { ?>
+            <?php foreach ($releases as $release) { ?>
             <li>
-                <h4><?php echo strtoupper($list); ?></h4>
+                <h4><?php echo strtoupper($release->acronym); ?></h4>
 
                 <ul>                    
                     <li>
                         <?php
                         echo $this->Html->link(__('IO500'), [
-                            'controller' => 'releases',
+                            'controller' => 'submissions',
                             'action' => 'list',
-                            $list
+                            strtolower($release->acronym)
                         ]);
                         ?>
                     </li>
                     <li>
                         <?php
                         echo $this->Html->link(__('10 NODE'), [
-                            'controller' => 'releases',
+                            'controller' => 'submissions',
                             'action' => 'ten',
-                            $list
+                            strtolower($release->acronym)
                         ]);
                         ?>
                     </li>
                     <li>
                         <?php
                         echo $this->Html->link(__('FULL'), [
-                            'controller' => 'releases',
+                            'controller' => 'submissions',
                             'action' => 'full',
-                            $list
+                            strtolower($release->acronym)
                         ]);
                         ?>
                     </li>                    
                     <li>
                         <?php
                         echo $this->Html->link(__('HISTORICAL'), [
-                            'controller' => 'releases',
+                            'controller' => 'submissions',
                             'action' => 'historical',
-                            $list
+                            strtolower($release->acronym)
                         ]);
                         ?>
                     </li>
@@ -61,8 +61,8 @@
         <li>
             <?php
             echo $this->Html->link(__('Lastest List'), [
-                'controller' => 'releases',
-                'action' => 'full'
+                'controller' => 'submissions',
+                'action' => 'latest'
             ], [
                 'class' => 'button-highlight'
             ]);

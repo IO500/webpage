@@ -1,4 +1,4 @@
-<div class="releases index content">
+<div class="submissions index content">
     <ul class="plots">
         <li>
             <h3>PFind Easy</h3>

@@ -4,7 +4,7 @@
     <p>YOU ARE HERE</p>
 
     <?php
-    $this->Breadcrumbs->add(__('HOME'), ['controller' => 'releases', 'action' => 'latest']);
+    $this->Breadcrumbs->add(__('HOME'), ['controller' => 'submissions', 'action' => 'latest']);
     $this->Breadcrumbs->add(__('RULES'), ['controller' => 'pages', 'action' => 'display', 'rules']);
     $this->Breadcrumbs->add(__('COMMITTEE'), ['controller' => 'pages', 'action' => 'display', 'rules-committee']);
 

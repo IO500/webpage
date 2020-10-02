@@ -2,6 +2,8 @@ html {
     color: #222;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
+    overflow-x: auto;
+    overflow-y: scroll;
 }
 
 body {
@@ -33,33 +35,40 @@ footer {
     padding: 0 20px;
 }
 
-@media ( min-width: 1024px ) {
-  .container {
-      width: 1100px;
-      padding: 0 ;
-  }
+.table-responsive {
+    overflow: auto;
+    width: 100%;
+}
 
-  div.landing {
-      padding: 100px 650px 0 0  
-  }
+@media (min-width: 1024px) {
+    .container {
+        width: 1100px;
+        padding: 0;
+    }
 
-  div.landing-lists, div.landing-bofs, div.landing-graphs , div.landing-running {
-      background-position: center right;
-      margin: 0;
-      text-align: left;
-  }
+    nav div.container {
+        display: flex;
+    }
 
-  nav div.container {
-      display: flex;
-  }
-  nav div.logo {
-      text-align: left;
-      width: 25%;
-  }
-  nav ul.links {
-      text-align: right;
-      width: 75%;
-  }
+    nav div.logo {
+        text-align: left;
+        width: 25%;
+    }
+
+    nav ul.links {
+        text-align: right;
+        width: 75%;
+    }
+
+    div.landing {
+        padding: 100px 650px 0 0;
+    }
+
+    div.landing-lists, div.landing-bofs, div.landing-graphs , div.landing-running {
+        background-position: center right;
+        margin: 0;
+        text-align: left;   
+    }
 }
 
 @media (min-width: 550px) {
@@ -80,6 +89,13 @@ footer {
     }
 }
 
+.logo a {
+    background: url('../img/logo.png');
+    display: inline-block;
+    height: 75px;
+    width: 178px;
+}
+
 .content {
     background: #fff;
     border-radius: 5px;
@@ -90,10 +106,13 @@ footer {
     color: #cc1717;    
 }
 
-.landing {
+.landing {    
+    background-position: center top;
+    background-repeat: no-repeat;
     height: 350px;
     padding: 375px 0 0 0;
     margin: 50px 0 0 0;
+    text-align: center;
     position: relative;
     background-position: center top;
     background-repeat: no-repeat;
@@ -113,7 +132,7 @@ footer {
 
 .landing-page {
     background-image: url('../img/landing.svg');
-    background-size: contain;
+    background-size: 600px;
 }
 
 .landing-running {
@@ -133,9 +152,7 @@ footer {
 
 .landing-bofs {
     background-image: url('../img/meeting.svg');
-    background-size: 550px;
-    background-repeat: no-repeat;
-    background-position: center right;
+    background-size: contain;
 }
 
 .button {
@@ -164,12 +181,9 @@ nav .logo {
     text-align: center;
 }
 
-nav .logo sup {
-    color: #222;
-}
-
 nav .links {
     list-style: none;
+    padding: 0;
     text-align: center;
 }
 
@@ -332,6 +346,10 @@ table {
     
 }
 
+.tb tbody tr:hover {
+    background: #efefef;
+}
+
 .tb td {
     padding: 5px;
 }
@@ -452,8 +470,11 @@ li {
 }
 
 .information {
-    display: flex;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 20px;
     margin: 20px 0;
+    width: 100%;
 }
 
 .information tr {
@@ -478,15 +499,9 @@ li {
     box-sizing: border-box;
     padding: 15px 20px;
     position: relative;
-    width: 50%;
-}
-
-.information-metadata {
-    margin: 0 10px 0 0;
-}
-
-.information-data {
-    margin: 0 0 0 10px;
+    flex-basis: 400px;
+    flex-grow: 1;
+    width: 45%;
 }
 
 dt {
@@ -509,37 +524,36 @@ dd {
     cursor: pointer;
 }
 
-.releases-lists {
+.submissions-lists {
     margin: 20px 0 0;
 }
 
-.releases-lists ol, .releases-lists ul {
+.submissions-lists ol, .submissions-lists ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.releases-lists ol {
+.submissions-lists ol {
     display: flex;
     flex-wrap: wrap;
 }
 
-.releases-lists li {
-    flex-grow: 1;
-    flex-basis: 150px;
+.submissions-lists li {
     background: #fafaf9;
     border: #dadbd8 solid 1px;
+    flex-grow: 1;
+    flex-basis: 140px;
     border-radius: 3px;
     margin: 5px;
-    width: 50%;
 }
 
-.releases-lists h4 {
+.submissions-lists h4 {
     font-size: 32px;
     text-align: center;
 }
 
-.releases-lists ul > li {
+.submissions-lists ul > li {
     background: #fff;
     box-sizing: border-box;
     display: block;
@@ -550,25 +564,32 @@ dd {
     width: auto;
 }
 
-.releases-lists ul > li:hover{
+.submissions-lists ul > li:hover{
     background: #d63b1e;
     border-color: #d63b1e;
 }
 
-.releases-lists ul > li > a {
+.submissions-lists ul > li > a {
     display: block;
 }
 
-.releases-lists ul > li > a:hover{
+.submissions-lists ul > li > a:hover{
     color: #fff;
 }
 
-.releases > h2 {
+.submissions > h2 {
     float: left;
     width: 80%;
 }
 
-.releases-action {
+.submissions > h2 span {
+    background: #d63b1e;
+    padding: 3px 7px;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.submissions-action {
     float: right;
     margin: 22px 0;
 }

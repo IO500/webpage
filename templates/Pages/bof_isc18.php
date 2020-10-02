@@ -4,7 +4,7 @@
     <p>YOU ARE HERE</p>
 
     <?php
-    $this->Breadcrumbs->add(__('HOME'), ['controller' => 'releases', 'action' => 'latest']);
+    $this->Breadcrumbs->add(__('HOME'), ['controller' => 'submissions', 'action' => 'latest']);
     $this->Breadcrumbs->add(__('BOF'), ['controller' => 'pages', 'action' => 'display', 'bofs']);
     $this->Breadcrumbs->add(__("ISC'18"), ['controller' => 'pages', 'action' => 'display', 'bof-isc18']);
 
@@ -13,7 +13,7 @@
 </nav>
 
 <div class="content">
-    <h2>ISC'19</h2>
+    <h2>ISC'18</h2>
 
     <h3>The IO-500 and the Virtual Institute of I/O</h3>
 

@@ -28,7 +28,7 @@ class RecordsController extends AppController
         if (!Configure::read('IO500.custom_lists')) {
             $this->Flash->error(__('Sorry, but this feature is not yet available!'));
 
-            return $this->redirect(['controller' => 'releases', 'action' => 'index']);
+            return $this->redirect(['controller' => 'submissions', 'action' => 'index']);
         }
     }
 
@@ -85,8 +85,8 @@ class RecordsController extends AppController
             ])
             ->first();
 
-        // We need to load the Releases model to be able to fetch that table
-        $this->loadModel('Releases');
+        // We need to load the Submissions model to be able to fetch that table
+        $this->loadModel('Submissions');
 
         $db = ConnectionManager::get('default');
 
@@ -94,7 +94,7 @@ class RecordsController extends AppController
         $collection = $db->getSchemaCollection();
 
         // Get a single table (instance of Schema\TableSchema)
-        $tableSchema = $collection->describe('releases');
+        $tableSchema = $collection->describe('submissions');
 
         // Get columns list from table
         $columns = $tableSchema->columns();
@@ -102,12 +102,12 @@ class RecordsController extends AppController
         // Decode the JSON with the field list into an associative array (true)
         $display = json_decode($record->fields, true);
 
-        $releases = $this->Releases->find('all')
+        $submissions = $this->Submissions->find('all')
             ->where([
-                'Releases.information_list_name IS NOT' => null,
+                'Submissions.information_list_name IS NOT' => null,
             ])
             ->order([
-                'Releases.io500_score' => 'DESC',
+                'Submissions.io500_score' => 'DESC',
             ]);
 
         $equation = false;
@@ -117,7 +117,7 @@ class RecordsController extends AppController
 
             $executor = new MathExecutor();
 
-            foreach ($releases as $release) {
+            foreach ($submissions as $submission) {
                 // We need to set all the variables available for calculation
                 foreach ($columns as $key => $column) {
                     if (
@@ -126,13 +126,13 @@ class RecordsController extends AppController
                         strpos($column, 'ior_') !== false ||
                         strpos($column, 'find_') !== false
                     ) {
-                        if (is_numeric($release->{$column})) {
-                            $executor->setVar($column, $release->{$column});
+                        if (is_numeric($submission->{$column})) {
+                            $executor->setVar($column, $submission->{$column});
                         }
                     }
                 }
 
-                $release->equation = $executor->execute($display['custom-equation']);
+                $submission->equation = $executor->execute($display['custom-equation']);
             }
         }
 
@@ -148,22 +148,22 @@ class RecordsController extends AppController
             $options[$column] = $column;
         }
 
-        $releases = $releases->toArray();
+        $submissions = $submissions->toArray();
 
         if ($equation) {
             // Sort by the result of the equation
             if ($display['custom-order'] == 'DESC') {
-                usort($releases, function($a, $b) {
+                usort($submissions, function($a, $b) {
                     return $a->equation < $b->equation;
                 });
             } else {
-                usort($releases, function($a, $b) {
+                usort($submissions, function($a, $b) {
                     return $a->equation > $b->equation;
                 });
             }
         } else {
             // Sort by the IO500 score
-            usort($releases, function($a, $b) {
+            usort($submissions, function($a, $b) {
                 return $a->io500_score < $b->io500_score;
             });
         }
@@ -172,6 +172,6 @@ class RecordsController extends AppController
         $this->set('display', $display);
         $this->set('record', $record);
         $this->set('equation', $equation);
-        $this->set('releases', $releases);
+        $this->set('submissions', $submissions);
     }
 }

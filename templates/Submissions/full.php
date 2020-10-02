@@ -3,19 +3,20 @@
 
     <?php
     $this->Breadcrumbs->add(_('LISTS'), ['controller' => 'releases', 'action' => 'index']);
-    $this->Breadcrumbs->add(_('FULL LIST'), ['controller' => 'releases', 'action' => 'full']);
+    $this->Breadcrumbs->add(_('FULL LIST'), ['controller' => 'releases', 'action' => 'index']);
+    $this->Breadcrumbs->add(strtoupper($this->request->getParam('pass')[0]), ['controller' => 'submissions', 'action' => 'full', $this->request->getParam('pass')[0]]);
 
     echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
     ?>
 </nav>
 
-<div class="releases index content">
-    <h2>Full List</h2>
+<div class="submissions index content">
+    <h2><?php echo strtoupper($this->request->getParam('pass')[0]); ?> Full List</h2>
 
-    <div class="releases-action">
+    <div class="submissions-action">
         <?php
         echo $this->Html->link(_('Customize'), [
-            'controller' => 'releases',
+            'controller' => 'submissions',
             'action' => 'customize'
         ], [
             'class' => 'button'
@@ -50,14 +51,23 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($releases as $i => $release) { ?>
+                <?php
+                foreach ($submissions as $i => $submission) { 
+                    $url = $this->Url->build([
+                            'controller' => 'submissions',
+                            'action' => 'view',
+                            $submission->id
+                        ]
+                    );
+                ?>
+                <tr onclick="window.location='<?php echo $url; ?>';">
                 <tr>
                     <td class="tb-id">
                         <?php
-                        echo $this->Html->link((($this->Paginator->current('Releases') - 1) * $limit) + ($i + 1), [
-                            'controller' => 'releases',
+                        echo $this->Html->link((($this->Paginator->current('Submissions') - 1) * $limit) + ($i + 1), [
+                            'controller' => 'submissions',
                             'action' => 'view',
-                            $release->id
+                            $submission->id
                         ], [
                             'class' => 'rank'
                         ]);
@@ -65,31 +75,31 @@
                     </td>
                     <td class="tb-id">
                         <?php
-                        echo $this->Html->link(strtoupper($release->information_list_name), [
-                            'controller' => 'releases',
+                        echo $this->Html->link(strtoupper($submission->information_list_name), [
+                            'controller' => 'submissions',
                             'action' => 'list',
-                            $release->information_list_name
+                            $submission->information_list_name
                         ]);
                         ?>
                     </td>
                     <td>
                         <?php
-                        echo $this->Html->link(h($release->information_institution), [
-                            'controller' => 'releases',
+                        echo $this->Html->link(h($submission->information_institution), [
+                            'controller' => 'submissions',
                             'action' => 'view',
-                            $release->id
+                            $submission->id
                         ]);
                         ?>
                     </td>
-                    <td><?php echo h($release->information_system) ?></td>
-                    <td><?php echo h($release->information_storage_vendor) ?></td>
-                    <td><?php echo h($release->information_filesystem_type) ?></td>
-                    <td class="tb-number"><?php echo $this->Number->format($release->information_client_nodes) ?></td>
-                    <td class="tb-number"><?php echo $this->Number->format($release->information_client_total_procs) ?></td>
+                    <td><?php echo h($submission->information_system) ?></td>
+                    <td><?php echo h($submission->information_storage_vendor) ?></td>
+                    <td><?php echo h($submission->information_filesystem_type) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->information_client_nodes) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->information_client_total_procs) ?></td>
 
-                    <td class="tb-number"><?php echo $this->Number->format($release->io500_score, ['places' => 2, 'precision' => 2]) ?></td>
-                    <td class="tb-number"><?php echo $this->Number->format($release->io500_bw, ['places' => 2, 'precision' => 2]) ?></td>
-                    <td class="tb-number"><?php echo $this->Number->format($release->io500_md, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->io500_score, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->io500_bw, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->io500_md, ['places' => 2, 'precision' => 2]) ?></td>
                 </tr>
                 <?php } ?>
             </tbody>

@@ -1,9 +1,9 @@
 <?php $this->assign('title', 'Submission'); ?>
 
-<div class="releases index content">
+<div class="submissions index content">
     <h2>Submission</h2>
 
-    <div class="releases-action">
+    <div class="submissions-action">
         <?php
         echo $this->Html->link(_('Call for Submission'), [
             'controller' => 'Pages',
@@ -22,7 +22,7 @@
     </p>
 
     <p>
-        The IO-500 list is released during ISC and SC. See our call for submissions. Submissions to the upcoming list can be made all year. However, <strong>to be included in the next release</strong>, we must receive the submission until the deadline listed in our call for submissions.
+        The IO-500 list is submissiond during ISC and SC. See our call for submissions. Submissions to the upcoming list can be made all year. However, <strong>to be included in the next submission</strong>, we must receive the submission until the deadline listed in our call for submissions.
     </p>
 
     <h3>Submission Instructions</h3>
@@ -53,7 +53,7 @@
     <h3>Handling of the Submitted Data</h3>
 
     <p>
-        Until the release of the list, the submission committee will handle all submitted data confidentially. That means that we will not disclose any submitted data to individuals/companies, or institutions.
+        Until the submission of the list, the submission committee will handle all submitted data confidentially. That means that we will not disclose any submitted data to individuals/companies, or institutions.
     </p>
 
     <h4>Privacy</h4>
@@ -69,13 +69,13 @@
     </p>
 
     <p>
-        Starting with the SC'18 list, releases include the name of the submitter (or team) to give them the credit they deserve to execute the benchmark; this can be opted out.
+        Starting with the SC'18 list, submissions include the name of the submitter (or team) to give them the credit they deserve to execute the benchmark; this can be opted out.
     </p>
 
     <h4>Annonymity and Embargo</h4>
 
     <p>
-        With the online form, the submitter is able to individually opt-out or embargo (delay) the release of certain information: 1) The name of the submitter/team (anonymous submission) 2) Specific information that would indicate the system; e.g., the file system, the name of the site, supercomputer...
+        With the online form, the submitter is able to individually opt-out or embargo (delay) the submission of certain information: 1) The name of the submitter/team (anonymous submission) 2) Specific information that would indicate the system; e.g., the file system, the name of the site, supercomputer...
     </p>
 
     <p>

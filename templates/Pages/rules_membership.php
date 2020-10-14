@@ -37,7 +37,7 @@
                 Jay Lofstead (Sandia National Laboratories)
             </li>
             <li>
-                George Markomanolis (Swiss National Supercomputing Centre) web page,linkedin,twitter
+                George Markomanolis (CSC - IT For Science Ltd) web page,linkedin,twitter
             </li>
         </ul>
         <li>

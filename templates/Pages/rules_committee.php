@@ -16,7 +16,7 @@
     <h3>Committee</h3>
 
     <p>
-        The IO500 Committee, as of May 2019, consists of the three founding members (in alphabetical order), John Bent,Julian Kunkel, and Jay Lofstead, as well as a fourth member, George Markomanolis, who was a very active early community participant and joined the committee subsequently.
+        The IO500 Committee, as of October 2020, consists of the three founding members (in alphabetical order), John Bent, Julian Kunkel, and Jay Lofstead, as well as two additional members, Andreas Dilger and George Markomanolis, who were a active early community participants and joined the committee subsequently.
     </p>
 
     <p>

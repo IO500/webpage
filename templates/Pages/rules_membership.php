@@ -37,7 +37,7 @@
                 Jay Lofstead (Sandia National Laboratories)
             </li>
             <li>
-                George Markomanolis (Oak Ridge National Laboratory) web page,linkedin,twitter
+                George Markomanolis (Swiss National Supercomputing Centre) web page,linkedin,twitter
             </li>
         </ul>
         <li>

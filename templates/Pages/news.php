@@ -5,16 +5,16 @@
 
     <ul class="news">
         <li>
-            <span class="date">2019-11-19</span> The new IO-500 list is submissiond.
+            <span class="date">2019-11-19</span> The new IO500 list is submissiond.
         </li>
         <li>
             <span class="date">2019-11-10</span> The schedule for our Supercomputing Birds-of-a-feather session is now defined
         </li>
         <li>            
-            <span class="date">2019-06-08</span> We submissiond the call for submissions for the IO-500 list at ISC 2019.
+            <span class="date">2019-06-08</span> We submissiond the call for submissions for the IO500 list at ISC 2019.
         </li>
         <li>
-            <span class="date">2018-11-14</span> The third IO-500 list is submissiond.
+            <span class="date">2018-11-14</span> The third IO500 list is submissiond.
 
             <ul>
                 <li>
@@ -29,16 +29,16 @@
             <span class="date">2018-09-27</span> The schedule for our Supercomputing <a class="link" href="https://sc18.supercomputing.org/presentation/?id=bof134&sess=sess390" target="_blank">Birds-of-a-Feather</a> session is now defined
         </li>
         <li>
-            <span class="date">2018-08-20</span> We submissiond the <a class="link" href="https://www.vi4io.org/io500/submission/cfs">call for submissions</a> for the IO-500 list at Supercomputing 2018.
+            <span class="date">2018-08-20</span> We submissiond the <a class="link" href="https://www.vi4io.org/io500/submission/cfs">call for submissions</a> for the IO500 list at Supercomputing 2018.
         </li>
         <li>
-            <span class="date">2018-06-28</span> The second IO-500 list is submissiond. Congrats again to Oakforest-PACS.
+            <span class="date">2018-06-28</span> The second IO500 list is submissiond. Congrats again to Oakforest-PACS.
         </li>
         <li>
-            <span class="date">2018-05-20</span> We submissiond the <a class="link" href="https://www.vi4io.org/io500/submission/cfs">call for submissions</a> for the second IO-500 list.
+            <span class="date">2018-05-20</span> We submissiond the <a class="link" href="https://www.vi4io.org/io500/submission/cfs">call for submissions</a> for the second IO500 list.
         </li>
         <li>
-            <span class="date">2017-11-15</span> The first IO-500 list is submissiond, we congratulate Oakforest-PACS.
+            <span class="date">2017-11-15</span> The first IO500 list is submissiond, we congratulate Oakforest-PACS.
         </li>
     </ul>
 
@@ -70,10 +70,10 @@
             <span class="date">2018-11-30</span> <a class="link" href="https://forums.theregister.co.uk/forum/1/2018/11/30/wekaio/" target="_blank">The Register: WekaIO almost, but not quite, summits Summit supercomputer on storage performance</a>
         </li>
         <li>
-            <span class="date">2018-11-30</span> <a class="link" href="https://www.hpcwire.com/off-the-wire/wekaio-places-in-top-five-of-the-virtual-institutes-io-500-10-node-challenge/" target="_blank">HPCWire: WekaIO Places in Top Five of The Virtual Institute’s IO-500 10 Node Challenge</a>
+            <span class="date">2018-11-30</span> <a class="link" href="https://www.hpcwire.com/off-the-wire/wekaio-places-in-top-five-of-the-virtual-institutes-io-500-10-node-challenge/" target="_blank">HPCWire: WekaIO Places in Top Five of The Virtual Institute’s IO500 10 Node Challenge</a>
         </li>
         <li>
-            <span class="date">2018-11-15</span> <a class="link" href="https://insidehpc.com/2018/11/new-top500-list-lead-doe-supercomputers/" target="_blank">New TOP500 List topped by DOE Supercomputers -- mentions IO-500!</a>
+            <span class="date">2018-11-15</span> <a class="link" href="https://insidehpc.com/2018/11/new-top500-list-lead-doe-supercomputers/" target="_blank">New TOP500 List topped by DOE Supercomputers -- mentions IO500!</a>
         </li>
         <li>
             <span class="date">2018-08-06</span> <a class="link" href="https://insidehpc.com/2018/08/radio-free-hpc-discusses-io500-benchmark-suite-john-bent/" target="_blank">Radio Free HPC Discusses the IO500 Benchmark Suite with John Bent</a>
@@ -88,13 +88,13 @@
             <span class="date">2017-11-22</span> <a class="link" href="https://www.ccs.tsukuba.ac.jp/pr20171122/" target="_blank">Oakforest-PACS ranks #1 in storage performance</a>
         </li>
         <li>
-            <span class="date">2017-11-22</span> <a class="link" href="https://www.itc.u-tokyo.ac.jp/en/blog/2017/11/22/english-oakforest-pacs-system-has-been-registsered-as-the-first-io-500-winner/" target="_blank">Oakforest-PACS system has been registered as the first IO-500 winner</a>
+            <span class="date">2017-11-22</span> <a class="link" href="https://www.itc.u-tokyo.ac.jp/en/blog/2017/11/22/english-oakforest-pacs-system-has-been-registsered-as-the-first-io-500-winner/" target="_blank">Oakforest-PACS system has been registered as the first IO500 winner</a>
         </li>
         <li>
             <span class="date">2017-11-21</span> <a class="link" href="https://insidehpc.com/2017/11/jcahpc-japan-wins-inaugural-io500-award-help-ddn/" target="_blank">JCAHPC in Japan Wins Inaugural IO500 Award with help from DDN</a>
         </li>
         <li>
-            <span class="date">2017-11-15</span> <a class="link" href="https://www.nextplatform.com/2017/11/15/io-500-goes-no-hpc-storage-metric-gone/" target="_blank">IO-500 Goes Where No HPC Storage Metric Has Gone Before</a>
+            <span class="date">2017-11-15</span> <a class="link" href="https://www.nextplatform.com/2017/11/15/io-500-goes-no-hpc-storage-metric-gone/" target="_blank">IO500 Goes Where No HPC Storage Metric Has Gone Before</a>
         </li>
         <li>
             <span class="date">2017-05-12</span> <a class="link" href="https://www.top500.org/news/tracking-the-worlds-top-storage-systems" target="_blank">Tracking the World’s Top Storage Systems</a>
@@ -126,13 +126,13 @@
             <span class="date">2017-11-15</span> <a class="link" href="https://www.vi4io.org/io500/bofs/sc17/start">Talks available from our SC17 BOF</a>
         </li>
         <li>
-            <span class="date">2017-11-13</span> <a class="link" href="https://hps.vi4io.org/_media/research/talks/2017/2017-11-13-establishing_the_io_500_benchmark.pdf">Establishing the IO-500 Benchmark: Julian Kunkel's talk at PDSW/DISC Workshop</a> (<a class="link" href="http://www.pdsw.org/pdsw-discs17/wips/kunkel-wip-pdsw-discs17.pdf">Extended abstract</a>)
+            <span class="date">2017-11-13</span> <a class="link" href="https://hps.vi4io.org/_media/research/talks/2017/2017-11-13-establishing_the_io_500_benchmark.pdf">Establishing the IO500 Benchmark: Julian Kunkel's talk at PDSW/DISC Workshop</a> (<a class="link" href="http://www.pdsw.org/pdsw-discs17/wips/kunkel-wip-pdsw-discs17.pdf">Extended abstract</a>)
         </li>
         <li>
             <span class="date">2017-05-19</span> <a class="link" href="http://drops.dagstuhl.de/opus/volltexte/2017/8282/pdf/dagrep_v007_i005_p097_17202.pdf">Discussion of IO500 at Daghstuhl seminar documented in Section 8.2</a>
         </li>
         <li>
-            <span class="date">2017-03-22</span> <a class="link" href="https://hps.vi4io.org/_media/research/talks/2017/2017-06-25-io_500_status.pdf">The status of the IO-500: Julian Kunkel's talk at LBNL</a>
+            <span class="date">2017-03-22</span> <a class="link" href="https://hps.vi4io.org/_media/research/talks/2017/2017-06-25-io_500_status.pdf">The status of the IO500: Julian Kunkel's talk at LBNL</a>
         </li>
         <li>
             <span class="date">2016-11-17</span> <a class="link" href="https://www.vi4io.org/io500/bofs/sc16/start">Talks available from our SC16 BOF</a>

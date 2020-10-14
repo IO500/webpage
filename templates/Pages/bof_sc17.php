@@ -15,7 +15,7 @@
 <div class="content">
     <h2>SC'17</h2>
 
-    <h3>The IO-500 and the Virtual Institute of I/O</h3>
+    <h3>The IO500 and the Virtual Institute of I/O</h3>
 
     <table class="tb">
         <thread>
@@ -47,7 +47,7 @@
     </p>
 
     <p>
-        An important activity is the community driven development of an IO-500 benchmark. The speakers will briefly introduce the international Virtual Institute for I/O (VI4IO) and focus on the status of the IO-500 development and the usage of the benchmark. A highlight is the presentation of the first IO-500 list. The direction of VI4IO and the standardization of the IO-500 is then discussed with the participants.
+        An important activity is the community driven development of an IO500 benchmark. The speakers will briefly introduce the international Virtual Institute for I/O (VI4IO) and focus on the status of the IO500 development and the usage of the benchmark. A highlight is the presentation of the first IO500 list. The direction of VI4IO and the standardization of the IO500 is then discussed with the participants.
     </p>
 
     <div class="gallery">
@@ -67,7 +67,7 @@
             17:15 <strong>Instrocution</strong> – <em>Jay Lofstead</em> (<a class="link" href="https://www.vi4io.org/_media/events/2017/sc-bof-jay.pdf" target="_blank">Slides</a>)
         </li>
         <li>
-            17:20 <strong>IO-500</strong> – <em>John Bent</em> (<a class="link" href="https://www.vi4io.org/_media/events/2017/sc-bof-bent.pdf" target="_blank">Slides</a>)
+            17:20 <strong>IO500</strong> – <em>John Bent</em> (<a class="link" href="https://www.vi4io.org/_media/events/2017/sc-bof-bent.pdf" target="_blank">Slides</a>)
             <ul>
                 <li>Status</li>
                 <li>Announcement of the first list</li>
@@ -84,7 +84,7 @@
             </ul>
         </li>
         <li>
-            18:10 <strong>Experience using the IO-500</strong> – <em>George Markomanolis</em> (<a class="link" href="https://www.vi4io.org/_media/events/2017/sc-bof-markomanolis.pdf" target="_blank">Slides</a>)
+            18:10 <strong>Experience using the IO500</strong> – <em>George Markomanolis</em> (<a class="link" href="https://www.vi4io.org/_media/events/2017/sc-bof-markomanolis.pdf" target="_blank">Slides</a>)
         </li>
         <li>
             18:20 <strong>Moderated discussion</strong> – <em>Jay, Julian, John</em>

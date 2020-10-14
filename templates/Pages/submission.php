@@ -22,13 +22,13 @@
     </p>
 
     <p>
-        The IO-500 list is submissiond during ISC and SC. See our call for submissions. Submissions to the upcoming list can be made all year. However, <strong>to be included in the next submission</strong>, we must receive the submission until the deadline listed in our call for submissions.
+        The IO500 list is released during ISC and SC. See our call for submissions. Submissions to the upcoming list can be made all year. However, <strong>to be included in the next submission</strong>, we must receive the submission until the deadline listed in our call for submissions.
     </p>
 
     <h3>Submission Instructions</h3>
 
     <p>
-        There are two options to submit to the IO-500, we prefer the online form:
+        There are two options to submit to the IO500, we prefer the online form:
     </p>
 
     <ol>

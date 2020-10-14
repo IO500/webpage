@@ -15,7 +15,7 @@
 <div class="content">
     <h2>ISC'20</h2>
 
-    <h3>The IO-500 and the Virtual Institute of I/O</h3>
+    <h3>The IO500 and the Virtual Institute of I/O</h3>
 
     <table class="tb">
         <thread>
@@ -52,7 +52,7 @@
     <h3>Abstract</h3>
 
     <p>
-        The IO500 is quickly becoming the de facto benchmarking standard for HPC storage. Developed two years ago, the IO500 has submissiond two official lists so far. A BoF highlight is the presentation of the fourth IO-500 list.
+        The IO500 is quickly becoming the de facto benchmarking standard for HPC storage. Developed two years ago, the IO500 has submissiond two official lists so far. A BoF highlight is the presentation of the fourth IO500 list.
     </p>
 
     <p>
@@ -60,11 +60,11 @@
     </p>
 
     <p>
-        Goals of the BoF are to 1) reveal the current IO-500 list and provide highlights and insight; 2) advertise the community hub but also discuss and steer the direction of the community effort; 3) to discuss the benefit and direction of the efforts within the community.
+        Goals of the BoF are to 1) reveal the current IO500 list and provide highlights and insight; 2) advertise the community hub but also discuss and steer the direction of the community effort; 3) to discuss the benefit and direction of the efforts within the community.
     </p>
 
     <p>
-        The IO-500 benchmark consists of data and metadata benchmarks to identify performance boundaries for optimized and suboptimal applications. Together with comprehensive data from sites, supercomputers, and storage, in-depth analysis of system characteristics are tracked by the list and can be analyzed. In contrast to other lists, the IO-500 collects the execution scripts for providing means of result verification and sharing best practices for data centers.
+        The IO500 benchmark consists of data and metadata benchmarks to identify performance boundaries for optimized and suboptimal applications. Together with comprehensive data from sites, supercomputers, and storage, in-depth analysis of system characteristics are tracked by the list and can be analyzed. In contrast to other lists, the IO500 collects the execution scripts for providing means of result verification and sharing best practices for data centers.
     </p>
 
     <p>

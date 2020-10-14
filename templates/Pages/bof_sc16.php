@@ -15,18 +15,18 @@
 <div class="content">
     <h2>SC'16</h2>
 
-    <h3>BoF: The Virtual Institute for I/O and the IO-500</h3>
+    <h3>BoF: The Virtual Institute for I/O and the IO500</h3>
 
     <p>
         Due to the increasing complexity of HPC data management, activities in the storage research community have increased over the last few years. The general purpose of this BoF is to foster this community and discuss the role of the international Virtual Institute for I/O (VI4IO, <a class="link" href="http://vi4io.org">http://vi4io.org</a>) in supporting, developing, and maintaining this community.
     </p>
 
     <p>
-        The speakers will give talks covering VI4IO and issues of benchmarking storage systems. The direction of these efforts is then discussed with the participants. A specific purpose of the BoF is to elaborate whether the community would be well-served by an IO-500 benchmark similar to the Top-500.
+        The speakers will give talks covering VI4IO and issues of benchmarking storage systems. The direction of these efforts is then discussed with the participants. A specific purpose of the BoF is to elaborate whether the community would be well-served by an IO500 benchmark similar to the Top-500.
     </p>
 
     <p>
-        Goals of the BoF are to 1) advertise the community hub but also discuss and steer the direction of the community effort, 2) to specifically identify possibilities to create a relevant community I/O benchmark that can be tracked with an IO-500 list.
+        Goals of the BoF are to 1) advertise the community hub but also discuss and steer the direction of the community effort, 2) to specifically identify possibilities to create a relevant community I/O benchmark that can be tracked with an IO500 list.
     </p>
 
     <p>
@@ -84,7 +84,7 @@
             20 min, <strong>Introduction to VI4IO and the HPSL</strong> – <em>Julian Kunkel</em> (<a class="link" href="https://www.vi4io.org/_media/io500/bofs/sc16/bof-sc16-vi4io.pdf" target="_blank">Slides</a>)
         </li>
         <li>
-            20 min, <strong>The IO-500 benchmarking effort</strong> – <em>John Bent</em> (<a class="link" href="https://www.vi4io.org/_media/io500/bofs/sc16/bof-sc16-io500.pdf" target="_blank">Slides</a>)
+            20 min, <strong>The IO500 benchmarking effort</strong> – <em>John Bent</em> (<a class="link" href="https://www.vi4io.org/_media/io500/bofs/sc16/bof-sc16-io500.pdf" target="_blank">Slides</a>)
         </li>
         <li>
             20 min, <strong>Discussion</strong> – <em>Jay Lofstead</em>

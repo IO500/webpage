@@ -65,7 +65,7 @@
     <h5>Submitter Name</h5>
 
     <p>
-        Submissions will be visible immediately to the IO500 Committee which currently is comprised of John Bent, Julian Kunkel, and Jay Lofstead. If there is sensitivity about early visibility to your results being seen by any of the committee, please feel free to email results privately to a subset of the committee (i.e. do not use the official submission tools if you have privacy concerns).
+        Submissions will be visible immediately to the IO500 Committee which currently is comprised of John Bent, Andreas Dilger, Julian Kunkel, Jay Lofstead, and George Markomanolis. If there is sensitivity about early visibility to your results being seen by any of the committee, please feel free to email results privately to a subset of the committee (i.e. do not use the official submission tools if you have privacy concerns).
     </p>
 
     <p>
@@ -85,7 +85,7 @@
     <h3>Preparation</h3>
 
     <p>
-        Fetching, compiling, and running the IO500 Benchmarks is surprisingly straightforward. Although tuning can be challenging. Instructions for the former can be found in our <a href="https://github.com/VI4IO/io-500-dev" target="_blank" class="link">Github repository</a>. Help with the latter can be found in our various communication channels.
+        Fetching, compiling, and running the IO500 Benchmarks is surprisingly straightforward, although tuning can be challenging. Instructions for the former can be found in our <a href="https://github.com/IO500/io500" target="_blank" class="link">Github repository</a>. Help with the latter can be found in our various communication channels.
     </p>
 
     <div id="disqus_thread"></div>

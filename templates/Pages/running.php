@@ -10,7 +10,7 @@
     <ul>
         <li>
             <?php
-            echo $this->Html->link(__('Get IO500'), 'https://github.com/VI4IO/io-500-dev', [
+            echo $this->Html->link(__('Get IO500'), 'https://github.com/IO500/io500', [
                 'class' => 'button-highlight'
             ]);
             ?>
@@ -30,9 +30,9 @@
     <p>The IO500 source code is available at Github:</p>
 
     <p class="code-block">
-        $ git clone https://github.com/VI4IO/io-500-dev.git -b io500-sc-19<br/>
-        $ cd io-500-dev<br/>
-        $ ./utilities/prepare.sh<br/>
+        $ git clone https://github.com/IO500/io500.git -b io500-sc20<br/>
+        $ cd io500<br/>
+        $ ./prepare.sh<br/>
     </p>
 
     <h3>Installation</h3>
@@ -49,10 +49,10 @@
 
     <ol>
         <li>
-            Create a job submission script (if applicable) to execute the <span class="code">io500.sh</span> script which is located in the <span class="code">io-500-dev</span> folder. Provide enough execution time and adjust the reserved resources.
+            Create a job submission script (if applicable) to execute the <span class="code">io500.sh</span> script which is located in the <span class="code">io500</span> folder. Provide enough execution time (typically 2h would be enough for the full run) and adjust the reserved resources.
         </li>
         <li>
-            Edit the <span class="code">io500.sh</span> file to tune the parameters and activate or disable some test cases. Remember that you need to execute all the mandatory tests for a valid submission.
+            Edit the <span class="code">io500.sh</span> file to set allowed parameters, and create a .ini file using "<span class="code">./io500 --list &gt; myconfig.ini</span>" and edit available parameters. Remember that you need to execute all the mandatory tests for a valid submission.
             <ul>
                 <li>
                     Adjust the variables io500_mpirun and to <span class="code">io500_mpiargs</span> according to your system and test case.
@@ -66,7 +66,8 @@
             </ul>
         </li>
         <li>
-            Execute your submission job script.
+            Execute your submission job script that runs the
+	    "<span class="code"> io500.sh myconfig.ini</span>" script.
         </li>
         <li>
             Verify that all the results are valid.
@@ -77,10 +78,18 @@
     </ol>
 
     <p>
-        A video with the execution and tuning procedure is here.
+        A video with the execution and tuning procedure is
+	<a href="https://www.youtube.com/watch?v=FRTK9KwPCmg" class="link">here</a>.
     </p>
     <p>
-        When you modify tunables check that the changes are allowed according to the IO-500 rules.
+        When you modify tunables check that the changes are allowed according to the
+                <?php
+                echo $this->Html->link(__('IO500 Submission Rules'), [
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'rules-submission'
+                ]);
+                ?>.
     </p>
 
     <div id="disqus_thread"></div>

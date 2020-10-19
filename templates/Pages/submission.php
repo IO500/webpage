@@ -39,8 +39,8 @@
             If you experience any problems with the online form; send an <a href="mailto:submit@io500.org" class="link">email</a> with attachments:
 
             <ul>
-                <li>The (potentially) adapted io500.sh</li>
-                <li>The output directory of the benchmark (variable io500_result_dir in io500.sh)</li>
+                <li>The (potentially) adapted <span class="code">io500.sh</span></li>
+                <li>The output directory of the benchmark (variable <span class="code">io500_result_dir</span> in <span class="code">io500.sh</span>)</li>
                 <li>If possible, please mention which system is covered of the <a href="https://www.vi4io.org/hpsl/start" class="link">CDCL</a> or provide system information such that we can add the system to the CDCL!</li>
             </ul>
         </li>

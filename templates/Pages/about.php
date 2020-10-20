@@ -4,7 +4,7 @@
     <h2>IO500</h2>
 
     <p>
-        The IO-500 has been developed together with the community and its development is still ongoing. The benchmark is essentially a benchmark suite bundled with execution rules. It harnesses existing and trusted open source benchmarks.
+        The IO500 benchmark has been developed together with the community and its development is still ongoing. The benchmark is essentially a benchmark suite bundled with execution rules. It harnesses existing and trusted open source benchmarks.
     </p>
 
     <p>
@@ -78,23 +78,23 @@
         </li>
     </ul>
 
-    <h3>Using IO-500 Logo</h3>
+    <h3>Using the IO500 Logo</h3>
 
     <p>
-        We welcome the promotion of the IO-500 using the logo.
+        We welcome the promotion of the IO500 using the logo.
     </p>
 
-    <h4>IO-500 Logo License Terms</h4>
+    <h4>IO500 Logo License Terms</h4>
 
     <p>
-        The IO-500 logo is copyrighted us but may be used under the following conditions:
+        The IO500 logo is copyrighted us but may be used under the following conditions:
     </p>
 
     <ol>
         <li>
-            The logo is used for its intended purpose to promote the IO-500. You may use it:
+            The logo is used for its intended purpose to promote the IO500. You may use it:
             <ol>
-                <li>together with results obtained by using the IO-500 with statements that you are using the benchmark</li>
+                <li>together with results obtained by using the IO500 with statements that you are using the benchmark</li>
                 <li>together with opinions about the benchmark</li>
             </ol>
         </li>

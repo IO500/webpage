@@ -15,7 +15,7 @@
 <div class="content">
     <h2>ISC'18</h2>
 
-    <h3>The IO-500 and the Virtual Institute of I/O</h3>
+    <h3>The IO500 and the Virtual Institute of I/O</h3>
 
     <table class="tb">
         <thread>
@@ -43,7 +43,7 @@
     <h3>Abstract</h3>
 
     <p>
-        Evolving and new storage technologies introduced over the last few years are causing increasing complexity for HPC data management. Hence, analyzing, comparing, or even predicting the performance of different HPC machines and storage systems has become more complicated. To address this challenge, the community has developed a new composite benchmark that has lead to the creation of the competitive IO-500 list. The IO-500 benchmark consists of several data and metadata benchmarks to identify performance boundaries for optimized and suboptimal applications. In addition to offering different ways to compare storage systems, the list collects detailed information about storage system design to help system designers make informed trade-offs when specifying new storage requirements. While the initial list contains only 9 systems, we expect a rapid growth in the second list.
+        Evolving and new storage technologies introduced over the last few years are causing increasing complexity for HPC data management. Hence, analyzing, comparing, or even predicting the performance of different HPC machines and storage systems has become more complicated. To address this challenge, the community has developed a new composite benchmark that has lead to the creation of the competitive IO500 list. The IO500 benchmark consists of several data and metadata benchmarks to identify performance boundaries for optimized and suboptimal applications. In addition to offering different ways to compare storage systems, the list collects detailed information about storage system design to help system designers make informed trade-offs when specifying new storage requirements. While the initial list contains only 9 systems, we expect a rapid growth in the second list.
     </p>
 
     <p>
@@ -67,19 +67,19 @@
             <strong>Introduction</strong> – <em>Jay Lofstead</em> (<a class="link" href="https://www.vi4io.org/_media/events/2018/isc-bof-jay.pdf" target="_blank">Slides</a>)
         </li>
         <li>
-            <strong>The IO-500</strong> – <em>John Bent</em> (<a class="link" href="https://www.vi4io.org/_media/io500/io500_isc18.pdf" target="_blank">Slides</a>)
+            <strong>The IO500</strong> – <em>John Bent</em> (<a class="link" href="https://www.vi4io.org/_media/io500/io500_isc18.pdf" target="_blank">Slides</a>)
         </li>
         <li>
-            <strong>Procuring small HPC storage using IO-500 benchmark</strong> – <em>George Markomanolis</em> (<a class="link" href="https://www.vi4io.org/_media/events/2018/isc-bof-procurement.pdf" target="_blank">Slides</a>)
+            <strong>Procuring small HPC storage using IO500 benchmark</strong> – <em>George Markomanolis</em> (<a class="link" href="https://www.vi4io.org/_media/events/2018/isc-bof-procurement.pdf" target="_blank">Slides</a>)
         </li>
         <li>
             <strong>The Virtual Institute for I/O</strong> – <em>Julian Kunkel</em> (<a class="link" href="https://www.vi4io.org/_media/events/2018/isc-bof-vi4io.pdf" target="_blank">Slides</a>)
         </li>
         <li>
-            <strong>The new IO-500 list and analysis</strong> – <em>John Bent</em> (<a class="link" href="https://www.vi4io.org/_media/io500/io500_isc18.pdf" target="_blank">Slides</a>)
+            <strong>The new IO500 list and analysis</strong> – <em>John Bent</em> (<a class="link" href="https://www.vi4io.org/_media/io500/io500_isc18.pdf" target="_blank">Slides</a>)
         </li>
         <li>
-            <strong>Features of the new IO-500 list</strong> – <em>Julian Kunkel</em> (Please visit: <a class="link" href="https://www.vi4io.org/io500/radar">https://www.vi4io.org/io500/radar</a> for a live demo)
+            <strong>Features of the new IO500 list</strong> – <em>Julian Kunkel</em> (Please visit: <a class="link" href="https://www.vi4io.org/io500/radar">https://www.vi4io.org/io500/radar</a> for a live demo)
         </li>
         <li>
             <strong>Moderated discussion</strong> – <em>Jay, Julian, John</em>

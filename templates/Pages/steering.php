@@ -4,7 +4,7 @@
     <h2>Steering</h2>
 
     <p>
-        The IO-500 benchmark effort is an open effort steered by the following bodies:
+        The IO500 benchmark effort is an open effort steered by the following bodies:
     </p>
 
     <ul>

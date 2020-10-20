@@ -15,7 +15,7 @@
 <div class="content">
     <h2>SC'18</h2>
 
-    <h3>The IO-500 and the Virtual Institute of I/O</h3>
+    <h3>The IO500 and the Virtual Institute of I/O</h3>
 
     <table class="tb">
         <thread>
@@ -43,7 +43,7 @@
     <h3>Abstract</h3>
 
     <p>
-        The IO500 is quickly becoming the de facto benchmarking standard for HPC storage. Developed two years ago, the IO500 has submissiond two official lists so far. A BoF highlight is the presentation of the third IO-500 list.
+        The IO500 is quickly becoming the de facto benchmarking standard for HPC storage. Developed two years ago, the IO500 has submissiond two official lists so far. A BoF highlight is the presentation of the third IO500 list.
     </p>
 
     <p>
@@ -51,11 +51,11 @@
     </p>
 
     <p>
-        Goals of the BoF are to 1) reveal the current IO-500 list and provide highlights and insight; 2) advertise the community hub but also discuss and steer the direction of the community effort; 3) to discuss the benefit and direction of the efforts within the community.
+        Goals of the BoF are to 1) reveal the current IO500 list and provide highlights and insight; 2) advertise the community hub but also discuss and steer the direction of the community effort; 3) to discuss the benefit and direction of the efforts within the community.
     </p>
 
     <p>
-        The IO-500 benchmark consists of data and metadata benchmarks to identify performance boundaries for optimized and suboptimal applications. Together with comprehensive data from sites, supercomputers, and storage, in-depth analysis of system characteristics are tracked by the list and can be analyzed. In contrast to other lists, the IO-500 collects the execution scripts for providing means of result verification and sharing best practices for data centers.
+        The IO500 benchmark consists of data and metadata benchmarks to identify performance boundaries for optimized and suboptimal applications. Together with comprehensive data from sites, supercomputers, and storage, in-depth analysis of system characteristics are tracked by the list and can be analyzed. In contrast to other lists, the IO500 collects the execution scripts for providing means of result verification and sharing best practices for data centers.
     </p>
 
     <p>
@@ -84,7 +84,7 @@
 
     <ul>
         <li>
-            <strong>The status of the IO-500</strong> – <em>Jay Lofstead</em> (<a class="link" href="https://www.vi4io.org/_media/io500/bofs/sc18/2018-11-14_io500_bof.pdf" target="_blank">Slides</a>)
+            <strong>The status of the IO500</strong> – <em>Jay Lofstead</em> (<a class="link" href="https://www.vi4io.org/_media/io500/bofs/sc18/2018-11-14_io500_bof.pdf" target="_blank">Slides</a>)
         </li>
         <li>
             <strong>The Virtual Institute for I/O and the High-Performance Storage List</strong> – <em>Julian Kunkel</em> (<a class="link" href="https://www.vi4io.org/_media/io500/bofs/sc18/sc18_vi4io.pdf" target="_blank">Slides</a>)
@@ -93,13 +93,13 @@
             <strong>Benefit and fun providing system details</strong> – <em>Glenn Lockwood</em> (<a class="link" href="https://www.vi4io.org/_media/io500/bofs/sc18/sc18_io500-cdcl.pdf" target="_blank">Slides</a>)
         </li>
         <li>
-            <strong>The new IO-500 list</strong> – <em>Julian Kunkel</em> (<a class="link" href="https://www.vi4io.org/_media/undefined/bent_io500_sc18-compress.pdf" target="_blank">Slides</a>: Updated after the BOF to add about 80 graphs of analysis)
+            <strong>The new IO500 list</strong> – <em>Julian Kunkel</em> (<a class="link" href="https://www.vi4io.org/_media/undefined/bent_io500_sc18-compress.pdf" target="_blank">Slides</a>: Updated after the BOF to add about 80 graphs of analysis)
         </li>
         <li>
-            <strong>Community & IO-500</strong>
+            <strong>Community & IO500</strong>
             <ul>
                 <li>
-                    <strong>Tuning the IO-500 benchmark</strong> – <em>George Markomanolis</em> (<a class="link"  href="https://www.vi4io.org/_media/io500/bofs/sc18/sc18_tuning_summit.pdf" target="_blank">Slides</a>)
+                    <strong>Tuning the IO500 benchmark</strong> – <em>George Markomanolis</em> (<a class="link"  href="https://www.vi4io.org/_media/io500/bofs/sc18/sc18_tuning_summit.pdf" target="_blank">Slides</a>)
                 </li>
                 <li>
                     <strong>Reproducibility with IO500 ... and challenges</strong> – <em>George Markomanolis</em> (<a class="link"  href="https://www.vi4io.org/_media/io500/bofs/sc18/sc18_io500_reproducibility.pdf" target="_blank">Slides</a>)

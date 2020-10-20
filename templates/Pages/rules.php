@@ -29,7 +29,7 @@
                 ]);
                 ?>
             </b>
-            &mdash; rules for executing the IO-500 bechmark
+            &mdash; rules for executing the IO500 bechmark
         </li>
         <li>
             <b>
@@ -41,7 +41,7 @@
                 ]);
                 ?>
             </b>
-            &mdash; rules for executing the IO-500 benchmark for the Student Cluster Competition
+            &mdash; rules for executing the IO500 benchmark for the Student Cluster Competition
         </li>
         <li>
             <b>

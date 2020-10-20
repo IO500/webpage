@@ -16,7 +16,7 @@
     <h3>Change Request</h3>
 
     <p>
-        The IO-500 aims to be a robust and long-living benchmark. Nevertheless, the community recognizes the need to consider modifications occasional modifications such as including new access patterns, removing deprecated access patterns, or any other modifications deemed necessary by the community. Therefore, we have established a process to add further benchmarks, which works as follows:
+        The IO500 aims to be a robust and long-living benchmark. Nevertheless, the community recognizes the need to consider modifications occasional modifications such as including new access patterns, removing deprecated access patterns, or any other modifications deemed necessary by the community. Therefore, we have established a process to add further benchmarks, which works as follows:
     </p>
 
     <ol>
@@ -27,13 +27,13 @@
             The steering board will give feedback to the technical quality of the proposal.
         </li>
         <li>
-            The member is given the opportunity to present the proposal at the next following community IO-500 meeting.
+            The member is given the opportunity to present the proposal at the next following community IO500 meeting.
         </li>
         <li>
-            Given there are no technical concerns, the IO-500 benchmark will be modified for the next submission period to allow the execution of a benchmark that represents the pattern as an <em>optional</em> benchmarking step. Additionally, the optional field is introduced into subsequent lists and the changes to the benchmark are documented on the webpage.
+            Given there are no technical concerns, the IO500 benchmark will be modified for the next submission period to allow the execution of a benchmark that represents the pattern as an <em>optional</em> benchmarking step. Additionally, the optional field is introduced into subsequent lists and the changes to the benchmark are documented on the webpage.
         </li>
         <li>
-            The optional pattern is kept for at least two subsequent IO-500 lists and community meetings. The results and effectiveness of the new pattern are discussed during the community meetings. As a result, it may be removed, remain optional, or may become mandatory.
+            The optional pattern is kept for at least two subsequent IO500 lists and community meetings. The results and effectiveness of the new pattern are discussed during the community meetings. As a result, it may be removed, remain optional, or may become mandatory.
         </li>
     </ol>
 

@@ -27,11 +27,14 @@
             </p>
         </li>
         <li>
-            Read-after-write semantics: The system must be able to correctly read freshly written data from a different client after the close operation on the writer has been completed.
+            Read-after-write semantics: The system must be able to correctly
+            read freshly written data from a different client node after the
+            close operation on the writer has been completed.
         </li>
-	<ol>
+        <ol>
             <li>
-                All create/write phases must run for at least 300 seconds; the stonewall flag must be set to 300 which should ensure this.
+                The stonewall flag must be set to 300 to ensure all
+                create/write run for at least 300 seconds.
             </li>
             <ol>
                 <li>
@@ -39,11 +42,13 @@
                 </li>
                 <li>
                     There can be no edits made to the source code including used codes such as <span class="code">IOR</span> beyond changing the allowed variables and adding commands to configure the storage system in <span class="code">io500.sh</span> (e.g. setting striping parameters).
-		</li>
-		<li>An exception to this rule is possible for submitters who have a legitimate reason by requesting an exception from the committee via <a href="mailto:committee@io500.org" class="link">committe@io500.org</a>.
+                </li>
+                <li>An exception to this rule is possible for submitters who
+                    have a legitimate reason by requesting an exception from the
+                    committee via <a href="mailto:committee@io500.org" class="link">committe@io500.org</a>.
                 </li>
             </ol>
-	</ol>
+        </ol>
         <li>
             The file names for the mdtest and IOR output files may not be pre-created.
         </li>
@@ -51,20 +56,23 @@
             You must run all phases of the benchmark on a single storage system without interruption.
         </li>
         <li>
-	    There is no limitation on the number of storage nodes, the storage
-	    servers may optionally be co-located on the client nodes.
+            There is no limitation on the number of storage nodes, the storage
+            servers may optionally be co-located on the client nodes.
         </li>
         <li>
-            All data must be written to persistent storage within the measured time for the individual benchmark,e.g. if a file system caches data, it must ensure that data is persistently stored before acknowledging the close.
+            All data must be written to persistent storage within the measured
+            time for the individual benchmark, e.g. if a file system caches
+            data, it must ensure that data is persistently stored before
+            acknowledging the close.
         </li>
         <li>
             Submitting the results must be done in accordance with the instructions on our submission page. Please verify the correctness of your submission before you submit it.
         </li>
         <li>
             If a tool other than the included pfind is used for the find phase, then it must follow the same input and output behavior as the included pfind, and the source code must be included in the submission.
-	    <ol>
-	        It is not required to capture the list of matched files.
-	    </ol>
+            <ol>
+                It is not required to capture the list of matched files.
+            </ol>
         </li>
         <li>
             Please also refer to the <a href="https://github.com/IO500/io500/blob/main/README.md" class="link">README</a> documents in the GitHub repo.
@@ -73,32 +81,34 @@
             Please read the <a href="https://github.com/IO500/io500/blob/main/CHANGELOG.md" class="link">CHANGELOG.md</a> file for the new changes on the IO500 benchmark
         </li>
         <li>
-	    Only submissions using at least 10 physical client nodes are
-	    eligible to win IO500 awards and at least one benchmark process
-	    must run on each client.
+            Only submissions using at least 10 physical client nodes are
+            eligible to win IO500 awards and at least one benchmark process
+            must run on each client.
             <ol>
                 <li>
-		    We accept results on fewer nodes for documentation
-		    purposes but they cannot be awarded.
-	        </li>
-	        <li>
-		    Virtual machines can be used but the above rule must be followed. More than one virtual machine can be run on each physical node.</li>
-	        </li>
-	        <li>
+                    We accept results on fewer nodes for documentation
+                    purposes but they cannot be awarded.
+                </li>
+                <li>
+                    Virtual machines can be used but the above rule must be
+                    followed. More than one virtual machine can be run on
+                    each physical node.</li>
+                </li>
+                <li>
                     For the 10 node challenge, there must be exactly 10 physical client nodes and at least one benchmark process must run on each node.
-	        </li>
-	        <li>
-		    The only exception to this rule is the find benchmark,
-		    which may optionally use fewer nodes/processes.
-		</li>
-	    </ol>
+                </li>
+                <li>
+                    The only exception to this rule is the find benchmark,
+                    which may optionally use fewer nodes/processes.
+                </li>
+            </ol>
         </li>
         <li>
-	    Each of the four main phases (IOR easy and hard, mdtest easy and
-	    hard) has a directory which can be precreated and tuned (e.g.
-	    using tools such as "<span class="code">lfs setstripe</span>" or
-	    "<span class="code">beegfs_ctl</span>"; however, additional
-	    subdirectories within these directories cannot be precreated.
+            Each of the four main phases (IOR easy and hard, mdtest easy and
+            hard) has a directory which can be precreated and tuned (e.g.
+            using tools such as "<span class="code">lfs setstripe</span>" or
+            "<span class="code">beegfs_ctl</span>"; however, additional
+            subdirectories within these directories cannot be precreated.
         </li>
     </ol>
 

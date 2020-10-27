@@ -23,7 +23,7 @@
                     <?php
                     echo $this->Html->link(
                         file_get_contents('img/slack.svg'),
-                        'https://join.slack.com/t/vi4io/shared_invite/zt-2z12x7o1-xhWH3WAQJRktDwy0hSus~g',
+                        'https://join.slack.com/t/io500workspace/shared_invite/zt-hv1i5svr-Yj8HR_wRzEy1bK2s2JX20w',
                         [
                             'escape' => false,
                             'target' => '_blank'

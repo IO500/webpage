@@ -5,16 +5,16 @@
 
     <ul class="news">
         <li>
-            <span class="date">2019-11-19</span> The new IO500 list is submissiond.
+            <span class="date">2019-11-19</span> The new IO500 list is published at SC'19.
         </li>
         <li>
             <span class="date">2019-11-10</span> The schedule for our Supercomputing Birds-of-a-feather session is now defined
         </li>
         <li>            
-            <span class="date">2019-06-08</span> We submissiond the call for submissions for the IO500 list at ISC 2019.
+            <span class="date">2019-06-08</span> The call for submissions for the IO500 list at ISC 2019 sent out.
         </li>
         <li>
-            <span class="date">2018-11-14</span> The third IO500 list is submissiond.
+            <span class="date">2018-11-14</span> The third IO500 list is published.
 
             <ul>
                 <li>
@@ -29,16 +29,16 @@
             <span class="date">2018-09-27</span> The schedule for our Supercomputing <a class="link" href="https://sc18.supercomputing.org/presentation/?id=bof134&sess=sess390" target="_blank">Birds-of-a-Feather</a> session is now defined
         </li>
         <li>
-            <span class="date">2018-08-20</span> We submissiond the <a class="link" href="https://www.vi4io.org/io500/submission/cfs">call for submissions</a> for the IO500 list at Supercomputing 2018.
+            <span class="date">2018-08-20</span> The <a class="link" href="https://io500.org/site/cfs">call for submissions</a> for the IO500 list at Supercomputing 2018 sent out.
         </li>
         <li>
-            <span class="date">2018-06-28</span> The second IO500 list is submissiond. Congrats again to Oakforest-PACS.
+            <span class="date">2018-06-28</span> The second IO500 list is published. Congrats again to Oakforest-PACS.
         </li>
         <li>
-            <span class="date">2018-05-20</span> We submissiond the <a class="link" href="https://www.vi4io.org/io500/submission/cfs">call for submissions</a> for the second IO500 list.
+            <span class="date">2018-05-20</span> The <a class="link" href="https://io500.org/site/cfs">call for submissions</a> for the second IO500 list sent out.
         </li>
         <li>
-            <span class="date">2017-11-15</span> The first IO500 list is submissiond, we congratulate Oakforest-PACS.
+            <span class="date">2017-11-15</span> The first IO500 list is published. We congratulate Oakforest-PACS for their winning submission.
         </li>
     </ul>
 

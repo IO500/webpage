@@ -16,7 +16,15 @@
     <h3>Submission Student Cluster Competition Rules</h3>
 
     <p>
-        Please refer to the IO500 rules webpage; all rules are in effect with three exceptions.
+        Please refer to the 
+    <?php
+                echo $this->Html->link(__('IO500 Submission Rules'), [
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'rules-submission'
+                ]);
+   ?>
+all rules are in effect with three exceptions.
     </p>
 
     <ol>

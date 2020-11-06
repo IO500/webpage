@@ -100,6 +100,15 @@
                 ]);
                 ?>
             </li>
+            <li>
+                <?php
+                echo $this->Html->link(__('Connect'), [
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'connect'
+                ]);
+                ?>
+            </li>
         </ul>
     </div>
 </nav>

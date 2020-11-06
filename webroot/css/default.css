@@ -64,7 +64,7 @@ footer {
         padding: 100px 650px 0 0;
     }
 
-    div.landing-lists, div.landing-bofs, div.landing-graphs, div.landing-running, div.landing-connect {
+    div.landing-lists, div.landing-bofs, div.landing-graphs, div.landing-running, div.landing-contact {
         background-position: center right;
         margin: 0;
         text-align: left;   
@@ -88,7 +88,7 @@ footer {
         background-size: 500px;
     }
 
-    div.landing-connect{
+    div.landing-contact{
         background-size: 500px;
     }
 }
@@ -159,8 +159,8 @@ footer {
     background-size: contain;
 }
 
-.landing-connect {
-    background-image: url('../img/connect.svg');
+.landing-contact {
+    background-image: url('../img/contact.svg');
     background-size: contain;
 }
 

@@ -102,10 +102,10 @@
             </li>
             <li>
                 <?php
-                echo $this->Html->link(__('Connect'), [
+                echo $this->Html->link(__('Contact'), [
                     'controller' => 'pages',
                     'action' => 'display',
-                    'connect'
+                    'contact'
                 ]);
                 ?>
             </li>

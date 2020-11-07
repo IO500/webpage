@@ -16,13 +16,13 @@
     <h3>Community</h3>
 
     <p>
-        The community provides suggestions and is asked to provide feedback on relevant questions before decisions are made. It is organized officially via Birds-of-a-feather sessions during the ISC-HPC and Supercomputing conference series. Everyone is welcome to attend the <a href="https://www.vi4io.org/listinfo/io-500" class="link">mailing list</a> and our <a href="https://join.slack.com/t/vi4io/shared_invite/zt-2z12x7o1-xhWH3WAQJRktDwy0hSus~g" class="link">Slack channel</a> to discuss issues and participate.
+        The community provides suggestions and is asked to provide feedback on relevant questions before decisions are made. It is organized officially via Birds-of-a-feather sessions during the ISC-HPC and Supercomputing conference series. Everyone is welcome to attend the <a href="http://lists.io500.org/listinfo.cgi/io500-io500.org" class="link">mailing list</a> and our <a href="https://join.slack.com/t/vi4io/shared_invite/zt-2z12x7o1-xhWH3WAQJRktDwy0hSus~g" class="link">Slack channel</a> to discuss issues and participate.
     </p>
 
     <h3>Advisory committee</h3>
 
     <p>
-        This committee provides a closed but fair playing field for all vendors to discuss issues together with the steering committee. Its purpose is to encourage the vendors to participate but allowing vendors to benefit from further information. If you are interested to join apply to the <a href="https://www.vi4io.org/listinfo/io-500" class="link">mailing list</a>.
+        This committee provides a closed but fair playing field for all vendors to discuss issues together with the steering committee. Its purpose is to encourage the vendors to participate but allowing vendors to benefit from further information. If you are interested to join apply to the <a href="http://lists.io500.org/listinfo.cgi/io500-io500.org" class="link">mailing list</a>.
     </p>
 
     <h3>Further Reading</h3>

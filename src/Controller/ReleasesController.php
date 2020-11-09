@@ -19,6 +19,9 @@ class ReleasesController extends AppController
     public function index()
     {
         $releases = $this->Releases->find('all')
+            ->where([
+                'Releases.release_date <=' => date('Y-m-d')
+            ])
             ->order([
                 'Releases.release_date' => 'ASC',
             ]);

@@ -254,7 +254,7 @@
                     <?php
                     echo $this->Html->link(
                         _('Browse Files'),
-                        'https://jbez.io500.org/storage/' . $submission->information_list_name . '/' . str_replace('.zip', '', $submission->storage_data),
+                        'https://io500.org/storage/' . $submission->information_list_name . '/' . str_replace('.zip', '', $submission->storage_data),
                         [
                             'target' => '_blank',
                             'class' => 'button'
@@ -266,7 +266,7 @@
                     <?php
                     echo $this->Html->link(
                         _('Download ZIP'),
-                        'https://jbez.io500.org/storage/' . $submission->information_list_name . '/' . $submission->storage_data,
+                        'https://io500.org/storage/' . $submission->information_list_name . '/' . $submission->storage_data,
                         [
                             'target' => '_blank',
                             'class' => 'button-highlight'

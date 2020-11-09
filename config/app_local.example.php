@@ -90,4 +90,8 @@ return [
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
     ],
+
+    'IO500' => [
+        'storage' => null
+    ]
 ];

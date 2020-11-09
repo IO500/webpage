@@ -116,6 +116,7 @@ class SubmissionsController extends AppController
 
         $release = $this->Submissions->Releases->find('all')
             ->where([
+                'Releases.release_date <=' => date('Y-m-d'),
                 'Releases.acronym' => strtoupper($list)
             ])
             ->first();
@@ -193,6 +194,7 @@ class SubmissionsController extends AppController
 
         $release = $this->Submissions->Releases->find('all')
             ->where([
+                'Releases.release_date <=' => date('Y-m-d'),
                 'Releases.acronym' => strtoupper($list)
             ])
             ->first();
@@ -275,6 +277,7 @@ class SubmissionsController extends AppController
 
         $release = $this->Submissions->Releases->find('all')
             ->where([
+                'Releases.release_date <=' => date('Y-m-d'),
                 'Releases.acronym' => strtoupper($list)
             ])
             ->first();
@@ -352,6 +355,7 @@ class SubmissionsController extends AppController
 
         $release = $this->Submissions->Releases->find('all')
             ->where([
+                'Releases.release_date <=' => date('Y-m-d'),
                 'Releases.acronym' => strtoupper($list)
             ])
             ->first();

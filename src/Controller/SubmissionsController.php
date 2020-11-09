@@ -450,7 +450,7 @@ class SubmissionsController extends AppController
      */
     public function view($id = null)
     {
-        $prefix = '/home/jbez/jbez.io500.org/storage/';
+        $prefix = Configure::read('IO500.storage');
 
         $submission = $this->Submissions->get($id, [
             'contain' => [],

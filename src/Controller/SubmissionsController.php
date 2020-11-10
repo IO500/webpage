@@ -480,7 +480,9 @@ class SubmissionsController extends AppController
             'mdtest-hard-stat',
             'mdtest-hard-write',
             'mdtest-hard-read',
-            'result-summary',
+            'result.txt',
+            'result-summary.txt',
+            'io500.sh',
         ];
 
         $selected_files = [];

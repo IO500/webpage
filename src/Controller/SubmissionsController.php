@@ -469,17 +469,6 @@ class SubmissionsController extends AppController
             'mdtest_hard_write',
             'mdtest_hard_read',
             'result_summary',
-            'ior-easy-read',
-            'ior-easy-write',
-            'ior-hard-read',
-            'ior-hard-write',
-            'mdtest-easy-delete',
-            'mdtest-easy-stat',
-            'mdtest-easy-write',
-            'mdtest-hard-delete',
-            'mdtest-hard-stat',
-            'mdtest-hard-write',
-            'mdtest-hard-read',
             'result.txt',
             'result-summary.txt',
             'io500.sh',
@@ -498,7 +487,10 @@ class SubmissionsController extends AppController
                 if ($file->isFile()) {
                     foreach ($target_files as $target) {
                         if (
-                            strpos($file->getPathname(), $target) !== false &&
+                            (
+                             strpos($file->getPathname(), $target) !== false || 
+                             strpos(str_replace('_', '-', $file->getPathname()), str_replace('_', '-', $target)) !== false
+                            ) &&
                             strpos($file->getPathname(), '._') === false
                         ) {
                             $selected_files[] = $file->getPathname();

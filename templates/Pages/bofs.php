@@ -58,7 +58,7 @@
     <ul>
         <li>
             <?php
-            echo $this->Html->link("SC'19", [
+            echo $this->Html->link("SC'20", [
                 'controller' => 'pages',
                 'action' => 'display',
                 'bof-sc20'

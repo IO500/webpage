@@ -48,7 +48,7 @@
     <h3>Abstract</h3>
 
     <p>
-        The IO500 is quickly becoming the de facto benchmarking standard for HPC storage. Developed two years ago, the IO500 has published five official lists so far. A BoF highlight is the presentation of the seventh IO500 list.
+        The IO500 is quickly becoming the de facto benchmarking standard for HPC storage. Developed two years ago, the IO500 has published six official lists so far. A BoF highlight is the presentation of the seventh IO500 list.
     </p>
 
     <p>

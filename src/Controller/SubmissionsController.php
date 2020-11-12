@@ -634,7 +634,11 @@ class SubmissionsController extends AppController
         $display = [];
 
         $submissions = $this->Submissions->find('all')
+            ->contain([
+                'Releases'
+            ])
             ->where([
+                'Releases.release_date <=' => date('Y-m-d'),
                 'Submissions.information_list_name IS NOT' => null,
             ])
             ->order([

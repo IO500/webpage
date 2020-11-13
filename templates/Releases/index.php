@@ -5,7 +5,8 @@
             <li>
                 <h4><?php echo strtoupper($release->acronym); ?></h4>
 
-                <ul>                    
+                <ul>
+                    <?php if ($release->enable_ranked_list) { ?>
                     <li>
                         <?php
                         echo $this->Html->link(__('IO500'), [
@@ -15,6 +16,8 @@
                         ]);
                         ?>
                     </li>
+                    <?php } ?>
+                    <?php if ($release->enable_10_node_list) { ?>
                     <li>
                         <?php
                         echo $this->Html->link(__('10 NODE'), [
@@ -24,6 +27,8 @@
                         ]);
                         ?>
                     </li>
+                    <?php } ?>
+                    <?php if ($release->enable_full_list) { ?>
                     <li>
                         <?php
                         echo $this->Html->link(__('FULL'), [
@@ -32,7 +37,9 @@
                             strtolower($release->acronym)
                         ]);
                         ?>
-                    </li>                    
+                    </li>
+                    <?php } ?>
+                    <?php if ($release->enable_historical_list) { ?>
                     <li>
                         <?php
                         echo $this->Html->link(__('HISTORICAL'), [
@@ -42,6 +49,7 @@
                         ]);
                         ?>
                     </li>
+                    <?php } ?>
                 </ul>
             </li>
             <?php } ?>

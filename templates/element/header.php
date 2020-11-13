@@ -100,6 +100,15 @@
                 ]);
                 ?>
             </li>
+            <li>
+                <?php
+                echo $this->Html->link(__('Contact'), [
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'contact'
+                ]);
+                ?>
+            </li>
         </ul>
     </div>
 </nav>

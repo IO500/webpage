@@ -1,7 +1,7 @@
 <div class="submissions index content">
     <ul class="plots">
         <li>
-            <h3>PFind Easy</h3>
+            <h3>Find</h3>
             <iframe src="<?php echo $this->Url->build('/'); ?>/plots/plotly/io500-find-easy.html"></iframe>
         </li>
     </ul>

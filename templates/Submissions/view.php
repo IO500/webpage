@@ -205,7 +205,7 @@
                             <td><?php echo $this->Number->format($submission->ior_hard_read, ['places' => 2, 'precision' => 2]) ?> GiB/s</td>
                         </tr>
                         <tr>
-                            <th><?php echo _('Find Easy') ?></th>
+                            <th><?php echo _('Find') ?></th>
                             <td><?php echo $this->Number->format($submission->pfind_easy, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
                         </tr>
                     </table>

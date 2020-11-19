@@ -11,7 +11,7 @@
                     <?php
                     echo $this->Html->link(
                         file_get_contents('img/mail.svg'),
-                        'https://www.vi4io.org/listinfo/IO-500',
+                        'http://lists.io500.org/listinfo.cgi/io500-io500.org',
                         [
                             'escape' => false,
                             'target' => '_blank'

@@ -113,7 +113,7 @@
     <?php
     echo $this->Html->link(
         __('Download the Logo'),
-        'https://www.vi4io.org/_media/io500/about/logo-io500.pdf',
+        '../img/logo.png',
         [
             'class' => 'button'
         ]

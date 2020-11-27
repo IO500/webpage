@@ -33,7 +33,7 @@
         <li>
             <?php
             echo $this->Html->link(__('Slack Channel'),
-                'https://join.slack.com/t/io500workspace/shared_invite/zt-hv1i5svr-Yj8HR_wRzEy1bK2s2JX20w',
+                'https://join.slack.com/t/io500workspace/shared_invite/zt-j3i9c00k-niCcUHisgLT2JluYhcxlQQ',
                 [
                     'class' => 'button',
                     'target' => '_blank'

@@ -46,6 +46,9 @@
 
     <ul class="news">
         <li>
+            <span class="date">2020-11-19</span> <a class="link" href="https://www.hpcwire.com/off-the-wire/three-rsc-supercomputers-represent-russia-in-global-io500-rating" target="_blank">Three RSC Supercomputers Represent Russia in Global IO500 Rating</a>
+        </li>
+        <li>
             <span class="date">2020-08-11</span> <a class="link" href="https://www.hpcwire.com/2020/08/11/intels-optane-daos-tops-latest-io500/" target="_blank">Intel's Optane/DAOS Solution Tops Latest IO500</a>
         </li>
         <li>

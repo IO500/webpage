@@ -37,9 +37,15 @@
 
     <ul>
         <li><strong>Historic list</strong>: all submissions ever received</li>
-        <li><strong>Full list</strong>: the subset from the historic list that was valid</li>
-        <li><strong>IO500 List</strong>: the subset from the full list with only the best submission per storage system</li>
-        <li><strong>10 Node Challenge List</strong>: the subset from the full list with only the best submission per storage system ran on exactly ten nodes</li>
+        <li><strong>Full list</strong>: the subset of the Historic list of
+            submissions that are currently valid</li>
+        <li><strong>IO500 List</strong>: the subset of the Full list of
+            submissions marked for inclusion in the IO500 ranked list, showing
+            only one highest-scoring result per storage system</li>
+        <li><strong>10-Node Challenge List</strong>: the subset from the Full
+            list of submissions run on exactly ten nodes and marked for
+            inclusion in the 10-Node Challenge ranked list, showing only one
+            highest-scoring result per storage system</li>
     </ul>
 
     <h3>Workloads</h3>

@@ -3,8 +3,8 @@
 
     <?php
     $this->Breadcrumbs->add(_('LISTS'), ['controller' => 'releases', 'action' => 'index']);
-    $this->Breadcrumbs->add(_('HISTORICAL LIST'), ['controller' => 'releases', 'action' => 'index']);
     $this->Breadcrumbs->add(strtoupper($this->request->getParam('pass')[0]), ['controller' => 'submissions', 'action' => 'historical', $this->request->getParam('pass')[0]]);
+    $this->Breadcrumbs->add(_('HISTORICAL LIST'), ['controller' => 'releases', 'action' => 'index']);
 
     echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
     ?>
@@ -15,7 +15,47 @@
 
     <div class="submissions-action">
         <?php
-        echo $this->Html->link(__('Customize'), [
+        if ($release->enable_10_node_list) {
+            echo $this->Html->link(_('10-node'), [
+                'controller' => 'submissions',
+                'action' => 'ten',
+                strtolower($release->acronym)
+            ], [
+                'class' => 'button-navigation'
+            ]);
+        }
+
+        if ($release->enable_ranked_list) {
+            echo $this->Html->link(_('IO500'), [
+                'controller' => 'submissions',
+                'action' => 'list',
+                strtolower($release->acronym)
+            ], [
+                'class' => 'button-navigation'
+            ]);
+        }
+
+        if ($release->enable_full_list) {
+            echo $this->Html->link(_('Full'), [
+                'controller' => 'submissions',
+                'action' => 'full',
+                strtolower($release->acronym)
+            ], [
+                'class' => 'button-navigation'
+            ]);
+        }
+
+        if ($release->enable_historical_list) {
+            echo $this->Html->link(_('Historical'), [
+                'controller' => 'submissions',
+                'action' => 'historical',
+                strtolower($release->acronym)
+            ], [
+                'class' => 'button-navigation-active'
+            ]);
+        }
+
+        echo $this->Html->link(_('Customize'), [
             'controller' => 'submissions',
             'action' => 'customize'
         ], [

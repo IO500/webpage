@@ -69,6 +69,14 @@ footer {
         margin: 0;
         text-align: left;   
     }
+
+    div.submissions-action {
+        width: 50%;
+    }
+
+    a.button, a.button-navigation, a.button-navigation-active {
+        max-width: 100px;
+    }
 }
 
 @media (min-width: 550px) {
@@ -164,13 +172,31 @@ footer {
     background-size: contain;
 }
 
-.button {
-    border: #d63b1e solid 1px;
+.button, .button-navigation, .button-navigation-active {
     border-radius: 3px;
-    color: #d63b1e;
+    box-sizing: border-box;
+    display: inline-block;
     font-weight: bold;
     padding: 5px 10px;
-    box-sizing: border-box;
+    text-align: center;
+    width: 100px;
+    flex-grow: 1;
+    gap: 10px;
+}
+
+.button {
+    border: #d63b1e solid 1px;
+    color: #d63b1e;
+}
+
+.button-navigation {
+    border: #bbbbbb solid 1px;
+    color: #7b7d82;
+}
+
+.button-navigation-active {
+    border: #222222 solid 1px;
+    color: #222222;
 }
 
 nav {
@@ -588,7 +614,7 @@ dd {
 
 .submissions > h2 {
     float: left;
-    width: 80%;
+    width: 50%;
 }
 
 .submissions > h2 span {
@@ -601,6 +627,13 @@ dd {
 .submissions-action {
     float: right;
     margin: 22px 0;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    gap: 10px;
+    box-sizing: border-box;
+    justify-content: flex-end;
 }
 
 /* Breadcumb */

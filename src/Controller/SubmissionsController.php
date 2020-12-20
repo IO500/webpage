@@ -179,6 +179,7 @@ class SubmissionsController extends AppController
             ->limit($limit);
 
         $this->set('limit', $limit);
+        $this->set('release', $release);
         $this->set('submissions', $this->paginate($submissions, $settings));
     }
 
@@ -260,6 +261,7 @@ class SubmissionsController extends AppController
             ->limit($limit);
 
         $this->set('limit', $limit);
+        $this->set('release', $release);
         $this->set('submissions', $this->paginate($submissions, $settings));
     }
 

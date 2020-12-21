@@ -30,6 +30,21 @@ footer {
     margin: 50px 0 0 0;    
 }
 
+footer strong {
+    font-size: 14px;
+}
+
+footer em {
+    color: #d63b1e;
+    display: inline-block;
+    font-style: normal;
+    padding: 5px 0 10px;
+}
+
+footer a {
+    color: #aaa;
+}
+
 .both {
     clear: both;
 }

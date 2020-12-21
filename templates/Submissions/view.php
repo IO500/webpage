@@ -174,11 +174,11 @@
                             <td><?php echo $this->Number->format($submission->information_md_storage_devices) ?></td>
                         </tr>
                         <tr>
-                            <th><?php echo _('Metadata Nodes') ?></th>
+                            <th><?php echo _('Data Nodes') ?></th>
                             <td><?php echo $this->Number->format($submission->information_ds_nodes) ?></td>
                         </tr>
                         <tr>
-                            <th><?php echo _('Metadata Storage Devices') ?></th>
+                            <th><?php echo _('Data Storage Devices') ?></th>
                             <td><?php echo $this->Number->format($submission->information_ds_storage_devices) ?></td>
                         </tr>
                     </table>

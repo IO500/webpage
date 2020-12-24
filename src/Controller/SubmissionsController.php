@@ -18,11 +18,23 @@ use NXP\Exception\UnknownVariableException;
  *
  * @property \App\Model\Table\SubmissionsTable $Submissions
  * @method \App\Model\Entity\Submission[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ *
+ * This generates the different types of lists.  As described in 'about.php'
+ * there are 4 main categories of lists:
+ *
+ * Historic list: all submissions ever received (function historical())
+ * Full list: subset of Historic list that are currently valid (function full())
+ * IO500 list: subset of Full list marked for inclusion in IO500 ranked list,
+ *    showing one highest-scoring result per storage system (function latest())
+ * 10-Node Challenge list: subset of Full list run on exactly 10 client nodes
+ *    and marked for inclusion in the 10-Node Challenge ranked list, showing
+ *    only one highest-scoring result per storage system (function ten())
+ * Custom list: user-generated list with custom ranking (function customize())
  */
 class SubmissionsController extends AppController
 {
     /**
-     * Lastest method
+     * Latest method
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
@@ -54,6 +66,7 @@ class SubmissionsController extends AppController
                     'Submissions.valid_to IS NULL',
                     'Submissions.valid_to >=' => $release->release_date,
                 ],
+                'Submissions.information_client_nodes >=' => 10,
                 'Submissions.include_in_io500 IS' => true,
                 'Submissions.status' => 'VALID',
             ])
@@ -215,6 +228,7 @@ class SubmissionsController extends AppController
                     'Submissions.valid_to IS NULL',
                     'Submissions.valid_to >=' => $release->release_date,
                 ],
+                'Submissions.information_client_nodes >=' => 10,
                 'Submissions.include_in_io500 IS' => true,
                 'Submissions.status' => 'VALID',
             ])

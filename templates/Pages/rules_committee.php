@@ -35,7 +35,7 @@
                 Core parts (such as rules) must be unanimously approved.
             </li>
             <li>
-                Other changes just require one additional board member and one web reviewer to approve the pull request. However, in case a board member has concerns of any change made, it will be reverted/updated.
+                Other changes just require one additional committee member and one web reviewer to approve the pull request. However, in case a committee member has concerns of any change made, it will be reverted/updated.
             </li>
         </ul>
         <li>

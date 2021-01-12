@@ -16,25 +16,6 @@
     <h3>Committee</h3>
 
     <p>
-        The current <b>IO500 Committee<b>, consists of the following members (in alphabetical order):
-    </p>
-    <ul>
-      <li>Andreas Dilger</li>
-      <li>Dean Hildebrand</li>
-      <li>Julian Kunkel</li>
-      <li>Jay Lofstead</li>
-      <li>George Markomanolis</li>
-    </ul>
-    <p>
-      The <b>founding members</b> (in alphabetical order) of the IO500 are:
-    </p>
-    <ul>
-      <li>John Bent</li>
-      <li>Julian Kunkel</li>
-      <li>Jay Lofstead</li>
-    </ul>
-
-    <p>
         The committee governs itself with the following rules:
     </p>
 

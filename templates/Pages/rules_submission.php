@@ -45,7 +45,7 @@
                 </li>
                 <li>An exception to this rule is possible for submitters who
                     have a legitimate reason by requesting an exception from the
-                    committee via <a href="mailto:committee@io500.org" class="link">committe@io500.org</a>.
+                    committee via <a href="mailto:committee@io500.org" class="link">committee@io500.org</a>.
                 </li>
             </ol>
         </ol>
@@ -109,6 +109,16 @@
             using tools such as "<span class="code">lfs setstripe</span>" or
             "<span class="code">beegfs_ctl</span>"; however, additional
             subdirectories within these directories cannot be precreated.
+        </li>
+        <li>
+            Submissions received after the posted deadline for a list may
+            be accepted, at the discretion of the committee, upon request to
+            <a href="mailto:committee@io500.org" class="link">committee@io500.org</a>.
+            In the case where a late submission would be the winner in any
+            category, then a key consideration for acceptance is ensuring
+            there is enough time before publication of the final list.  Any
+            submission not accepted for the current list would be
+            automatically submitted for the following list.
         </li>
     </ol>
 

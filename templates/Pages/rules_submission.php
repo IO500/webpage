@@ -66,6 +66,14 @@
             acknowledging the close.
         </li>
         <li>
+            Data and metadata must be written in its entirety and not reduced based
+            on its contents. The goal of the io500
+            is to provide dataset independent performance results, and techniques
+            such as deduplication, compression, etc would bias performance as the
+            io500 benchmark uses partially predictable content that is not realistic
+            in the real world.
+        </li>
+        <li>
             Submitting the results must be done in accordance with the instructions on our submission page. Please verify the correctness of your submission before you submit it.
         </li>
         <li>

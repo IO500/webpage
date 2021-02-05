@@ -67,11 +67,11 @@
         </li>
         <li>
             Data and metadata must be written in its entirety and not reduced based
-            on its contents. The goal of the io500
+            on its contents. The goal of the IO500
             is to provide dataset independent performance results, and techniques
             such as deduplication, compression, and other lossless and lossy techniques
             would bias performance as the
-            io500 benchmark uses partially predictable content that is not
+            IO500 benchmark uses partially predictable content that is not
             representative of existing workloads in the real world.
         </li>
         <li>

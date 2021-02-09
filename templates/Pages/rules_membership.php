@@ -16,30 +16,10 @@
     <h3>IO500 Committee Membership and Succession Rules v1.0</h3>
 
     <p>
-        The IO500 committee is a standards body operating with consensus on all decisions excepting times noted in the committee rules. As such, the work progresses slowly with much deliberation. At times, the committee makeup may change. The following describes the committee makeup and how that form changes over time.
+        The <?php echo $this->Html->link('IO500 committee', ['controller' => 'pages', 'action' => 'display', 'steering'], ['class' => 'link']); ?> is a standards body operating with consensus on all decisions excepting times noted in the committee rules. As such, the work progresses slowly with much deliberation. At times, the committee makeup may change. The following describes the committee makeup and how that form changes over time.
     </p>
 
     <ol>
-        <li>
-            Committee Makeup: The committee shall consist of the following members, except under the conditions defined below:
-        </li>
-        <ul>
-            <li>
-                John Bent (Seagate)
-            </li>
-            <li>
-                Andreas Dilger (Whamcloud/DDN)
-            </li>
-            <li>
-                Julian Kunkel (University of Reading)
-            </li>
-            <li>
-                Jay Lofstead (Sandia National Laboratories)
-            </li>
-            <li>
-                George Markomanolis (CSC - IT For Science Ltd) web page,linkedin,twitter
-            </li>
-        </ul>
         <li>
             The founding members, John Bent, Julian Kunkel, and Jay Lofstead are the only committee members ever to use the additional qualifier of "co-founder". Everyone else is solely a "co-organizer".
         </li>
@@ -97,7 +77,7 @@
         <li>
             Anyone can either self-nominate or be nominated by others.
         </li>
-        <li>            
+        <li>
             Nominees must have participated in the IO500 community
         </li>
         <li>

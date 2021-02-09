@@ -28,17 +28,14 @@
             All changes to the benchmarking scripts or methodology require all committee members to review and approve.
         </li>
         <li>
-            All changes to the website require all committee members to review and approve.
+            Changes to the website are performed via GitHub pull requests and require consent among all committee members.
         </li>
         <ul>
             <li>
-                Exception: additions to the News page require only 2 members to approve but must email edits out to the full committee.
+                Core parts (such as rules) must be unanimously approved.
             </li>
             <li>
-                Exception: removing accidentally revealed internal information requires only 2 members to approve but must email edits out to the full committee.
-            </li>
-            <li>
-                Exception: updating the webpage with new lists requires only the members attending the particular BoF.
+                Other changes just require one additional committee member and one web reviewer to approve the pull request. However, in case a committee member has concerns of any change made, it will be reverted/updated.
             </li>
         </ul>
         <li>

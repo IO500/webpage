@@ -37,7 +37,7 @@ Management structure
 
 <li>This Web Designer’s Slack access will be limited to a new private slack channel dedicated to the role and will not have access to the other private Committee channels except as deemed necessary based on future Committee unanimous consent. </li>
 
-<li>The role is perpetual unless the person resigns. At any time, if one Committee member has a concern with the position, s/he can discuss the matter in a timely fashion with the Committee, if the concerns of the Committee member cannot be resolved in the Committee discussion, the current Web Designer is removed immediately based on a majority vote. Prior to notifying the web designer, all passwords and password recovery methods must be changed/verified to remove the web designer’s access. This would include the webpage github, hosting, disqus, email lists, slack, and any other related functions.</li?
+<li>The role is perpetual unless the person resigns. At any time, if one Committee member has a concern with the position, they can discuss the matter in a timely fashion with the Committee, if the concerns of the Committee member cannot be resolved in the Committee discussion, the current Web Designer is removed immediately based on a majority vote. Prior to notifying the web designer, all passwords and password recovery methods must be changed/verified to remove the web designer’s access. This would include the webpage github, hosting, disqus, email lists, slack, and any other related functions.</li?
 </ol>
 
 Salary

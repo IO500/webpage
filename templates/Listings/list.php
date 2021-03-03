@@ -3,55 +3,31 @@
 
     <?php
     $this->Breadcrumbs->add(_('LISTS'), ['controller' => 'releases', 'action' => 'index']);
-    $this->Breadcrumbs->add(strtoupper($this->request->getParam('pass')[0]), ['controller' => 'submissions', 'action' => 'ten', $this->request->getParam('pass')[0]]);
-    $this->Breadcrumbs->add(_('10 NODE LIST'), ['controller' => 'releases', 'action' => 'index']);
+    $this->Breadcrumbs->add(strtoupper($this->request->getParam('pass')[0]), ['controller' => 'releases', 'action' => 'index']);
+    $this->Breadcrumbs->add($type->name . _(' LIST'), ['controller' => 'listings', 'action' => 'list', $this->request->getParam('pass')[0], $type->url]);
 
     echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
     ?>
 </nav>
 
 <div class="submissions index content">
-    <h2>10 Node Challenge <?php echo strtoupper($this->request->getParam('pass')[0]); ?> List</h2>
+    <h2><?php echo $type->name . ' ' . strtoupper($this->request->getParam('pass')[0]); ?> List</h2>
 
     <div class="submissions-action">
         <?php
-        if ($release->enable_10_node_list) {
-            echo $this->Html->link(_('10-node'), [
-                'controller' => 'submissions',
-                'action' => 'ten',
-                strtolower($release->acronym)
-            ], [
-                'class' => 'button-navigation-active'
-            ]);
-        }
+        foreach ($release->listings as $list) {
+            $state = '';
+            if (strtolower($list->type->url) == strtolower($this->request->getParam('pass')[1])) {
+                $state = '-active';
+            }
 
-        if ($release->enable_ranked_list) {
-            echo $this->Html->link(_('IO500'), [
-                'controller' => 'submissions',
+            echo $this->Html->link($list->type->name, [
+                'controller' => 'listings',
                 'action' => 'list',
-                strtolower($release->acronym)
+                strtolower($this->request->getParam('pass')[0]),
+                strtolower($list->type->url)
             ], [
-                'class' => 'button-navigation'
-            ]);
-        }
-
-        if ($release->enable_full_list) {
-            echo $this->Html->link(_('Full'), [
-                'controller' => 'submissions',
-                'action' => 'full',
-                strtolower($release->acronym)
-            ], [
-                'class' => 'button-navigation'
-            ]);
-        }
-
-        if ($release->enable_historical_list) {
-            echo $this->Html->link(_('Historical'), [
-                'controller' => 'submissions',
-                'action' => 'historical',
-                strtolower($release->acronym)
-            ], [
-                'class' => 'button-navigation'
+                'class' => 'button-navigation' . $state
             ]);
         }
 
@@ -68,11 +44,12 @@
         <table class="tb">
             <thead>
                 <tr>
-                    <th rowspan="3" class="tb-id"><?php echo $this->Paginator->sort('rank', '#') ?></th>
-                    <th colspan="6" class="tb-center">Information</th>
+                    <th rowspan="3" class="tb-id"><?php echo $this->Paginator->sort('score', '#') ?></th>
+                    <th colspan="7" class="tb-center">Information</th>
                     <th colspan="3" class="tb-center">IO500</th>
                 </tr>
                 <tr>
+                    <th rowspan="2" class="tb-center"><?php echo _('BoF') ?></th>
                     <th rowspan="2"><?php echo $this->Paginator->sort('information_institution', _('Institution')) ?></th>
                     <th rowspan="2"><?php echo $this->Paginator->sort('information_system', _('System')) ?></th>
                     <th rowspan="2"><?php echo $this->Paginator->sort('information_storage_vendor', _('Storage Vendor')) ?></th>
@@ -80,7 +57,7 @@
                     <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort('information_client_nodes', _('Client Nodes')) ?></th>
                     <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort('information_client_total_procs', _('Total Client Proc.')) ?></th>
 
-                    <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort('io500_score', _('Score')) ?></th>
+                    <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort('score', _('Score')) ?></th>
                     <th class="tb-center"><?php echo $this->Paginator->sort('io500_bw', _('BW')) ?></th>
                     <th class="tb-center"><?php echo $this->Paginator->sort('io500_md', _('MD')) ?></th>
                 </tr>
@@ -91,45 +68,47 @@
             </thead>
             <tbody>
                 <?php
-                foreach ($submissions as $i => $submission) { 
+                foreach ($submissions as $i => $entry) { 
                     $url = $this->Url->build([
                             'controller' => 'submissions',
                             'action' => 'view',
-                            $submission->id
+                            $entry->id
                         ]
                     );
                 ?>
-                <tr onclick="window.location='<?php echo $url; ?>';">
                 <tr>
                     <td class="tb-id">
                         <?php
                         echo $this->Html->link((($this->Paginator->current('Submissions') - 1) * $limit) + ($i + 1), [
                             'controller' => 'submissions',
                             'action' => 'view',
-                            $submission->id
+                            $entry->submission->id
                         ], [
                             'class' => 'rank'
                         ]);
                         ?>
                     </td>
+                    <td class="tb-center">
+                        <?php echo strtoupper($entry->submission->release->acronym); ?>
+                    </td>
                     <td>
                         <?php
-                        echo $this->Html->link($submission->information_institution, [
+                        echo $this->Html->link($entry->submission->information_institution, [
                             'controller' => 'submissions',
                             'action' => 'view',
-                            $submission->id
+                            $entry->submission->id
                         ]);
                         ?>
                     </td>
-                    <td><?php echo h($submission->information_system) ?></td>
-                    <td><?php echo h($submission->information_storage_vendor) ?></td>
-                    <td><?php echo h($submission->information_filesystem_type) ?></td>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->information_client_nodes) ?></td>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->information_client_total_procs) ?></td>
+                    <td><?php echo h($entry->submission->information_system) ?></td>
+                    <td><?php echo h($entry->submission->information_storage_vendor) ?></td>
+                    <td><?php echo h($entry->submission->information_filesystem_type) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($entry->submission->information_client_nodes) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($entry->submission->information_client_total_procs) ?></td>
 
-                    <td class="tb-number"><?php echo $this->Number->format($submission->io500_score, ['places' => 2, 'precision' => 2]) ?></td>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->io500_bw, ['places' => 2, 'precision' => 2]) ?></td>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->io500_md, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($entry->score, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($entry->submission->io500_bw, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($entry->submission->io500_md, ['places' => 2, 'precision' => 2]) ?></td>
                 </tr>
                 <?php } ?>
             </tbody>
@@ -180,16 +159,16 @@ $max_io500_md = 0;
 $max_nodes = 0;
 $max_procs = 0;
 
-foreach ($submissions as $i => $submission) {
+foreach ($submissions as $i => $entry) {
     if ($i >= $LIMIT) {
        break;
     }
 
-    $max_io500_score = max($max_io500_score, $submission->io500_score);
-    $max_io500_bw = max($max_io500_bw, $submission->io500_bw);
-    $max_io500_md = max($max_io500_md, $submission->io500_md);
-    $max_nodes = max($max_nodes, $submission->information_client_nodes);
-    $max_procs = max($max_procs, $submission->information_client_total_procs);
+    $max_io500_score = max($max_io500_score, $entry->score);
+    $max_io500_bw = max($max_io500_bw, $entry->submission->io500_bw);
+    $max_io500_md = max($max_io500_md, $entry->submission->io500_md);
+    $max_nodes = max($max_nodes, $entry->submission->information_client_nodes);
+    $max_procs = max($max_procs, $entry->submission->information_client_total_procs);
 }
 
 $plot_border[0] = 'rgb(86, 166, 186)';
@@ -224,19 +203,19 @@ var myRadarChart = new Chart(ctx, {
         ],
         datasets: [
             <?php
-            foreach ($submissions as $i => $submission) {
+            foreach ($submissions as $i => $entry) {
                 if ($i >= $LIMIT) {
                     break;
                 }
             ?>
             {
-                'label': '#<?php echo (($this->Paginator->current('Submissions') - 1) * $limit) + ($i + 1) . " - " . $submission->information_system . " from " . $submission->information_institution; ?>',
+                'label': '#<?php echo (($this->Paginator->current('Submissions') - 1) * $limit) + ($i + 1) . " - " . $entry->submission->information_system . " from " . $entry->submission->information_institution; ?>',
                 'data': [
-                    <?php echo $submission->io500_score / $max_io500_score * 100.0; ?>,
-                    <?php echo $submission->io500_bw / $max_io500_bw * 100.0; ?>,
-                    <?php echo $submission->io500_md / $max_io500_md * 100.0; ?>,
-                    <?php echo $submission->information_client_nodes / $max_nodes * 100.0; ?>,
-                    <?php echo $submission->information_client_total_procs / $max_procs * 100.0; ?>
+                    <?php echo $entry->score / $max_io500_score * 100.0; ?>,
+                    <?php echo $entry->submission->io500_bw / $max_io500_bw * 100.0; ?>,
+                    <?php echo $entry->submission->io500_md / $max_io500_md * 100.0; ?>,
+                    <?php echo $entry->submission->information_client_nodes / $max_nodes * 100.0; ?>,
+                    <?php echo $entry->submission->information_client_total_procs / $max_procs * 100.0; ?>
                 ],
                 'fill': true,
                 'borderColor': '<?php echo $plot_border[$i]; ?>',

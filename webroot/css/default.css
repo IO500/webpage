@@ -194,7 +194,6 @@ footer a {
 .button, .button-navigation, .button-navigation-active {
     border-radius: 3px;
     box-sizing: border-box;
-    display: inline-block;
     font-weight: bold;
     padding: 5px 10px;
     text-align: center;
@@ -440,6 +439,7 @@ table {
 
 .rank:hover{
     background: #444;
+    color: #fff;
 }
 
 input[type=submit], .button-highlight {
@@ -449,6 +449,10 @@ input[type=submit], .button-highlight {
     color: #fff;
     font-weight: bold;
     padding: 5px 10px;
+}
+
+.button-highlight:hover {
+    color: #fff;
 }
 
 input[type=text] {
@@ -517,7 +521,7 @@ li {
 .credits {
     display: inline-block;
     position: absolute;
-    bottom: 50px;
+    bottom: 0px;
     right: 20px;
     color: #bbb;
     font-size: 10px;

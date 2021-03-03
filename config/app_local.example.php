@@ -92,6 +92,7 @@ return [
     ],
 
     'IO500' => [
-        'storage' => null
+        'storage' => null,
+        'pagination' => 1000
     ]
 ];

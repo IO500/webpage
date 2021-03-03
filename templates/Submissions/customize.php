@@ -199,9 +199,12 @@
                     $url = $this->Url->build([
                             'controller' => 'submissions',
                             'action' => 'view',
-                            $submission->id
+                            $submission->submission->id
                         ]
                     );
+
+                    // We will use the latest valid score to display
+                    $submission->submission->io500_score = $submission->score;
                 ?>
                 <tr onclick="window.location='<?php echo $url; ?>';">
                 <tr>
@@ -210,7 +213,7 @@
                         echo $this->Html->link(($i + 1), [
                             'controller' => 'submissions',
                             'action' => 'view',
-                            $submission->id
+                            $submission->submission->id
                         ], [
                             'class' => 'rank'
                         ]);
@@ -218,9 +221,9 @@
                     </td>
 
                     <?php
-                    if ($submission->equation && $valid) {
+                    if ($submission->submission->equation && $valid) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->equation, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->equation, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                     }
 
@@ -228,7 +231,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'information_') === 0) {
                     ?>
-                    <td><?php echo h($submission->{$field}) ?></td>
+                    <td><?php echo h($submission->submission->{$field}) ?></td>
                     <?php
                             }
                         }
@@ -238,7 +241,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'io500_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -248,7 +251,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'mdtest_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -258,7 +261,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'ior_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -268,7 +271,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'find_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }

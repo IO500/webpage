@@ -671,6 +671,10 @@ dd {
     justify-content: flex-end;
 }
 
+.submissions-action a {
+    max-width: 200px;
+}
+
 /* Breadcumb */
 #breadcrumb {
     color: #bbb;

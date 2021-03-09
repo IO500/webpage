@@ -197,6 +197,7 @@ footer a {
     font-weight: bold;
     padding: 5px 10px;
     text-align: center;
+    transition: 0.5s;
     width: 100px;
     flex-grow: 1;
     gap: 10px;
@@ -210,6 +211,10 @@ footer a {
 .button-navigation {
     border: #bbbbbb solid 1px;
     color: #7b7d82;
+}
+
+.button-navigation:hover{
+    border-color: #cc1717;
 }
 
 .button-navigation-active {
@@ -560,6 +565,13 @@ li {
     flex-basis: 400px;
     flex-grow: 1;
     width: 45%;
+}
+
+.release-information {
+    box-sizing: border-box;
+    clear: both;
+    margin: 0 0 20px;
+    width: 100%;    
 }
 
 dt {

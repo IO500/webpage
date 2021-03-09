@@ -36,10 +36,7 @@
     <ul>
         <li>
             <?php
-            echo $this->Html->link(__('Lastest List'), [
-                'controller' => 'submissions',
-                'action' => 'latest'
-            ], [
+            echo $this->Html->link(__('Lastest List'), '/', [
                 'class' => 'button-highlight'
             ]);
             ?>

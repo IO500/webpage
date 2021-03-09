@@ -43,7 +43,7 @@
     </div>
 
     <div class="release-information">
-        <?php echo $release->listings[0]->description; ?>
+        <?php echo $listing->description; ?>
     </div>
 
     <div class="table-responsive">

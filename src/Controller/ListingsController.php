@@ -75,6 +75,7 @@ class ListingsController extends AppController
         $this->set('limit', $limit);
         $this->set('type', $listing->type);
         $this->set('release', $release);
+        $this->set('listing', $listing);
         $this->set('submissions', $this->paginate($submissions, $settings));
     }
 }

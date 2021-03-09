@@ -277,7 +277,9 @@ class SubmissionsController extends AppController
 
         $submissions = $this->Submissions->ListingsSubmissions->find('all')
             ->contain([
-                'Submissions',
+                'Submissions' => [
+                    'Releases'
+                ]
             ])
             ->where([
                 'ListingsSubmissions.listing_id' => $listing->id,
@@ -290,6 +292,12 @@ class SubmissionsController extends AppController
         $selected_fields = null;
         $equation = false;
         $valid = true;
+
+        foreach ($submissions as $submission) {
+            // We will use the latest valid score to display
+            $submission->submission->io500_score = $submission->score;
+            $submission->submission->information_list_name = $submission->submission->release->acronym;
+        }
 
         if ($this->request->is('post')) {
             $selected_to_display = $this->request->getData();
@@ -314,9 +322,6 @@ class SubmissionsController extends AppController
                 $executor = new MathExecutor();
 
                 foreach ($submissions as $submission) {
-                    // We will use the latest valid score to display
-                    $submission->submission->io500_score = $submission->score;
-
                     // We need to set all the variables available for calculation
                     foreach ($columns as $key => $column) {
                         if (is_numeric($submission->submission->{$column})) {

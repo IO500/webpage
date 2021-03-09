@@ -1,3 +1,5 @@
+<?php $this->assign('title', strtoupper($this->request->getParam('pass')[0]) . ' - ' . $type->name . ' List'); ?>
+
 <nav id="breadcrumb">
     <p>YOU ARE HERE</p>
 
@@ -40,6 +42,10 @@
         ?>
     </div>
 
+    <div class="release-information">
+        <?php echo $release->listings[0]->description; ?>
+    </div>
+
     <div class="table-responsive">
         <table class="tb">
             <thead>
@@ -79,7 +85,7 @@
                 <tr>
                     <td class="tb-id">
                         <?php
-                        echo $this->Html->link((($this->Paginator->current('Submissions') - 1) * $limit) + ($i + 1), [
+                        echo $this->Html->link((($this->Paginator->current() - 1) * $limit) + ($i + 1), [
                             'controller' => 'submissions',
                             'action' => 'view',
                             $entry->submission->id
@@ -209,13 +215,13 @@ var myRadarChart = new Chart(ctx, {
                 }
             ?>
             {
-                'label': '#<?php echo (($this->Paginator->current('Submissions') - 1) * $limit) + ($i + 1) . " - " . $entry->submission->information_system . " from " . $entry->submission->information_institution; ?>',
+                'label': '#<?php echo (($this->Paginator->current() - 1) * $limit) + ($i + 1) . " - " . $entry->submission->information_system . " from " . $entry->submission->information_institution; ?>',
                 'data': [
-                    <?php echo $entry->score / $max_io500_score * 100.0; ?>,
-                    <?php echo $entry->submission->io500_bw / $max_io500_bw * 100.0; ?>,
-                    <?php echo $entry->submission->io500_md / $max_io500_md * 100.0; ?>,
-                    <?php echo $entry->submission->information_client_nodes / $max_nodes * 100.0; ?>,
-                    <?php echo $entry->submission->information_client_total_procs / $max_procs * 100.0; ?>
+                    <?php echo round($entry->score / $max_io500_score * 100.0, 2); ?>,
+                    <?php echo round($entry->submission->io500_bw / $max_io500_bw * 100.0, 2); ?>,
+                    <?php echo round($entry->submission->io500_md / $max_io500_md * 100.0, 2); ?>,
+                    <?php echo round($entry->submission->information_client_nodes / $max_nodes * 100.0, 2); ?>,
+                    <?php echo round($entry->submission->information_client_total_procs / $max_procs * 100.0, 2); ?>
                 ],
                 'fill': true,
                 'borderColor': '<?php echo $plot_border[$i]; ?>',

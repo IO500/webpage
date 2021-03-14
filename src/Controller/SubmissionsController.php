@@ -241,6 +241,8 @@ class SubmissionsController extends AppController
      */
     public function customize($hash = null)
     {
+        $limit = 1000;
+
         $db = ConnectionManager::get('default');
 
         // Create a schema collection.
@@ -259,15 +261,10 @@ class SubmissionsController extends AppController
 
         $listing = $this->Submissions->ListingsSubmissions->Listings->find('all')
             ->contain([
-                'Releases' => [
-                    'Listings' => function ($query) {
-                        return $query->where([
-                            'Listings.type_id' => 4, // Historical List
-                        ]);
-                    },
-                ],
+                'Releases',
             ])
             ->where([
+                'Listings.type_id' => 4, // Historical List
                 'Releases.release_date <=' => date('Y-m-d'),
             ])
             ->order([
@@ -283,11 +280,12 @@ class SubmissionsController extends AppController
             ])
             ->where([
                 'ListingsSubmissions.listing_id' => $listing->id,
-                'Submissions.status IS NOT' => 'VALID-UPGRADE-FIXED', # TODO: this can be removed once those records are removed
+                'Submissions.status' => 'VALID', # TODO: this can be removed once those records are removed
             ])
             ->order([
                 'ListingsSubmissions.score' => 'DESC',
-            ]);
+            ])
+            ->limit($limit);
 
         $selected_fields = null;
         $equation = false;

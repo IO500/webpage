@@ -322,7 +322,7 @@ class SubmissionsController extends AppController
                 foreach ($submissions as $submission) {
                     // We need to set all the variables available for calculation
                     foreach ($columns as $key => $column) {
-                        if (is_numeric($submission->submission->{$column})) {
+                        if (is_numeric($submission->submission->{$column}) || is_string($submission->submission->{$column})) {
                             $executor->setVar($column, $submission->submission->{$column});
                         }
                     }

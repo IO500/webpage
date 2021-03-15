@@ -55,6 +55,18 @@
             You can use any columns with numeric values for the custom equation. It has support for <span class="code">+</span>, <span class="code">-</span>, <span class="code">*</span>, <span class="code">/</span> and power (<span class="code">^</span>) operators plus <span class="code">()</span>.
         </p>
 
+        <p>
+            You can also use the following functions for columns with numeric values: <span class="code">abs</span>, <span class="code">ceil</span>, <span class="code">floor</span>, <span class="code">ln</span> (log), <span class="code">lg</span> log10, <span class="code">max</span>, <span class="code">min</span>, <span class="code">round</span>, and <span class="code">sqrt</span>.
+        </p>
+
+        <p>
+            You can also use logical operators (<span class="code">==</span>, <span class="code">!=</span>, <span class="code">&lt;</span>, <span class="code">&gt;</span>, <span class="code">>=</span>, <span class="code"><=</span>, <span class="code">&&</span>, <span class="code">||</span>) to filter entries for the list. You need to multiply the result of the filter with the the custom equation:
+        </p>
+
+        <p>
+            <span class="code">(io500_md ^ 2) / (io500_score / io500_bw) * (information_list_name == 'SC19' || information_client_nodes == 10) + max(io500_md, io500_bw)</span>
+        </p>
+
         <?php
         echo $this->Form->submit(__('Create'));
         echo $this->Form->end();
@@ -221,7 +233,7 @@
                     </td>
 
                     <?php
-                    if ($submission->submission->equation && $valid) {
+                    if ($equation && $valid) {
                     ?>
                     <td class="tb-number"><?php echo $this->Number->format($submission->submission->equation, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php

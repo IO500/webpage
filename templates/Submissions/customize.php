@@ -60,11 +60,15 @@
         </p>
 
         <p>
-            You can also use logical operators (<span class="code">==</span>, <span class="code">!=</span>, <span class="code">&lt;</span>, <span class="code">&gt;</span>, <span class="code">>=</span>, <span class="code"><=</span>, <span class="code">&&</span>, <span class="code">||</span>) to filter entries for the list. You need to multiply the result of the filter with the the custom equation:
+            You can also use logical operators (<span class="code">==</span>, <span class="code">!=</span>, <span class="code">&lt;</span>, <span class="code">&gt;</span>, <span class="code">>=</span>, <span class="code"><=</span>, <span class="code">&&</span>, <span class="code">||</span>) to filter entries for the list. You need to multiply the result of the filter with the the custom equation. Here is an example:
         </p>
 
         <p>
-            <span class="code">(io500_md ^ 2) / (io500_score / io500_bw) * (information_list_name == 'SC19' || information_client_nodes == 10) + max(io500_md, io500_bw)</span>
+            SC19 10-node bandwidth list: <span class="code">(io500_bw) * (information_list_name == 'SC19' && information_client_nodes == 10)</span>
+        </p>
+
+        <p>
+            More examples can be found at the end of the page!
         </p>
 
         <?php
@@ -328,6 +332,18 @@
         }
     }
     ?>
+
+    <p>
+        Additional examples on how to create custom lists:
+    </p>
+
+    <p>
+        Bandwidth per server list: <span class="code">(information_ds_nodes + information_md_nodes != 0) * (io500_bw / (information_ds_nodes + ((information_ds_nodes == 0) * information_md_nodes) + 0.0001))</span>
+    </p>
+
+    <p>
+        Metadata per server list: <span class="code">(information_ds_nodes + information_md_nodes != 0) * (io500_md / (information_md_nodes + ((information_md_nodes == 0) * information_ds_nodes) + 0.0001))</span>
+    </p>
 
     <div id="disqus_thread"></div>
 </div>

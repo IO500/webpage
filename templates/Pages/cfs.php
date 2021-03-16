@@ -4,11 +4,16 @@
     <h2>Call for Submission</h2>
 
     <p class="button">
-        Deadline: 13 July 2020 AoE
+        Deadline: 11 June 2021 AoE
     </p>
 
     <p>
-        The IO500 is now accepting and encouraging submissions for the upcoming 6th IO500 list. Once again, we are also accepting submissions to the 10 Node Challenge to encourage the submission of small scale results. The new ranked lists will be announced via live-stream at a virtual session. We hope to see many new results.
+        The IO500 Committee is now accepting and encouraging submissions for
+        the upcoming 8th IO500 list at ISC'21. Once again, we are also
+        accepting submissions to the 10 Node Challenge to encourage the
+        submission of small scale results. The new ranked lists will be
+        announced via live-stream at a virtual session. We hope to see many
+        new results.
     </p>
 
     <p>

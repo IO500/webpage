@@ -5,16 +5,29 @@
 
     <ul class="news">
         <li>
-            <span class="date">2019-11-19</span> The new IO500 list is published at SC'19.
+            <span class="date">2021-03-19</span> The <a class="link" href="https://io500.org/site/cfs">call for submissions</a> for the eighth IO500 list at ISC 2021 sent out.
         </li>
         <li>
-            <span class="date">2019-11-10</span> The schedule for our Supercomputing Birds-of-a-feather session is now defined
+            <span class="date">2020-11-18</span>The seventh IO500 list is published at SC'20.
         </li>
+        <li>
+            <span class="date">2020-07-23</span>The sixth IO500 list is published at ISC'20.
+        </li>
+        <li>
+            <span class="date">2019-11-19</span>The fifth IO500 list is published at SC'19.
+        </li>
+        <li>
+            <span class="date">2019-11-10</span>The schedule for our Supercomputing'19 Birds-of-a-feather session is now defined
+        </li>
+        <li>
+            <span class="date">2020-06-23</span>The fourth IO500 list is published at ISC'19.
+        </li>
+        <li>
         <li>            
-            <span class="date">2019-06-08</span> The call for submissions for the IO500 list at ISC 2019 sent out.
+            <span class="date">2019-04-18</span>The call for submissions for the IO500 list at ISC 2019 sent out.
         </li>
         <li>
-            <span class="date">2018-11-14</span> The third IO500 list is published.
+            <span class="date">2018-11-14</span>The third IO500 list is published.
 
             <ul>
                 <li>
@@ -29,13 +42,13 @@
             <span class="date">2018-09-27</span> The schedule for our Supercomputing <a class="link" href="https://sc18.supercomputing.org/presentation/?id=bof134&sess=sess390" target="_blank">Birds-of-a-Feather</a> session is now defined
         </li>
         <li>
-            <span class="date">2018-08-20</span> The <a class="link" href="https://io500.org/site/cfs">call for submissions</a> for the IO500 list at Supercomputing 2018 sent out.
+            <span class="date">2018-08-20</span> The call for submissions for the IO500 list at Supercomputing 2018 sent out.
         </li>
         <li>
             <span class="date">2018-06-28</span> The second IO500 list is published. Congrats again to Oakforest-PACS.
         </li>
         <li>
-            <span class="date">2018-05-20</span> The <a class="link" href="https://io500.org/site/cfs">call for submissions</a> for the second IO500 list sent out.
+            <span class="date">2018-05-20</span> The call for submissions for the second IO500 list sent out.
         </li>
         <li>
             <span class="date">2017-11-15</span> The first IO500 list is published. We congratulate Oakforest-PACS for their winning submission.
@@ -132,10 +145,10 @@
             <span class="date">2017-11-13</span> <a class="link" href="https://hps.vi4io.org/_media/research/talks/2017/2017-11-13-establishing_the_io_500_benchmark.pdf">Establishing the IO500 Benchmark: Julian Kunkel's talk at PDSW/DISC Workshop</a> (<a class="link" href="http://www.pdsw.org/pdsw-discs17/wips/kunkel-wip-pdsw-discs17.pdf">Extended abstract</a>)
         </li>
         <li>
-            <span class="date">2017-05-19</span> <a class="link" href="http://drops.dagstuhl.de/opus/volltexte/2017/8282/pdf/dagrep_v007_i005_p097_17202.pdf">Discussion of IO500 at Daghstuhl seminar documented in Section 8.2</a>
+            <span class="date">2017-06-25</span> <a class="link" href="https://hps.vi4io.org/_media/research/talks/2017/2017-06-25-io_500_status.pdf">The status of the IO500: Julian Kunkel's talk at LBNL</a>
         </li>
         <li>
-            <span class="date">2017-03-22</span> <a class="link" href="https://hps.vi4io.org/_media/research/talks/2017/2017-06-25-io_500_status.pdf">The status of the IO500: Julian Kunkel's talk at LBNL</a>
+            <span class="date">2017-05-19</span> <a class="link" href="http://drops.dagstuhl.de/opus/volltexte/2017/8282/pdf/dagrep_v007_i005_p097_17202.pdf">Discussion of IO500 at Daghstuhl seminar documented in Section 8.2</a>
         </li>
         <li>
             <span class="date">2016-11-17</span> <a class="link" href="https://www.vi4io.org/io500/bofs/sc16/start">Talks available from our SC16 BOF</a>

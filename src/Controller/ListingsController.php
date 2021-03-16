@@ -67,9 +67,6 @@ class ListingsController extends AppController
             ])
             ->where([
                 'ListingsSubmissions.listing_id' => $listing->id,
-            ])
-            ->order([
-                'ListingsSubmissions.score' => 'DESC',
             ]);
 
         $this->set('limit', $limit);

@@ -57,7 +57,7 @@
 	we present the <em>IO500 Bandwidth</em> and <em>IO500 Metadata</em>
 	awards based on the highest bandwidth and metadata scores.  In some
 	cases, the highest bandwidth and metadata scores are on submissions
-	for that do not have the higest overall score and are only visible in
+	for that do not have the highest overall score and are only visible in
 	the Full List.
     </p>
         

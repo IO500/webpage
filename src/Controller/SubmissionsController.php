@@ -279,8 +279,7 @@ class SubmissionsController extends AppController
                 ]
             ])
             ->where([
-                'ListingsSubmissions.listing_id' => $listing->id,
-                'Submissions.status' => 'VALID', # TODO: this can be removed once those records are removed
+                'ListingsSubmissions.listing_id' => $listing->id
             ])
             ->order([
                 'ListingsSubmissions.score' => 'DESC',

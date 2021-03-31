@@ -55,6 +55,22 @@
             You can use any columns with numeric values for the custom equation. It has support for <span class="code">+</span>, <span class="code">-</span>, <span class="code">*</span>, <span class="code">/</span> and power (<span class="code">^</span>) operators plus <span class="code">()</span>.
         </p>
 
+        <p>
+            You can also use the following functions for columns with numeric values: <span class="code">abs</span>, <span class="code">ceil</span>, <span class="code">floor</span>, <span class="code">ln</span> (log), <span class="code">lg</span> log10, <span class="code">max</span>, <span class="code">min</span>, <span class="code">round</span>, and <span class="code">sqrt</span>.
+        </p>
+
+        <p>
+            You can also use logical operators (<span class="code">==</span>, <span class="code">!=</span>, <span class="code">&lt;</span>, <span class="code">&gt;</span>, <span class="code">>=</span>, <span class="code"><=</span>, <span class="code">&&</span>, <span class="code">||</span>) to filter entries for the list. You need to multiply the result of the filter with the the custom equation. Here is an example:
+        </p>
+
+        <p>
+            SC19 10-node bandwidth list: <span class="code">(io500_bw) * (information_list_name == 'SC19' && information_client_nodes == 10)</span>
+        </p>
+
+        <p>
+            More examples can be found at the end of the page!
+        </p>
+
         <?php
         echo $this->Form->submit(__('Create'));
         echo $this->Form->end();
@@ -199,9 +215,12 @@
                     $url = $this->Url->build([
                             'controller' => 'submissions',
                             'action' => 'view',
-                            $submission->id
+                            $submission->submission->id
                         ]
                     );
+
+                    // We will use the latest valid score to display
+                    $submission->submission->io500_score = $submission->score;
                 ?>
                 <tr onclick="window.location='<?php echo $url; ?>';">
                 <tr>
@@ -210,7 +229,7 @@
                         echo $this->Html->link(($i + 1), [
                             'controller' => 'submissions',
                             'action' => 'view',
-                            $submission->id
+                            $submission->submission->id
                         ], [
                             'class' => 'rank'
                         ]);
@@ -218,9 +237,9 @@
                     </td>
 
                     <?php
-                    if ($submission->equation && $valid) {
+                    if ($equation && $valid) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->equation, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->equation, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                     }
 
@@ -228,7 +247,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'information_') === 0) {
                     ?>
-                    <td><?php echo h($submission->{$field}) ?></td>
+                    <td><?php echo h($submission->submission->{$field}) ?></td>
                     <?php
                             }
                         }
@@ -238,7 +257,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'io500_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -248,7 +267,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'mdtest_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -258,7 +277,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'ior_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -268,7 +287,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'find_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -313,6 +332,18 @@
         }
     }
     ?>
+
+    <p>
+        Additional examples on how to create custom lists:
+    </p>
+
+    <p>
+        Bandwidth per server list: <span class="code">(information_ds_nodes + information_md_nodes != 0) * (io500_bw / (information_ds_nodes + ((information_ds_nodes == 0) * information_md_nodes) + 0.0001))</span>
+    </p>
+
+    <p>
+        Metadata per server list: <span class="code">(information_ds_nodes + information_md_nodes != 0) * (io500_md / (information_md_nodes + ((information_md_nodes == 0) * information_ds_nodes) + 0.0001))</span>
+    </p>
 
     <div id="disqus_thread"></div>
 </div>

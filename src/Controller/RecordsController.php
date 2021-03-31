@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Core\Configure;
-use Cake\Event\EventInterface;
 use Cake\Datasource\ConnectionManager;
-use Ramsey\Uuid\Uuid;
+use Cake\Event\EventInterface;
 use NXP\MathExecutor;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Records Controller
@@ -153,17 +153,17 @@ class RecordsController extends AppController
         if ($equation) {
             // Sort by the result of the equation
             if ($display['custom-order'] == 'DESC') {
-                usort($submissions, function($a, $b) {
+                usort($submissions, function ($a, $b) {
                     return $a->equation < $b->equation;
                 });
             } else {
-                usort($submissions, function($a, $b) {
+                usort($submissions, function ($a, $b) {
                     return $a->equation > $b->equation;
                 });
             }
         } else {
             // Sort by the IO500 score
-            usort($submissions, function($a, $b) {
+            usort($submissions, function ($a, $b) {
                 return $a->io500_score < $b->io500_score;
             });
         }

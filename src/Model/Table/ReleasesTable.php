@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -41,6 +40,9 @@ class ReleasesTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
+        $this->hasMany('Listings', [
+            'foreignKey' => 'release_id',
+        ]);
         $this->hasMany('Submissions', [
             'foreignKey' => 'release_id',
         ]);

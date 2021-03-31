@@ -65,8 +65,10 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect(
         '/',
         [
-            'controller' => 'Submissions',
-            'action' => 'latest'
+            'controller' => 'Listings',
+            'action' => 'list',
+            'sc20',
+            'io500'
         ]
     );
 
@@ -175,10 +177,24 @@ $routes->scope('/', function (RouteBuilder $builder) {
         ]
     );
 
+    $builder->connect(
+        '/list/*',
+        [
+            'controller' => 'Listings',
+            'action' => 'list'
+        ]
+    );    
+
     /*
      * ...and connect the rest of 'Pages' controller's URLs.
      */
-    $builder->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+    $builder->connect(
+        '/pages/*',
+        [
+            'controller' => 'Pages',
+            'action' => 'display'
+        ]
+    );
 
     /*
      * Connect catchall routes for all controllers.

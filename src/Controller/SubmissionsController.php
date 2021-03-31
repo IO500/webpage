@@ -6,12 +6,11 @@ namespace App\Controller;
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 use Cake\Filesystem\File;
-use Cake\I18n\Date;
-use NXP\MathExecutor;
-use NXP\Exception\IncorrectExpressionException;
 use NXP\Exception\IncorrectBracketsException;
+use NXP\Exception\IncorrectExpressionException;
 use NXP\Exception\UnknownOperatorException;
 use NXP\Exception\UnknownVariableException;
+use NXP\MathExecutor;
 
 /**
  * Submissions Controller
@@ -34,364 +33,6 @@ use NXP\Exception\UnknownVariableException;
 class SubmissionsController extends AppController
 {
     /**
-     * Latest method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
-    public function latest()
-    {
-        $limit = 1000;
-
-        $release = $this->Submissions->Releases->find('all')
-            ->where([
-                'Releases.release_date <=' => date('Y-m-d')
-            ])
-            ->order([
-                'Releases.release_date' => 'DESC'
-            ])
-            ->first();
-
-        $submissions = $this->Submissions->find('all')
-            ->select([
-                'Submissions.id',
-                'Submissions.information_system',
-                'Submissions.information_institution',
-                'Submissions.information_system',
-                'Submissions.information_filesystem_type',
-            ])
-            ->where([
-                'Submissions.information_submission_date <=' => $release->release_date->format('Y-m-d'),
-                'Submissions.valid_from <=' => $release->release_date,
-                'OR' => [
-                    'Submissions.valid_to IS NULL',
-                    'Submissions.valid_to >=' => $release->release_date,
-                ],
-                'Submissions.information_client_nodes >=' => 10,
-                'Submissions.include_in_io500 IS' => true,
-                'Submissions.status' => 'VALID',
-            ])
-            ->order([
-                'Submissions.io500_score' => 'DESC',
-            ])
-            ->limit($limit);
-
-        $storages = [];
-        $valid_records = [];
-        
-        // We need to remove duplicate entries from submissions of the same system
-        foreach ($submissions as $submission) {
-            $key = $submission->information_institution . ' ' .
-                $submission->information_system . ' ' .
-                $submission->information_filesystem_type;
-
-            if (!in_array($key, $storages)) {
-                $storages[] = $key;
-                $valid_records[] = $submission->id;
-            }
-        }
-
-        $limit = Configure::read('IO500.pagination');
-
-        $settings = [
-            'order' => [
-                'io500_score' => 'DESC',
-            ],
-            'limit' => $limit
-        ];
-
-        if (isset($this->request->getParam('?')['sort'])) {
-            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
-        }
-
-        $submissions = $this->Submissions->find('all')        
-            ->contain([
-                'Releases'
-            ])
-            ->where([
-                'Submissions.id IN' => $valid_records,
-            ])
-            ->limit($limit);
-
-        $this->set('limit', $limit);
-        $this->set('release', $release);
-        $this->set('submissions', $this->paginate($submissions, $settings));
-    }
-
-    /**
-     * Ten method
-     *
-     * @param string|null $list Submission information_list_name.
-     * @return \Cake\Http\Response|null|void Renders view
-     */
-    public function ten($list = null)
-    {
-        $limit = 1000;
-
-        $release = $this->Submissions->Releases->find('all')
-            ->where([
-                'Releases.release_date <=' => date('Y-m-d'),
-                'Releases.acronym' => strtoupper($list)
-            ])
-            ->first();
-
-        $submissions = $this->Submissions->find('all')
-            ->select([
-                'Submissions.id',
-                'Submissions.information_institution',
-                'Submissions.information_system',
-                'Submissions.information_filesystem_type',
-            ])
-            ->where([
-                'Submissions.information_submission_date <=' => $release->release_date->format('Y-m-d'),
-                'Submissions.valid_from <=' => $release->release_date,
-                'OR' => [
-                    'Submissions.valid_to IS NULL',
-                    'Submissions.valid_to >=' => $release->release_date,
-                ],
-                'Submissions.information_client_nodes' => 10,
-                'Submissions.information_10_node_challenge IS' => true,
-                'Submissions.status' => 'VALID'
-            ])
-            ->order([
-                'Submissions.io500_score' => 'DESC',
-            ])
-            ->limit($limit);
-
-        $storages = [];
-        $valid_records = [];
-
-        // We need to remove duplicate entries from submissions of the same system
-        foreach ($submissions as $submission) {
-            $key = $submission->information_institution . ' ' .
-                $submission->information_system . ' ' .
-                $submission->information_filesystem_type;
-
-            if (!in_array($key, $storages)) {
-                $storages[] = $key;
-                $valid_records[] = $submission->id;
-            }
-        }
-
-        $limit = Configure::read('IO500.pagination');
-
-        $settings = [
-            'order' => [
-                'io500_score' => 'DESC',
-            ],
-            'limit' => $limit
-        ];
-
-        if (isset($this->request->getParam('?')['sort'])) {
-            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
-        }
-
-        $submissions = $this->Submissions->find('all')
-            ->where([
-                'Submissions.id IN' => $valid_records,
-            ])
-            ->limit($limit);
-
-        $this->set('limit', $limit);
-        $this->set('release', $release);
-        $this->set('submissions', $this->paginate($submissions, $settings));
-    }
-
-    /**
-     * List method
-     *
-     * @param string|null $list Submission information_list_name.
-     * @return \Cake\Http\Response|null|void Renders view
-     */
-    public function list($list = null)
-    {
-        $limit = 1000;
-
-        $release = $this->Submissions->Releases->find('all')
-            ->where([
-                'Releases.release_date <=' => date('Y-m-d'),
-                'Releases.acronym' => strtoupper($list)
-            ])
-            ->first();
-
-        $submissions = $this->Submissions->find('all')
-            ->select([
-                'Submissions.id',
-                'Submissions.information_system',
-                'Submissions.information_institution',
-                'Submissions.information_system',
-                'Submissions.information_filesystem_type',
-            ])
-            ->where([
-                'Submissions.information_submission_date <=' => $release->release_date->format('Y-m-d'),
-                'Submissions.valid_from <=' => $release->release_date,
-                'OR' => [
-                    'Submissions.valid_to IS NULL',
-                    'Submissions.valid_to >=' => $release->release_date,
-                ],
-                'Submissions.information_client_nodes >=' => 10,
-                'Submissions.include_in_io500 IS' => true,
-                'Submissions.status' => 'VALID',
-            ])
-            ->order([
-                'Submissions.io500_score' => 'DESC',
-            ])
-            ->limit($limit);
-
-        $storages = [];
-        $valid_records = [];
-        
-        // We need to remove duplicate entries from submissions of the same system
-        foreach ($submissions as $submission) {
-            $key = $submission->information_institution . ' ' .
-                $submission->information_system . ' ' .
-                $submission->information_filesystem_type;
-
-            if (!in_array($key, $storages)) {
-                $storages[] = $key;
-                $valid_records[] = $submission->id;
-            }
-        }
-
-        $limit = Configure::read('IO500.pagination');
-
-        $settings = [
-            'order' => [
-                'io500_score' => 'DESC',
-            ],
-            'limit' => $limit
-        ];
-
-        if (isset($this->request->getParam('?')['sort'])) {
-            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
-        }
-
-        $submissions = $this->Submissions->find('all')        
-            ->contain([
-                'Releases'
-            ])
-            ->where([
-                'Submissions.id IN' => $valid_records,
-            ])
-            ->limit($limit);
-
-        $this->set('limit', $limit);
-        $this->set('release', $release);
-        $this->set('submissions', $this->paginate($submissions, $settings));
-    }
-
-    /**
-     * Historical method
-     *
-     * @param string|null $list Submission information_list_name.
-     * @return \Cake\Http\Response|null|void Renders view
-     */
-    public function historical($list = null)
-    {
-        $limit = Configure::read('IO500.pagination');
-
-        $release = $this->Submissions->Releases->find('all')
-            ->where([
-                'Releases.release_date <=' => date('Y-m-d'),
-                'Releases.acronym' => strtoupper($list)
-            ])
-            ->first();
-
-        $submissions = $this->Submissions->find('all')
-            ->where([
-                'Submissions.information_submission_date <=' => $release->release_date->format('Y-m-d'),
-                'Submissions.valid_from <=' => $release->release_date,
-                'OR' => [
-                    'Submissions.valid_to IS NULL',
-                    'Submissions.valid_to >=' => $release->release_date,
-                ],
-                'Submissions.status IN' => [
-                    'VALID', 'INVALID'
-                ]
-            ]);
-
-        $settings = [
-            'order' => [
-                'io500_score' => 'DESC',
-            ],
-            'limit' => $limit
-        ];
-
-        if (isset($this->request->getParam('?')['sort'])) {
-            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
-        }
-
-
-        $this->set('limit', $limit);
-        $this->set('release', $release);
-        $this->set('submissions', $this->paginate($submissions, $settings));
-    }
-
-    /**
-     * Full method
-     *
-     * @param string|null $list Submission information_list_name.
-     * @return \Cake\Http\Response|null|void Renders view
-     */
-    public function full($list = null)
-    {
-        $limit = Configure::read('IO500.pagination');
-
-        $release = $this->Submissions->Releases->find('all')
-            ->where([
-                'Releases.release_date <=' => date('Y-m-d'),
-                'Releases.acronym' => strtoupper($list)
-            ])
-            ->first();
-
-        $submissions = $this->Submissions->find('all')
-            ->where([
-                'Submissions.information_submission_date <=' => $release->release_date->format('Y-m-d'),
-                'Submissions.valid_from <=' => $release->release_date,
-                'OR' => [
-                    'Submissions.valid_to IS NULL',
-                    'Submissions.valid_to >=' => $release->release_date,
-                ],
-                'Submissions.status' => 'VALID'
-            ]);
-
-        $settings = [
-            'order' => [
-                'io500_score' => 'DESC',
-            ],
-            'limit' => $limit
-        ];
-
-        if (isset($this->request->getParam('?')['sort'])) {
-            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
-        }
-
-        $this->set('limit', $limit);
-        $this->set('release', $release);
-        $this->set('submissions', $this->paginate($submissions, $settings));
-    }
-
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
-    public function index()
-    {
-        $submissions = $this->paginate($this->Submissions);
-
-        $lists = [
-            'sc17',
-            'isc18',
-            'sc18',
-            'isc19',
-            'sc19',
-        ];
-
-        $this->set('lists', $lists);
-        $this->set(compact('submissions'));
-    }
-
-    /**
      * View method
      *
      * @param string|null $id Submission id.
@@ -402,9 +43,37 @@ class SubmissionsController extends AppController
     {
         $prefix = Configure::read('IO500.storage');
 
-        $submission = $this->Submissions->get($id, [
-            'contain' => [],
-        ]);
+        $submission = $this->Submissions->get($id);
+
+        // We need to fetch the scores
+        $listing = $this->Submissions->ListingsSubmissions->Listings->find('all')
+            ->contain([
+                'Releases' => [
+                    'Listings' => function ($query) {
+                        return $query->where([
+                            'Listings.type_id' => 4, // Historical List
+                        ]);
+                    },
+                ],
+            ])
+            ->where([
+                'Releases.release_date <=' => date('Y-m-d'),
+            ])
+            ->order([
+                'Releases.release_date' => 'DESC',
+            ])
+            ->first();
+
+        $score = $this->Submissions->ListingsSubmissions->find('all')
+            ->where([
+                'ListingsSubmissions.listing_id' => $listing->id,
+            ])
+            ->order([
+                'ListingsSubmissions.score' => 'DESC',
+            ])
+            ->first();
+
+        $submission->io500_score = $score->score;
 
         $target_files = [
             'ior_easy_read',
@@ -438,7 +107,7 @@ class SubmissionsController extends AppController
                     foreach ($target_files as $target) {
                         if (
                             (
-                             strpos($file->getPathname(), $target) !== false || 
+                             strpos($file->getPathname(), $target) !== false ||
                              strpos(str_replace('_', '-', $file->getPathname()), str_replace('_', '-', $target)) !== false
                             ) &&
                             strpos($file->getPathname(), '._') === false
@@ -564,12 +233,16 @@ class SubmissionsController extends AppController
 
     /**
      * Customize method
+     * Allows to create custom lists based on the last historical list available
+     * We need to use the last historical list as the score it no longer stored in the submission
      *
      * @param string|null $hash Record hash.
      * @return \Cake\Http\Response|null|void Renders view
      */
     public function customize($hash = null)
     {
+        $limit = 1000;
+
         $db = ConnectionManager::get('default');
 
         // Create a schema collection.
@@ -581,23 +254,47 @@ class SubmissionsController extends AppController
         // Get columns list from table
         $columns = $tableSchema->columns();
 
+        // This column can be used to compute custom metrics, but it will take the initial value from the last historical list
+        array_splice($columns, 8, 0, ['io500_score']);
+
         $display = [];
 
-        $submissions = $this->Submissions->find('all')
+        $listing = $this->Submissions->ListingsSubmissions->Listings->find('all')
             ->contain([
-                'Releases'
+                'Releases',
             ])
             ->where([
+                'Listings.type_id' => 4, // Historical List
                 'Releases.release_date <=' => date('Y-m-d'),
-                'Submissions.information_list_name IS NOT' => null,
             ])
             ->order([
-                'Submissions.io500_score' => 'DESC',
-            ]);
+                'Releases.release_date' => 'DESC',
+            ])
+            ->first();
+
+        $submissions = $this->Submissions->ListingsSubmissions->find('all')
+            ->contain([
+                'Submissions' => [
+                    'Releases'
+                ]
+            ])
+            ->where([
+                'ListingsSubmissions.listing_id' => $listing->id
+            ])
+            ->order([
+                'ListingsSubmissions.score' => 'DESC',
+            ])
+            ->limit($limit);
 
         $selected_fields = null;
         $equation = false;
         $valid = true;
+
+        foreach ($submissions as $submission) {
+            // We will use the latest valid score to display
+            $submission->submission->io500_score = $submission->score;
+            $submission->submission->information_list_name = $submission->submission->release->acronym;
+        }
 
         if ($this->request->is('post')) {
             $selected_to_display = $this->request->getData();
@@ -624,13 +321,13 @@ class SubmissionsController extends AppController
                 foreach ($submissions as $submission) {
                     // We need to set all the variables available for calculation
                     foreach ($columns as $key => $column) {
-                        if (is_numeric($submission->{$column})) {
-                            $executor->setVar($column, $submission->{$column});
+                        if (is_numeric($submission->submission->{$column}) || is_string($submission->submission->{$column})) {
+                            $executor->setVar($column, $submission->submission->{$column});
                         }
                     }
 
                     try {
-                        $submission->equation = $executor->execute($selected_to_display['custom-equation']);
+                        $submission->submission->equation = $executor->execute($selected_to_display['custom-equation']);
                     } catch (IncorrectExpressionException $e) {
                         $valid = false;
 
@@ -703,18 +400,18 @@ class SubmissionsController extends AppController
         if ($equation) {
             // Sort by the result of the equation
             if ($selected_to_display['custom-order'] == 'DESC') {
-                usort($submissions, function($a, $b) {
-                    return $a->equation < $b->equation;
+                usort($submissions, function ($a, $b) {
+                    return $a->submission->equation < $b->submission->equation;
                 });
             } else {
-                usort($submissions, function($a, $b) {
-                    return $a->equation > $b->equation;
+                usort($submissions, function ($a, $b) {
+                    return $a->submission->equation > $b->submission->equation;
                 });
             }
         } else {
             // Sort by the IO500 score
-            usort($submissions, function($a, $b) {
-                return $a->io500_score < $b->io500_score;
+            usort($submissions, function ($a, $b) {
+                return $a->score < $b->score;
             });
         }
 
@@ -746,10 +443,10 @@ class SubmissionsController extends AppController
 
         $releases = $this->Submissions->Releases->find('all')
             ->where([
-                'Releases.release_date <=' => date('Y-m-d')
+                'Releases.release_date <=' => date('Y-m-d'),
             ])
             ->order([
-                'Releases.release_date' => 'DESC'
+                'Releases.release_date' => 'DESC',
             ]);
 
         $records = [];
@@ -781,7 +478,7 @@ class SubmissionsController extends AppController
             ->setClassName('CsvView.Csv')
             ->setOptions([
                 'header' => $columns,
-                'serialize' => 'records'
+                'serialize' => 'records',
             ]);
     }
 }

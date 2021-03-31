@@ -47,6 +47,20 @@
             inclusion in the 10-Node Challenge ranked list, showing only one
             highest-scoring result per storage system</li>
     </ul>
+    
+    <p>
+        Please note that the Ranked Lists only show the best submission for
+	each storage systems, so if a storage system has multiple submissions
+	only the one with the <strong>highest overall score</strong> is shown
+	in the Ranked Lists.  All submissions will appear in the Full and
+	Historical lists.  However, please note that at the semi-annual BOFs
+	we present the <em>IO500 Bandwidth</em> and <em>IO500 Metadata</em>
+	awards based on the highest bandwidth and metadata scores.  In some
+	cases, the highest bandwidth and metadata scores are on submissions
+	for that do not have the highest overall score and are only visible in
+	the Full List.
+    </p>
+        
 
     <h3>Workloads</h3>
 

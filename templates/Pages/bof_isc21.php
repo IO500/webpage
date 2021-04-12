@@ -44,9 +44,9 @@
 
     <p>
         The IO500 is quickly becoming the de facto benchmarking standard for
-        HPC storage. Developed two years ago, the IO500 has published three
+        HPC storage. Developed in 2017, the IO500 has published three
         official lists so far. A BoF highlight is the presentation of the
-        fourth IO500 list.
+        eighth IO500 list.
     </p>
 
     <p>
@@ -81,9 +81,6 @@
 
     <h3>Agenda</h3>
 
-    <p>
-        We have a series of interactive talks and discussions.
-    </p>
 
     <ul>
         <li>
@@ -93,7 +90,7 @@
             <strong>What's new with IO500</strong> – <em>George Markomanolis</em> 
         </li>
         <li>
-            <strong>The new IO500 list and analysis</strong> – <em>Andreas Dilger, Dean Hildebrand, Julian Kunkel, Jay Lofstead, George Markomanolis, Julian Kunkel</em>
+            <strong>The new IO500 list and analysis</strong> – <em>Andreas Dilger, Dean Hildebrand, Julian Kunkel, Jay Lofstead, George Markomanolis</em>
         </li>
         <li>
             <strong>Roadmap for IO500</strong> – <em>Julian Kunkel</em>

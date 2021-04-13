@@ -44,9 +44,8 @@
 
     <p>
         The IO500 is quickly becoming the de facto benchmarking standard for
-        HPC storage. Developed in 2017, the IO500 has published three
-        official lists so far. A BoF highlight is the presentation of the
-        eighth IO500 list.
+        HPC storage. Developed in 2017, the IO500 has published bi-annual lists
+        since then for both ISC and SC. A BoF highlight is the presentation of the eighth IO500 list.
     </p>
 
     <p>

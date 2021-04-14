@@ -27,7 +27,7 @@
         <tbody>
             <tr>
                 <td><strong>Date</strong></td>
-                <td>Tuesday, June 28th, 13:45-14:45</td>
+                <td>TBA</td>
             </tr>
             <tr>
                 <td><strong>Venue</strong></td>
@@ -82,9 +82,6 @@
 
 
     <ul>
-        <li>
-            <strong>The Virtual Institute for I/O</strong> – <em>Julian Kunkel</em>
-        </li>
         <li>
             <strong>What's new with IO500</strong> – <em>George Markomanolis</em> 
         </li>

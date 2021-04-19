@@ -82,12 +82,21 @@
 
 
     <ul>
+       <li>
+            <strong>Introduction to BOF</strong> – <em>Andreas Dilger</em>
+        </li>
+
         <li>
             <strong>What's new with IO500</strong> – <em>George Markomanolis</em> 
         </li>
         <li>
-            <strong>The new IO500 list and analysis</strong> – <em>Andreas Dilger, Dean Hildebrand, Julian Kunkel, Jay Lofstead, George Markomanolis</em>
+            <strong>The new IO500 list and analysis:</strong> – <em>Andreas Dilger, Dean Hildebrand, Julian Kunkel, Jay Lofstead, George Markomanolis</em>
         </li>
+         <ul>
+              <li>Highlights</li>
+              <li>Trends</li>
+              <li>List of awards</li>
+         </ul>
         <li>
             <strong>Roadmap for IO500</strong> – <em>Julian Kunkel</em>
         </li>

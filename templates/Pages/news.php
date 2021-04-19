@@ -5,6 +5,17 @@
 
     <ul class="news">
         <li>
+            <span class="date">2021-04-16</span> The
+                <?php
+                echo $this->Html->link(__('call for submissions'), [
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'cfs'
+                ]);
+                ?>
+            for the eighth IO500 list at ISC 2021 sent out.
+        </li>
+        <li>
             <span class="date">2021-04-14</span>
                 <?php
                 echo $this->Html->link(__('Press Release for April 14, 2021'), [
@@ -12,10 +23,7 @@
                     'action' => 'display',
                     'news-20210414'
                 ]);
-                ?>.
-        </li>
-        <li>
-            <span class="date">2021-03-19</span> The <a class="link" href="https://io500.org/site/cfs">call for submissions</a> for the eighth IO500 list at ISC 2021 sent out.
+                ?>. 
         </li>
         <li>
             <span class="date">2020-11-18</span>The seventh IO500 list is published at SC'20.

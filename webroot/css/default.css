@@ -429,8 +429,7 @@ table {
     text-align: right;
 }
 
-.rank {
-    background: #d63b1e;    
+.rank, .custom-rank {
     border-radius: 50px;
     color: #fff;
     display: inline-block;
@@ -442,9 +441,17 @@ table {
     width: 23px;
 }
 
-.rank:hover{
+.rank {
+    background: #d63b1e;
+}
+
+.rank:hover, .custom-rank:hover{
     background: #444;
     color: #fff;
+}
+
+.custom-rank {
+    background: #222;
 }
 
 input[type=submit], .button-highlight {
@@ -838,4 +845,16 @@ footer > .container{
 .customize label {
     display: block;
     margin: 10px 5px 5px;
+}
+
+.unofficial {
+    background: #d50000;
+    border-radius: 3px;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.unofficial-bottom {
+    margin: 30px 0 0;
 }

@@ -15,12 +15,12 @@
 
     <div class="both"></div>
 
-    <p>
-        By <?php echo h($record->author); ?> - <?php echo h($record->created); ?>
-    </p>
+    <div class="unofficial">
+        <strong>NOTICE</strong>: This is an <strong>unofficial</strong> IO500 list created by <?php echo h($record->author); ?>.
+    </div>
 
     <p>
-        <strong>Ranking:</strong> 
+        <strong>Custom Ranking:</strong> 
         <?php if ($equation) { ?>
             <span class="code"><?php echo $display['custom-equation']; ?></span>
         <?php } else {?>
@@ -34,8 +34,8 @@
                 <tr>
                     <th rowspan="2" class="tb-id">#</th>
 
-                    <?php if ($equation) { ?>
-                    <th rowspan="2" class="tb-id">Ranking (<?php echo $display['custom-order']; ?>)</th>
+                    <?php if ($equation && $valid) { ?>
+                    <th rowspan="2" class="tb-id">Ranking<br/>(<?php echo $display['custom-order']; ?>)</th>
                     <?php } ?>
 
                     <?php
@@ -46,31 +46,31 @@
                     $total_find = 0;
 
                     foreach ($display['custom-fields'] as $field) {
-                        if (strpos($field, 'information_') !== false) {
+                        if (strpos($field, 'information_') === 0) {
                             $total_information += 1;
                         }
                     }
-                    
+
                     foreach ($display['custom-fields'] as $field) {
-                        if (strpos($field, 'io500_') !== false) {
+                        if (strpos($field, 'io500_') === 0) {
                             $total_io500 += 1;
                         }
                     }
 
                     foreach ($display['custom-fields'] as $field) {
-                        if (strpos($field, 'mdtest_') !== false) {
+                        if (strpos($field, 'mdtest_') === 0) {
                             $total_mdtest += 1;
                         }
                     }
 
                     foreach ($display['custom-fields'] as $field) {
-                        if (strpos($field, 'ior_') !== false) {
+                        if (strpos($field, 'ior_') === 0) {
                             $total_ior += 1;
                         }
                     }
 
                     foreach ($display['custom-fields'] as $field) {
-                        if (strpos($field, 'find_') !== false) {
+                        if (strpos($field, 'find_') === 0) {
                             $total_find += 1;
                         }
                     }
@@ -100,7 +100,7 @@
                     <?php
                     if ($total_information) {
                         foreach ($display['custom-fields'] as $field) {
-                            if (strpos($field, 'information_') !== false) {
+                            if (strpos($field, 'information_') === 0) {
                     ?>
 
                     <th rowspan="2"><?php echo str_replace('_', ' ', str_replace('information_', '', $field)); ?></th>
@@ -112,7 +112,7 @@
                     
                     if ($total_io500) {
                         foreach ($display['custom-fields'] as $field) {
-                            if (strpos($field, 'io500_') !== false) {
+                            if (strpos($field, 'io500_') === 0) {
                     ?>
 
                     <th rowspan="2" class="tb-number"><?php echo str_replace('_', ' ', str_replace('io500_', '', $field)); ?></th>
@@ -124,7 +124,7 @@
                     
                     if ($total_mdtest) {
                         foreach ($display['custom-fields'] as $field) {
-                            if (strpos($field, 'mdtest_') !== false) {
+                            if (strpos($field, 'mdtest_') === 0) {
                     ?>
 
                     <th rowspan="2" class="tb-number"><?php echo str_replace('_', ' ', str_replace('mdtest_', '', $field)); ?></th>
@@ -136,7 +136,7 @@
                     
                     if ($total_ior) {
                         foreach ($display['custom-fields'] as $field) {
-                            if (strpos($field, 'ior_') !== false) {
+                            if (strpos($field, 'ior_') === 0) {
                     ?>
 
                     <th rowspan="2" class="tb-number"><?php echo str_replace('_', ' ', str_replace('ior_', '', $field)); ?></th>
@@ -148,7 +148,7 @@
                     
                     if ($total_find) {
                         foreach ($display['custom-fields'] as $field) {
-                            if (strpos($field, 'find_') !== false) {
+                            if (strpos($field, 'find_') === 0) {
                     ?>
 
                     <th rowspan="2" class="tb-number"><?php echo str_replace('_', ' ', str_replace('find_', '', $field)); ?></th>
@@ -161,24 +161,43 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($submissions as $i => $submission) { ?>
+                <?php
+                foreach ($submissions as $i => $submission) {
+                    $url = $this->Url->build([
+                            'controller' => 'submissions',
+                            'action' => 'view',
+                            $submission->submission->id
+                        ]
+                    );
+
+                    // We will use the latest valid score to display
+                    $submission->submission->io500_score = $submission->score;
+                ?>
                 <tr>
                     <td class="tb-id">
-                        <b class="rank"><?php echo ($i + 1) ?></b>
+                        <?php
+                        echo $this->Html->link(($i + 1), [
+                            'controller' => 'submissions',
+                            'action' => 'view',
+                            $submission->submission->id
+                        ], [
+                            'class' => 'custom-rank'
+                        ]);
+                        ?>
                     </td>
 
                     <?php
-                    if ($submission->equation) {
+                    if ($equation && $valid) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->equation, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->equation, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                     }
 
                     if ($total_information) {
                         foreach ($display['custom-fields'] as $field) {
-                            if (strpos($field, 'information_') !== false) {
+                            if (strpos($field, 'information_') === 0) {
                     ?>
-                    <td><?php echo h($submission->{$field}) ?></td>
+                    <td><?php echo h($submission->submission->{$field}) ?></td>
                     <?php
                             }
                         }
@@ -186,9 +205,9 @@
                     
                     if ($total_io500) {
                         foreach ($display['custom-fields'] as $field) {
-                            if (strpos($field, 'io500_') !== false) {
+                            if (strpos($field, 'io500_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -196,9 +215,9 @@
                     
                     if ($total_mdtest) {
                         foreach ($display['custom-fields'] as $field) {
-                            if (strpos($field, 'mdtest_') !== false) {
+                            if (strpos($field, 'mdtest_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -206,9 +225,9 @@
                     
                     if ($total_ior) {
                         foreach ($display['custom-fields'] as $field) {
-                            if (strpos($field, 'ior_') !== false) {
+                            if (strpos($field, 'ior_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -216,9 +235,9 @@
                     
                     if ($total_find) {
                         foreach ($display['custom-fields'] as $field) {
-                            if (strpos($field, 'find_') !== false) {
+                            if (strpos($field, 'find_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -228,6 +247,10 @@
                 <?php } ?>
             </tbody>
         </table>
+    </div>
+
+    <div class="unofficial unofficial-bottom">
+        <strong>NOTICE</strong>: This is an <strong>unofficial</strong> IO500 list created by <?php echo h($record->author); ?>.
     </div>
 
     <div id="disqus_thread"></div>

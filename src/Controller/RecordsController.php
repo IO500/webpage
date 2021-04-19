@@ -79,6 +79,8 @@ class RecordsController extends AppController
      */
     public function list($hash = null)
     {
+        $limit = 1000;
+
         $record = $this->Records->find('all')
             ->where([
                 'Records.hash' => $hash,
@@ -99,18 +101,51 @@ class RecordsController extends AppController
         // Get columns list from table
         $columns = $tableSchema->columns();
 
+        unset($tableSchema);
+        unset($collection);
+
         // Decode the JSON with the field list into an associative array (true)
         $display = json_decode($record->fields, true);
 
-        $submissions = $this->Submissions->find('all')
+        // This column can be used to compute custom metrics, but it will take the initial value from the last historical list
+        array_splice($columns, 8, 0, ['io500_score']);
+
+        $listing = $this->Submissions->ListingsSubmissions->Listings->find('all')
+            ->contain([
+                'Releases',
+            ])
             ->where([
-                'Submissions.information_list_name IS NOT' => null,
+                'Listings.type_id' => 4, // Historical List
+                'Releases.release_date <=' => date('Y-m-d'),
             ])
             ->order([
-                'Submissions.io500_score' => 'DESC',
-            ]);
+                'Releases.release_date' => 'DESC',
+            ])
+            ->first();
 
+        $submissions = $this->Submissions->ListingsSubmissions->find('all')
+            ->contain([
+                'Submissions' => [
+                    'Releases'
+                ]
+            ])
+            ->where([
+                'ListingsSubmissions.listing_id' => $listing->id
+            ])
+            ->order([
+                'ListingsSubmissions.score' => 'DESC',
+            ])
+            ->limit($limit);
+
+        $selected_fields = null;
         $equation = false;
+        $valid = true;
+
+        foreach ($submissions as $submission) {
+            // We will use the latest valid score to display
+            $submission->submission->io500_score = $submission->score;
+            $submission->submission->information_list_name = $submission->submission->release->acronym;
+        }
 
         if (isset($display['custom-equation'])) {
             $equation = true;
@@ -120,29 +155,24 @@ class RecordsController extends AppController
             foreach ($submissions as $submission) {
                 // We need to set all the variables available for calculation
                 foreach ($columns as $key => $column) {
-                    if (
-                        strpos($column, 'io500_') !== false ||
-                        strpos($column, 'mdtest_') !== false ||
-                        strpos($column, 'ior_') !== false ||
-                        strpos($column, 'find_') !== false
-                    ) {
-                        if (is_numeric($submission->{$column})) {
-                            $executor->setVar($column, $submission->{$column});
-                        }
+                    if (is_numeric($submission->submission->{$column}) || is_string($submission->submission->{$column})) {
+                        $executor->setVar($column, $submission->submission->{$column});
                     }
                 }
 
-                $submission->equation = $executor->execute($display['custom-equation']);
+                $submission->submission->equation = $executor->execute($display['custom-equation']);
             }
+
+            $selected_fields = json_encode($display);
         }
 
         $options = [];
 
-        $options[] = 'information_*';
-        $options[] = 'io500_*';
-        $options[] = 'mdtest_*';
-        $options[] = 'ior_*';
-        $options[] = 'find_*';
+        $options['information_*'] = 'information_*';
+        $options['io500_*'] = 'io500_*';
+        $options['mdtest_*'] = 'mdtest_*';
+        $options['ior_*'] = 'ior_*';
+        $options['find_*'] = 'find_*';
 
         foreach ($columns as $key => $column) {
             $options[$column] = $column;
@@ -154,24 +184,26 @@ class RecordsController extends AppController
             // Sort by the result of the equation
             if ($display['custom-order'] == 'DESC') {
                 usort($submissions, function ($a, $b) {
-                    return $a->equation < $b->equation;
+                    return $a->submission->equation < $b->submission->equation;
                 });
             } else {
                 usort($submissions, function ($a, $b) {
-                    return $a->equation > $b->equation;
+                    return $a->submission->equation > $b->submission->equation;
                 });
             }
         } else {
             // Sort by the IO500 score
             usort($submissions, function ($a, $b) {
-                return $a->io500_score < $b->io500_score;
+                return $a->score < $b->score;
             });
         }
 
+        $this->set('record', $record);
         $this->set('options', $options);
         $this->set('display', $display);
-        $this->set('record', $record);
+        $this->set('selected_fields', $selected_fields);
         $this->set('equation', $equation);
+        $this->set('valid', $valid);
         $this->set('submissions', $submissions);
     }
 }

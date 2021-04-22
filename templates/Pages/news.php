@@ -16,6 +16,16 @@
             for the eighth IO500 list at ISC 2021 sent out.
         </li>
         <li>
+            <span class="date">2021-04-14</span>
+                <?php
+                echo $this->Html->link(__('Press Release for April 14, 2021'), [
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'news-20210414'
+                ]);
+                ?>. 
+        </li>
+        <li>
             <span class="date">2020-11-18</span>The seventh IO500 list is published at SC'20.
         </li>
         <li>

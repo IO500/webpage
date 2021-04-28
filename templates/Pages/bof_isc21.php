@@ -27,7 +27,7 @@
         <tbody>
             <tr>
                 <td><strong>Date</strong></td>
-                <td>TBA</td>
+                <td>July 1, 2021 15:15-15:50 CEST, 6:15 AM PST, 9:15 AM EST</td>
             </tr>
             <tr>
                 <td><strong>Venue</strong></td>

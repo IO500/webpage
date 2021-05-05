@@ -19,6 +19,15 @@
 
     <p>
         This page contains the information about the submission procedure.
+        First, you need to     <div class="submissions-action">
+        <?php
+        echo $this->Html->link(_(' run the benchmark'), [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'running'
+        ]);
+        ?>
+    </div>.
     </p>
 
     <p>
@@ -72,20 +81,10 @@
         Starting with the SC'18 list, submissions include the name of the submitter (or team) to give them the credit they deserve to execute the benchmark; this can be opted out.
     </p>
 
-    <h4>Annonymity and Embargo</h4>
+    <h4>Annonymity</h4>
 
     <p>
-        With the online form, the submitter is able to individually opt-out or embargo (delay) the submission of certain information: 1) The name of the submitter/team (anonymous submission) 2) Specific information that would indicate the system; e.g., the file system, the name of the site, supercomputer...
-    </p>
-
-    <p>
-        After an embargo period the specific information is revealed and updated automatically in the subsequent list following the end of the embargo period. The period is either 3 years, or after the machine is decommissioned (the embargo period is asked in the online form).
-    </p>
-
-    <h3>Preparation</h3>
-
-    <p>
-        Fetching, compiling, and running the IO500 Benchmarks is surprisingly straightforward, although tuning can be challenging. Instructions for the former can be found in our <a href="https://github.com/IO500/io500" target="_blank" class="link">Github repository</a>. Help with the latter can be found in our various communication channels.
+        With the online form, the submitter is able to individually opt-out the submission the name of the submitter/team (this will be then an anonymous submission)
     </p>
 
     <div id="disqus_thread"></div>

@@ -206,7 +206,7 @@
                         </tr>
                         <tr>
                             <th><?php echo _('Find') ?></th>
-                            <td><?php echo $this->Number->format($submission->pfind_easy, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
+                            <td><?php echo $this->Number->format($submission->find_easy, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
                         </tr>
                     </table>
                 </div>

@@ -4,7 +4,7 @@
     <h2>Call for Submission</h2>
 
     <p class="button">
-        Stabilization Period: 16 - 30 April 2021 AoE
+        Stabilization Period: 05 - 14 May 2021 AoE
         Submission Deadline: 11 June 2021 AoE
     </p>
 

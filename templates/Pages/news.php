@@ -6,23 +6,19 @@
     <ul class="news">
         <li>
             <span class="date">2021-04-16</span> The
-                <?php
-                echo $this->Html->link(__('call for submissions'), [
-                    'controller' => 'pages',
-                    'action' => 'display',
-                    'cfs'
-                ]);
+                <?php echo $this->Html->link(__('call for submissions'),
+                    [ 'controller' => 'pages', 'action' => 'display',
+                      'cfs'
+                    ], [ 'class' => 'link' ]);
                 ?>
             for the eighth IO500 list at ISC 2021 sent out.
         </li>
         <li>
             <span class="date">2021-04-14</span>
-                <?php
-                echo $this->Html->link(__('Press Release for April 14, 2021'), [
-                    'controller' => 'pages',
-                    'action' => 'display',
-                    'news-20210414'
-                ]);
+                <?php echo $this->Html->link(__('Press Release for April 14, 2021'),
+                    [ 'controller' => 'pages', 'action' => 'display',
+                      'news-20210414'
+                    ], [ 'class' => 'link' ]);
                 ?>. 
         </li>
         <li>

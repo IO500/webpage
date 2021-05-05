@@ -41,7 +41,15 @@
             All requests for media interviews are discussed by the full committee who most unanimously decide how to respond.
         </li>
         <li>
-            There are two official channels of communication for the IO500: the Twitter handle and the email address <a href="mailto:committee@io500.org">committee@io500.org</a>. The only mechanism for communicating official IO500 announcements, policies, statements, or decisions is via the email address (hereafter referred to as The Email Address). All communication from The Email Address must be unanimously pre-approved by the full committee. Official communication will also be echoed to the twitter handle.
+            There are two official channels of communication for the IO500:
+            the Twitter handle and the email address
+            <a class="link" href="mailto:committee@io500.org">
+            committee@io500.org</a>. The only mechanism for communicating
+            official IO500 announcements, policies, statements, or decisions
+            is via the email address (hereafter referred to as The Email
+            Address). All communication from The Email Address must be
+            unanimously pre-approved by the full committee. Official
+            communication will also be echoed to the twitter handle.
         </li>
         <ul>
             <li>
@@ -80,7 +88,9 @@
     </ol>
 
     <p>
-        The committee can be reached at <a href="mailto:committee@io500.org"><span class="code">committee@io500.org</span></a>.
+        The committee can be reached at
+	<a class="link" href="mailto:committee@io500.org">
+	<span class="code">committee@io500.org</span></a>.
     </p>
 
     <div id="disqus_thread"></div>

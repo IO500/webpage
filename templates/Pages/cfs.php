@@ -34,11 +34,10 @@
             first set of tools to ease capturing of this information for
             inclusion with the submission.
             Further details will be released on the
-            <?php echo $this->Html->link(__('submission page'), [
-                    'controller' => 'pages',
-                    'action' => 'display',
-                    'submission'
-                ]);
+            <?php echo $this->Html->link(__('submission page'),
+	        [ 'controller' => 'pages', 'action' => 'display',
+                  'submission'
+                ], [ 'class' => 'link' ]);
              ?>.
         </li>
     </ol>
@@ -94,11 +93,10 @@
     <h3>Birds-of-a-Feather</h3>
     <p>
         Once again, we encourage you to
-        <?php echo $this->Html->link(__('submit'), [
-            'controller' => 'pages',
-            'action' => 'display',
-            'submission'
-          ]);
+        <?php echo $this->Html->link(__('submit'),
+            [ 'controller' => 'pages', 'action' => 'display',
+              'submission'
+            ], [ 'class' => 'link' ]);
          ?>
         to join our community, and to attend our virtual BoF “The IO500 and
         the Virtual Institute of I/O” at ISC 2021, (time to be announced),

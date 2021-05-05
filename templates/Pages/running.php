@@ -77,7 +77,7 @@
                 <li>
                     You can add system-specific information to the script,
                     otherwise you can provide this when uploading the results.
-                    The <a href="https://www.vi4io.org/io500-info-creator/">
+                    The <a class="link" href="https://www.vi4io.org/io500-info-creator/">
                     info-creator</a> helps to create the required output.
                 </li>
             </ul>
@@ -134,12 +134,10 @@
         <li>
             Any modifications to runtime tunables may only be made according
             to the
-            <?php
-             echo $this->Html->link(__('IO500 Submission Rules'), [
-                 'controller' => 'pages',
-                 'action' => 'display',
-                 'rules-submission'
-             ]);
+            <?php echo $this->Html->link(__('IO500 Submission Rules'),
+                [ 'controller' => 'pages', 'action' => 'display',
+                   'rules-submission'
+                ], [ 'class' => 'link' ]);
              ?>.
         </li>
         <li>
@@ -163,7 +161,7 @@
             provide the information and can make any final changes.
         </li>
         <li>
-            Submit your results, see <a href="https://www.vi4io.org/io500/submission/start">https://www.vi4io.org/io500/submission/start</a>.
+            Submit your results, see <a class="link" href="https://www.vi4io.org/io500/submission/start">https://www.vi4io.org/io500/submission/start</a>.
         </li>
     </ol>
 

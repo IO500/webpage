@@ -94,7 +94,9 @@
         </li>
         <li>
             <strong>Community lightning talks</strong> (5 minutes each)<br/>
-            We invite everyone who has something interesting or critcal to submit a short abstract until June 11th to the <a href="mailto:io-500-board@vi4io.org">steering board</a>.
+            We invite everyone who has something interesting or critcal to
+            submit a short abstract until June 11th to the
+            <a class="link" href="mailto:io-500-board@vi4io.org">steering board</a>.
             <ul>
                 <li>
                     <strong>Rationalizing Public Clouds HPC Performance</strong> – <em>Vinay Gaonkar</em>

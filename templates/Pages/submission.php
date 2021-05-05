@@ -20,25 +20,21 @@
     <p>
         This page contains the information about the submission procedure.
         First, you need to
-        <?php
-        echo $this->Html->link(_('run the benchmark'), [
-            'controller' => 'Pages',
-            'action' => 'display',
-            'running'
-        ]);
-        ?>
+        <?php echo $this->Html->link(_('run the benchmark'),
+            [ 'controller' => 'Pages', 'action' => 'display',
+              'running'
+            ], [ 'class' => 'link' ]);
+         ?>
         .
     </p>
 
     <p>
         The IO500 list is released during ISC and SC. See our
-        <?php
-        echo $this->Html->link(_('call for submissions'), [
-            'controller' => 'Pages',
-            'action' => 'display',
-            'cfs'
-        ]);
-        ?>
+        <?php echo $this->Html->link(_('call for submissions'),
+            [ 'controller' => 'Pages', 'action' => 'display',
+              'cfs'
+            ], [ 'class' => 'link' ]);
+         ?>
         page for details.
         Submissions to the upcoming list can be made all year. However,
         <strong>to be included in the next submission</strong>, we must receive
@@ -88,13 +84,11 @@
 
     <p>
         Submissions will be visible immediately to the members of the
-        <?php
-        echo $this->Html->link(_('IO500 Steering Committee'), [
-            'controller' => 'Pages',
-            'action' => 'display',
-            'cfs'
-        ]);
-        ?>.
+        <?php echo $this->Html->link(_('IO500 Steering Committee'),
+            [ 'controller' => 'Pages', 'action' => 'display',
+              'cfs'
+            ], [ 'class' => 'link' ]);
+         ?>.
         If there is sensitivity about early visibility to your results
         being seen by any of the committee, please feel free to email
         results privately to a subset of the committee (i.e. do not use

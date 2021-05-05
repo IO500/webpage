@@ -19,19 +19,30 @@
 
     <p>
         This page contains the information about the submission procedure.
-        First, you need to     <div class="submissions-action">
+        First, you need to
         <?php
-        echo $this->Html->link(_(' run the benchmark'), [
+        echo $this->Html->link(_('run the benchmark'), [
             'controller' => 'Pages',
             'action' => 'display',
             'running'
         ]);
         ?>
-    </div>.
+        .
     </p>
 
     <p>
-        The IO500 list is released during ISC and SC. See our call for submissions. Submissions to the upcoming list can be made all year. However, <strong>to be included in the next submission</strong>, we must receive the submission until the deadline listed in our call for submissions.
+        The IO500 list is released during ISC and SC. See our
+        <?php
+        echo $this->Html->link(_('call for submissions'), [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'cfs'
+        ]);
+        ?>
+        page for details.
+        Submissions to the upcoming list can be made all year. However,
+        <strong>to be included in the next submission</strong>, we must receive
+        the submission before the deadline listed in our call for submissions.
     </p>
 
     <h3>Submission Instructions</h3>
@@ -62,7 +73,9 @@
     <h3>Handling of the Submitted Data</h3>
 
     <p>
-        Until the submission of the list, the submission committee will handle all submitted data confidentially. That means that we will not disclose any submitted data to individuals/companies, or institutions.
+        Until the next release of the list, the submission committee will
+        handle all submitted data confidentially. That means that we will not
+        disclose any submitted data to individuals/companies, or institutions.
     </p>
 
     <h4>Privacy</h4>
@@ -74,7 +87,18 @@
     <h5>Submitter Name</h5>
 
     <p>
-        Submissions will be visible immediately to the IO500 Committee which currently is comprised of John Bent, Andreas Dilger, Julian Kunkel, Jay Lofstead, and George Markomanolis. If there is sensitivity about early visibility to your results being seen by any of the committee, please feel free to email results privately to a subset of the committee (i.e. do not use the official submission tools if you have privacy concerns).
+        Submissions will be visible immediately to the members of the
+        <?php
+        echo $this->Html->link(_('IO500 Steering Committee'), [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'cfs'
+        ]);
+        ?>.
+        If there is sensitivity about early visibility to your results
+        being seen by any of the committee, please feel free to email
+        results privately to a subset of the committee (i.e. do not use
+        the official submission tools if you have privacy concerns).
     </p>
 
     <p>

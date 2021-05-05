@@ -19,7 +19,7 @@
         The community provides suggestions and is asked to provide feedback on relevant questions before decisions are made.
         It is organized officially via Birds-of-a-feather sessions during the ISC-HPC and Supercomputing conference series.
         Everyone is welcome to join the <a href="http://lists.io500.org/listinfo.cgi/io500-io500.org" class="link">mailing list</a> and
-        our <a href="https://join.slack.com/t/io500workspace/shared_invite/zt-hv1i5svr-Yj8HR_wRzEy1bK2s2JX20w" class="link">Slack channel</a> to discuss issues and participate.
+        our <a href="https://join.slack.com/t/io500workspace/shared_invite/zt-j3i9c00k-niCcUHisgLT2JluYhcxlQQ" class="link">Slack channel</a> to discuss issues and participate.
     </p>
 
     <h3>Advisory committee</h3>
@@ -44,10 +44,10 @@
       <li>George Markomanolis</li>
     </ul>
 
-        <h3>Web Designer</h3>
-        <ul>
-            <li>Jean Luca Bez</li>
-        </ul>
+  <h3>Web Designer</h3>
+    <ul>
+      <li>Jean Luca Bez</li>
+    </ul>
 
     <div id="disqus_thread"></div>
 </div>

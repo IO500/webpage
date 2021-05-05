@@ -24,10 +24,9 @@
             First, there will be a two-week stabilization period during which
             we encourage the community to verify that the benchmark runs
             properly. During this period the benchmark will be updated based
-            upon feedback from the community. The final benchmark will then be
-            released on Monday, May 1st. We expect that runs compliant with
-            the rules made during the stabilization period are valid as the
-            final submission unless a significant defect is found.
+            upon feedback from the community.  We expect that runs compliant
+            with the rules made during the stabilization period will be valid
+            as a final submission unless a significant defect is found.
         </li>
         <li>
             We are now creating a more detailed schema to describe the

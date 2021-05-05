@@ -44,6 +44,10 @@
       <li>George Markomanolis</li>
     </ul>
 
+        <h3>Web Designer</h3>
+        <ul>
+            <li>Jean Luca Bez</li>
+        </ul>
 
     <div id="disqus_thread"></div>
 </div>

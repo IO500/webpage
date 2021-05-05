@@ -79,6 +79,31 @@
             </b>
             &mdash; how the committee membership changes
         </li>
+        <li>
+            <b>
+                <?php
+                echo $this->Html->link(__('IO500 Foundation New Role Creation'), [
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'foundation-new-roles'
+                ]);
+                ?>
+            </b>
+            &mdash; how to create new volunteer roles
+        </li>
+        <li>
+            <b>
+                <?php
+                echo $this->Html->link(__('IO500 Foundation Additional Roles'), [
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'additional-roles'
+                ]);
+                ?>
+            </b>
+            &mdash; how to create new volunteer roles
+        </li>
+
     </ul>
 
     <div id="disqus_thread"></div>

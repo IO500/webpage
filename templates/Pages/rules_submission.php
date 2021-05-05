@@ -21,10 +21,13 @@
 
     <ol>
         <li>
-            Submissions are made using the latest version of the IO500 application in GitHub and all binaries should be built according to the included build instructions.
-            <p class="code-block">
-                $ git clone https://github.com/IO500/io500.git -b io500-sc20                
-            </p>
+            Submissions are made using the latest version of the IO500 application in GitHub and all binaries should be built according to the instructions in                 <?php
+                echo $this->Html->link(__('Running'), [
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'running'
+                ]);
+                ?>.
         </li>
         <li>
             Read-after-write semantics: The system must be able to correctly

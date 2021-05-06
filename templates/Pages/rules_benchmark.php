@@ -38,7 +38,8 @@
     </ol>
 
     <p>
-       The committee can be reached at <a href="mailto:committee@io500.org">committee@io500.org</a>. 
+       The committee can be reached at
+       <a class="link" href="mailto:committee@io500.org">committee@io500.org</a>. 
     </p>
 
     <div id="disqus_thread"></div>

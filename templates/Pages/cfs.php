@@ -24,10 +24,9 @@
             First, there will be a two-week stabilization period during which
             we encourage the community to verify that the benchmark runs
             properly. During this period the benchmark will be updated based
-            upon feedback from the community. The final benchmark will then be
-            released on Monday, May 1st. We expect that runs compliant with
-            the rules made during the stabilization period are valid as the
-            final submission unless a significant defect is found.
+            upon feedback from the community.  We expect that runs compliant
+            with the rules made during the stabilization period will be valid
+            as a final submission unless a significant defect is found.
         </li>
         <li>
             We are now creating a more detailed schema to describe the
@@ -35,11 +34,10 @@
             first set of tools to ease capturing of this information for
             inclusion with the submission.
             Further details will be released on the
-            <?php echo $this->Html->link(__('submission page'), [
-                    'controller' => 'pages',
-                    'action' => 'display',
-                    'submission'
-                ]);
+            <?php echo $this->Html->link(__('submission page'),
+	        [ 'controller' => 'pages', 'action' => 'display',
+                  'submission'
+                ], [ 'class' => 'link' ]);
              ?>.
         </li>
     </ol>
@@ -95,11 +93,10 @@
     <h3>Birds-of-a-Feather</h3>
     <p>
         Once again, we encourage you to
-        <?php echo $this->Html->link(__('submit'), [
-            'controller' => 'pages',
-            'action' => 'display',
-            'submission'
-          ]);
+        <?php echo $this->Html->link(__('submit'),
+            [ 'controller' => 'pages', 'action' => 'display',
+              'submission'
+            ], [ 'class' => 'link' ]);
          ?>
         to join our community, and to attend our virtual BoF “The IO500 and
         the Virtual Institute of I/O” at ISC 2021, (time to be announced),

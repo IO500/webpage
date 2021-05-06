@@ -88,18 +88,17 @@
 
     <ul>
         <li>
-            <a href="https://www.vi4io.org/_media/io500/about/io500-establishing.pdf">White paper: Establishing the IO-500 Benchmark</a>
+            <a class="link" href="https://www.vi4io.org/_media/io500/about/io500-establishing.pdf">White paper: Establishing the IO-500 Benchmark</a>
         </li>
         <li>
-            <a href="https://hps.vi4io.org/_media/research/publications/2018/dltvifiatikl18-the_virtual_institute_for_i_o_and_the_io_500.pdf">Poster: The Virtual Institute for I/O and the IO-500</a>
+            <a class="link" href="https://hps.vi4io.org/_media/research/publications/2018/dltvifiatikl18-the_virtual_institute_for_i_o_and_the_io_500.pdf">Poster: The Virtual Institute for I/O and the IO-500</a>
         </li>
         <li>
             See also various presentations on our
-            <?php echo $this->Html->link(__('news page'), [
-                    'controller' => 'pages',
-                    'action' => 'display',
-                    'news'
-                ]);
+            <?php echo $this->Html->link(__('news page'),
+	        [ 'controller' => 'pages', 'action' => 'display',
+                  'news'
+                ], [ 'class' => 'link' ]);
              ?>.
         </li>
     </ul>

@@ -46,7 +46,7 @@ Salary
 </ol>
 
     <p>
-        The committee can be reached at <a href="mailto:committee@io500.org"><span class="code">committee@io500.org</span></a>.
+        The committee can be reached at <a class="link" href="mailto:committee@io500.org"><span class="code">committee@io500.org</span></a>.
     </p>
 
     <div id="disqus_thread"></div>

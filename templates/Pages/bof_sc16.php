@@ -76,7 +76,7 @@
     <h3>Agenda</h3>
 
     <p>
-        <a href="https://www.vi4io.org/_media/io500/bofs/sc16/sc16-bof-vi4io.pdf">Our BoF summary:</a>
+        <a class="link" href="https://www.vi4io.org/_media/io500/bofs/sc16/sc16-bof-vi4io.pdf">Our BoF summary:</a>
     </p>
 
     <ul>

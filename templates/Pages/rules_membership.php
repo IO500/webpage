@@ -16,7 +16,17 @@
     <h3>IO500 Committee Membership and Succession Rules v1.0</h3>
 
     <p>
-        The <?php echo $this->Html->link('IO500 committee', ['controller' => 'pages', 'action' => 'display', 'steering'], ['class' => 'link']); ?> is a standards body operating with consensus on all decisions excepting times noted in the committee rules. As such, the work progresses slowly with much deliberation. At times, the committee makeup may change. The following describes the committee makeup and how that form changes over time.
+        The
+        <?php echo $this->Html->link('IO500 committee',
+            [ 'controller' => 'pages', 'action' => 'display',
+              'steering'
+            ], ['class' => 'link']);
+         ?>
+        is a standards body operating with consensus on all decisions
+        excepting times noted in the committee rules. As such, the work
+        progresses slowly with much deliberation. At times, the committee
+        makeup may change. The following describes the committee makeup
+        and how that form changes over time.
     </p>
 
     <ol>
@@ -72,7 +82,9 @@
 
     <ul>
         <li>
-            Submissions are to be sent to the <a href="mailto:committee@io500.org"><span class="code">committee@io500.org</span></a> email address.
+            Submissions are to be sent to the
+            <a class="link" href="mailto:committee@io500.org">
+            <span class="code">committee@io500.org</span></a> email address.
         </li>
         <li>
             Anyone can either self-nominate or be nominated by others.

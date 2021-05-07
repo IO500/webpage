@@ -11,12 +11,8 @@ body {
 }
 
 a {
-    color: red;
-    text-decoration: none;
-}
-
-a:hover {
     color: #cc1717;
+    text-decoration: none;
 }
 
 footer {

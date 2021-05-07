@@ -86,7 +86,7 @@
         Submissions will be visible immediately to the members of the
         <?php echo $this->Html->link(_('IO500 Steering Committee'),
             [ 'controller' => 'Pages', 'action' => 'display',
-              'cfs'
+              'steering'
             ], [ 'class' => 'link' ]);
          ?>.
         If there is sensitivity about early visibility to your results

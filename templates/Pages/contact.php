@@ -21,17 +21,6 @@
         </li>
         <li>
             <?php
-            echo $this->Html->link(__('Mail Committee'),
-                'mailto:committee@io500.org',
-                [
-                    'class' => 'button',
-                    'target' => '_blank'
-                ]
-            );
-            ?>
-        </li>
-        <li>
-            <?php
             echo $this->Html->link(__('Slack Channel'),
                 'https://join.slack.com/t/io500workspace/shared_invite/zt-j3i9c00k-niCcUHisgLT2JluYhcxlQQ',
                 [
@@ -57,6 +46,25 @@
     <p class="note">
         Join us on social networks!
     </p>
+    
+    <h2>Contact the Committee</h2>
+    <p>You can reach out to the committee via <?php
+            echo $this->Html->link(__('Slack'),
+                'https://join.slack.com/t/io500workspace/shared_invite/zt-j3i9c00k-niCcUHisgLT2JluYhcxlQQ',
+                [
+                    'class' => 'link',
+                    'target' => '_blank'
+                ]
+            );
+            ?> or by using our email address: <?php
+        echo $this->Html->link(__('committee@io500.org'),
+            'mailto:committee@io500.org',
+            [
+                'class' => 'link',
+                'target' => '_blank'
+            ]
+        );
+        ?></p>
 
     <a href="https://www.freepik.com/vectors/social-media" class="credits">Social media vector created by stories - www.freepik.com</a>
 </div>

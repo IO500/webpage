@@ -38,16 +38,6 @@
     <h3>Installation</h3>
 
     <p>
-        The libcircle library, which is required to build the optional pfind
-        command, previously had difficulty compiling on Cray systems. It may
-        be required to modify the configure file to avoid verifying the MPI
-        version by options such as <span class="code">--showme</span> that do
-        not exist on Cray MPI. See
-        <a class="link" href="https://github.com/hpc/libcircle/issues/27">
-        https://github.com/hpc/libcircle/issues/27</a> for more details.
-    </p>
-
-    <p>
         A video with the installation procedure is
         <a class="link" href="https://www.youtube.com/watch?v=RFkuapQ_gkc">
         here</a>.
@@ -59,7 +49,7 @@
         <li>
             Modify the existing <span class="code">io500.sh</span> script to
             include the information necessary for your scheduler. Provide
-            enough execution time (typically 2h is enough for a full run) and
+            enough execution time (typically, 2h is enough for a full run) and
             adjust the reserved resources if needed:
             <ul>
                 <li>
@@ -161,7 +151,12 @@
             provide the information and can make any final changes.
         </li>
         <li>
-            Submit your results, see <a class="link" href="https://www.vi4io.org/io500/submission/start">https://www.vi4io.org/io500/submission/start</a>.
+            Submit your results, see the 
+                <?php echo $this->Html->link(__('submission page'),
+                [ 'controller' => 'pages', 'action' => 'display',
+                   'submission'
+                ], [ 'class' => 'link' ]);
+             ?>.
         </li>
     </ol>
 

@@ -73,10 +73,14 @@
             </ul>
         </li>
         <li>
-            Create a new <span class="code">.ini</span> file using e.g.
-            "<span class="code">./io500 --list &gt; myconfig.ini</span>" and
-            edit available parameters appropriately for your environment. In
-            particular, the following parameters are critical to set correctly:
+            Create a new <span class="code">.ini</span> file.
+            <ul>
+                <li>The existing template <span class="code">config-minimal.ini</span> provides the minimum options that you need to change.</li>
+                <li>We recommend to test your configuration first, the <span class="code">config-debug-run.ini</span> shows how to setup a 1 second run. Note that the results will be invalid but it is useful to see that everything works as intended.</li>
+                <li>You can create a new file with all available options using e.g. <span class="code">./io500 --list &gt; myconfig.ini</span>.</li>
+            </ul>           
+            Please edit available parameters appropriately for your environment. 
+            In particular, the following parameters are critical to set correctly:
             <ul>
                 <li>
                     <span class="code">[global] datadir</span>
@@ -149,6 +153,13 @@
             <a class="link" href="https://www.vi4io.org/io500-info-creator/">
             info-creator tool</a>. You will be asked at submission time to
             provide the information and can make any final changes.
+        </li>
+        <li>
+            We are testing scripts to automatically capture information from your live system and integrate it into the system description.
+            After you run <span class="code">./prepare.sh</span> you will find in the directory schema-tools all the available scripts.
+            These can be run on your json, for example: <span class="code">./schema-tools/cdcl_add_osinfo.py system-information.json</span> will add the information about your operating system to the system-information.json that you may want to submit.
+            You can upload/download the JSON to the info creator anytime, verifying the changes you make.
+            A script may support to configure a specific file system or node, useful particularly if you have multiple different node configurations.
         </li>
         <li>
             Submit your results, see the 

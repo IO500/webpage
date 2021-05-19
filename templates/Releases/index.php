@@ -52,18 +52,6 @@
             ]);
             ?>
         </li>
-        <?php if ($this->Configure->read('IO500.custom_lists')) { ?>
-        <li>
-            <?php
-            echo $this->Html->link(__('Used-Defined Lists'), [
-                'controller' => 'records',
-                'action' => 'index'
-            ], [
-                'class' => 'button'
-            ]);
-            ?>
-        </li>
-        <?php } ?>
     </ul>
 
     <p>
@@ -78,6 +66,19 @@
             );
             ?>
        of the full historic list.
+    </p>
+    
+    <h2>User-Defined Lists</h2>
+    <p>
+        We also support the creation of 
+        <?php if ($this->Configure->read('IO500.custom_lists')) { 
+            echo $this->Html->link(__('Used-Defined Lists'), [
+                'controller' => 'records',
+                'action' => 'index'
+            ], [
+                'class' => 'link'
+            ]);
+        } ?>. Note that these are not official lists created by the community.
     </p>
     
     <p>

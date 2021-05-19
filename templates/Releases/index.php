@@ -78,7 +78,7 @@
             ], [
                 'class' => 'link'
             ]);
-        } ?>. Note that these are not official lists created by the community.
+        } ?>. Note that these are unofficial lists created by the community.
     </p>
     
     <p>

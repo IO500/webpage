@@ -66,7 +66,21 @@
         <?php } ?>
     </ul>
 
-    <p class="note">
+    <p>
+        You can <?php
+            echo $this->Html->link(__('download the CSV-file'), [
+                    'controller' => 'submissions',
+                    'action' => 'export'
+                ],
+                [
+                    'class' => 'link'
+                ]
+            );
+            ?>
+       of the full historic list.
+    </p>
+    
+    <p>
         Get ready to submit for the next list!
     </p>
 

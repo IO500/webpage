@@ -74,7 +74,7 @@
                 'action' => 'display',
                 'bof-sc20'
             ], [
-                'class' => 'button-highlight'
+                'class' => 'button'
             ]);
             ?>
         </li>

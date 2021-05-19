@@ -2,7 +2,7 @@
     <ul class="plots">
         <li>
             <h3>Find</h3>
-            <iframe src="/plots/plotly/io500-find-easy.html"></iframe>
+            <iframe src="/webroot/plots/plotly/io500-find-easy.html"></iframe>
         </li>
     </ul>
 

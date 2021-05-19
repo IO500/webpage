@@ -2,7 +2,7 @@ UPDATE
     submissions
 SET
     information_ds_software_version = '3.9.0',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_ds_operating_system_version = '7.7',
     information_ds_storage_devices = '80',
     information_ds_network = '100GbE',
@@ -15,7 +15,7 @@ UPDATE
     submissions
 SET
     information_ds_software_version = '3.8.1',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_ds_operating_system_version = '7.7',
     information_ds_storage_devices = '80',
     information_ds_network = '100GbE',
@@ -28,7 +28,7 @@ UPDATE
     submissions
 SET
     information_ds_software_version = '3.9.0',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_ds_operating_system_version = '7.7',
     information_ds_storage_devices = '80',
     information_ds_network = '100GbE',
@@ -41,7 +41,7 @@ UPDATE
     submissions
 SET
     information_storage_install_date = '22019',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_ds_operating_system_version = '7.7',
     information_ds_network = '100GbE',
     information_system = 'SharedScratch'
@@ -53,7 +53,7 @@ UPDATE
     submissions
 SET
     information_storage_install_date = '22019',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_ds_operating_system_version = '7.7',
     information_ds_network = '100GbE',
     information_system = 'SharedScratch'
@@ -65,7 +65,7 @@ UPDATE
     submissions
 SET
     information_ds_software_version = '3.7.0',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_ds_operating_system_version = '7.7',
     information_ds_storage_interface = 'NVMe',
     information_ds_storage_devices = '80',
@@ -79,7 +79,7 @@ UPDATE
     submissions
 SET
     information_ds_software_version = '3.7.0',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_ds_operating_system_version = '7.7',
     information_ds_storage_interface = 'NVMe',
     information_ds_storage_devices = '80',
@@ -93,7 +93,7 @@ UPDATE
     submissions
 SET
     information_storage_install_date = '22019',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_ds_operating_system_version = '7.7',
     information_ds_storage_devices = '80',
     information_ds_network = '100GbE',
@@ -106,7 +106,7 @@ UPDATE
     submissions
 SET
     information_ds_software_version = '3.7.0',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_ds_operating_system_version = '7.7',
     information_ds_storage_interface = 'NVMe',
     information_ds_storage_devices = '80',
@@ -120,7 +120,7 @@ UPDATE
     submissions
 SET
     information_ds_software_version = '3.7.0',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_ds_operating_system_version = '7.7',
     information_ds_storage_interface = 'NVMe',
     information_ds_storage_devices = '80',
@@ -141,7 +141,7 @@ SET
     information_md_storage_interface = 'NVME',
     information_md_software_version = '2.0.6',
     information_md_operating_system_version = '7.6',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_filesystem_name = 'Vast',
     information_ds_operating_system_version = '7.6',
     information_ds_storage_devices = '1320',
@@ -161,7 +161,7 @@ SET
     information_md_storage_interface = 'NVME',
     information_md_software_version = '3.0.6',
     information_md_operating_system_version = '7.8',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_ds_operating_system_version = '7.8',
     information_ds_storage_devices = '484',
     information_md_storage_type = '3DXP',
@@ -179,7 +179,7 @@ SET
     information_md_storage_interface = 'NVME',
     information_md_software_version = '2.0.6',
     information_md_operating_system_version = '7.6',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_filesystem_name = 'Vast',
     information_ds_operating_system_version = '7.6',
     information_ds_storage_interface = 'NVMe',
@@ -201,7 +201,7 @@ SET
     information_md_storage_interface = 'NVME',
     information_md_software_version = '2.0.1',
     information_md_operating_system_version = '7.7',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_filesystem_name = 'Vast',
     information_md_network = '50GbE',
     information_ds_operating_system_version = '7.7',
@@ -222,7 +222,7 @@ SET
     information_md_storage_interface = 'NVME',
     information_md_software_version = '2.0.6',
     information_md_operating_system_version = '7.6',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_filesystem_name = 'Vast',
     information_ds_nodes = '6',
     information_ds_operating_system_version = '7.6',
@@ -263,7 +263,7 @@ SET
     information_md_storage_interface = 'NVME',
     information_md_software_version = '2.0.7',
     information_md_operating_system_version = '7.7',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_filesystem_name = 'Vast',
     information_ds_operating_system_version = '7.7',
     information_ds_storage_interface = 'NVMe',
@@ -282,7 +282,7 @@ SET
     information_md_storage_interface = 'NVME',
     information_md_software_version = '2.0.7',
     information_md_operating_system_version = '7.7',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_filesystem_name = 'Vast',
     information_ds_operating_system_version = '7.7',
     information_ds_storage_interface = 'NVMe',
@@ -301,7 +301,7 @@ SET
     information_md_storage_interface = 'NVME',
     information_md_software_version = '2.0.7',
     information_md_operating_system_version = '7.7',
-    information_ds_storage_type = 'NAND',
+    information_ds_storage_type = 'Flash',
     information_filesystem_name = 'Vast',
     information_ds_operating_system_version = '7.7',
     information_ds_storage_interface = 'NVMe',

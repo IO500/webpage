@@ -24,7 +24,9 @@
     <h3>The Lists</h3>
 
     <p>
-        We publish multiple lists for each BoF at SC and ISC as well as maintaining the current most up-to-date lists. We publish a <strong>Historic List</strong> of all submissions received and multiple filtered lists from the historic list. We maintain a <strong>Full List</strong> which is the subset of submissions which were valid according to the set of list-specific rules in place at the time of the list’s publication.
+        We publish multiple lists for each BoF at SC and ISC as well as maintaining the current most up-to-date lists. 
+        We intend to not modify a list after the release date but in exceptional circumstances. However, we allow to improve and clarify list metadata upon the request of the submitters.
+        We publish a <strong>Historic List</strong> of all submissions received and multiple filtered lists from the historic list. We maintain a <strong>Full List</strong> which is the subset of submissions which were valid according to the set of list-specific rules in place at the time of the list’s publication.
     </p>
 
     <p>

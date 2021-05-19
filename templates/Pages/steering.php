@@ -37,11 +37,11 @@
         The current <b>IO500 Committee<b>, consists of the following members (in alphabetical order):
     </p>
     <ul>
-      <li>Andreas Dilger</li>
-      <li>Dean Hildebrand</li>
-      <li>Julian Kunkel</li>
-      <li>Jay Lofstead</li>
-      <li>George Markomanolis</li>
+      <li>Andreas Dilger - Whamcloud/DDN</li>
+      <li>Dean Hildebrand - Google</li>
+      <li><a class="link" href="https://hps.vi4io.org/about/people/julian_kunkel">Julian Kunkel - University of Reading</a></li>
+      <li><a class="link" href="https://cfwebprod.sandia.gov/cfdocs/CompResearch/templates/insert/profile.cfm?gflofst">Jay Lofstead - Sandia National Laboratories</a></li>
+      <li><a class="link" href="http://www.markomanolis.com/site/index.html">George Markomanolis - CSC - IT For Science Ltd</a></li>
     </ul>
 
   <h3>Web Designer</h3>

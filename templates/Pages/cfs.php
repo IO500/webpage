@@ -98,9 +98,13 @@
               'submission'
             ], [ 'class' => 'link' ]);
          ?>
-        to join our community, and to attend our virtual BoF “The IO500 and
-        the Virtual Institute of I/O” at ISC 2021, (time to be announced),
-        where we will announce the new IO500 and 10 node challenge lists.
+        to join our community, and to attend our virtual BoF 
+        <?php echo $this->Html->link(__('“The IO500 and
+        the Virtual Institute of I/O” at ISC 2021'),
+	        [ 'controller' => 'pages', 'action' => 'display',
+                  'submission'
+                ], [ 'class' => 'link' ]);
+        ?>, where we will announce the new IO500 and 10 node challenge lists.
         The current list includes results from BeeGFS, CephFS, DAOS, DataWarp,
         GekkoFS, GFarm, IME, Lustre, MadFS, Qumulo, Spectrum Scale, Vast,
         WekaIO, and YRCloudFile. We hope that the upcoming list grows even more.

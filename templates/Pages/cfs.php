@@ -102,7 +102,7 @@
         <?php echo $this->Html->link(__('“The IO500 and
         the Virtual Institute of I/O” at ISC 2021'),
 	        [ 'controller' => 'pages', 'action' => 'display',
-                  'submission'
+                  'bof-isc21'
                 ], [ 'class' => 'link' ]);
         ?>, where we will announce the new IO500 and 10 node challenge lists.
         The current list includes results from BeeGFS, CephFS, DAOS, DataWarp,

@@ -3,11 +3,7 @@
         <div class="logo">
             <?php
             echo $this->Html->link(
-                '', 
-                [
-                    'controller' => 'submissions',
-                    'action' => 'latest'
-                ],
+                '', '/',
                 [
                     'escape' => false
                 ]

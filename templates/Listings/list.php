@@ -12,8 +12,6 @@
     ?>
 </nav>
 
-<?php echo $this->element('call'); ?>
-
 <div class="submissions index content">
     <h2><?php echo $type->name . ' ' . strtoupper($this->request->getParam('pass')[0]); ?> List</h2>
 

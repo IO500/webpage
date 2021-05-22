@@ -3,8 +3,8 @@
 <div class="content">
     <h2>Call for Submission</h2>
 
-    <p class="button">
-        Stabilization Period: 05 - 14 May 2021 AoE
+    <p class="call">
+        Stabilization Period: 05 - 14 May 2021 AoE<br/>
         Submission Deadline: 11 June 2021 AoE
     </p>
 

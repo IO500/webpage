@@ -86,7 +86,7 @@ footer a {
     }
 
     div.submissions-action {
-        width: 50%;
+        width: 70%;
     }
 
     a.button, a.button-navigation, a.button-navigation-active {
@@ -244,6 +244,10 @@ nav .links {
 nav .links > li {
     display: inline-block;
     padding: 0 10px;
+}
+
+nav .links > li > a {
+    color: #222;
 }
 
 /* Flash messages */
@@ -621,6 +625,10 @@ dd {
     margin: 5px;
 }
 
+.submissions-lists li a {
+    color: #222;
+}
+
 .submissions-lists h4 {
     font-size: 32px;
     text-align: center;
@@ -652,7 +660,8 @@ dd {
 
 .submissions > h2 {
     float: left;
-    width: 50%;
+    margin-bottom: 30px;
+    width: 30%;
 }
 
 .submissions > h2 span {
@@ -664,7 +673,7 @@ dd {
 
 .submissions-action {
     float: right;
-    margin: 22px 0;
+    margin: 15px 0;
     display: flex;
     width: 100%;
     flex-wrap: wrap;
@@ -698,6 +707,7 @@ dd {
 }
 
 #breadcrumb a {
+    color: #222;
     margin: 0 3px;
 }
 

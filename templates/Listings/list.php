@@ -41,6 +41,15 @@
         ], [
             'class' => 'button'
         ]);
+
+        echo $this->Html->link('Download', [
+            'controller' => 'listings',
+            'action' => 'download',
+            strtolower($this->request->getParam('pass')[0]),
+            strtolower($list->type->url)
+        ], [
+            'class' => 'button-navigation'
+        ]);
         ?>
     </div>
 

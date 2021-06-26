@@ -112,9 +112,9 @@
     <h4>Supplementary presentations</h4>
     <p></p>
     <ul>
-        <li><strong>The Virtual Institute for I/O</strong> - <em>Julian Kunkel</em></li>
+        <li><a href="https://www.youtube.com/watch?v=s7v-VJEbJW8&list=PLN0VUBsF9Di0Bsj4qia5SCqzBtTzGciA6&index=1"><strong>The Virtual Institute for I/O</strong></a> - <em>Julian Kunkel</em></li>
         <li><strong>The new IO500 list: a deep analysis</strong> - <em></em></li>
-        <li>Community presentation: <strong>MadFS</strong> - <em>Kang Chen (Tsinghua University)</em></li>
+        <li>Community presentation: <a href="https://www.youtube.com/watch?v=BJpkpA6hsDc&list=PLN0VUBsF9Di0Bsj4qia5SCqzBtTzGciA6&index=2"><strong>There is nothing mysterious behind MadFS</strong> - <em>Kang Chen (Tsinghua University)</em></li>
         <li>Community presentation: <strong>Tbd</strong> - <em>Luke Logan (Illinois Tech)</em></li>
     </ul>
 

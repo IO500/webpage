@@ -43,6 +43,31 @@
         </li>
     </ul>
 
+    <ul>
+        <li>
+            <?php
+            echo $this->Html->link(__('Benchmark Bug Report'),
+                'https://github.com/IO500/io500/issues',
+                [
+                    'class' => 'button',
+                    'target' => '_blank'
+                ]
+            );
+            ?>
+        </li>
+        <li>
+            <?php
+            echo $this->Html->link(__('Webpage Bug Report'),
+                'https://github.com/IO500/webpage/issues',
+                [
+                    'class' => 'button',
+                    'target' => '_blank'
+                ]
+            );
+            ?>
+        </li>
+    </ul>
+
     <p class="note">
         Join us on social networks!
     </p>

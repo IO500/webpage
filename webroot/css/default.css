@@ -76,7 +76,9 @@ footer a {
     }
 
     div.landing {
-        padding: 100px 650px 0 0;
+        display: table-cell;
+        padding: 100px 650px 100px 0;
+        vertical-align: middle;
     }
 
     div.landing-lists, div.landing-bofs, div.landing-graphs, div.landing-running, div.landing-contact {

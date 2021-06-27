@@ -1,3 +1,5 @@
+ALTER TABLE `submissions` ADD `cdcl_url` VARCHAR(255) NULL DEFAULT NULL;
+
 UPDATE submissions SET cdcl_url = 'https://www.vi4io.org/hpsl/2019/gbr/universityofcambridge/start' WHERE id = 9;
 UPDATE submissions SET cdcl_url = 'https://www.vi4io.org/hpsl/2019/chn/nsccs/start' WHERE id = 15;
 UPDATE submissions SET cdcl_url = 'https://www.vi4io.org/hpsl/2018/usa/ornl/start' WHERE id = 18;

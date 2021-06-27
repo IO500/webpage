@@ -213,6 +213,7 @@ footer a {
 
 .button-navigation:hover{
     border-color: #cc1717;
+    color: #cc1717;
 }
 
 .button-navigation-active {

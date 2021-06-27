@@ -13,7 +13,16 @@
 <div class="row">
     <div class="column-responsive column-80">
         <div class="submissions view content">
-            <h3><?php echo h($submission->information_system) ?></h3>
+            <h2><?php echo h($submission->information_system) ?></h2>
+
+            <div class="submissions-action">
+                <?php
+                echo $this->Html->link(_('Data Center List'), $submission->cdcl_url, [
+                    'class' => 'button-navigation',
+                    'target' => '_blank'
+                ]);
+                ?>
+            </div>
 
             <div class="information">
                 <div class="information-metadata">

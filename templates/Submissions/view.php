@@ -15,6 +15,7 @@
         <div class="submissions view content">
             <h2><?php echo h($submission->information_system) ?></h2>
 
+            <?php if ($submission->cdcl_url) { ?>
             <div class="submissions-action">
                 <?php
                 echo $this->Html->link(_('Data Center List'), $submission->cdcl_url, [
@@ -23,6 +24,7 @@
                 ]);
                 ?>
             </div>
+            <?php } ?>
 
             <div class="information">
                 <div class="information-metadata">

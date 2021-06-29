@@ -1,3 +1,8 @@
+-- make all the updated inside a transaction to make sure all of it works or all fails
+
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+
 -- create the SCC list type
 
 INSERT INTO `types` (`id`, `name`, `url`) VALUES (NULL, 'SCC', 'scc');
@@ -17,7 +22,7 @@ INSERT INTO `listings` (`id`, `type_id`, `release_id`, `description`) VALUES (NU
         information_filesystem_type,
         information_client_nodes,
         information_client_total_procs,
-        previous_io500_score,
+        io500_score,
         io500_bw,
         io500_md,
         information_data,
@@ -144,7 +149,7 @@ INSERT INTO `listings` (`id`, `type_id`, `release_id`, `description`) VALUES (NU
         information_filesystem_type,
         information_client_nodes,
         information_client_total_procs,
-        previous_io500_score,
+        io500_score,
         io500_bw,
         io500_md,
         information_data,
@@ -271,7 +276,7 @@ INSERT INTO `listings` (`id`, `type_id`, `release_id`, `description`) VALUES (NU
         information_filesystem_type,
         information_client_nodes,
         information_client_total_procs,
-        previous_io500_score,
+        io500_score,
         io500_bw,
         io500_md,
         information_data,
@@ -398,7 +403,7 @@ INSERT INTO `listings` (`id`, `type_id`, `release_id`, `description`) VALUES (NU
         information_filesystem_type,
         information_client_nodes,
         information_client_total_procs,
-        previous_io500_score,
+        io500_score,
         io500_bw,
         io500_md,
         information_data,
@@ -525,7 +530,7 @@ INSERT INTO `listings` (`id`, `type_id`, `release_id`, `description`) VALUES (NU
         information_filesystem_type,
         information_client_nodes,
         information_client_total_procs,
-        previous_io500_score,
+        io500_score,
         io500_bw,
         io500_md,
         information_data,
@@ -652,7 +657,7 @@ INSERT INTO `listings` (`id`, `type_id`, `release_id`, `description`) VALUES (NU
         information_filesystem_type,
         information_client_nodes,
         information_client_total_procs,
-        previous_io500_score,
+        io500_score,
         io500_bw,
         io500_md,
         information_data,
@@ -779,7 +784,7 @@ INSERT INTO `listings` (`id`, `type_id`, `release_id`, `description`) VALUES (NU
         information_filesystem_type,
         information_client_nodes,
         information_client_total_procs,
-        previous_io500_score,
+        io500_score,
         io500_bw,
         io500_md,
         information_data,
@@ -906,7 +911,7 @@ INSERT INTO `listings` (`id`, `type_id`, `release_id`, `description`) VALUES (NU
         information_filesystem_type,
         information_client_nodes,
         information_client_total_procs,
-        previous_io500_score,
+        io500_score,
         io500_bw,
         io500_md,
         information_data,
@@ -1033,7 +1038,7 @@ INSERT INTO `listings` (`id`, `type_id`, `release_id`, `description`) VALUES (NU
         information_filesystem_type,
         information_client_nodes,
         information_client_total_procs,
-        previous_io500_score,
+        io500_score,
         io500_bw,
         io500_md,
         information_data,
@@ -1160,7 +1165,7 @@ INSERT INTO `listings` (`id`, `type_id`, `release_id`, `description`) VALUES (NU
         information_filesystem_type,
         information_client_nodes,
         information_client_total_procs,
-        previous_io500_score,
+        io500_score,
         io500_bw,
         io500_md,
         information_data,
@@ -1287,7 +1292,7 @@ INSERT INTO `listings` (`id`, `type_id`, `release_id`, `description`) VALUES (NU
         information_filesystem_type,
         information_client_nodes,
         information_client_total_procs,
-        previous_io500_score,
+        io500_score,
         io500_bw,
         io500_md,
         information_data,
@@ -1414,7 +1419,7 @@ INSERT INTO `listings` (`id`, `type_id`, `release_id`, `description`) VALUES (NU
         information_filesystem_type,
         information_client_nodes,
         information_client_total_procs,
-        previous_io500_score,
+        io500_score,
         io500_bw,
         io500_md,
         information_data,
@@ -1541,7 +1546,7 @@ INSERT INTO `listings` (`id`, `type_id`, `release_id`, `description`) VALUES (NU
         information_filesystem_type,
         information_client_nodes,
         information_client_total_procs,
-        previous_io500_score,
+        io500_score,
         io500_bw,
         io500_md,
         information_data,
@@ -1668,7 +1673,7 @@ INSERT INTO `listings` (`id`, `type_id`, `release_id`, `description`) VALUES (NU
         information_filesystem_type,
         information_client_nodes,
         information_client_total_procs,
-        previous_io500_score,
+        io500_score,
         io500_bw,
         io500_md,
         information_data,
@@ -1912,6 +1917,5 @@ SELECT * FROM list_isc21_10node
 UNION ALL
 SELECT * FROM list_isc21_io500;
 
-
-
-
+-- commit all the transactions
+COMMIT;

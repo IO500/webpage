@@ -1910,12 +1910,7 @@ SELECT * FROM list_sc20_full
 UNION ALL
 SELECT * FROM list_sc20_historical
 UNION ALL
-SELECT * FROM list_sc20_io500
-UNION ALL
-
-SELECT * FROM list_isc21_10node
-UNION ALL
-SELECT * FROM list_isc21_io500;
+SELECT * FROM list_sc20_io500;
 
 -- commit all the transactions
 COMMIT;

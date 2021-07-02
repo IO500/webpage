@@ -1943,7 +1943,7 @@ VALUES (
     '9',
     NULL,
     'Mohamad Chaarawi',
-    'Endevour',
+    'Endeavour',
     'Intel',
     'DAOS',
     'Intel',

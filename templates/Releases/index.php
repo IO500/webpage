@@ -52,21 +52,36 @@
             ]);
             ?>
         </li>
-        <?php if ($this->Configure->read('IO500.custom_lists')) { ?>
-        <li>
-            <?php
+    </ul>
+
+    <p>
+        You can <?php
+            echo $this->Html->link(__('download the CSV-file'), [
+                    'controller' => 'submissions',
+                    'action' => 'export'
+                ],
+                [
+                    'class' => 'link'
+                ]
+            );
+            ?>
+       of the full historic list.
+    </p>
+    
+    <h2>User-Defined Lists</h2>
+    <p>
+        We also support the creation of 
+        <?php if ($this->Configure->read('IO500.custom_lists')) { 
             echo $this->Html->link(__('Used-Defined Lists'), [
                 'controller' => 'records',
                 'action' => 'index'
             ], [
-                'class' => 'button'
+                'class' => 'link'
             ]);
-            ?>
-        </li>
-        <?php } ?>
-    </ul>
-
-    <p class="note">
+        } ?>. Note that these are unofficial lists created by the community.
+    </p>
+    
+    <p>
         Get ready to submit for the next list!
     </p>
 

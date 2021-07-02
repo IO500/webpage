@@ -17,14 +17,12 @@
 
     <p>
         Please refer to the 
-    <?php
-                echo $this->Html->link(__('IO500 Submission Rules'), [
-                    'controller' => 'pages',
-                    'action' => 'display',
-                    'rules-submission'
-                ]);
-   ?>
-all rules are in effect with three exceptions.
+        <?php echo $this->Html->link(__('IO500 Submission Rules'),
+            [ 'controller' => 'pages', 'action' => 'display',
+              'rules-submission'
+            ], [ 'class' => 'link' ]);
+        ?>
+        all rules are in effect with three exceptions:
     </p>
 
     <ol>

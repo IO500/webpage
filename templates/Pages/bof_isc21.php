@@ -27,7 +27,7 @@
         <tbody>
             <tr>
                 <td><strong>Date</strong></td>
-                <td>TBA</td>
+                <td>July 1, 2021 15:15-15:50 CEST, 6:15 AM PST, 9:15 AM EST</td>
             </tr>
             <tr>
                 <td><strong>Venue</strong></td>
@@ -37,7 +37,7 @@
     </table>
 
     <p>
-        <a class="link" href="https://www.isc-hpc.com/files/isc_events/documents/ISC2021-Digital/ISC2021_Program-at-a-Glance.pdf" target="_blank">Link to the official announcement</a>.
+        <a class="link" href="https://app.swapcard.com/widget/event/isc-high-performance-2021-digital/planning/UGxhbm5pbmdfNDQ0Njcz" target="_blank">Link to the official announcement</a>.
     </p>
 
     <h3>Abstract</h3>
@@ -80,11 +80,10 @@
 
     <h3>Agenda</h3>
 
- <p>Due to the time limitations of BoFs at ISC HPC (virtual), we have organized the session into two parts, the <b>interactive session presented during ISC HPC</b> and <b>supplementary presentations</b> that we release (mostly) before the BoF; please watch the supplementary presentations before the BoF and feel free to ask questions during the question session. </p>
 
-    <h4>Interactive session during ISC HPC</h4>
-<h4><a class="link" href="data/isc21/isc21_io500_slides.pdf" target="_blank">slides</a></h4>
+    <p>Due to the time limitations of BoFs at ISC HPC (virtual), we have organized the session into two parts, the <b>interactive session presented during ISC HPC</b> and <b>supplementary presentations</b> that we release (mostly) before the BoF; please watch the supplementary presentations before the BoF and feel free to ask questions during the question session. </p>
 
+    <h4>Interactive session during ISC HPC <a class="link" href="data/isc21/isc21_io500_slides.pdf" target="_blank">(slides)</a></h4>
 
     <ul>
        <li>
@@ -106,9 +105,18 @@
             <strong>Roadmap for IO500</strong> – <em>Julian Kunkel</em>
         </li>
         <li>
-            <strong>Discussion and Voice of the community</strong> – <em>Jay Lofstead</em><br>
+            <strong>Question session, discussion and voice of the community</strong> – <em>Jay Lofstead</em><br>
             We will prime a discussion with some observed issues and open the stage for feedback and issues.
         </li>
+    </ul>
+
+    <h4>Supplementary presentations</h4>
+    <p></p>
+    <ul>
+        <li><a href="https://www.youtube.com/watch?v=s7v-VJEbJW8&list=PLN0VUBsF9Di0Bsj4qia5SCqzBtTzGciA6&index=1"><strong>The Virtual Institute for I/O</strong></a> - <em>Julian Kunkel</em></li>
+        <li><strong>The new IO500 list: a deep analysis</strong> - <em></em></li>
+        <li>Community presentation: <a href="https://www.youtube.com/watch?v=BJpkpA6hsDc&list=PLN0VUBsF9Di0Bsj4qia5SCqzBtTzGciA6&index=2"><strong>There is nothing mysterious behind MadFS</strong> - <em>Kang Chen (Tsinghua University)</em></li>
+        <li>Community presentation: <a href="https://www.youtube.com/watch?v=M1OfldbeWig&list=PLN0VUBsF9Di0Bsj4qia5SCqzBtTzGciA6&index=3"><strong>An Analysis of the IO500 for Modeling Storage Systems</strong></a> - <em>Luke Logan (Illinois Tech)</em></li>
     </ul>
 
 

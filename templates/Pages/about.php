@@ -24,7 +24,9 @@
     <h3>The Lists</h3>
 
     <p>
-        We publish multiple lists for each BoF at SC and ISC as well as maintaining the current most up-to-date lists. We publish a <strong>Historic List</strong> of all submissions received and multiple filtered lists from the historic list. We maintain a <strong>Full List</strong> which is the subset of submissions which were valid according to the set of list-specific rules in place at the time of the list’s publication.
+        We publish multiple lists for each BoF at SC and ISC as well as maintaining the current most up-to-date lists. 
+        We intend to not modify a list after the release date but in exceptional circumstances. However, we allow to improve and clarify list metadata upon the request of the submitters.
+        We publish a <strong>Historic List</strong> of all submissions received and multiple filtered lists from the historic list. We maintain a <strong>Full List</strong> which is the subset of submissions which were valid according to the set of list-specific rules in place at the time of the list’s publication.
     </p>
 
     <p>
@@ -88,13 +90,18 @@
 
     <ul>
         <li>
-            <a href="https://www.vi4io.org/_media/io500/about/io500-establishing.pdf">White paper: Establishing the IO-500 Benchmark</a>
+            <a class="link" href="https://www.vi4io.org/_media/io500/about/io500-establishing.pdf">White paper: Establishing the IO-500 Benchmark</a>
         </li>
         <li>
-            <a href="https://hps.vi4io.org/_media/research/publications/2018/dltvifiatikl18-the_virtual_institute_for_i_o_and_the_io_500.pdf">Poster: The Virtual Institute for I/O and the IO-500</a>
+            <a class="link" href="https://hps.vi4io.org/_media/research/publications/2018/dltvifiatikl18-the_virtual_institute_for_i_o_and_the_io_500.pdf">Poster: The Virtual Institute for I/O and the IO-500</a>
         </li>
         <li>
-            See also various presentations on our <a href="">news page</a>.
+            See also various presentations on our
+            <?php echo $this->Html->link(__('news page'),
+	        [ 'controller' => 'pages', 'action' => 'display',
+                  'news'
+                ], [ 'class' => 'link' ]);
+             ?>.
         </li>
     </ul>
 

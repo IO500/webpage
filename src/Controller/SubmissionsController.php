@@ -46,30 +46,20 @@ class SubmissionsController extends AppController
         $submission = $this->Submissions->get($id);
 
         // We need to fetch the scores
-        $listing = $this->Submissions->ListingsSubmissions->Listings->find('all')
-            ->contain([
-                'Releases' => [
-                    'Listings' => function ($query) {
-                        return $query->where([
-                            'Listings.type_id' => 4, // Historical List
-                        ]);
-                    },
-                ],
-            ])
-            ->where([
-                'Releases.release_date <=' => date('Y-m-d'),
-            ])
-            ->order([
-                'Releases.release_date' => 'DESC',
-            ])
-            ->first();
-
         $score = $this->Submissions->ListingsSubmissions->find('all')
+            ->contain([
+                'Listings' => [
+                    'Releases'
+                ]
+            ])
             ->where([
-                'ListingsSubmissions.listing_id' => $listing->id,
+                'ListingsSubmissions.submission_id' => $submission->id,
+                'Releases.release_date <=' => date('Y-m-d')
             ])
             ->order([
                 'ListingsSubmissions.score' => 'DESC',
+                'Listings.type_id' => 'DESC',
+                'Releases.release_date' => 'DESC'
             ])
             ->first();
 

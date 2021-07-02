@@ -67,7 +67,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
         [
             'controller' => 'Listings',
             'action' => 'list',
-            'sc20',
+            'isc21',
             'io500'
         ]
     );
@@ -183,7 +183,15 @@ $routes->scope('/', function (RouteBuilder $builder) {
             'controller' => 'Listings',
             'action' => 'list'
         ]
-    );    
+    );
+
+    $builder->connect(
+        '/download/*',
+        [
+            'controller' => 'Listings',
+            'action' => 'download'
+        ]
+    );
 
     /*
      * ...and connect the rest of 'Pages' controller's URLs.

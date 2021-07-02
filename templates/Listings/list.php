@@ -12,6 +12,8 @@
     ?>
 </nav>
 
+<?php // echo $this->element('call'); ?>
+
 <div class="submissions index content">
     <h2><?php echo $type->name . ' ' . strtoupper($this->request->getParam('pass')[0]); ?> List</h2>
 
@@ -38,6 +40,15 @@
             'action' => 'customize'
         ], [
             'class' => 'button'
+        ]);
+
+        echo $this->Html->link('Download', [
+            'controller' => 'listings',
+            'action' => 'download',
+            strtolower($this->request->getParam('pass')[0]),
+            strtolower($list->type->url)
+        ], [
+            'class' => 'button-navigation'
         ]);
         ?>
     </div>

@@ -90,7 +90,7 @@
             <strong>What's new with IO500</strong> – <em>George Markomanolis</em> 
         </li>
         <li>
-            <strong>The new IO500 list and analysis:</strong> – <em>Andreas Dilger, Dean Hildebrand, Julian Kunkel, Jay Lofstead, George Markomanolis</em>
+            <strong>The new IO500 list and analysis:</strong> – <em>Andreas Dilger, Dean Hildebrand, Julian Kunkel, Jay Lofstead, George Markomanolis</em> <a class="link" href="data/isc21/isc21_io500_slides.pdf" target="_blank">slides</a>
         </li>
          <ul>
               <li>Highlights</li>

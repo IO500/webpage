@@ -12,6 +12,7 @@ DELETE FROM submissions WHERE release_id = 9;
 -- insert the submissions
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -57,6 +58,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '533',
     'VALID',
     '9',
     NULL,
@@ -104,6 +106,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -149,6 +152,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '534',
     'VALID',
     '9',
     NULL,
@@ -196,6 +200,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -241,98 +246,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
-    'VALID',
-    '9',
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL
-);
-
-
-INSERT INTO submissions (
-    status,
-    release_id,
-    information_identifier,
-    information_submitter,
-    information_system,
-    information_institution,
-    information_filesystem_type,
-    information_storage_vendor,
-    information_client_nodes,
-    information_submission_date,
-    information_client_total_procs,
-    information_client_procs_per_node,
-    information_client_operating_system,
-    information_client_operating_system_version,
-    information_client_kernel_version,
-    information_storage_install_date,
-    information_filesystem_name,
-    information_filesystem_version,
-    information_md_nodes,
-    information_md_storage_devices,
-    information_md_storage_type,
-    information_md_storage_interface,
-    information_ds_nodes,
-    information_ds_storage_devices,
-    information_ds_storage_type,
-    information_ds_storage_interface,
-    information_ds_network,
-    information_ds_operating_system_version,
-    information_note,
-    io500_bw,
-    io500_md,
-    ior_easy_write,
-    ior_easy_read,
-    ior_hard_write,
-    ior_hard_read,
-    mdtest_easy_stat,
-    mdtest_easy_delete,
-    mdtest_easy_write,
-    mdtest_hard_read,
-    mdtest_hard_stat,
-    mdtest_hard_delete,
-    mdtest_hard_write,
-    find_mixed
-)
-VALUES (
+    '536',
     'VALID',
     '9',
     NULL,
@@ -380,6 +294,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -425,6 +340,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '537',
     'VALID',
     '9',
     NULL,
@@ -472,6 +388,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -517,6 +434,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '538',
     'VALID',
     '9',
     NULL,
@@ -564,6 +482,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -609,6 +528,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '539',
     'VALID',
     '9',
     NULL,
@@ -656,6 +576,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -701,6 +622,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '540',
     'VALID',
     '9',
     NULL,
@@ -748,6 +670,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -793,6 +716,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '541',
     'VALID',
     '9',
     NULL,
@@ -840,6 +764,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -885,6 +810,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '542',
     'VALID',
     '9',
     NULL,
@@ -932,6 +858,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -977,6 +904,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '543',
     'VALID',
     '9',
     NULL,
@@ -1024,6 +952,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -1069,6 +998,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '544',
     'VALID',
     '9',
     NULL,
@@ -1116,6 +1046,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -1161,6 +1092,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '545',
     'VALID',
     '9',
     NULL,
@@ -1208,6 +1140,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -1253,6 +1186,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '546',
     'VALID',
     '9',
     NULL,
@@ -1300,6 +1234,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -1345,6 +1280,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '547',
     'VALID',
     '9',
     NULL,
@@ -1392,6 +1328,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -1437,6 +1374,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '548',
     'VALID',
     '9',
     NULL,
@@ -1484,6 +1422,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -1529,11 +1468,12 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '549',
     'VALID',
     '9',
     NULL,
     'Pengcheng Laboratory and Tsinghua University',
-    'Pengcheng',
+    'Pengcheng Cloudbrain-II on Atlas 900',
     'Pengcheng Laboratory',
     'MadFS',
     'Pengcheng',
@@ -1576,6 +1516,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -1621,6 +1562,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '550',
     'VALID',
     '9',
     NULL,
@@ -1668,6 +1610,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -1713,6 +1656,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '551',
     'VALID',
     '9',
     NULL,
@@ -1760,6 +1704,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -1805,6 +1750,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '552',
     'VALID',
     '9',
     NULL,
@@ -1852,6 +1798,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -1897,6 +1844,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '553',
     'VALID',
     '9',
     NULL,
@@ -1944,6 +1892,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -1989,11 +1938,12 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '554',
     'VALID',
     '9',
     NULL,
     'Mohamad Chaarawi',
-    'Endeavour',
+    'Endevour',
     'Intel',
     'DAOS',
     'Intel',
@@ -2036,6 +1986,7 @@ VALUES (
 
 
 INSERT INTO submissions (
+    id,
     status,
     release_id,
     information_identifier,
@@ -2081,6 +2032,7 @@ INSERT INTO submissions (
     find_mixed
 )
 VALUES (
+    '555',
     'VALID',
     '9',
     NULL,

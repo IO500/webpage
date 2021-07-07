@@ -80,9 +80,10 @@
 
     <h3>Agenda</h3>
 
+
     <p>Due to the time limitations of BoFs at ISC HPC (virtual), we have organized the session into two parts, the <b>interactive session presented during ISC HPC</b> and <b>supplementary presentations</b> that we release (mostly) before the BoF; please watch the supplementary presentations before the BoF and feel free to ask questions during the question session. </p>
 
-    <h4>Interactive session during ISC HPC</h4>
+    <h4>Interactive session during ISC HPC <a class="link" href="data/isc21/isc21_io500_slides.pdf" target="_blank">(slides)</a></h4>
 
     <ul>
        <li>
@@ -93,7 +94,7 @@
             <strong>What's new with IO500</strong> – <em>George Markomanolis</em> 
         </li>
         <li>
-            <strong>The new IO500 list and analysis:</strong> – <em>Andreas Dilger, Dean Hildebrand, Julian Kunkel, Jay Lofstead, George Markomanolis</em> <a class="link" href="data/isc21/isc21_io500_slides.pdf" target="_blank">slides</a>
+            <strong>The new IO500 list and analysis:</strong> – <em>Andreas Dilger, Dean Hildebrand, Julian Kunkel, Jay Lofstead, George Markomanolis</em> 
         </li>
          <ul>
               <li>Highlights</li>

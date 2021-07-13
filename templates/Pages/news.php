@@ -73,6 +73,12 @@
 
     <ul class="news">
         <li>
+            <span class="date">2020-07-07</span> <a class="link" href="https://www.hpcwire.com/2021/07/07/pengchen-labs-madfs-and-intels-daos-shine-in-latest-io500" target="_blank">Pengchen Lab’s MadFS and Intel’s DAOS Shine in Latest IO500</a>
+        </li>
+        <li>
+            <span class="date">2021-07-06</span> <a class="link" href="https://www.hpcwire.com/off-the-wire/4-rsc-storage-systems-represent-russia-in-global-io500-rating" target="_blank">4 RSC Storage Systems Represent Russia in Global IO500 Rating</a>
+        </li>
+        <li>
             <span class="date">2020-11-19</span> <a class="link" href="https://www.hpcwire.com/off-the-wire/three-rsc-supercomputers-represent-russia-in-global-io500-rating" target="_blank">Three RSC Supercomputers Represent Russia in Global IO500 Rating</a>
         </li>
         <li>

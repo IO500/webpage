@@ -39,9 +39,9 @@
     <ul>
       <li>Andreas Dilger - Whamcloud/DDN</li>
       <li>Dean Hildebrand - Google</li>
-      <li><a class="link" href="https://hps.vi4io.org/about/people/julian_kunkel">Julian Kunkel - University of Reading</a></li>
+      <li><a class="link" href="https://hps.vi4io.org/about/people/julian_kunkel">Julian Kunkel - Georg-August-Universität Göttingen/GWDG</a></li>
       <li><a class="link" href="https://cfwebprod.sandia.gov/cfdocs/CompResearch/templates/insert/profile.cfm?gflofst">Jay Lofstead - Sandia National Laboratories</a></li>
-      <li><a class="link" href="http://www.markomanolis.com/site/index.html">George Markomanolis - CSC - IT For Science Ltd</a></li>
+      <li><a class="link" href="http://www.markomanolis.com/site/index.html">George Markomanolis - CSC - IT Center For Science Ltd</a></li>
     </ul>
 
   <h3>Web Designer</h3>

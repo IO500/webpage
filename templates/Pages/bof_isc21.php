@@ -83,7 +83,7 @@
 
     <p>Due to the time limitations of BoFs at ISC HPC (virtual), we have organized the session into two parts, the <b>interactive session presented during ISC HPC</b> and <b>supplementary presentations</b> that we release (mostly) before the BoF; please watch the supplementary presentations before the BoF and feel free to ask questions during the question session. </p>
 
-    <h4>Interactive session during ISC HPC <a class="link" href="data/isc21/isc21_io500_slides.pdf" target="_blank">(slides)</a></h4>
+    <h4>Interactive session during ISC HPC <a class="link" href="/files/isc21-io500-slides.pdf" target="_blank">(slides)</a></h4>
 
     <ul>
        <li>

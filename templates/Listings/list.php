@@ -46,7 +46,8 @@
             'controller' => 'listings',
             'action' => 'download',
             strtolower($this->request->getParam('pass')[0]),
-            strtolower($list->type->url)
+            strtolower($type->url),
+            '?' => $this->request->getQueryParams()
         ], [
             'class' => 'button-navigation'
         ]);

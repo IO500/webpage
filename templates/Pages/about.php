@@ -24,7 +24,9 @@
     <h3>The Lists</h3>
 
     <p>
-        We publish multiple lists for each BoF at SC and ISC as well as maintaining the current most up-to-date lists. We publish a <strong>Historic List</strong> of all submissions received and multiple filtered lists from the historic list. We maintain a <strong>Full List</strong> which is the subset of submissions which were valid according to the set of list-specific rules in place at the time of the list’s publication.
+        We publish multiple lists for each BoF at SC and ISC as well as maintaining the current most up-to-date lists. 
+        We intend to not modify a list after the release date but in exceptional circumstances. However, we allow to improve and clarify list metadata upon the request of the submitters.
+        We publish a <strong>Historic List</strong> of all submissions received and multiple filtered lists from the historic list. We maintain a <strong>Full List</strong> which is the subset of submissions which were valid according to the set of list-specific rules in place at the time of the list’s publication.
     </p>
 
     <p>
@@ -47,6 +49,20 @@
             inclusion in the 10-Node Challenge ranked list, showing only one
             highest-scoring result per storage system</li>
     </ul>
+    
+    <p>
+        Please note that the Ranked Lists only show the best submission for
+	each storage systems, so if a storage system has multiple submissions
+	only the one with the <strong>highest overall score</strong> is shown
+	in the Ranked Lists.  All submissions will appear in the Full and
+	Historical lists.  However, please note that at the semi-annual BOFs
+	we present the <em>IO500 Bandwidth</em> and <em>IO500 Metadata</em>
+	awards based on the highest bandwidth and metadata scores.  In some
+	cases, the highest bandwidth and metadata scores are on submissions
+	for that do not have the highest overall score and are only visible in
+	the Full List.
+    </p>
+        
 
     <h3>Workloads</h3>
 
@@ -74,13 +90,18 @@
 
     <ul>
         <li>
-            <a href="https://www.vi4io.org/_media/io500/about/io500-establishing.pdf">White paper: Establishing the IO-500 Benchmark</a>
+            <a class="link" href="https://www.vi4io.org/_media/io500/about/io500-establishing.pdf">White paper: Establishing the IO-500 Benchmark</a>
         </li>
         <li>
-            <a href="https://hps.vi4io.org/_media/research/publications/2018/dltvifiatikl18-the_virtual_institute_for_i_o_and_the_io_500.pdf">Poster: The Virtual Institute for I/O and the IO-500</a>
+            <a class="link" href="https://hps.vi4io.org/_media/research/publications/2018/dltvifiatikl18-the_virtual_institute_for_i_o_and_the_io_500.pdf">Poster: The Virtual Institute for I/O and the IO-500</a>
         </li>
         <li>
-            See also various presentations on our <a href="">news page</a>.
+            See also various presentations on our
+            <?php echo $this->Html->link(__('news page'),
+	        [ 'controller' => 'pages', 'action' => 'display',
+                  'news'
+                ], [ 'class' => 'link' ]);
+             ?>.
         </li>
     </ul>
 

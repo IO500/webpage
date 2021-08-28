@@ -6,46 +6,14 @@
                 <h4><?php echo strtoupper($release->acronym); ?></h4>
 
                 <ul>
-                    <?php if ($release->enable_ranked_list) { ?>
+                    <?php foreach ($release->listings as $list) { ?>
                     <li>
                         <?php
-                        echo $this->Html->link(__('IO500'), [
-                            'controller' => 'submissions',
+                        echo $this->Html->link($list->type->name, [
+                            'controller' => 'listings',
                             'action' => 'list',
-                            strtolower($release->acronym)
-                        ]);
-                        ?>
-                    </li>
-                    <?php } ?>
-                    <?php if ($release->enable_10_node_list) { ?>
-                    <li>
-                        <?php
-                        echo $this->Html->link(__('10 NODE'), [
-                            'controller' => 'submissions',
-                            'action' => 'ten',
-                            strtolower($release->acronym)
-                        ]);
-                        ?>
-                    </li>
-                    <?php } ?>
-                    <?php if ($release->enable_full_list) { ?>
-                    <li>
-                        <?php
-                        echo $this->Html->link(__('FULL'), [
-                            'controller' => 'submissions',
-                            'action' => 'full',
-                            strtolower($release->acronym)
-                        ]);
-                        ?>
-                    </li>
-                    <?php } ?>
-                    <?php if ($release->enable_historical_list) { ?>
-                    <li>
-                        <?php
-                        echo $this->Html->link(__('HISTORICAL'), [
-                            'controller' => 'submissions',
-                            'action' => 'historical',
-                            strtolower($release->acronym)
+                            strtolower($release->acronym),
+                            $list->type->url
                         ]);
                         ?>
                     </li>
@@ -68,10 +36,7 @@
     <ul>
         <li>
             <?php
-            echo $this->Html->link(__('Lastest List'), [
-                'controller' => 'submissions',
-                'action' => 'latest'
-            ], [
+            echo $this->Html->link(__('Lastest List'), '/', [
                 'class' => 'button-highlight'
             ]);
             ?>
@@ -87,21 +52,36 @@
             ]);
             ?>
         </li>
-        <?php if ($this->Configure->read('IO500.custom_lists')) { ?>
-        <li>
-            <?php
+    </ul>
+
+    <p>
+        You can <?php
+            echo $this->Html->link(__('download the CSV-file'), [
+                    'controller' => 'submissions',
+                    'action' => 'export'
+                ],
+                [
+                    'class' => 'link'
+                ]
+            );
+            ?>
+       of the full historic list.
+    </p>
+    
+    <h2>User-Defined Lists</h2>
+    <p>
+        We also support the creation of 
+        <?php if ($this->Configure->read('IO500.custom_lists')) { 
             echo $this->Html->link(__('Used-Defined Lists'), [
                 'controller' => 'records',
                 'action' => 'index'
             ], [
-                'class' => 'button'
+                'class' => 'link'
             ]);
-            ?>
-        </li>
-        <?php } ?>
-    </ul>
-
-    <p class="note">
+        } ?>. Note that these are unofficial lists created by the community.
+    </p>
+    
+    <p>
         Get ready to submit for the next list!
     </p>
 

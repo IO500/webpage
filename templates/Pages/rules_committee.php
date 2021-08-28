@@ -16,10 +16,6 @@
     <h3>Committee</h3>
 
     <p>
-        The IO500 Committee, as of October 2020, consists of the three founding members (in alphabetical order), John Bent, Julian Kunkel, and Jay Lofstead, as well as two additional members, Andreas Dilger and George Markomanolis, who were a active early community participants and joined the committee subsequently.
-    </p>
-
-    <p>
         The committee governs itself with the following rules:
     </p>
 
@@ -28,17 +24,14 @@
             All changes to the benchmarking scripts or methodology require all committee members to review and approve.
         </li>
         <li>
-            All changes to the website require all committee members to review and approve.
+            Changes to the website are performed via GitHub pull requests and require consent among all committee members.
         </li>
         <ul>
             <li>
-                Exception: additions to the News page require only 2 members to approve but must email edits out to the full committee.
+                Core parts (such as rules) must be unanimously approved.
             </li>
             <li>
-                Exception: removing accidentally revealed internal information requires only 2 members to approve but must email edits out to the full committee.
-            </li>
-            <li>
-                Exception: updating the webpage with new lists requires only the members attending the particular BoF.
+                Other changes just require one additional committee member and one web reviewer to approve the pull request. However, in case a committee member has concerns of any change made, it will be reverted/updated.
             </li>
         </ul>
         <li>
@@ -48,7 +41,15 @@
             All requests for media interviews are discussed by the full committee who most unanimously decide how to respond.
         </li>
         <li>
-            There are two official channels of communication for the IO500: the Twitter handle and the email address <a href="mailto:committee@io500.org">committee@io500.org</a>. The only mechanism for communicating official IO500 announcements, policies, statements, or decisions is via the email address (hereafter referred to as The Email Address). All communication from The Email Address must be unanimously pre-approved by the full committee. Official communication will also be echoed to the twitter handle.
+            There are two official channels of communication for the IO500:
+            the Twitter handle and the email address
+            <a class="link" href="mailto:committee@io500.org">
+            committee@io500.org</a>. The only mechanism for communicating
+            official IO500 announcements, policies, statements, or decisions
+            is via the email address (hereafter referred to as The Email
+            Address). All communication from The Email Address must be
+            unanimously pre-approved by the full committee. Official
+            communication will also be echoed to the twitter handle.
         </li>
         <ul>
             <li>
@@ -87,7 +88,9 @@
     </ol>
 
     <p>
-        The committee can be reached at <a href="mailto:committee@io500.org"><span class="code">committee@io500.org</span></a>.
+        The committee can be reached at
+	<a class="link" href="mailto:committee@io500.org">
+	<span class="code">committee@io500.org</span></a>.
     </p>
 
     <div id="disqus_thread"></div>

@@ -19,10 +19,26 @@
 
     <p>
         This page contains the information about the submission procedure.
+        First, you need to
+        <?php echo $this->Html->link(_('run the benchmark'),
+            [ 'controller' => 'Pages', 'action' => 'display',
+              'running'
+            ], [ 'class' => 'link' ]);
+         ?>
+        .
     </p>
 
     <p>
-        The IO500 list is released during ISC and SC. See our call for submissions. Submissions to the upcoming list can be made all year. However, <strong>to be included in the next submission</strong>, we must receive the submission until the deadline listed in our call for submissions.
+        The IO500 list is released during ISC and SC. See our
+        <?php echo $this->Html->link(_('call for submissions'),
+            [ 'controller' => 'Pages', 'action' => 'display',
+              'cfs'
+            ], [ 'class' => 'link' ]);
+         ?>
+        page for details.
+        Submissions to the upcoming list can be made all year. However,
+        <strong>to be included in the next submission</strong>, we must receive
+        the submission before the deadline listed in our call for submissions.
     </p>
 
     <h3>Submission Instructions</h3>
@@ -53,7 +69,9 @@
     <h3>Handling of the Submitted Data</h3>
 
     <p>
-        Until the submission of the list, the submission committee will handle all submitted data confidentially. That means that we will not disclose any submitted data to individuals/companies, or institutions.
+        Until the next release of the list, the submission committee will
+        handle all submitted data confidentially. That means that we will not
+        disclose any submitted data to individuals/companies, or institutions.
     </p>
 
     <h4>Privacy</h4>
@@ -65,27 +83,26 @@
     <h5>Submitter Name</h5>
 
     <p>
-        Submissions will be visible immediately to the IO500 Committee which currently is comprised of John Bent, Andreas Dilger, Julian Kunkel, Jay Lofstead, and George Markomanolis. If there is sensitivity about early visibility to your results being seen by any of the committee, please feel free to email results privately to a subset of the committee (i.e. do not use the official submission tools if you have privacy concerns).
+        Submissions will be visible immediately to the members of the
+        <?php echo $this->Html->link(_('IO500 Steering Committee'),
+            [ 'controller' => 'Pages', 'action' => 'display',
+              'steering'
+            ], [ 'class' => 'link' ]);
+         ?>.
+        If there is sensitivity about early visibility to your results
+        being seen by any of the committee, please feel free to email
+        results privately to a subset of the committee (i.e. do not use
+        the official submission tools if you have privacy concerns).
     </p>
 
     <p>
         Starting with the SC'18 list, submissions include the name of the submitter (or team) to give them the credit they deserve to execute the benchmark; this can be opted out.
     </p>
 
-    <h4>Annonymity and Embargo</h4>
+    <h4>Annonymity</h4>
 
     <p>
-        With the online form, the submitter is able to individually opt-out or embargo (delay) the submission of certain information: 1) The name of the submitter/team (anonymous submission) 2) Specific information that would indicate the system; e.g., the file system, the name of the site, supercomputer...
-    </p>
-
-    <p>
-        After an embargo period the specific information is revealed and updated automatically in the subsequent list following the end of the embargo period. The period is either 3 years, or after the machine is decommissioned (the embargo period is asked in the online form).
-    </p>
-
-    <h3>Preparation</h3>
-
-    <p>
-        Fetching, compiling, and running the IO500 Benchmarks is surprisingly straightforward, although tuning can be challenging. Instructions for the former can be found in our <a href="https://github.com/IO500/io500" target="_blank" class="link">Github repository</a>. Help with the latter can be found in our various communication channels.
+        With the online form, the submitter is able to individually opt-out the submission the name of the submitter/team (this will be then an anonymous submission)
     </p>
 
     <div id="disqus_thread"></div>

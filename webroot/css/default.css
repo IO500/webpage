@@ -11,12 +11,8 @@ body {
 }
 
 a {
-    color: #222;
-    text-decoration: none;
-}
-
-a:hover {
     color: #cc1717;
+    text-decoration: none;
 }
 
 footer {
@@ -80,7 +76,9 @@ footer a {
     }
 
     div.landing {
-        padding: 100px 650px 0 0;
+        display: table-cell;
+        padding: 100px 650px 100px 0;
+        vertical-align: middle;
     }
 
     div.landing-lists, div.landing-bofs, div.landing-graphs, div.landing-running, div.landing-contact {
@@ -90,7 +88,7 @@ footer a {
     }
 
     div.submissions-action {
-        width: 50%;
+        width: 70%;
     }
 
     a.button, a.button-navigation, a.button-navigation-active {
@@ -194,10 +192,10 @@ footer a {
 .button, .button-navigation, .button-navigation-active {
     border-radius: 3px;
     box-sizing: border-box;
-    display: inline-block;
     font-weight: bold;
     padding: 5px 10px;
     text-align: center;
+    transition: 0.5s;
     width: 100px;
     flex-grow: 1;
     gap: 10px;
@@ -211,6 +209,11 @@ footer a {
 .button-navigation {
     border: #bbbbbb solid 1px;
     color: #7b7d82;
+}
+
+.button-navigation:hover{
+    border-color: #cc1717;
+    color: #cc1717;
 }
 
 .button-navigation-active {
@@ -244,6 +247,10 @@ nav .links {
 nav .links > li {
     display: inline-block;
     padding: 0 10px;
+}
+
+nav .links > li > a {
+    color: #222;
 }
 
 /* Flash messages */
@@ -425,8 +432,7 @@ table {
     text-align: right;
 }
 
-.rank {
-    background: #d63b1e;    
+.rank, .custom-rank {
     border-radius: 50px;
     color: #fff;
     display: inline-block;
@@ -438,8 +444,17 @@ table {
     width: 23px;
 }
 
-.rank:hover{
+.rank {
+    background: #d63b1e;
+}
+
+.rank:hover, .custom-rank:hover{
     background: #444;
+    color: #fff;
+}
+
+.custom-rank {
+    background: #222;
 }
 
 input[type=submit], .button-highlight {
@@ -449,6 +464,10 @@ input[type=submit], .button-highlight {
     color: #fff;
     font-weight: bold;
     padding: 5px 10px;
+}
+
+.button-highlight:hover {
+    color: #fff;
 }
 
 input[type=text] {
@@ -517,7 +536,7 @@ li {
 .credits {
     display: inline-block;
     position: absolute;
-    bottom: 50px;
+    bottom: 0px;
     right: 20px;
     color: #bbb;
     font-size: 10px;
@@ -556,6 +575,13 @@ li {
     flex-basis: 400px;
     flex-grow: 1;
     width: 45%;
+}
+
+.release-information {
+    box-sizing: border-box;
+    clear: both;
+    margin: 0 0 20px;
+    width: 100%;    
 }
 
 dt {
@@ -602,6 +628,10 @@ dd {
     margin: 5px;
 }
 
+.submissions-lists li a {
+    color: #222;
+}
+
 .submissions-lists h4 {
     font-size: 32px;
     text-align: center;
@@ -633,7 +663,8 @@ dd {
 
 .submissions > h2 {
     float: left;
-    width: 50%;
+    margin-bottom: 30px;
+    width: 30%;
 }
 
 .submissions > h2 span {
@@ -645,7 +676,7 @@ dd {
 
 .submissions-action {
     float: right;
-    margin: 22px 0;
+    margin: 15px 0;
     display: flex;
     width: 100%;
     flex-wrap: wrap;
@@ -653,6 +684,10 @@ dd {
     gap: 10px;
     box-sizing: border-box;
     justify-content: flex-end;
+}
+
+.submissions-action a {
+    max-width: 200px;
 }
 
 /* Breadcumb */
@@ -675,6 +710,7 @@ dd {
 }
 
 #breadcrumb a {
+    color: #222;
     margin: 0 3px;
 }
 
@@ -695,7 +731,7 @@ dd {
 
 .plots iframe {
     border: 0;
-    height: 300px;
+    height: 405px;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -818,4 +854,24 @@ footer > .container{
 .customize label {
     display: block;
     margin: 10px 5px 5px;
+}
+
+.unofficial {
+    background: #d50000;
+    border-radius: 3px;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.unofficial-bottom {
+    margin: 30px 0 0;
+}
+
+.call {
+    border: #bbb solid 1px;
+    border-radius: 3px;
+    font-weight: bold;
+    padding: 15px;
+    text-align: center;
 }

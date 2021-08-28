@@ -21,10 +21,14 @@
 
     <ol>
         <li>
-            Submissions are made using the latest version of the IO500 application in GitHub and all binaries should be built according to the included build instructions.
-            <p class="code-block">
-                $ git clone https://github.com/IO500/io500.git -b io500-sc20                
-            </p>
+            Submissions are made using the latest version of the IO500
+            application in GitHub and all binaries should be built according
+            to the instructions in
+            <?php echo $this->Html->link(__('Running'),
+                [ 'controller' => 'pages', 'action' => 'display',
+                  'running'
+                ], [ 'class' => 'link' ]);
+             ?>.
         </li>
         <li>
             Read-after-write semantics: The system must be able to correctly
@@ -45,7 +49,7 @@
                 </li>
                 <li>An exception to this rule is possible for submitters who
                     have a legitimate reason by requesting an exception from the
-                    committee via <a href="mailto:committee@io500.org" class="link">committe@io500.org</a>.
+                    committee via <a href="mailto:committee@io500.org" class="link">committee@io500.org</a>.
                 </li>
             </ol>
         </ol>
@@ -64,6 +68,15 @@
             time for the individual benchmark, e.g. if a file system caches
             data, it must ensure that data is persistently stored before
             acknowledging the close.
+        </li>
+        <li>
+            Data and metadata must be written in its entirety and not reduced based
+            on its contents. The goal of the IO500
+            is to provide dataset independent performance results, and techniques
+            such as deduplication, compression, and other lossless and lossy techniques
+            would bias performance as the
+            IO500 benchmark uses partially predictable content that is not
+            representative of existing workloads in the real world.
         </li>
         <li>
             Submitting the results must be done in accordance with the instructions on our submission page. Please verify the correctness of your submission before you submit it.
@@ -109,6 +122,16 @@
             using tools such as "<span class="code">lfs setstripe</span>" or
             "<span class="code">beegfs_ctl</span>"; however, additional
             subdirectories within these directories cannot be precreated.
+        </li>
+        <li>
+            Submissions received after the posted deadline for a list may
+            be accepted, at the discretion of the committee, upon request to
+            <a href="mailto:committee@io500.org" class="link">committee@io500.org</a>.
+            In the case where a late submission would be the winner in any
+            category, then a key consideration for acceptance is ensuring
+            there is enough time before publication of the final list.  Any
+            submission not accepted for the current list would be
+            automatically submitted for the following list.
         </li>
     </ol>
 

@@ -7,15 +7,120 @@
 #+OPTIONS: _:ni
 #+PROPERTY: header-args :eval never-export
 
+* IO500 Data
+
+We need to get the updated CSV with the main IO500 results.
+
+#+begin_src R :results output :session :exports both
+library(plyr)
+
+url = 'http://localhost/io-500-webpage-new/download/'
+
+bofs = list(
+  'SC17',
+  'ISC18',
+  'SC18',
+  'SC18*',
+  'ISC19',
+  'SC19',
+  'ISC20',
+  'SC20'
+)
+
+datalist = list()
+
+for (bof in bofs) {
+  data <- read.csv(paste0(url, bof, '/io500'))
+  data$bof <- bof
+
+  datalist[[bof]] <- data
+}
+
+df <- do.call(rbind, datalist)
+
+str(df)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+'data.frame':	222 obs. of  67 variables:
+ $ id                                         : int  1 2 3 4 5 6 7 8 1 2 ...
+ $ release_id                                 : Factor w/ 6 levels "ISC18","SC18",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ information_system                         : Factor w/ 77 levels "EMSL Cascade",..: 4 7 7 2 3 5 1 6 4 7 ...
+ $ information_institution                    : Factor w/ 61 levels "DKRZ","Fraunhofer",..: 3 5 5 4 1 2 6 7 3 5 ...
+ $ information_storage_vendor                 : Factor w/ 45 levels "","Cray","DDN",..: 3 2 2 6 5 6 1 4 3 2 ...
+ $ information_filesystem_type                : Factor w/ 28 levels "BeeGFS","DataWarp",..: 3 2 4 1 4 1 4 5 3 2 ...
+ $ information_client_nodes                   : int  2048 300 1000 8 100 24 126 16 2048 1024 ...
+ $ information_client_total_procs             : int  16384 2400 16000 64 1000 24 252 160 16384 8192 ...
+ $ io500_score                                : num  101.5 70.9 41 35.8 32.1 ...
+ $ io500_bw                                   : num  471.2 151.5 54.2 14.2 22.8 ...
+ $ io500_md                                   : num  21.9 33.2 31 89.8 45.4 ...
+ $ io500_tot_iops                             : num  102.5 0 0 0 60.8 ...
+ $ information_data                           : Factor w/ 2 levels "","zip": 2 1 1 1 1 1 1 1 2 2 ...
+ $ information_10_node_challenge              : int  NA NA NA NA NA NA NA NA NA NA ...
+ $ information_list_name                      : Factor w/ 6 levels "isc18","sc18",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ information_identifier                     : Factor w/ 110 levels "2018-06-10","2018-06-12",..: 5 7 8 1 6 4 2 3 13 11 ...
+ $ information_submitter                      : chr  NA NA NA NA ...
+ $ information_submission_date                : Factor w/ 16 levels "11/1/19","11/1/17",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ information_embargo_end_date               : chr  NA NA NA NA ...
+ $ information_storage_install_date           : chr  NA NA NA NA ...
+ $ information_storage_refresh_date           : chr  NA NA NA NA ...
+ $ information_filesystem_name                : Factor w/ 62 levels "","lustre02",..: 1 1 1 1 2 1 1 1 1 1 ...
+ $ information_filesystem_version             : chr  NA NA NA NA ...
+ $ information_client_procs_per_node          : int  8 8 16 8 10 1 2 10 8 8 ...
+ $ information_client_operating_system        : chr  NA NA NA NA ...
+ $ information_client_operating_system_version: chr  NA NA NA NA ...
+ $ information_client_kernel_version          : chr  NA NA NA NA ...
+ $ information_md_nodes                       : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ information_md_storage_devices             : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ information_md_storage_type                : chr  NA NA NA NA ...
+ $ information_md_volatile_memory_capacity    : chr  NA NA NA NA ...
+ $ information_md_storage_interface           : chr  NA NA NA NA ...
+ $ information_md_network                     : chr  NA NA NA NA ...
+ $ information_md_software_version            : chr  NA NA NA NA ...
+ $ information_md_operating_system_version    : chr  NA NA NA NA ...
+ $ information_ds_nodes                       : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ information_ds_storage_devices             : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ information_ds_storage_type                : chr  NA NA NA NA ...
+ $ information_ds_volatile_memory_capacity    : chr  NA NA NA NA ...
+ $ information_ds_storage_interface           : chr  NA NA NA NA ...
+ $ information_ds_network                     : chr  NA NA NA NA ...
+ $ information_ds_software_version            : chr  NA NA NA NA ...
+ $ information_ds_operating_system_version    : chr  NA NA NA NA ...
+ $ information_note                           : Factor w/ 4 levels "","IME 1.0.1, stonewalled find",..: 2 1 1 1 3 1 1 1 4 1 ...
+ $ information_best                           : logi  NA NA NA NA NA NA ...
+ $ ior_easy_write                             : num  742.4 969.5 333 30.4 158.2 ...
+ $ ior_easy_read                              : num  427.4 894.8 220.6 48.4 163.6 ...
+ $ ior_hard_write                             : num  600.28 15.55 1.44 1.46 1.53 ...
+ $ ior_hard_read                              : num  258.93 39.09 81.38 19.16 6.79 ...
+ $ mdtest_easy_write                          : num  28.3 50.7 12.7 193.4 18.1 ...
+ $ mdtest_easy_stat                           : num  54.2 49.4 120.8 718.2 153.1 ...
+ $ mdtest_easy_delete                         : num  35.88 48.89 14.96 150.61 7.74 ...
+ $ mdtest_hard_write                          : num  1.51 11.4 13.67 8.42 17.8 ...
+ $ mdtest_hard_read                           : num  57.4 0 0 0 37.6 ...
+ $ mdtest_hard_stat                           : num  61.5 38.7 127.3 100.8 156.1 ...
+ $ mdtest_hard_delete                         : num  0.95 18.92 11.3 8.76 8.8 ...
+ $ find_easy                                  : num  187 43 62 303 913 215 24 34 395 6 ...
+ $ find_hard                                  : logi  NA NA NA NA NA NA ...
+ $ marker_score                               : Factor w/ 1 level "Â§": 1 1 1 1 1 1 1 1 1 1 ...
+ $ marker_md                                  : Factor w/ 1 level "Â§": 1 1 1 1 1 1 1 1 1 1 ...
+ $ storage_data                               : Factor w/ 97 levels "","JCAHPC-17.zip",..: 2 1 1 1 1 1 1 1 4 6 ...
+ $ status                                     : Factor w/ 2 levels "VALID","INVALID": 1 1 1 1 1 1 1 1 1 1 ...
+ $ include_in_io500                           : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ valid_from                                 : Factor w/ 15 levels "11/1/19","1/1/18",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ valid_to                                   : Factor w/ 3 levels "11/1/19","10/1/19",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ score                                      : num  101.5 70.9 41 35.8 32.1 ...
+ $ bof                                        : chr  "SC17" "SC17" "SC17" "SC17" ...
+#+end_example
+
 * IO500 Base Plots
 
 #+begin_src R :results output :session :exports both
 library(plyr)
 
-df <- read.csv(file = "releases.csv", sep = ",")
-
-df$list_name <- toupper(df$release_id)
-df$list_name <- factor(df$list_name, levels = c("SC17", "ISC18", "SC18", "SC18*", "ISC19", "SC19", "ISC20"))
+# Make sure our factors follow the pre-defined order
+df$list_name <- factor(df$bof, levels = bofs)
 
 df$entry <- paste(df$information_system, df$information_filesystem, df$information_institution, sep = " | ")
 
@@ -35,94 +140,96 @@ str(df)
 #+RESULTS:
 #+begin_example
 
- chr [1:527] "Wolf |  | Intel" "Wolf |  | Intel" ...
+ chr [1:222] "Oakforest-PACS |  | JCAHPC" "ShaheenII |  | KAUST" ...
 
- chr [1:527] "List:  ISC20 <
-System:  Wolf <
-File System:  DAOS <
-Institution:  Intel" ...
+ chr [1:222] "List:  SC17 <
+System:  Oakforest-PACS <
+File System:  IME <
+Institution:  JCAHPC" ...
 
-'data.frame':	527 obs. of  68 variables:
- $ id                                         : int  1 2 3 4 5 6 7 8 10 11 ...
- $ release_id                                 : Factor w/ 7 levels "ISC18","ISC19",..: 3 3 3 3 3 3 3 3 3 3 ...
- $ information_system                         : Factor w/ 85 levels "","400NV","AI400",..: 84 84 83 84 27 84 27 84 58 84 ...
- $ information_institution                    : Factor w/ 66 levels "","Argonne National Laboratory",..: 24 24 65 24 62 24 62 24 2 24 ...
- $ information_storage_vendor                 : Factor w/ 44 levels "","AdvancedHPC",..: 22 22 43 22 22 22 22 22 3 22 ...
- $ information_filesystem_type                : Factor w/ 27 levels "","beegfs","BeeGFS",..: 5 5 26 5 5 5 5 5 5 5 ...
- $ information_client_nodes                   : int  52 52 345 26 60 10 60 10 16 10 ...
- $ information_client_total_procs             : int  1664 1664 8625 728 1440 420 1440 420 544 310 ...
- $ io500_score                                : num  1793 1614 939 934 764 ...
- $ io500_bw                                   : num  371.7 368.4 174.7 183.4 78.3 ...
- $ io500_md                                   : num  8650 7071 5045 4754 7450 ...
- $ io500_tot_iops                             : num  5103 4448 2770 2706 2749 ...
- $ information_data                           : Factor w/ 2 levels "","zip": 2 2 2 2 2 2 2 2 2 2 ...
- $ information_10_node_challenge              : logi  NA NA NA NA NA NA ...
- $ information_list_name                      : Factor w/ 4 levels "-","isc20","sc18",..: 2 2 4 4 2 2 2 2 2 4 ...
- $ information_identifier                     : Factor w/ 219 levels "2018_1","2018_10",..: 163 200 134 111 169 178 206 212 149 105 ...
- $ information_submitter                      : Factor w/ 62 levels "","Alexander Howard",..: 25 25 2 25 25 25 25 25 5 25 ...
- $ information_submission_date                : Factor w/ 64 levels "1/1/19","10/10/19",..: 58 58 18 33 58 58 58 58 58 33 ...
- $ information_embargo_end_date               : Factor w/ 5 levels "","06/2019","111919",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ information_storage_install_date           : Factor w/ 76 levels "","01/2015","03/19",..: 1 1 62 1 1 1 1 1 64 1 ...
- $ information_storage_refresh_date           : Factor w/ 43 levels "","01/2019","04/19",..: 1 1 1 1 1 1 1 1 32 1 ...
- $ information_filesystem_name                : Factor w/ 76 levels "","/ai","/dac",..: 20 20 72 20 20 20 20 20 20 20 ...
- $ information_filesystem_version             : Factor w/ 78 levels "","0.6","0.6dev",..: 6 6 47 2 6 6 6 6 6 2 ...
- $ information_client_procs_per_node          : int  32 32 25 28 24 42 24 42 34 31 ...
- $ information_client_operating_system        : Factor w/ 21 levels "","Amazon Linux",..: 3 3 2 3 3 3 3 3 15 3 ...
- $ information_client_operating_system_version: Factor w/ 38 levels "","11.4","12 SP3",..: 22 22 27 22 24 22 24 22 22 22 ...
- $ information_client_kernel_version          : Factor w/ 57 levels "","12.3","2.6.32-696.18.7.el6.x86_64",..: 10 10 54 9 15 10 15 10 11 9 ...
- $ information_md_nodes                       : Factor w/ 30 levels "","0","1","10",..: 2 2 7 2 2 2 2 2 4 2 ...
- $ information_md_storage_devices             : Factor w/ 25 levels "","0","1","10",..: 2 2 24 2 2 2 2 2 6 2 ...
- $ information_md_storage_type                : Factor w/ 25 levels "","0","3DXP-NVMe",..: 1 1 13 1 1 1 1 1 8 1 ...
- $ information_md_volatile_memory_capacity    : Factor w/ 44 levels "","0","1.2TB",..: 1 1 41 1 1 1 1 1 27 1 ...
- $ information_md_storage_interface           : Factor w/ 23 levels ""," iSCSI  (network attached)",..: 1 1 19 1 1 1 1 1 7 1 ...
- $ information_md_network                     : Factor w/ 46 levels "","0","100Gb Ethernet",..: 1 1 20 1 1 1 1 1 5 1 ...
- $ information_md_software_version            : Factor w/ 51 levels "","0","0.8dev",..: 1 1 25 1 1 1 1 1 5 1 ...
- $ information_md_operating_system_version    : Factor w/ 44 levels "","0","12 SP3",..: 1 1 17 1 1 1 1 1 13 1 ...
- $ information_ds_nodes                       : Factor w/ 43 levels "","1","10","100",..: 24 24 7 18 11 24 11 24 3 18 ...
- $ information_ds_storage_devices             : Factor w/ 52 levels "","1","10","100",..: 42 42 52 37 27 42 27 42 10 37 ...
- $ information_ds_storage_type                : Factor w/ 34 levels "","3DXP,NVMe,SSD",..: 23 23 14 22 23 23 23 23 19 22 ...
- $ information_ds_volatile_memory_capacity    : Factor w/ 41 levels "","0","1.92TB",..: 28 28 35 6 18 28 18 28 24 6 ...
- $ information_ds_storage_interface           : Factor w/ 21 levels ""," iSCSI  (network attached)",..: 4 4 12 4 4 4 4 4 12 4 ...
- $ information_ds_network                     : Factor w/ 39 levels "","100Gb Ethernet",..: 36 36 14 36 27 36 27 36 4 36 ...
- $ information_ds_software_version            : Factor w/ 58 levels "","0.6","0.8dev",..: 5 5 29 2 5 5 5 5 5 2 ...
- $ information_ds_operating_system_version    : Factor w/ 44 levels "","12 SP3","12.3",..: 12 12 16 12 14 12 14 12 12 12 ...
- $ information_note                           : Factor w/ 5 levels "","IME 1.0.1, stonewalled find",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ information_best                           : Factor w/ 3 levels "","false","true": 1 1 1 1 1 1 1 1 1 1 ...
- $ ior_easy_write                             : num  243.6 244.3 298.1 108.2 90.8 ...
- $ ior_easy_read                              : num  575.6 576.1 325.6 308.9 75.8 ...
- $ ior_hard_write                             : num  261.2 267.6 71.6 122.9 76.3 ...
- $ ior_hard_read                              : num  520.9 489.2 134.2 275.1 71.6 ...
- $ mdtest_easy_write                          : num  12326 11977 2236 6004 11306 ...
- $ mdtest_easy_stat                           : num  11929 8190 36673 7237 11125 ...
- $ mdtest_easy_delete                         : num  6898 5497 3385 4557 6543 ...
- $ mdtest_hard_write                          : num  5647 5471 439 2418 5016 ...
- $ mdtest_hard_read                           : num  8620 7472 7709 4068 7406 ...
- $ mdtest_hard_stat                           : num  10723 7911 28649 6871 9156 ...
- $ mdtest_hard_delete                         : num  6696 5396 476 4551 5949 ...
- $ find_easy                                  : int  8838 6638 32781 4284 5696 4195 6816 3200 2969 2566 ...
+'data.frame':	222 obs. of  70 variables:
+ $ id                                         : int  1 2 3 4 5 6 7 8 1 2 ...
+ $ release_id                                 : Factor w/ 6 levels "ISC18","SC18",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ information_system                         : Factor w/ 77 levels "EMSL Cascade",..: 4 7 7 2 3 5 1 6 4 7 ...
+ $ information_institution                    : Factor w/ 61 levels "DKRZ","Fraunhofer",..: 3 5 5 4 1 2 6 7 3 5 ...
+ $ information_storage_vendor                 : Factor w/ 45 levels "","Cray","DDN",..: 3 2 2 6 5 6 1 4 3 2 ...
+ $ information_filesystem_type                : Factor w/ 28 levels "BeeGFS","DataWarp",..: 3 2 4 1 4 1 4 5 3 2 ...
+ $ information_client_nodes                   : int  2048 300 1000 8 100 24 126 16 2048 1024 ...
+ $ information_client_total_procs             : int  16384 2400 16000 64 1000 24 252 160 16384 8192 ...
+ $ io500_score                                : num  101.5 70.9 41 35.8 32.1 ...
+ $ io500_bw                                   : num  471.2 151.5 54.2 14.2 22.8 ...
+ $ io500_md                                   : num  21.9 33.2 31 89.8 45.4 ...
+ $ io500_tot_iops                             : num  102.5 0 0 0 60.8 ...
+ $ information_data                           : Factor w/ 2 levels "","zip": 2 1 1 1 1 1 1 1 2 2 ...
+ $ information_10_node_challenge              : int  NA NA NA NA NA NA NA NA NA NA ...
+ $ information_list_name                      : Factor w/ 6 levels "isc18","sc18",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ information_identifier                     : Factor w/ 110 levels "2018-06-10","2018-06-12",..: 5 7 8 1 6 4 2 3 13 11 ...
+ $ information_submitter                      : chr  NA NA NA NA ...
+ $ information_submission_date                : Factor w/ 16 levels "11/1/19","11/1/17",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ information_embargo_end_date               : chr  NA NA NA NA ...
+ $ information_storage_install_date           : chr  NA NA NA NA ...
+ $ information_storage_refresh_date           : chr  NA NA NA NA ...
+ $ information_filesystem_name                : Factor w/ 62 levels "","lustre02",..: 1 1 1 1 2 1 1 1 1 1 ...
+ $ information_filesystem_version             : chr  NA NA NA NA ...
+ $ information_client_procs_per_node          : int  8 8 16 8 10 1 2 10 8 8 ...
+ $ information_client_operating_system        : chr  NA NA NA NA ...
+ $ information_client_operating_system_version: chr  NA NA NA NA ...
+ $ information_client_kernel_version          : chr  NA NA NA NA ...
+ $ information_md_nodes                       : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ information_md_storage_devices             : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ information_md_storage_type                : chr  NA NA NA NA ...
+ $ information_md_volatile_memory_capacity    : chr  NA NA NA NA ...
+ $ information_md_storage_interface           : chr  NA NA NA NA ...
+ $ information_md_network                     : chr  NA NA NA NA ...
+ $ information_md_software_version            : chr  NA NA NA NA ...
+ $ information_md_operating_system_version    : chr  NA NA NA NA ...
+ $ information_ds_nodes                       : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ information_ds_storage_devices             : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ information_ds_storage_type                : chr  NA NA NA NA ...
+ $ information_ds_volatile_memory_capacity    : chr  NA NA NA NA ...
+ $ information_ds_storage_interface           : chr  NA NA NA NA ...
+ $ information_ds_network                     : chr  NA NA NA NA ...
+ $ information_ds_software_version            : chr  NA NA NA NA ...
+ $ information_ds_operating_system_version    : chr  NA NA NA NA ...
+ $ information_note                           : Factor w/ 4 levels "","IME 1.0.1, stonewalled find",..: 2 1 1 1 3 1 1 1 4 1 ...
+ $ information_best                           : logi  NA NA NA NA NA NA ...
+ $ ior_easy_write                             : num  742.4 969.5 333 30.4 158.2 ...
+ $ ior_easy_read                              : num  427.4 894.8 220.6 48.4 163.6 ...
+ $ ior_hard_write                             : num  600.28 15.55 1.44 1.46 1.53 ...
+ $ ior_hard_read                              : num  258.93 39.09 81.38 19.16 6.79 ...
+ $ mdtest_easy_write                          : num  28.3 50.7 12.7 193.4 18.1 ...
+ $ mdtest_easy_stat                           : num  54.2 49.4 120.8 718.2 153.1 ...
+ $ mdtest_easy_delete                         : num  35.88 48.89 14.96 150.61 7.74 ...
+ $ mdtest_hard_write                          : num  1.51 11.4 13.67 8.42 17.8 ...
+ $ mdtest_hard_read                           : num  57.4 0 0 0 37.6 ...
+ $ mdtest_hard_stat                           : num  61.5 38.7 127.3 100.8 156.1 ...
+ $ mdtest_hard_delete                         : num  0.95 18.92 11.3 8.76 8.8 ...
+ $ find_easy                                  : num  187 43 62 303 913 215 24 34 395 6 ...
  $ find_hard                                  : logi  NA NA NA NA NA NA ...
- $ marker_score                               : Factor w/ 3 levels "","-","Â§": 1 1 1 1 1 1 1 1 1 1 ...
- $ marker_md                                  : Factor w/ 3 levels "","-","Â§": 1 1 1 1 1 1 1 1 1 1 ...
- $ storage_data                               : Factor w/ 1 level "-": 1 1 1 1 1 1 1 1 1 1 ...
- $ status                                     : Factor w/ 1 level "VALID": 1 1 1 1 1 1 1 1 1 1 ...
+ $ marker_score                               : Factor w/ 1 level "Â§": 1 1 1 1 1 1 1 1 1 1 ...
+ $ marker_md                                  : Factor w/ 1 level "Â§": 1 1 1 1 1 1 1 1 1 1 ...
+ $ storage_data                               : Factor w/ 97 levels "","JCAHPC-17.zip",..: 2 1 1 1 1 1 1 1 4 6 ...
+ $ status                                     : Factor w/ 2 levels "VALID","INVALID": 1 1 1 1 1 1 1 1 1 1 ...
  $ include_in_io500                           : int  1 1 1 1 1 1 1 1 1 1 ...
- $ valid_from                                 : Factor w/ 63 levels "1/1/19","10/10/19",..: 57 57 18 32 57 57 57 57 57 32 ...
- $ valid_to                                   : Factor w/ 4 levels "","1/1/19","10/31/19",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ list_name                                  : Factor w/ 7 levels "SC17","ISC18",..: 7 7 7 7 7 7 7 7 7 7 ...
- $ entry                                      : chr  "Wolf |  | Intel" "Wolf |  | Intel" "WekaIO on AWS |  | WekaIO" "Wolf |  | Intel" ...
- $ text                                       : chr  "List:  ISC20 <
-System:  Wolf <
-File System:  DAOS <
-Institution:  Intel" "List:  ISC20 <
-System:  Wolf <
-File System:  DAOS <
-Institution:  Intel" "List:  ISC20 <
-System:  WekaIO on AWS <
-File System:  WekaIO Matrix <
-Institution:  WekaIO" "List:  ISC20 <
-System:  Wolf <
-File System:  DAOS <
-Institution:  Intel" ...
+ $ valid_from                                 : Factor w/ 15 levels "11/1/19","1/1/18",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ valid_to                                   : Factor w/ 3 levels "11/1/19","10/1/19",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ score                                      : num  101.5 70.9 41 35.8 32.1 ...
+ $ bof                                        : chr  "SC17" "SC17" "SC17" "SC17" ...
+ $ entry                                      : chr  "Oakforest-PACS |  | JCAHPC" "ShaheenII |  | KAUST" "ShaheenII |  | KAUST" "JURON |  | JSC" ...
+ $ text                                       : chr  "List:  SC17 <
+System:  Oakforest-PACS <
+File System:  IME <
+Institution:  JCAHPC" "List:  SC17 <
+System:  ShaheenII <
+File System:  DataWarp <
+Institution:  KAUST" "List:  SC17 <
+System:  ShaheenII <
+File System:  Lustre <
+Institution:  KAUST" "List:  SC17 <
+System:  JURON <
+File System:  BeeGFS <
+Institution:  JSC" ...
+ $ list_name                                  : Factor w/ 8 levels "SC17","ISC18",..: 1 1 1 1 1 1 1 1 2 2 ...
 #+end_example
 
 ** IO500 Score
@@ -173,8 +280,11 @@ plot
 library(plotly)
 library(htmlwidgets)
 
-p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
-  layout(margin = list(pad = 0)) %>%
+options(warn = -1)
+
+p <- ggplotly(plot, width = 1000, height = 400, tooltip = "text") %>%
+  rangeslider(length(bofs) - 4.5, length(bofs) + 0.5) %>%
+  layout(margin = list(pad = 0), yaxis = list(fixedrange = FALSE)) %>%
   layout(autosize = FALSE) %>%
   toWebGL()
 
@@ -184,37 +294,6 @@ saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-score.
 #+end_src
 
 #+RESULTS:
-#+begin_example
-
-Warning messages:
-1: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-2: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-3: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-4: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-5: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-6: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-7: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
-#+end_example
 ** IO500 Bandwidth
 
 #+begin_src R :results output graphics :file "images/io500-bandwidth.png" :exports both :width 500 :height 300 :session
@@ -263,8 +342,9 @@ plot
 library(plotly)
 library(htmlwidgets)
 
-p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
-  layout(margin = list(pad = 0)) %>%
+p <- ggplotly(plot, width = 1000, height = 400, tooltip = "text") %>%
+  rangeslider(length(bofs) - 4.5, length(bofs) + 0.5) %>%
+  layout(margin = list(pad = 0), yaxis = list(fixedrange = FALSE)) %>%
   layout(autosize = FALSE) %>%
   toWebGL()
 
@@ -274,37 +354,6 @@ saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-bandwi
 #+end_src
 
 #+RESULTS:
-#+begin_example
-
-Warning messages:
-1: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-2: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-3: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-4: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-5: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-6: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-7: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
-#+end_example
 ** IO500 Metadata
 
 #+begin_src R :results output graphics :file "images/io500-metadata.png" :exports both :width 500 :height 300 :session
@@ -353,8 +402,9 @@ plot
 library(plotly)
 library(htmlwidgets)
 
-p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
-  layout(margin = list(pad = 0)) %>%
+p <- ggplotly(plot, width = 1000, height = 400, tooltip = "text") %>%
+  rangeslider(length(bofs) - 4.5, length(bofs) + 0.5) %>%
+  layout(margin = list(pad = 0), yaxis = list(fixedrange = FALSE)) %>%
   layout(autosize = FALSE) %>%
   toWebGL()
 
@@ -364,154 +414,7 @@ saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-metada
 #+end_src
 
 #+RESULTS:
-#+begin_example
-
-Warning messages:
-1: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-2: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-3: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-4: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-5: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-6: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-7: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
-#+end_example
 * IO500 IOR Plots
-
-#+begin_src R :results output :session :exports both
-library(plyr)
-
-df <- read.csv(file = "releases.csv", sep = ",")
-
-df$list_name <- toupper(df$release_id)
-df$list_name <- factor(df$list_name, levels = c("SC17", "ISC18", "SC18", "SC18*", "ISC19", "SC19", "ISC20"))
-
-df$entry <- paste(df$information_system, df$information_filesystem_type, df$information_institution, sep = " | ")
-
-df$text <- paste(
-  'List: ', df$list_name, '<br>',
-  'System: ', df$information_system, '<br>',
-  'File System: ', df$information_filesystem_type, '<br>',
-  'Institution: ', df$information_institution
-)
-
-str(df$entry)
-str(df$text)
-
-str(df)
-#+end_src
-
-#+RESULTS:
-#+begin_example
-
- chr [1:527] "Wolf | DAOS | Intel" "Wolf | DAOS | Intel" ...
-
- chr [1:527] "List:  ISC20 <
-System:  Wolf <
-File System:  DAOS <
-Institution:  Intel" ...
-
-'data.frame':	527 obs. of  68 variables:
- $ id                                         : int  1 2 3 4 5 6 7 8 10 11 ...
- $ release_id                                 : Factor w/ 7 levels "ISC18","ISC19",..: 3 3 3 3 3 3 3 3 3 3 ...
- $ information_system                         : Factor w/ 85 levels "","400NV","AI400",..: 84 84 83 84 27 84 27 84 58 84 ...
- $ information_institution                    : Factor w/ 66 levels "","Argonne National Laboratory",..: 24 24 65 24 62 24 62 24 2 24 ...
- $ information_storage_vendor                 : Factor w/ 44 levels "","AdvancedHPC",..: 22 22 43 22 22 22 22 22 3 22 ...
- $ information_filesystem_type                : Factor w/ 27 levels "","beegfs","BeeGFS",..: 5 5 26 5 5 5 5 5 5 5 ...
- $ information_client_nodes                   : int  52 52 345 26 60 10 60 10 16 10 ...
- $ information_client_total_procs             : int  1664 1664 8625 728 1440 420 1440 420 544 310 ...
- $ io500_score                                : num  1793 1614 939 934 764 ...
- $ io500_bw                                   : num  371.7 368.4 174.7 183.4 78.3 ...
- $ io500_md                                   : num  8650 7071 5045 4754 7450 ...
- $ io500_tot_iops                             : num  5103 4448 2770 2706 2749 ...
- $ information_data                           : Factor w/ 2 levels "","zip": 2 2 2 2 2 2 2 2 2 2 ...
- $ information_10_node_challenge              : logi  NA NA NA NA NA NA ...
- $ information_list_name                      : Factor w/ 4 levels "-","isc20","sc18",..: 2 2 4 4 2 2 2 2 2 4 ...
- $ information_identifier                     : Factor w/ 219 levels "2018_1","2018_10",..: 163 200 134 111 169 178 206 212 149 105 ...
- $ information_submitter                      : Factor w/ 62 levels "","Alexander Howard",..: 25 25 2 25 25 25 25 25 5 25 ...
- $ information_submission_date                : Factor w/ 64 levels "1/1/19","10/10/19",..: 58 58 18 33 58 58 58 58 58 33 ...
- $ information_embargo_end_date               : Factor w/ 5 levels "","06/2019","111919",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ information_storage_install_date           : Factor w/ 76 levels "","01/2015","03/19",..: 1 1 62 1 1 1 1 1 64 1 ...
- $ information_storage_refresh_date           : Factor w/ 43 levels "","01/2019","04/19",..: 1 1 1 1 1 1 1 1 32 1 ...
- $ information_filesystem_name                : Factor w/ 76 levels "","/ai","/dac",..: 20 20 72 20 20 20 20 20 20 20 ...
- $ information_filesystem_version             : Factor w/ 78 levels "","0.6","0.6dev",..: 6 6 47 2 6 6 6 6 6 2 ...
- $ information_client_procs_per_node          : int  32 32 25 28 24 42 24 42 34 31 ...
- $ information_client_operating_system        : Factor w/ 21 levels "","Amazon Linux",..: 3 3 2 3 3 3 3 3 15 3 ...
- $ information_client_operating_system_version: Factor w/ 38 levels "","11.4","12 SP3",..: 22 22 27 22 24 22 24 22 22 22 ...
- $ information_client_kernel_version          : Factor w/ 57 levels "","12.3","2.6.32-696.18.7.el6.x86_64",..: 10 10 54 9 15 10 15 10 11 9 ...
- $ information_md_nodes                       : Factor w/ 30 levels "","0","1","10",..: 2 2 7 2 2 2 2 2 4 2 ...
- $ information_md_storage_devices             : Factor w/ 25 levels "","0","1","10",..: 2 2 24 2 2 2 2 2 6 2 ...
- $ information_md_storage_type                : Factor w/ 25 levels "","0","3DXP-NVMe",..: 1 1 13 1 1 1 1 1 8 1 ...
- $ information_md_volatile_memory_capacity    : Factor w/ 44 levels "","0","1.2TB",..: 1 1 41 1 1 1 1 1 27 1 ...
- $ information_md_storage_interface           : Factor w/ 23 levels ""," iSCSI  (network attached)",..: 1 1 19 1 1 1 1 1 7 1 ...
- $ information_md_network                     : Factor w/ 46 levels "","0","100Gb Ethernet",..: 1 1 20 1 1 1 1 1 5 1 ...
- $ information_md_software_version            : Factor w/ 51 levels "","0","0.8dev",..: 1 1 25 1 1 1 1 1 5 1 ...
- $ information_md_operating_system_version    : Factor w/ 44 levels "","0","12 SP3",..: 1 1 17 1 1 1 1 1 13 1 ...
- $ information_ds_nodes                       : Factor w/ 43 levels "","1","10","100",..: 24 24 7 18 11 24 11 24 3 18 ...
- $ information_ds_storage_devices             : Factor w/ 52 levels "","1","10","100",..: 42 42 52 37 27 42 27 42 10 37 ...
- $ information_ds_storage_type                : Factor w/ 34 levels "","3DXP,NVMe,SSD",..: 23 23 14 22 23 23 23 23 19 22 ...
- $ information_ds_volatile_memory_capacity    : Factor w/ 41 levels "","0","1.92TB",..: 28 28 35 6 18 28 18 28 24 6 ...
- $ information_ds_storage_interface           : Factor w/ 21 levels ""," iSCSI  (network attached)",..: 4 4 12 4 4 4 4 4 12 4 ...
- $ information_ds_network                     : Factor w/ 39 levels "","100Gb Ethernet",..: 36 36 14 36 27 36 27 36 4 36 ...
- $ information_ds_software_version            : Factor w/ 58 levels "","0.6","0.8dev",..: 5 5 29 2 5 5 5 5 5 2 ...
- $ information_ds_operating_system_version    : Factor w/ 44 levels "","12 SP3","12.3",..: 12 12 16 12 14 12 14 12 12 12 ...
- $ information_note                           : Factor w/ 5 levels "","IME 1.0.1, stonewalled find",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ information_best                           : Factor w/ 3 levels "","false","true": 1 1 1 1 1 1 1 1 1 1 ...
- $ ior_easy_write                             : num  243.6 244.3 298.1 108.2 90.8 ...
- $ ior_easy_read                              : num  575.6 576.1 325.6 308.9 75.8 ...
- $ ior_hard_write                             : num  261.2 267.6 71.6 122.9 76.3 ...
- $ ior_hard_read                              : num  520.9 489.2 134.2 275.1 71.6 ...
- $ mdtest_easy_write                          : num  12326 11977 2236 6004 11306 ...
- $ mdtest_easy_stat                           : num  11929 8190 36673 7237 11125 ...
- $ mdtest_easy_delete                         : num  6898 5497 3385 4557 6543 ...
- $ mdtest_hard_write                          : num  5647 5471 439 2418 5016 ...
- $ mdtest_hard_read                           : num  8620 7472 7709 4068 7406 ...
- $ mdtest_hard_stat                           : num  10723 7911 28649 6871 9156 ...
- $ mdtest_hard_delete                         : num  6696 5396 476 4551 5949 ...
- $ find_easy                                  : int  8838 6638 32781 4284 5696 4195 6816 3200 2969 2566 ...
- $ find_hard                                  : logi  NA NA NA NA NA NA ...
- $ marker_score                               : Factor w/ 3 levels "","-","Â§": 1 1 1 1 1 1 1 1 1 1 ...
- $ marker_md                                  : Factor w/ 3 levels "","-","Â§": 1 1 1 1 1 1 1 1 1 1 ...
- $ storage_data                               : Factor w/ 1 level "-": 1 1 1 1 1 1 1 1 1 1 ...
- $ status                                     : Factor w/ 1 level "VALID": 1 1 1 1 1 1 1 1 1 1 ...
- $ include_in_io500                           : int  1 1 1 1 1 1 1 1 1 1 ...
- $ valid_from                                 : Factor w/ 63 levels "1/1/19","10/10/19",..: 57 57 18 32 57 57 57 57 57 32 ...
- $ valid_to                                   : Factor w/ 4 levels "","1/1/19","10/31/19",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ list_name                                  : Factor w/ 7 levels "SC17","ISC18",..: 7 7 7 7 7 7 7 7 7 7 ...
- $ entry                                      : chr  "Wolf | DAOS | Intel" "Wolf | DAOS | Intel" "WekaIO on AWS | WekaIO Matrix | WekaIO" "Wolf | DAOS | Intel" ...
- $ text                                       : chr  "List:  ISC20 <
-System:  Wolf <
-File System:  DAOS <
-Institution:  Intel" "List:  ISC20 <
-System:  Wolf <
-File System:  DAOS <
-Institution:  Intel" "List:  ISC20 <
-System:  WekaIO on AWS <
-File System:  WekaIO Matrix <
-Institution:  WekaIO" "List:  ISC20 <
-System:  Wolf <
-File System:  DAOS <
-Institution:  Intel" ...
-#+end_example
 
 ** IO500 Easy Write
 
@@ -561,8 +464,9 @@ plot
 library(plotly)
 library(htmlwidgets)
 
-p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
-  layout(margin = list(pad = 0)) %>%
+p <- ggplotly(plot, width = 1000, height = 400, tooltip = "text") %>%
+  rangeslider(length(bofs) - 4.5, length(bofs) + 0.5) %>%
+  layout(margin = list(pad = 0), yaxis = list(fixedrange = FALSE)) %>%
   layout(autosize = FALSE) %>%
   toWebGL()
 
@@ -572,37 +476,6 @@ saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-ior-ea
 #+end_src
 
 #+RESULTS:
-#+begin_example
-
-Warning messages:
-1: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-2: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-3: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-4: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-5: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-6: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-7: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
-#+end_example
 ** IO500 Easy Read
 
 #+begin_src R :results output graphics :file "images/io500-ior-easy-read.png" :exports both :width 500 :height 300 :session
@@ -651,8 +524,9 @@ plot
 library(plotly)
 library(htmlwidgets)
 
-p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
-  layout(margin = list(pad = 0)) %>%
+p <- ggplotly(plot, width = 1000, height = 400, tooltip = "text") %>%
+  rangeslider(length(bofs) - 4.5, length(bofs) + 0.5) %>%
+  layout(margin = list(pad = 0), yaxis = list(fixedrange = FALSE)) %>%
   layout(autosize = FALSE) %>%
   toWebGL()
 
@@ -662,37 +536,6 @@ saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-ior-ea
 #+end_src
 
 #+RESULTS:
-#+begin_example
-
-Warning messages:
-1: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-2: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-3: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-4: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-5: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-6: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-7: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
-#+end_example
 ** IO500 Hard Write
 
 #+begin_src R :results output graphics :file "images/io500-ior-hard-write.png" :exports both :width 500 :height 300 :session
@@ -741,8 +584,9 @@ plot
 library(plotly)
 library(htmlwidgets)
 
-p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
-  layout(margin = list(pad = 0)) %>%
+p <- ggplotly(plot, width = 1000, height = 400, tooltip = "text") %>%
+  rangeslider(length(bofs) - 4.5, length(bofs) + 0.5) %>%
+  layout(margin = list(pad = 0), yaxis = list(fixedrange = FALSE)) %>%
   layout(autosize = FALSE) %>%
   toWebGL()
 
@@ -752,37 +596,6 @@ saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-ior-ha
 #+end_src
 
 #+RESULTS:
-#+begin_example
-
-Warning messages:
-1: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-2: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-3: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-4: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-5: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-6: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-7: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
-#+end_example
 ** IO500 Hard Read
 
 #+begin_src R :results output graphics :file "images/io500-ior-hard-read.png" :exports both :width 500 :height 300 :session
@@ -831,8 +644,9 @@ plot
 library(plotly)
 library(htmlwidgets)
 
-p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
-  layout(margin = list(pad = 0)) %>%
+p <- ggplotly(plot, width = 1000, height = 400, tooltip = "text") %>%
+  rangeslider(length(bofs) - 4.5, length(bofs) + 0.5) %>%
+  layout(margin = list(pad = 0), yaxis = list(fixedrange = FALSE)) %>%
   layout(autosize = FALSE) %>%
   toWebGL()
 
@@ -842,154 +656,7 @@ saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-ior-ha
 #+end_src
 
 #+RESULTS:
-#+begin_example
-
-Warning messages:
-1: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-2: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-3: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-4: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-5: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-6: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-7: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
-#+end_example
 * IO500 MDtest Plots
-
-#+begin_src R :results output :session :exports both
-library(plyr)
-
-df <- read.csv(file = "releases.csv", sep = ",")
-
-df$list_name <- toupper(df$release_id)
-df$list_name <- factor(df$list_name, levels = c("SC17", "ISC18", "SC18", "SC18*", "ISC19", "SC19", "ISC20"))
-
-df$entry <- paste(df$information_system, df$information_filesystem_type, df$information_institution, sep = " | ")
-
-df$text <- paste(
-  'List: ', df$list_name, '<br>',
-  'System: ', df$information_system, '<br>',
-  'File System: ', df$information_filesystem_type, '<br>',
-  'Institution: ', df$information_institution
-)
-
-str(df$entry)
-str(df$text)
-
-str(df)
-#+end_src
-
-#+RESULTS:
-#+begin_example
-
- chr [1:527] "Wolf | DAOS | Intel" "Wolf | DAOS | Intel" ...
-
- chr [1:527] "List:  ISC20 <
-System:  Wolf <
-File System:  DAOS <
-Institution:  Intel" ...
-
-'data.frame':	527 obs. of  68 variables:
- $ id                                         : int  1 2 3 4 5 6 7 8 10 11 ...
- $ release_id                                 : Factor w/ 7 levels "ISC18","ISC19",..: 3 3 3 3 3 3 3 3 3 3 ...
- $ information_system                         : Factor w/ 85 levels "","400NV","AI400",..: 84 84 83 84 27 84 27 84 58 84 ...
- $ information_institution                    : Factor w/ 66 levels "","Argonne National Laboratory",..: 24 24 65 24 62 24 62 24 2 24 ...
- $ information_storage_vendor                 : Factor w/ 44 levels "","AdvancedHPC",..: 22 22 43 22 22 22 22 22 3 22 ...
- $ information_filesystem_type                : Factor w/ 27 levels "","beegfs","BeeGFS",..: 5 5 26 5 5 5 5 5 5 5 ...
- $ information_client_nodes                   : int  52 52 345 26 60 10 60 10 16 10 ...
- $ information_client_total_procs             : int  1664 1664 8625 728 1440 420 1440 420 544 310 ...
- $ io500_score                                : num  1793 1614 939 934 764 ...
- $ io500_bw                                   : num  371.7 368.4 174.7 183.4 78.3 ...
- $ io500_md                                   : num  8650 7071 5045 4754 7450 ...
- $ io500_tot_iops                             : num  5103 4448 2770 2706 2749 ...
- $ information_data                           : Factor w/ 2 levels "","zip": 2 2 2 2 2 2 2 2 2 2 ...
- $ information_10_node_challenge              : logi  NA NA NA NA NA NA ...
- $ information_list_name                      : Factor w/ 4 levels "-","isc20","sc18",..: 2 2 4 4 2 2 2 2 2 4 ...
- $ information_identifier                     : Factor w/ 219 levels "2018_1","2018_10",..: 163 200 134 111 169 178 206 212 149 105 ...
- $ information_submitter                      : Factor w/ 62 levels "","Alexander Howard",..: 25 25 2 25 25 25 25 25 5 25 ...
- $ information_submission_date                : Factor w/ 64 levels "1/1/19","10/10/19",..: 58 58 18 33 58 58 58 58 58 33 ...
- $ information_embargo_end_date               : Factor w/ 5 levels "","06/2019","111919",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ information_storage_install_date           : Factor w/ 76 levels "","01/2015","03/19",..: 1 1 62 1 1 1 1 1 64 1 ...
- $ information_storage_refresh_date           : Factor w/ 43 levels "","01/2019","04/19",..: 1 1 1 1 1 1 1 1 32 1 ...
- $ information_filesystem_name                : Factor w/ 76 levels "","/ai","/dac",..: 20 20 72 20 20 20 20 20 20 20 ...
- $ information_filesystem_version             : Factor w/ 78 levels "","0.6","0.6dev",..: 6 6 47 2 6 6 6 6 6 2 ...
- $ information_client_procs_per_node          : int  32 32 25 28 24 42 24 42 34 31 ...
- $ information_client_operating_system        : Factor w/ 21 levels "","Amazon Linux",..: 3 3 2 3 3 3 3 3 15 3 ...
- $ information_client_operating_system_version: Factor w/ 38 levels "","11.4","12 SP3",..: 22 22 27 22 24 22 24 22 22 22 ...
- $ information_client_kernel_version          : Factor w/ 57 levels "","12.3","2.6.32-696.18.7.el6.x86_64",..: 10 10 54 9 15 10 15 10 11 9 ...
- $ information_md_nodes                       : Factor w/ 30 levels "","0","1","10",..: 2 2 7 2 2 2 2 2 4 2 ...
- $ information_md_storage_devices             : Factor w/ 25 levels "","0","1","10",..: 2 2 24 2 2 2 2 2 6 2 ...
- $ information_md_storage_type                : Factor w/ 25 levels "","0","3DXP-NVMe",..: 1 1 13 1 1 1 1 1 8 1 ...
- $ information_md_volatile_memory_capacity    : Factor w/ 44 levels "","0","1.2TB",..: 1 1 41 1 1 1 1 1 27 1 ...
- $ information_md_storage_interface           : Factor w/ 23 levels ""," iSCSI  (network attached)",..: 1 1 19 1 1 1 1 1 7 1 ...
- $ information_md_network                     : Factor w/ 46 levels "","0","100Gb Ethernet",..: 1 1 20 1 1 1 1 1 5 1 ...
- $ information_md_software_version            : Factor w/ 51 levels "","0","0.8dev",..: 1 1 25 1 1 1 1 1 5 1 ...
- $ information_md_operating_system_version    : Factor w/ 44 levels "","0","12 SP3",..: 1 1 17 1 1 1 1 1 13 1 ...
- $ information_ds_nodes                       : Factor w/ 43 levels "","1","10","100",..: 24 24 7 18 11 24 11 24 3 18 ...
- $ information_ds_storage_devices             : Factor w/ 52 levels "","1","10","100",..: 42 42 52 37 27 42 27 42 10 37 ...
- $ information_ds_storage_type                : Factor w/ 34 levels "","3DXP,NVMe,SSD",..: 23 23 14 22 23 23 23 23 19 22 ...
- $ information_ds_volatile_memory_capacity    : Factor w/ 41 levels "","0","1.92TB",..: 28 28 35 6 18 28 18 28 24 6 ...
- $ information_ds_storage_interface           : Factor w/ 21 levels ""," iSCSI  (network attached)",..: 4 4 12 4 4 4 4 4 12 4 ...
- $ information_ds_network                     : Factor w/ 39 levels "","100Gb Ethernet",..: 36 36 14 36 27 36 27 36 4 36 ...
- $ information_ds_software_version            : Factor w/ 58 levels "","0.6","0.8dev",..: 5 5 29 2 5 5 5 5 5 2 ...
- $ information_ds_operating_system_version    : Factor w/ 44 levels "","12 SP3","12.3",..: 12 12 16 12 14 12 14 12 12 12 ...
- $ information_note                           : Factor w/ 5 levels "","IME 1.0.1, stonewalled find",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ information_best                           : Factor w/ 3 levels "","false","true": 1 1 1 1 1 1 1 1 1 1 ...
- $ ior_easy_write                             : num  243.6 244.3 298.1 108.2 90.8 ...
- $ ior_easy_read                              : num  575.6 576.1 325.6 308.9 75.8 ...
- $ ior_hard_write                             : num  261.2 267.6 71.6 122.9 76.3 ...
- $ ior_hard_read                              : num  520.9 489.2 134.2 275.1 71.6 ...
- $ mdtest_easy_write                          : num  12326 11977 2236 6004 11306 ...
- $ mdtest_easy_stat                           : num  11929 8190 36673 7237 11125 ...
- $ mdtest_easy_delete                         : num  6898 5497 3385 4557 6543 ...
- $ mdtest_hard_write                          : num  5647 5471 439 2418 5016 ...
- $ mdtest_hard_read                           : num  8620 7472 7709 4068 7406 ...
- $ mdtest_hard_stat                           : num  10723 7911 28649 6871 9156 ...
- $ mdtest_hard_delete                         : num  6696 5396 476 4551 5949 ...
- $ find_easy                                  : int  8838 6638 32781 4284 5696 4195 6816 3200 2969 2566 ...
- $ find_hard                                  : logi  NA NA NA NA NA NA ...
- $ marker_score                               : Factor w/ 3 levels "","-","Â§": 1 1 1 1 1 1 1 1 1 1 ...
- $ marker_md                                  : Factor w/ 3 levels "","-","Â§": 1 1 1 1 1 1 1 1 1 1 ...
- $ storage_data                               : Factor w/ 1 level "-": 1 1 1 1 1 1 1 1 1 1 ...
- $ status                                     : Factor w/ 1 level "VALID": 1 1 1 1 1 1 1 1 1 1 ...
- $ include_in_io500                           : int  1 1 1 1 1 1 1 1 1 1 ...
- $ valid_from                                 : Factor w/ 63 levels "1/1/19","10/10/19",..: 57 57 18 32 57 57 57 57 57 32 ...
- $ valid_to                                   : Factor w/ 4 levels "","1/1/19","10/31/19",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ list_name                                  : Factor w/ 7 levels "SC17","ISC18",..: 7 7 7 7 7 7 7 7 7 7 ...
- $ entry                                      : chr  "Wolf | DAOS | Intel" "Wolf | DAOS | Intel" "WekaIO on AWS | WekaIO Matrix | WekaIO" "Wolf | DAOS | Intel" ...
- $ text                                       : chr  "List:  ISC20 <
-System:  Wolf <
-File System:  DAOS <
-Institution:  Intel" "List:  ISC20 <
-System:  Wolf <
-File System:  DAOS <
-Institution:  Intel" "List:  ISC20 <
-System:  WekaIO on AWS <
-File System:  WekaIO Matrix <
-Institution:  WekaIO" "List:  ISC20 <
-System:  Wolf <
-File System:  DAOS <
-Institution:  Intel" ...
-#+end_example
 
 ** IO500 MDtest Easy Write
 
@@ -1039,8 +706,9 @@ plot
 library(plotly)
 library(htmlwidgets)
 
-p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
-  layout(margin = list(pad = 0)) %>%
+p <- ggplotly(plot, width = 1000, height = 400, tooltip = "text") %>%
+  rangeslider(length(bofs) - 4.5, length(bofs) + 0.5) %>%
+  layout(margin = list(pad = 0), yaxis = list(fixedrange = FALSE)) %>%
   layout(autosize = FALSE) %>%
   toWebGL()
 
@@ -1050,37 +718,6 @@ saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-mdtest
 #+end_src
 
 #+RESULTS:
-#+begin_example
-
-Warning messages:
-1: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-2: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-3: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-4: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-5: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-6: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-7: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
-#+end_example
 ** IO500 MDtest Easy Stat
 
 #+begin_src R :results output graphics :file "images/io500-mdtest-easy-stat.png" :exports both :width 500 :height 300 :session
@@ -1129,8 +766,9 @@ plot
 library(plotly)
 library(htmlwidgets)
 
-p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
-  layout(margin = list(pad = 0)) %>%
+p <- ggplotly(plot, width = 1000, height = 400, tooltip = "text") %>%
+  rangeslider(length(bofs) - 4.5, length(bofs) + 0.5) %>%
+  layout(margin = list(pad = 0), yaxis = list(fixedrange = FALSE)) %>%
   layout(autosize = FALSE) %>%
   toWebGL()
 
@@ -1140,37 +778,6 @@ saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-mdtest
 #+end_src
 
 #+RESULTS:
-#+begin_example
-
-Warning messages:
-1: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-2: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-3: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-4: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-5: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-6: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-7: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
-#+end_example
 ** IO500 MDtest Easy Delete
 
 #+begin_src R :results output graphics :file "images/io500-mdtest-easy-delete.png" :exports both :width 500 :height 300 :session
@@ -1219,8 +826,9 @@ plot
 library(plotly)
 library(htmlwidgets)
 
-p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
-  layout(margin = list(pad = 0)) %>%
+p <- ggplotly(plot, width = 1000, height = 400, tooltip = "text") %>%
+  rangeslider(length(bofs) - 4.5, length(bofs) + 0.5) %>%
+  layout(margin = list(pad = 0), yaxis = list(fixedrange = FALSE)) %>%
   layout(autosize = FALSE) %>%
   toWebGL()
 
@@ -1230,37 +838,6 @@ saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-mdtest
 #+end_src
 
 #+RESULTS:
-#+begin_example
-
-Warning messages:
-1: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-2: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-3: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-4: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-5: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-6: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-7: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
-#+end_example
 ** IO500 MDtest Hard Write
 
 #+begin_src R :results output graphics :file "images/io500-mdtest-hard-write.png" :exports both :width 500 :height 300 :session
@@ -1309,8 +886,9 @@ plot
 library(plotly)
 library(htmlwidgets)
 
-p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
-  layout(margin = list(pad = 0)) %>%
+p <- ggplotly(plot, width = 1000, height = 400, tooltip = "text") %>%
+  rangeslider(length(bofs) - 4.5, length(bofs) + 0.5) %>%
+  layout(margin = list(pad = 0), yaxis = list(fixedrange = FALSE)) %>%
   layout(autosize = FALSE) %>%
   toWebGL()
 
@@ -1320,37 +898,6 @@ saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-mdtest
 #+end_src
 
 #+RESULTS:
-#+begin_example
-
-Warning messages:
-1: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-2: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-3: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-4: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-5: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-6: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-7: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
-#+end_example
 ** IO500 MDtest Hard Read
 
 #+begin_src R :results output graphics :file "images/io500-mdtest-hard-read.png" :exports both :width 500 :height 300 :session
@@ -1399,8 +946,9 @@ plot
 library(plotly)
 library(htmlwidgets)
 
-p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
-  layout(margin = list(pad = 0)) %>%
+p <- ggplotly(plot, width = 1000, height = 400, tooltip = "text") %>%
+  rangeslider(length(bofs) - 4.5, length(bofs) + 0.5) %>%
+  layout(margin = list(pad = 0), yaxis = list(fixedrange = FALSE)) %>%
   layout(autosize = FALSE) %>%
   toWebGL()
 
@@ -1410,37 +958,6 @@ saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-mdtest
 #+end_src
 
 #+RESULTS:
-#+begin_example
-
-Warning messages:
-1: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-2: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-3: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-4: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-5: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-6: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-7: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
-#+end_example
 ** IO500 MDtest Hard Stat
 
 #+begin_src R :results output graphics :file "images/io500-mdtest-hard-stat.png" :exports both :width 500 :height 300 :session
@@ -1489,8 +1006,9 @@ plot
 library(plotly)
 library(htmlwidgets)
 
-p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
-  layout(margin = list(pad = 0)) %>%
+p <- ggplotly(plot, width = 1000, height = 400, tooltip = "text") %>%
+  rangeslider(length(bofs) - 4.5, length(bofs) + 0.5) %>%
+  layout(margin = list(pad = 0), yaxis = list(fixedrange = FALSE)) %>%
   layout(autosize = FALSE) %>%
   toWebGL()
 
@@ -1500,37 +1018,6 @@ saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-mdtest
 #+end_src
 
 #+RESULTS:
-#+begin_example
-
-Warning messages:
-1: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-2: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-3: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-4: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-5: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-6: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-7: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
-#+end_example
 ** IO500 MDtest Hard Delete
 
 #+begin_src R :results output graphics :file "images/io500-mdtest-hard-delete.png" :exports both :width 500 :height 300 :session
@@ -1579,8 +1066,9 @@ plot
 library(plotly)
 library(htmlwidgets)
 
-p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
-  layout(margin = list(pad = 0)) %>%
+p <- ggplotly(plot, width = 1000, height = 400, tooltip = "text") %>%
+  rangeslider(length(bofs) - 4.5, length(bofs) + 0.5) %>%
+  layout(margin = list(pad = 0), yaxis = list(fixedrange = FALSE)) %>%
   layout(autosize = FALSE) %>%
   toWebGL()
 
@@ -1590,158 +1078,11 @@ saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-mdtest
 #+end_src
 
 #+RESULTS:
-#+begin_example
-
-Warning messages:
-1: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-2: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-3: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-4: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-5: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-6: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-7: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
-#+end_example
-* IO500 Find Plots
-
-#+begin_src R :results output :session :exports both
-library(plyr)
-
-df <- read.csv(file = "releases.csv", sep = ",")
-
-df$list_name <- toupper(df$release_id)
-df$list_name <- factor(df$list_name, levels = c("SC17", "ISC18", "SC18", "SC18*", "ISC19", "SC19", "ISC20"))
-
-df$entry <- paste(df$information_system, df$information_filesystem_type, df$information_institution, sep = " | ")
-
-df$text <- paste(
-  'List: ', df$list_name, '<br>',
-  'System: ', df$information_system, '<br>',
-  'File System: ', df$information_filesystem_type, '<br>',
-  'Institution: ', df$information_institution
-)
-
-str(df$entry)
-str(df$text)
-
-str(df)
-#+end_src
-
-#+RESULTS:
-#+begin_example
-
- chr [1:527] "Wolf | DAOS | Intel" "Wolf | DAOS | Intel" ...
-
- chr [1:527] "List:  ISC20 <
-System:  Wolf <
-File System:  DAOS <
-Institution:  Intel" ...
-
-'data.frame':	527 obs. of  68 variables:
- $ id                                         : int  1 2 3 4 5 6 7 8 10 11 ...
- $ release_id                                 : Factor w/ 7 levels "ISC18","ISC19",..: 3 3 3 3 3 3 3 3 3 3 ...
- $ information_system                         : Factor w/ 85 levels "","400NV","AI400",..: 84 84 83 84 27 84 27 84 58 84 ...
- $ information_institution                    : Factor w/ 66 levels "","Argonne National Laboratory",..: 24 24 65 24 62 24 62 24 2 24 ...
- $ information_storage_vendor                 : Factor w/ 44 levels "","AdvancedHPC",..: 22 22 43 22 22 22 22 22 3 22 ...
- $ information_filesystem_type                : Factor w/ 27 levels "","beegfs","BeeGFS",..: 5 5 26 5 5 5 5 5 5 5 ...
- $ information_client_nodes                   : int  52 52 345 26 60 10 60 10 16 10 ...
- $ information_client_total_procs             : int  1664 1664 8625 728 1440 420 1440 420 544 310 ...
- $ io500_score                                : num  1793 1614 939 934 764 ...
- $ io500_bw                                   : num  371.7 368.4 174.7 183.4 78.3 ...
- $ io500_md                                   : num  8650 7071 5045 4754 7450 ...
- $ io500_tot_iops                             : num  5103 4448 2770 2706 2749 ...
- $ information_data                           : Factor w/ 2 levels "","zip": 2 2 2 2 2 2 2 2 2 2 ...
- $ information_10_node_challenge              : logi  NA NA NA NA NA NA ...
- $ information_list_name                      : Factor w/ 4 levels "-","isc20","sc18",..: 2 2 4 4 2 2 2 2 2 4 ...
- $ information_identifier                     : Factor w/ 219 levels "2018_1","2018_10",..: 163 200 134 111 169 178 206 212 149 105 ...
- $ information_submitter                      : Factor w/ 62 levels "","Alexander Howard",..: 25 25 2 25 25 25 25 25 5 25 ...
- $ information_submission_date                : Factor w/ 64 levels "1/1/19","10/10/19",..: 58 58 18 33 58 58 58 58 58 33 ...
- $ information_embargo_end_date               : Factor w/ 5 levels "","06/2019","111919",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ information_storage_install_date           : Factor w/ 76 levels "","01/2015","03/19",..: 1 1 62 1 1 1 1 1 64 1 ...
- $ information_storage_refresh_date           : Factor w/ 43 levels "","01/2019","04/19",..: 1 1 1 1 1 1 1 1 32 1 ...
- $ information_filesystem_name                : Factor w/ 76 levels "","/ai","/dac",..: 20 20 72 20 20 20 20 20 20 20 ...
- $ information_filesystem_version             : Factor w/ 78 levels "","0.6","0.6dev",..: 6 6 47 2 6 6 6 6 6 2 ...
- $ information_client_procs_per_node          : int  32 32 25 28 24 42 24 42 34 31 ...
- $ information_client_operating_system        : Factor w/ 21 levels "","Amazon Linux",..: 3 3 2 3 3 3 3 3 15 3 ...
- $ information_client_operating_system_version: Factor w/ 38 levels "","11.4","12 SP3",..: 22 22 27 22 24 22 24 22 22 22 ...
- $ information_client_kernel_version          : Factor w/ 57 levels "","12.3","2.6.32-696.18.7.el6.x86_64",..: 10 10 54 9 15 10 15 10 11 9 ...
- $ information_md_nodes                       : Factor w/ 30 levels "","0","1","10",..: 2 2 7 2 2 2 2 2 4 2 ...
- $ information_md_storage_devices             : Factor w/ 25 levels "","0","1","10",..: 2 2 24 2 2 2 2 2 6 2 ...
- $ information_md_storage_type                : Factor w/ 25 levels "","0","3DXP-NVMe",..: 1 1 13 1 1 1 1 1 8 1 ...
- $ information_md_volatile_memory_capacity    : Factor w/ 44 levels "","0","1.2TB",..: 1 1 41 1 1 1 1 1 27 1 ...
- $ information_md_storage_interface           : Factor w/ 23 levels ""," iSCSI  (network attached)",..: 1 1 19 1 1 1 1 1 7 1 ...
- $ information_md_network                     : Factor w/ 46 levels "","0","100Gb Ethernet",..: 1 1 20 1 1 1 1 1 5 1 ...
- $ information_md_software_version            : Factor w/ 51 levels "","0","0.8dev",..: 1 1 25 1 1 1 1 1 5 1 ...
- $ information_md_operating_system_version    : Factor w/ 44 levels "","0","12 SP3",..: 1 1 17 1 1 1 1 1 13 1 ...
- $ information_ds_nodes                       : Factor w/ 43 levels "","1","10","100",..: 24 24 7 18 11 24 11 24 3 18 ...
- $ information_ds_storage_devices             : Factor w/ 52 levels "","1","10","100",..: 42 42 52 37 27 42 27 42 10 37 ...
- $ information_ds_storage_type                : Factor w/ 34 levels "","3DXP,NVMe,SSD",..: 23 23 14 22 23 23 23 23 19 22 ...
- $ information_ds_volatile_memory_capacity    : Factor w/ 41 levels "","0","1.92TB",..: 28 28 35 6 18 28 18 28 24 6 ...
- $ information_ds_storage_interface           : Factor w/ 21 levels ""," iSCSI  (network attached)",..: 4 4 12 4 4 4 4 4 12 4 ...
- $ information_ds_network                     : Factor w/ 39 levels "","100Gb Ethernet",..: 36 36 14 36 27 36 27 36 4 36 ...
- $ information_ds_software_version            : Factor w/ 58 levels "","0.6","0.8dev",..: 5 5 29 2 5 5 5 5 5 2 ...
- $ information_ds_operating_system_version    : Factor w/ 44 levels "","12 SP3","12.3",..: 12 12 16 12 14 12 14 12 12 12 ...
- $ information_note                           : Factor w/ 5 levels "","IME 1.0.1, stonewalled find",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ information_best                           : Factor w/ 3 levels "","false","true": 1 1 1 1 1 1 1 1 1 1 ...
- $ ior_easy_write                             : num  243.6 244.3 298.1 108.2 90.8 ...
- $ ior_easy_read                              : num  575.6 576.1 325.6 308.9 75.8 ...
- $ ior_hard_write                             : num  261.2 267.6 71.6 122.9 76.3 ...
- $ ior_hard_read                              : num  520.9 489.2 134.2 275.1 71.6 ...
- $ mdtest_easy_write                          : num  12326 11977 2236 6004 11306 ...
- $ mdtest_easy_stat                           : num  11929 8190 36673 7237 11125 ...
- $ mdtest_easy_delete                         : num  6898 5497 3385 4557 6543 ...
- $ mdtest_hard_write                          : num  5647 5471 439 2418 5016 ...
- $ mdtest_hard_read                           : num  8620 7472 7709 4068 7406 ...
- $ mdtest_hard_stat                           : num  10723 7911 28649 6871 9156 ...
- $ mdtest_hard_delete                         : num  6696 5396 476 4551 5949 ...
- $ find_easy                                  : int  8838 6638 32781 4284 5696 4195 6816 3200 2969 2566 ...
- $ find_hard                                  : logi  NA NA NA NA NA NA ...
- $ marker_score                               : Factor w/ 3 levels "","-","Â§": 1 1 1 1 1 1 1 1 1 1 ...
- $ marker_md                                  : Factor w/ 3 levels "","-","Â§": 1 1 1 1 1 1 1 1 1 1 ...
- $ storage_data                               : Factor w/ 1 level "-": 1 1 1 1 1 1 1 1 1 1 ...
- $ status                                     : Factor w/ 1 level "VALID": 1 1 1 1 1 1 1 1 1 1 ...
- $ include_in_io500                           : int  1 1 1 1 1 1 1 1 1 1 ...
- $ valid_from                                 : Factor w/ 63 levels "1/1/19","10/10/19",..: 57 57 18 32 57 57 57 57 57 32 ...
- $ valid_to                                   : Factor w/ 4 levels "","1/1/19","10/31/19",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ list_name                                  : Factor w/ 7 levels "SC17","ISC18",..: 7 7 7 7 7 7 7 7 7 7 ...
- $ entry                                      : chr  "Wolf | DAOS | Intel" "Wolf | DAOS | Intel" "WekaIO on AWS | WekaIO Matrix | WekaIO" "Wolf | DAOS | Intel" ...
- $ text                                       : chr  "List:  ISC20 <
-System:  Wolf <
-File System:  DAOS <
-Institution:  Intel" "List:  ISC20 <
-System:  Wolf <
-File System:  DAOS <
-Institution:  Intel" "List:  ISC20 <
-System:  WekaIO on AWS <
-File System:  WekaIO Matrix <
-Institution:  WekaIO" "List:  ISC20 <
-System:  Wolf <
-File System:  DAOS <
-Institution:  Intel" ...
-#+end_example
+* IO500 Find Plot
 
 ** IO500 Find Easy
 
-#+begin_src R :results output graphics :file "images/io500-find-easy.png" :exports both :width 500 :height 300 :session
+#+begin_src R :results output graphics :file "images/io500-find.png" :exports both :width 500 :height 300 :session
 library(ggplot2)
 library(dplyr)
 
@@ -1749,7 +1090,7 @@ plot <- ggplot(
   df,
   aes(
     x = list_name,
-    y = as.numeric(as.character(find_easy)),
+    y = as.numeric(as.character(find_hard)),
     color = list_name,
     text = text
   )) + 
@@ -1768,7 +1109,7 @@ plot <- ggplot(
     )
   ) +
   xlab("") +
-  ylab("Find Easy (kIOP/s)") + 
+  ylab("Find (kIOP/s)") + 
   theme_bw() +
   theme(
     legend.position = "none",
@@ -1781,141 +1122,21 @@ plot
 #+end_src
 
 #+RESULTS:
-[[file:images/io500-find-easy.png]]
+[[file:images/io500-find.png]]
 
 #+begin_src R :results output :session :exports both
 library(plotly)
 library(htmlwidgets)
 
-p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
-  layout(margin = list(pad = 0)) %>%
+p <- ggplotly(plot, width = 1000, height = 400, tooltip = "text") %>%
+  rangeslider(length(bofs) - 4.5, length(bofs) + 0.5) %>%
+  layout(margin = list(pad = 0), yaxis = list(fixedrange = FALSE)) %>%
   layout(autosize = FALSE) %>%
   toWebGL()
 
 p$sizingPolicy$padding <- "0"
 
-saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-find-easy.html"))
+saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-find.html"))
 #+end_src
 
 #+RESULTS:
-#+begin_example
-
-Warning messages:
-1: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-2: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-3: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-4: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-5: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-6: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-7: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
-#+end_example
-** IO500 Find Hard
-
-#+begin_src R :results output graphics :file "images/io500-ior-hard-read.png" :exports both :width 500 :height 300 :session
-library(ggplot2)
-library(dplyr)
-
-plot <- ggplot(
-  df,
-  aes(
-    x = list_name,
-    y = as.numeric(as.character(ior_hard_read)),
-    color = list_name,
-    text = text
-  )) + 
-  geom_jitter(size = 1, width = 0.3) +
-  scale_colour_manual(
-    values = c(
-      "#ec563c",
-      "#1d2a30",
-      "#ec563c",
-      "#ec563c",
-      "#1d2a30",
-      "#ec563c",
-      "#1d2a30",
-      "#ec563c",
-      "#1d2a30"
-    )
-  ) +
-  xlab("") +
-  ylab("IOR Hard Read (GiB/s)") + 
-  theme_bw() +
-  theme(
-    legend.position = "none",
-    plot.title = element_text(size = 10),
-    axis.title.y = element_text(vjust = 0.4), 
-    strip.background = element_rect(colour = NA, fill = NA)
-  )
-
-plot
-#+end_src
-
-#+RESULTS:
-[[file:images/io500-ior-hard-read.png]]
-
-#+begin_src R :results output :session :exports both
-library(plotly)
-library(htmlwidgets)
-
-p <- ggplotly(plot, width = 1000, height = 300, tooltip = "text") %>%
-  layout(margin = list(pad = 0)) %>%
-  layout(autosize = FALSE) %>%
-  toWebGL()
-
-p$sizingPolicy$padding <- "0"
-
-saveWidget(p, selfcontained = FALSE, file.path(getwd(), "plotly/", "io500-ior-hard-read.html"))
-#+end_src
-
-#+RESULTS:
-#+begin_example
-
-Warning messages:
-1: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-2: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-3: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-4: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-5: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-6: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
- 
-7: 'scattergl' objects don't have these attributes: 'hoveron'
-Valid attributes include:
-'type', 'visible', 'showlegend', 'legendgroup', 'name', 'uid', 'ids', 'customdata', 'meta', 'selectedpoints', 'hoverinfo', 'hoverlabel', 'stream', 'transforms', 'uirevision', 'x', 'x0', 'dx', 'y', 'y0', 'dy', 'text', 'hovertext', 'textposition', 'textfont', 'mode', 'line', 'marker', 'connectgaps', 'fill', 'fillcolor', 'selected', 'unselected', 'opacity', 'hovertemplate', 'texttemplate', 'error_x', 'error_y', 'xcalendar', 'ycalendar', 'xaxis', 'yaxis', 'idssrc', 'customdatasrc', 'metasrc', 'hoverinfosrc', 'xsrc', 'ysrc', 'textsrc', 'hovertextsrc', 'textpositionsrc', 'hovertemplatesrc', 'texttemplatesrc', 'key', 'set', 'frame', 'transforms', '_isNestedKey', '_isSimpleKey', '_isGraticule', '_bbox'
-#+end_example

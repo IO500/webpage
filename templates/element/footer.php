@@ -10,6 +10,18 @@
                 <li>
                     <?php
                     echo $this->Html->link(
+                        file_get_contents('img/report.svg'),
+                        'https://github.com/IO500/webpage/issues/new',
+                        [
+                            'escape' => false,
+                            'target' => '_blank'
+                        ]
+                    );
+                    ?>
+                </li>
+                <li>
+                    <?php
+                    echo $this->Html->link(
                         file_get_contents('img/mail.svg'),
                         'http://lists.io500.org/listinfo.cgi/io500-io500.org',
                         [

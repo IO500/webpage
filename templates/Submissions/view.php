@@ -3,7 +3,7 @@
 
     <?php
     $this->Breadcrumbs->add(_('LISTS'), ['controller' => 'releases', 'action' => 'index']);
-    $this->Breadcrumbs->add(strtoupper($submission->information_list_name), ['controller' => 'submissions', 'action' => 'full', strtolower($submission->information_list_name)]);
+    $this->Breadcrumbs->add(strtoupper($submission->information_list_name), ['controller' => 'listings', 'action' => 'list', strtolower($submission->information_list_name), 'io500']);
     $this->Breadcrumbs->add(strtoupper($submission->information_system), ['controller' => 'submissions', 'action' => 'view', $submission->id]);
 
     echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
@@ -13,7 +13,18 @@
 <div class="row">
     <div class="column-responsive column-80">
         <div class="submissions view content">
-            <h3><?php echo h($submission->information_system) ?></h3>
+            <h2><?php echo h($submission->information_system) ?></h2>
+
+            <?php if ($submission->cdcl_url) { ?>
+            <div class="submissions-action">
+                <?php
+                echo $this->Html->link(_('Data Center List'), $submission->cdcl_url, [
+                    'class' => 'button-navigation',
+                    'target' => '_blank'
+                ]);
+                ?>
+            </div>
+            <?php } ?>
 
             <div class="information">
                 <div class="information-metadata">
@@ -206,7 +217,7 @@
                         </tr>
                         <tr>
                             <th><?php echo _('Find') ?></th>
-                            <td><?php echo $this->Number->format($submission->pfind_easy, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
+                            <td><?php echo $this->Number->format($submission->find_mixed, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
                         </tr>
                     </table>
                 </div>

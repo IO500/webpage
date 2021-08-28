@@ -3,11 +3,7 @@
         <div class="logo">
             <?php
             echo $this->Html->link(
-                '', 
-                [
-                    'controller' => 'submissions',
-                    'action' => 'latest'
-                ],
+                '', '/',
                 [
                     'escape' => false
                 ]
@@ -67,6 +63,15 @@
             </li>
             <li>
                 <?php
+                echo $this->Html->link(__('Running'), [
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'running'
+                ]);
+                ?>
+            </li>
+            <li>
+                <?php
                 echo $this->Html->link(__('Submission'), [
                     'controller' => 'pages',
                     'action' => 'display',
@@ -88,15 +93,6 @@
                 echo $this->Html->link(__('Graphs'), [
                     'controller' => 'submissions',
                     'action' => 'graphs'
-                ]);
-                ?>
-            </li>
-            <li>
-                <?php
-                echo $this->Html->link(__('Running'), [
-                    'controller' => 'pages',
-                    'action' => 'display',
-                    'running'
                 ]);
                 ?>
             </li>

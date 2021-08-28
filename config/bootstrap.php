@@ -100,7 +100,7 @@ if (Configure::read('debug')) {
     Configure::write('Cache._cake_routes_.duration', '+2 seconds');
 }
 
-Configure::write('IO500.custom_lists', false);
+Configure::write('IO500.custom_lists', true);
 Configure::write('IO500.pagination', 100);
 
 /*

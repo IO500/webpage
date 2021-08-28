@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace App\View\Helper;
 
 use Cake\Core\Configure;
@@ -9,8 +11,8 @@ use Cake\View\Helper;
  *
  * Configure reading from the view. BC file to avoid static calls in template code.
  */
-class ConfigureHelper extends Helper {
-
+class ConfigureHelper extends Helper
+{
     /**
      * Reads a Configure value for a key or returns values for all keys.
      *
@@ -20,7 +22,8 @@ class ConfigureHelper extends Helper {
      * @param string|null $name The name of the Configure key you want to read
      * @return mixed Values
      */
-    public function read($name = null) {
+    public function read($name = null)
+    {
         return Configure::read($name);
     }
 
@@ -32,7 +35,8 @@ class ConfigureHelper extends Helper {
      * @param string $name Configure key to check.
      * @return bool
      */
-    public function check($name) {
+    public function check($name)
+    {
         return Configure::check($name);
     }
 
@@ -42,7 +46,8 @@ class ConfigureHelper extends Helper {
      * @param string $name The key to read and remove (or a path as sent to Hash.extract).
      * @return mixed The value of the Configure variable, null if not available
      */
-    public function consume($name) {
+    public function consume($name)
+    {
         return Configure::consume($name);
     }
 
@@ -63,15 +68,16 @@ class ConfigureHelper extends Helper {
      * @param string $name Variable to obtain. Use '.' to access array elements.
      * @return mixed Value stored in configure.
      */
-    public function readOrFail($name) {
+    public function readOrFail($name)
+    {
         return Configure::readOrFail($name);
     }
 
     /**
      * @return string Current version of CakePHP
      */
-    public function version() {
+    public function version()
+    {
         return Configure::version();
     }
-
 }

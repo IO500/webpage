@@ -123,6 +123,17 @@ class ListingsController extends AppController
             ])
             ->first();
 
+        $settings = [
+            'order' => [
+                'score' => 'DESC',
+            ],
+            'limit' => $limit,
+        ];
+
+        if (isset($this->request->getParam('?')['sort'])) {
+            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
+        }
+
         $submissions = $this->Listings->ListingsSubmissions->find('all')
             ->contain([
                 'Submissions' => [
@@ -131,11 +142,9 @@ class ListingsController extends AppController
             ])
             ->where([
                 'ListingsSubmissions.listing_id' => $listing->id,
-            ])
-            ->order([
-                'score' => 'DESC',
-            ])
-            ->limit($limit);
+            ]);
+
+        $submissions = $this->paginate($submissions, $settings);
 
         $records = [];
 

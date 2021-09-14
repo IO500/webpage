@@ -5,13 +5,23 @@
 
     <ul class="news">
         <li>
-            <span class="date">2021-04-16</span> The
-                <?php echo $this->Html->link(__('call for submissions'),
+            <span class="date">2021-09-17</span> The
+                <?php echo $this->Html->link(__('Call for Submissions'),
                     [ 'controller' => 'pages', 'action' => 'display',
                       'cfs'
                     ], [ 'class' => 'link' ]);
                 ?>
-            for the eighth IO500 list at ISC 2021 sent out.
+            for the ninth IO500 list at SC 2021 is sent out.
+        </li>
+        <li>
+            <span class="date">2021-07-01</span>The eighth IO500 list is published at ISC'20.
+            <ul>
+                <li>
+                    Congratulations to Pengcheng Laboratory for their
+                    Cloudbrain-II system using MadFS, which maintained the
+                    #1 overall spot and also won the "10 Node Challenge".
+                </li>
+            </ul>
         </li>
         <li>
             <span class="date">2021-04-14</span>
@@ -31,14 +41,7 @@
             <span class="date">2019-11-19</span>The fifth IO500 list is published at SC'19.
         </li>
         <li>
-            <span class="date">2019-11-10</span>The schedule for our Supercomputing'19 Birds-of-a-feather session is now defined
-        </li>
-        <li>
             <span class="date">2020-06-23</span>The fourth IO500 list is published at ISC'19.
-        </li>
-        <li>
-        <li>            
-            <span class="date">2019-04-18</span>The call for submissions for the IO500 list at ISC 2019 sent out.
         </li>
         <li>
             <span class="date">2018-11-14</span>The third IO500 list is published.
@@ -56,13 +59,7 @@
             <span class="date">2018-09-27</span> The schedule for our Supercomputing <a class="link" href="https://sc18.supercomputing.org/presentation/?id=bof134&sess=sess390" target="_blank">Birds-of-a-Feather</a> session is now defined
         </li>
         <li>
-            <span class="date">2018-08-20</span> The call for submissions for the IO500 list at Supercomputing 2018 sent out.
-        </li>
-        <li>
             <span class="date">2018-06-28</span> The second IO500 list is published. Congrats again to Oakforest-PACS.
-        </li>
-        <li>
-            <span class="date">2018-05-20</span> The call for submissions for the second IO500 list sent out.
         </li>
         <li>
             <span class="date">2017-11-15</span> The first IO500 list is published. We congratulate Oakforest-PACS for their winning submission.

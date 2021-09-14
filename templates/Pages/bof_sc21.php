@@ -6,14 +6,14 @@
     <?php
     $this->Breadcrumbs->add(__('HOME'), ['controller' => 'submissions', 'action' => 'latest']);
     $this->Breadcrumbs->add(__('BOF'), ['controller' => 'pages', 'action' => 'display', 'bofs']);
-    $this->Breadcrumbs->add(__("ISC'21"), ['controller' => 'pages', 'action' => 'display', 'bof-isc21']);
+    $this->Breadcrumbs->add(__("SC'21"), ['controller' => 'pages', 'action' => 'display', 'bof-sc21']);
 
     echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
     ?>
 </nav>
 
 <div class="content">
-    <h2>ISC'21</h2>
+    <h2>SC'21</h2>
 
     <h3>The IO500 and the Virtual Institute of I/O</h3>
 
@@ -45,7 +45,7 @@
     <p>
         The IO500 is quickly becoming the de facto benchmarking standard for
         HPC storage. Developed in 2017, the IO500 has published bi-annual lists
-        since then for both ISC and SC. A BoF highlight is the presentation of the eighth IO500 list.
+        since then for both ISC and SC. A BoF highlight is the presentation of the new IO500 list.
     </p>
 
     <p>

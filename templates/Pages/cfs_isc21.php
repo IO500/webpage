@@ -1,36 +1,30 @@
-<?php $this->assign('title', 'Call for Submission'); ?>
+<?php $this->assign('title', 'Call for Submissions - ISC21'); ?>
 
 <div class="content">
-    <h2>Call for Submission</h2>
+    <h2>Call for Submissions - ISC'21</h2>
 
     <p class="call">
-        Stabilization Period: Friday, 17th September - Friday, 1st October
-        Submission Deadline: Monday, 1st November, 2021 AoE
+        Stabilization Period: 05 - 14 May 2021 AoE<br/>
+        Submission Deadline: 11 June 2021 AoE
     </p>
 
     <p>
-        The IO500 is now accepting and encouraging submissions for the
-        upcoming 9th semi-annual IO500 list, in conjunction with SC'21.
-        Once again, we are also accepting submissions to the 10 Node
-        Challenge to encourage the submission of small scale results.
-        The new ranked lists will be announced via live-stream during
-        <?php echo $this->Html->link(__('"The IO500 and the Virtual Institute of I/O" BoF'),
-                [ 'controller' => 'pages', 'action' => 'display',
-                  'bof-sc21'
-                ], [ 'class' => 'link' ]);
-        ?>.  We hope to see many new results.
+        The IO500 is now accepting and encouraging submissions for
+        the upcoming 8th IO500 list, to be presented at ISC'21. Once again,
+	we are also accepting submissions to the 10 Node Challenge to
+	encourage the submission of small scale results. The new ranked
+	lists will be announced via live-stream at a virtual session.
+	We hope to see many new results.
     </p>
 
     <h3>What's New</h3>
     <ol>
         <li>
-            Since ISC'21, the IO500 follows a two-staged approach.
+            Starting with ISC'21, the IO500 now follows a two-staged approach.
             First, there will be a two-week stabilization period during which
             we encourage the community to verify that the benchmark runs
-            properly on a variety of storage systems. During this period the
-            benchmark may be updated based upon feedback from the community.
-            The final benchmark will then be released.
-            We expect that runs compliant
+            properly. During this period the benchmark will be updated based
+            upon feedback from the community.  We expect that runs compliant
             with the rules made during the stabilization period will be valid
             as a final submission unless a significant defect is found.
         </li>
@@ -41,23 +35,10 @@
             inclusion with the submission.
             Further details will be released on the
             <?php echo $this->Html->link(__('submission page'),
-                [ 'controller' => 'pages', 'action' => 'display',
+	        [ 'controller' => 'pages', 'action' => 'display',
                   'submission'
                 ], [ 'class' => 'link' ]);
              ?>.
-        </li>
-        <li>
-            We are evaluating the inclusion of optional test phasaes for
-            additional key workloads - split easy/hard find phases, 4KB
-            and 1MB random read/write phases, and concurrent metadata
-            operations.  This is called an extended run.  At the moment,
-            we collect the information to verify that additional phases
-            do not significaantly impact the results of a standard run
-            and an extended run to facilitate comparisons between the
-            existing and new benchmark phases.  In a future release, we
-            may include some or all of these results as part of the 
-            standard benchmark.  The extended results are not currently
-            included in the scoring of any ranked list.
         </li>
     </ol>
 
@@ -74,15 +55,7 @@
     </p>
 
     <p>
-        Following the success of the Top500 in collecting and analyzing
-        historical trends in supercomputer technology and evolution, the
-        IO500 was created in 2017, published its first list at SC17, and has
-        grown continually since then. The need for such an initiative has
-        long been known within High-Performance Computing; however, defining
-        appropriate benchmarks has long been challenging. Despite this
-        challenge, the community, after long and spirited discussion, finally
-        reached consensus on a suite of benchmarks and a metric for resolving
-        the scores into a single ranking.
+        Following the success of the Top500 in collecting and analyzing historical trends in supercomputer technology and evolution, the IO500 was created in 2017, published its first list at SC17, and has grown exponentially since then. The need for such an initiative has long been known within High-Performance Computing; however, defining appropriate benchmarks had long been challenging. Despite this challenge, the community, after long and spirited discussion, finally reached consensus on a suite of benchmarks and a metric for resolving the scores into a single ranking.
     </p>
 
     <p>
@@ -114,15 +87,7 @@
     <h3>10 Node I/O Challenge</h3>
 
     <p>
-        The 10 Node Challenge is conducted using the regular IO500 benchmark,
-        however, with the rule that exactly 10 client nodes must be used to
-        run the benchmark. You may use any shared storage with any number of
-        servers. When submitting for the IO500 list, you can opt-in for
-        "Participate in the 10 compute node challenge only", then we will not
-        include the results into the ranked list. Other 10-node node
-        submissions will be included in the full list and in the ranked list.
-        We will announce the result in a separate derived list and in the full
-        list but not on the ranked IO500 list at io500.org.
+        The 10 Node Challenge is conducted using the regular IO500 benchmark, however, with the rule that exactly 10 client nodes must be used to run the benchmark. You may use any shared storage with, e.g., any number of servers. When submitting for the IO500 list, you can opt-in for "Participate in the 10 compute node challenge only", then we will not include the results into the ranked list. Other 10-node node submissions will be included in the full list and in the ranked list. We will announce the result in a separate derived list and in the full list but not on the ranked IO500 list at io500.org.
     </p>
 
     <h3>Birds-of-a-Feather</h3>
@@ -133,16 +98,16 @@
               'submission'
             ], [ 'class' => 'link' ]);
          ?>
-        to join our community, and to attend our BoF 
-        <?php echo $this->Html->link(__('"The IO500 and
-        the Virtual Institute of I/O"'),
-                [ 'controller' => 'pages', 'action' => 'display',
-                  'bof-sc21'
+        to join our community, and to attend our virtual BoF 
+        <?php echo $this->Html->link(__('“The IO500 and
+        the Virtual Institute of I/O” at ISC 2021'),
+	        [ 'controller' => 'pages', 'action' => 'display',
+                  'bof-isc21'
                 ], [ 'class' => 'link' ]);
         ?>, where we will announce the new IO500 and 10 node challenge lists.
-        The current list includes results from
-        twenty different storage system types and 70 institutions.
-        We hope that the upcoming list grows even more.
+        The current list includes results from BeeGFS, CephFS, DAOS, DataWarp,
+        GekkoFS, GFarm, IME, Lustre, MadFS, Qumulo, Spectrum Scale, Vast,
+        WekaIO, and YRCloudFile. We hope that the upcoming list grows even more.
     </p>
 
     <div id="disqus_thread"></div>

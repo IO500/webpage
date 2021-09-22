@@ -2,7 +2,7 @@
     <div class="container">
         <div class="footer">
             <strong>IO500 Foundation</strong><br/>
-            <em>io5000.org</em><br/>
+            <em>io500.org</em><br/>
             <a href="mailto:committee@io500.org">committee@io500.org</a><br>
         </div>
         <div class="footer">

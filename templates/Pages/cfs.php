@@ -145,6 +145,24 @@
         We hope that the upcoming list grows even more.
     </p>
 
+    <h3>Older CFS Pages</h3>
+    <p>
+        Links to older Call For Submission pages:
+    </p>
+    <ul>
+        <li>
+            <?php
+            echo $this->Html->link("ISC'21 CFS", [
+                'controller' => 'pages',
+                'action' => 'display',
+                'cfs-isc21'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
+    </ul>
+
     <div id="disqus_thread"></div>
 </div>
 

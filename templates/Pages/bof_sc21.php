@@ -27,17 +27,17 @@
         <tbody>
             <tr>
                 <td><strong>Date</strong></td>
-                <td>to be announced</td>
+                <td>Thursday, 18 November 202112:15pm - 1:15pm CST</td>
             </tr>
             <tr>
                 <td><strong>Venue</strong></td>
-                <td>Virtual, details to be announced</td>
+                <td>Virtual, details on the SC webpage</td>
             </tr>
         </tbody>
     </table>
 
     <p>
-        <a class="link" href="TBD" target="_blank">Link to the official announcement</a>.
+        <a class="link" href="https://sc21.supercomputing.org/presentation/?id=bof113&sess=sess360" target="_blank">Link to the official announcement</a>.
     </p>
 
     <h3>Abstract</h3>

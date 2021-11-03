@@ -80,7 +80,25 @@
 
     <h3>Agenda</h3>
 
-    <p> to be announced </p>
+    <p>
+        Welcome - Julian Kunkel
+        <br>
+        What's New with the IO500 - George Markomanolis
+        <br>
+        The New IO500 List Analysis - Dean Hildebrand
+        <br>
+        IO500 Award Presentations - Julian
+        <br>
+        Community Presentation - Radita Liem
+        <br>
+        Roadmap - Andreas Dilger
+        <br>
+        List Splitting Proposal - Dean
+        <br>
+        Benchmark Components and Extended Access Patterns - Jay Lofstead
+        <br>
+        Questions and Discussion - Jay
+    </p>
 
     <div id="disqus_thread"></div>
 </div>

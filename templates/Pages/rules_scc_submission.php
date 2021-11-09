@@ -30,7 +30,7 @@
             Instead of a 300 second stonewall requirement, for the student cluster competition, the required stonewall time is reduced to 30 seconds.
         </li>
         <li>
-            If you use only a single client node, then you must set <span class="code">io500_clean_cache="True"</span> and you must run with sudo permissions.
+            If you use only a single client node, then you must set <span class="code">drop-caches = TRUE</span> and you must run with sudo permissions.
         </li>
         <ul>
             <li>
@@ -38,7 +38,7 @@
             </li>
         </ul>
         <li>
-            You must set the variable <span class="code">io500_rules="scc"</span>.
+            You must set the variable <span class="code">scc = TRUE</span>.
         </li>
     </ol>
 

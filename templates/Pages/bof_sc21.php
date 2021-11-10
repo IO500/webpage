@@ -27,7 +27,7 @@
         <tbody>
             <tr>
                 <td><strong>Date</strong></td>
-                <td>Thursday, 18 November 202112:15pm - 1:15pm CST</td>
+                <td>Thursday, 18 November 2021, 12:15pm - 1:15pm CST</td>
             </tr>
             <tr>
                 <td><strong>Venue</strong></td>
@@ -80,25 +80,19 @@
 
     <h3>Agenda</h3>
 
-    <p>
-        Welcome - Julian Kunkel
-        <br>
-        What's New with the IO500 - George Markomanolis
-        <br>
-        The New IO500 List Analysis - Dean Hildebrand
-        <br>
-        IO500 Award Presentations - Julian
-        <br>
-        Community Presentation - Radita Liem
-        <br>
-        Roadmap - Andreas Dilger
-        <br>
-        List Splitting Proposal - Dean
-        <br>
-        Benchmark Components and Extended Access Patterns - Jay Lofstead
-        <br>
-        Questions and Discussion - Jay
-    </p>
+    <ul>
+  <li>Welcome - Julian Kunkel</li>
+  <li>What's New with the IO500 - George Markomanolis</li>
+  <li>The New IO500 List Analysis - Dean Hildebrand</li>
+  <li>IO500 Award Presentations - Julian Kunkel</li>
+  <li>Community Presentation - Radita Liem</li>
+  <li>Roadmap - Andreas Dilger</li>
+  <ul>
+  <li>List Splitting Proposal - Dean Hildebrand</li>
+  <li>Benchmark Components and Extended Access Patterns - Jay Lofstead</li>
+  </ul>
+  <li>Questions and Discussion - Jay Lofstead</li>
+    </ul>
 
     <div id="disqus_thread"></div>
 </div>

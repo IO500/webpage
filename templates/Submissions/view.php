@@ -150,10 +150,6 @@
                             <td><?php echo $this->Number->format($submission->io500_score, ['places' => 2, 'precision' => 2]) ?></td>
                         </tr>
                         <tr>
-                            <th><?php echo _('IO500 IOPS') ?></th>
-                            <td><?php echo $this->Number->format($submission->io500_tot_iops, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
-                        </tr>
-                        <tr>
                             <th><?php echo _('IO500 BW') ?></th>
                             <td><?php echo $this->Number->format($submission->io500_bw, ['places' => 2, 'precision' => 2]) ?> GiB/s</td>
                         </tr>
@@ -176,22 +172,30 @@
                             <th><?php echo _('Client Total Procs') ?></th>
                             <td><?php echo $this->Number->format($submission->information_client_total_procs) ?></td>
                         </tr>
+                        <?php if ($submission->information_md_nodes) { ?>
                         <tr>
                             <th><?php echo _('Metadata Nodes') ?></th>
                             <td><?php echo $this->Number->format($submission->information_md_nodes) ?></td>
                         </tr>
+                        <?php } ?>
+                        <?php if ($submission->information_md_storage_devices) { ?>
                         <tr>
                             <th><?php echo _('Metadata Storage Devices') ?></th>
                             <td><?php echo $this->Number->format($submission->information_md_storage_devices) ?></td>
                         </tr>
+                        <?php if ($submission->information_ds_storage_devices) { ?>
+                        <?php } ?>
                         <tr>
                             <th><?php echo _('Data Nodes') ?></th>
                             <td><?php echo $this->Number->format($submission->information_ds_nodes) ?></td>
                         </tr>
+                        <?php if ($submission->information_ds_storage_devices) { ?>
+                        <?php } ?>
                         <tr>
                             <th><?php echo _('Data Storage Devices') ?></th>
                             <td><?php echo $this->Number->format($submission->information_ds_storage_devices) ?></td>
                         </tr>
+                        <?php } ?>
                     </table>
                 </div>
 

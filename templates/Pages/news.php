@@ -5,6 +5,18 @@
 
     <ul class="news">
         <li>
+            <span class="date">2021-11-18</span>
+	    The ninth IO500 list is published at SC'21.
+            <ul>
+                <li>
+                    Congratulations again to Pengcheng Laboratory for their
+                    Cloudbrain-II system using MadFS, which maintained the
+                    #1 overall spot and also won the "10 Node Challenge", and
+		    to Huawei with new systems in second and third place.
+                </li>
+            </ul>
+        </li>
+        <li>
             <span class="date">2021-09-17</span> The
                 <?php echo $this->Html->link(__('Call for Submissions'),
                     [ 'controller' => 'pages', 'action' => 'display',
@@ -70,7 +82,22 @@
 
     <ul class="news">
         <li>
-            <span class="date">2020-07-07</span> <a class="link" href="https://www.hpcwire.com/2021/07/07/pengchen-labs-madfs-and-intels-daos-shine-in-latest-io500" target="_blank">Pengchen Lab’s MadFS and Intel’s DAOS Shine in Latest IO500</a>
+            <span class="date">2021-11-18</span>
+	    <a class="link"
+	     href="https://e.huawei.com/en/news/ebg/2021/huawei-oceanstor-pacific-storage-takes-second-io500-list"
+	     target="_blank">Huawei OceanStor Pacific Storage Takes Second Place in the IO500 List</a>
+        </li>
+        <li>
+            <span class="date">2021-08-07</span>
+	    <a class="link"
+	     href="https://cloud.google.com/blog/topics/hpc/google-cloud-ranks-on-io500-benchmark-with-lustre"
+	     target="_blank">Scaling data access to 10Tbps (yes, terabits) with Lustre</a>
+        </li>
+        <li>
+            <span class="date">2021-07-07</span>
+	    <a class="link"
+	    href="https://www.hpcwire.com/2021/07/07/pengchen-labs-madfs-and-intels-daos-shine-in-latest-io500"
+	    target="_blank">Pengchen Lab's MadFS and Intel's DAOS Shine in Latest IO500</a>
         </li>
         <li>
             <span class="date">2021-07-06</span> <a class="link" href="https://www.hpcwire.com/off-the-wire/4-rsc-storage-systems-represent-russia-in-global-io500-rating" target="_blank">4 RSC Storage Systems Represent Russia in Global IO500 Rating</a>

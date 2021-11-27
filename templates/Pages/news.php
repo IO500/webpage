@@ -14,7 +14,7 @@
             for the ninth IO500 list at SC 2021 is sent out.
         </li>
         <li>
-            <span class="date">2021-07-01</span>The eighth IO500 list is published at ISC'20.
+            <span class="date">2021-07-01</span>The eighth IO500 list is published at ISC'21.
             <ul>
                 <li>
                     Congratulations to Pengcheng Laboratory for their

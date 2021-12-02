@@ -26,7 +26,7 @@
 
     <p>
         This committee provides a closed but fair playing field for all vendors to discuss issues together with the steering committee. Its purpose is to encourage the vendors to participate but allowing vendors to benefit from further information.
-        If you are interested to join, please join the <a href="http://lists.io500.org/listinfo.cgi/io500-io500.org" class="link">mailing list</a>.
+        If you are interested to join, please join the <a href="http://lists.io500.org/listinfo.cgi/vendors-io500.org" class="link">vendors@io500.org</a> mailing list.
     </p>
 
     <h3>Steering Committee</h3>
@@ -46,7 +46,7 @@
 
   <h3>Web Designer</h3>
     <ul>
-      <li>Jean Luca Bez</li>
+      <li><a class="link" href="http://jeanlucabez.io/">Jean Luca Bez - Lawrence Berkeley National Laboratory</a></li>
     </ul>
 
     <div id="disqus_thread"></div>

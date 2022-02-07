@@ -110,16 +110,27 @@ class RecordsController extends AppController
         // This column can be used to compute custom metrics, but it will take the initial value from the last historical list
         array_splice($columns, 8, 0, ['io500_score']);
 
+        $release = $this->Submissions->Releases->find('all')
+            ->contain([
+                'Listings' => [
+                    'Types',
+                ],
+            ])
+            ->where([
+                'Releases.release_date <=' => date('Y-m-d'),
+                'Releases.acronym' => strtoupper($display['custom-release']),
+            ])
+            ->first();
+
         $listing = $this->Submissions->ListingsSubmissions->Listings->find('all')
             ->contain([
+                'Types',
                 'Releases',
             ])
             ->where([
-                'Listings.type_id' => 4, // Historical List
+                'Types.url' => $display['custom-list'],
                 'Releases.release_date <=' => date('Y-m-d'),
-            ])
-            ->order([
-                'Releases.release_date' => 'DESC',
+                'Releases.acronym' => strtoupper($display['custom-release']),
             ])
             ->first();
 
@@ -179,6 +190,21 @@ class RecordsController extends AppController
         }
 
         $submissions = $submissions->toArray();
+
+        // Remove duplicate records
+        $unique = [];
+
+        if ($display['custom-remove']) {
+            foreach ($submissions as $id => $submission) {
+                $key = md5($submission['submission']['information_system'] . $submission['submission']['information_institution'] . $submission['submission']['information_filesystem_type']);
+
+                if (in_array($key, $unique)) {
+                    unset($submissions[$id]);
+                } else {
+                    $unique[] = $key;
+                }
+            }
+        }
 
         if ($equation) {
             // Sort by the result of the equation

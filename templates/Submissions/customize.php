@@ -48,8 +48,19 @@
             [
                 'id' => 'custom-order'
             ]
-        );
-        ?>
+        );?>
+
+        <p>
+            <?php
+            echo $this->Form->checkbox(
+                'custom-remove',
+                [
+                    'id' => 'custom-remove'
+                ]
+            );
+            ?>
+            Remove duplicate records based on tuple (<span class="code">information_system</span>, <span class="code">information_institution</span>, <span class="code">information_filesystem_type</span>).
+        </p>
 
         <p>
             You can use any columns with numeric values for the custom equation. It has support for <span class="code">+</span>, <span class="code">-</span>, <span class="code">*</span>, <span class="code">/</span> and power (<span class="code">^</span>) operators plus <span class="code">()</span>.

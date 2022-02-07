@@ -226,10 +226,11 @@ class SubmissionsController extends AppController
      * Allows to create custom lists based on the last historical list available
      * We need to use the last historical list as the score it no longer stored in the submission
      *
-     * @param string|null $hash Record hash.
+     * @param null $bof Release acronym.
+     * @param null $url Type url.
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function customize($hash = null)
+    public function customize($bof = null, $url = null)
     {
         $limit = 1000;
 
@@ -249,16 +250,27 @@ class SubmissionsController extends AppController
 
         $display = [];
 
+        $release = $this->Submissions->Releases->find('all')
+            ->contain([
+                'Listings' => [
+                    'Types',
+                ],
+            ])
+            ->where([
+                'Releases.release_date <=' => date('Y-m-d'),
+                'Releases.acronym' => strtoupper($bof),
+            ])
+            ->first();
+
         $listing = $this->Submissions->ListingsSubmissions->Listings->find('all')
             ->contain([
+                'Types',
                 'Releases',
             ])
             ->where([
-                'Listings.type_id' => 4, // Historical List
+                'Types.url' => $url,
                 'Releases.release_date <=' => date('Y-m-d'),
-            ])
-            ->order([
-                'Releases.release_date' => 'DESC',
+                'Releases.acronym' => strtoupper($bof),
             ])
             ->first();
 
@@ -355,6 +367,11 @@ class SubmissionsController extends AppController
                 $display['custom-order'] = $selected_to_display['custom-order'];
             }
 
+            $display['custom-remove'] = $selected_to_display['custom-remove'];
+
+            $display['custom-release'] = $bof;
+            $display['custom-list'] = $url;
+
             $selected_fields = json_encode($display);
         } else {
             $display = [
@@ -386,6 +403,21 @@ class SubmissionsController extends AppController
         }
 
         $submissions = $submissions->toArray();
+
+        // Remove duplicate records
+        $unique = [];
+
+        if (isset($selected_to_display) && $selected_to_display['custom-remove']) {
+            foreach ($submissions as $id => $submission) {
+                $key = md5($submission['submission']['information_system'] . $submission['submission']['information_institution'] . $submission['submission']['information_filesystem_type']);
+
+                if (in_array($key, $unique)) {
+                    unset($submissions[$id]);
+                } else {
+                    $unique[] = $key;
+                }
+            }
+        }
 
         if ($equation) {
             // Sort by the result of the equation

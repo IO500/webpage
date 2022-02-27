@@ -265,6 +265,20 @@
             <h3>Submitted Files</h3>
 
             <ul class="file-buttons">
+                <?php if ($submission->repository_url) { ?>
+                <li>
+                    <?php
+                    echo $this->Html->link(
+                        _('Browse in GitHub'),
+                        $submission->repository_url,
+                        [
+                            'target' => '_blank',
+                            'class' => 'button'
+                        ]
+                    );
+                    ?>
+                </li>
+                <?php } ?>
                 <li>
                     <?php
                     echo $this->Html->link(

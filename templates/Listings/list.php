@@ -37,7 +37,9 @@
 
         echo $this->Html->link(_('Customize'), [
             'controller' => 'submissions',
-            'action' => 'customize'
+            'action' => 'customize',
+            strtolower($this->request->getParam('pass')[0]),
+            strtolower($type->url)
         ], [
             'class' => 'button'
         ]);

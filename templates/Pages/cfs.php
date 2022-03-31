@@ -1,29 +1,35 @@
-<?php $this->assign('title', 'Call for Submission'); ?>
+<?php $this->assign('title', 'Call for Submissions');
+ //-*- mode: c; c-basic-offset: 4; indent-tabs-mode: nil; -*-
+ // * vim:expandtab:shiftwidth=4:tabstop=4:
+ ?>
 
 <div class="content">
-    <h2>Call for Submission</h2>
+    <h2>Call for Submissions</h2>
 
     <p class="call">
-        Submissions for the SC'21 list are now closed.
-        The new ranked lists will be announced via live-stream during
+        Submissions are now open, see
+        <?php echo $this->Html->link(__('"Call for Submissions - ISC 22'),
+                [ 'controller' => 'pages', 'action' => 'display', 'cfs-isc22' ],
+                [ 'class' => 'link' ]);
+         ?>.
+        The new ranked lists will be announced during
         <?php echo $this->Html->link(__('"The IO500 and the Virtual Institute of I/O" BoF'),
-                [ 'controller' => 'pages', 'action' => 'display', 'bof-sc21' ],
+                [ 'controller' => 'pages', 'action' => 'display', 'bof-isc22' ],
                 [ 'class' => 'link' ]);
          ?>.
         We hope to see many new results.
-        Submissions for the next list at ISC'22 will open after the BoF.
     </p>
 
     <p>
-        The IO500 will be accepting and submissions for the
+        The IO500 is now accepting submissions for the
         upcoming 10th semi-annual IO500 list in conjunction with ISC'22.
         Once again, we will also be accepting submissions to the 10 Node
         Challenge to encourage the submission of small scale results.
     </p>
 
-    <h3>Older CFS Pages</h3>
+    <h3>Individual CFS Pages</h3>
     <p>
-        Links to older Call For Submission pages:
+        Links to Older Call For Submissions Pages
     </p>
     <ul>
         <li>

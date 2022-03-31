@@ -1,14 +1,29 @@
-<?php $this->assign('title', 'Birds-of-a-Feather'); ?>
+<?php $this->assign('title', 'Birds-of-a-Feather');
+ //-*- mode: c; c-basic-offset: 4; indent-tabs-mode: nil; -*-
+ // * vim:expandtab:shiftwidth=4:tabstop=4:
+ ?>
 
 <div class="landing landing-bofs">
     <h1><?php echo __('BoFs') ?></h1>
 
     <p>
-        The <strong>IO500</strong> has held several Birds-of-a-Feather sessions.<br>
+        The <strong>IO500</strong> has held several Birds-of-a-Feather sessions.
+	<br>
         You can find more information about them in:.
     </p>
 
     <ul>
+        <li>
+            <?php
+            echo $this->Html->link("ISC'22", [
+                'controller' => 'pages',
+                'action' => 'display',
+                'bof-isc22'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
         <li>
             <?php
             echo $this->Html->link("ISC'21", [

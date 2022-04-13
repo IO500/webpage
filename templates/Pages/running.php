@@ -30,7 +30,7 @@
     <p>The latest IO500 source code is available from Github:</p>
 
     <p class="code-block">
-        $ git clone https://github.com/IO500/io500.git -b io500-isc21<br/>
+        $ git clone https://github.com/IO500/io500.git -b io500-isc22<br/>
         $ cd io500<br/>
         $ ./prepare.sh<br/>
     </p>

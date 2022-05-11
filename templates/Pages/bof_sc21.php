@@ -79,7 +79,7 @@
     </p>
 
     <h3>Agenda</h3>
-
+<p><a href="/webroot/files/sc21-io500-slides.pdf">Slides</a></p>
     <ul>
   <li>Welcome - Julian Kunkel</li>
   <li>What's New with the IO500 - George Markomanolis</li>

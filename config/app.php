@@ -397,5 +397,5 @@ return [
      */
     'Session' => [
         'defaults' => 'php',
-    ]
+    ],
 ];

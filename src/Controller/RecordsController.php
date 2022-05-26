@@ -137,11 +137,11 @@ class RecordsController extends AppController
         $submissions = $this->Submissions->ListingsSubmissions->find('all')
             ->contain([
                 'Submissions' => [
-                    'Releases'
-                ]
+                    'Releases',
+                ],
             ])
             ->where([
-                'ListingsSubmissions.listing_id' => $listing->id
+                'ListingsSubmissions.listing_id' => $listing->id,
             ])
             ->order([
                 'ListingsSubmissions.score' => 'DESC',

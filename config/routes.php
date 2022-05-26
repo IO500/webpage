@@ -68,7 +68,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
             'controller' => 'Listings',
             'action' => 'list',
             'sc21',
-            'io500'
+            'io500',
         ]
     );
 
@@ -111,7 +111,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
             'action' => 'display',
             'steering',
         ]
-    );    
+    );
     $builder->connect(
         '/submission',
         [
@@ -119,7 +119,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
             'action' => 'display',
             'submission',
         ]
-    );       
+    );
     $builder->connect(
         '/cfs',
         [
@@ -181,7 +181,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
         '/list/*',
         [
             'controller' => 'Listings',
-            'action' => 'list'
+            'action' => 'list',
         ]
     );
 
@@ -189,7 +189,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
         '/download/*',
         [
             'controller' => 'Listings',
-            'action' => 'download'
+            'action' => 'download',
         ]
     );
 
@@ -200,7 +200,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
         '/pages/*',
         [
             'controller' => 'Pages',
-            'action' => 'display'
+            'action' => 'display',
         ]
     );
 

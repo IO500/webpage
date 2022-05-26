@@ -49,17 +49,17 @@ class SubmissionsController extends AppController
         $score = $this->Submissions->ListingsSubmissions->find('all')
             ->contain([
                 'Listings' => [
-                    'Releases'
-                ]
+                    'Releases',
+                ],
             ])
             ->where([
                 'ListingsSubmissions.submission_id' => $submission->id,
-                'Releases.release_date <=' => date('Y-m-d')
+                'Releases.release_date <=' => date('Y-m-d'),
             ])
             ->order([
                 'ListingsSubmissions.score' => 'DESC',
                 'Listings.type_id' => 'DESC',
-                'Releases.release_date' => 'DESC'
+                'Releases.release_date' => 'DESC',
             ])
             ->first();
 
@@ -277,11 +277,11 @@ class SubmissionsController extends AppController
         $submissions = $this->Submissions->ListingsSubmissions->find('all')
             ->contain([
                 'Submissions' => [
-                    'Releases'
-                ]
+                    'Releases',
+                ],
             ])
             ->where([
-                'ListingsSubmissions.listing_id' => $listing->id
+                'ListingsSubmissions.listing_id' => $listing->id,
             ])
             ->order([
                 'ListingsSubmissions.score' => 'DESC',

@@ -164,7 +164,7 @@ class ListingsController extends AppController
         $filename = implode('-', [
             'io500',
             strtolower($bof),
-            strtolower($url)
+            strtolower($url),
         ]) . '.csv';
 
         $this->set(compact('records'));
@@ -175,6 +175,5 @@ class ListingsController extends AppController
                 'header' => $columns,
                 'serialize' => 'records',
             ]);
-
     }
 }

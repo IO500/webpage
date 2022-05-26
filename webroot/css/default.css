@@ -67,12 +67,12 @@ footer a {
 
     nav div.logo {
         text-align: left;
-        width: 25%;
+        width: 20%;
     }
 
     nav ul.links {
         text-align: right;
-        width: 75%;
+        width: 80%;
     }
 
     div.landing {
@@ -528,6 +528,11 @@ li {
     padding: 2px 5px;
 }
 
+.bib {
+    padding: 5px 20px;
+    white-space: pre-wrap;
+}
+
 .note {
     color: #bbb;
     font-size: 12px;
@@ -825,6 +830,25 @@ footer > .container{
     font-weight: bold;
     padding: 3px 5px 3px 30px;    
     margin: 0 10px 0 0;
+}
+
+
+.book {
+    background-color: #f8f8f8;
+    background-image: url('../img/book.svg');
+    background-size: 10px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    border-radius: 3px;
+    color: #777;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 5px 3px 30px;    
+    margin: 0 0 10px 0;
+}
+
+.doi a {
+    float: right;
 }
 
 .gallery {

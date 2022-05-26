@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
 
+    <meta name="theme-color" content="#D33C44"/>
+
     <?php echo $this->Html->css('default.css') ?>
 
     <?php echo $this->fetch('meta') ?>

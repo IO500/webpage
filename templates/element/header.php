@@ -90,6 +90,15 @@
             </li>
             <li>
                 <?php
+                echo $this->Html->link(__('Publications'), [
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'publications'
+                ]);
+                ?>
+            </li>
+            <li>
+                <?php
                 echo $this->Html->link(__('News'), [
                     'controller' => 'pages',
                     'action' => 'display',

@@ -49,7 +49,7 @@
         The IO500 is quickly becoming the de facto benchmarking standard for
         HPC storage. The IO500 has released official lists bi-annually at
         ISC and SC events since SC17 and is constituted by over 100 submissions
-        in the full list. Moreover, the IO-500 was used at SC Student cluster
+        in the full list. Moreover, the IO500 was used at SC Student cluster
         competition since SC19 and illustrates the increased need for more
         efficient storage. A BoF highlight is the presentation of the new
         IO500 list.
@@ -65,7 +65,7 @@
     </p>
 
     <p>
-        Goals of the BoF are 1) reveal the latest IO-500 list and provide
+        Goals of the BoF are 1) reveal the latest IO500 list and provide
         highlights and insight; 2) advertise the community hub but also
         discuss and steer the direction of the community effort and latest
         developments 3) to discuss the benefit and direction of the efforts
@@ -126,11 +126,11 @@
 
     <ul>
         <li>Welcome - George Markomanolis</li>
-        <li>What's New with the IO500</li>
-        <li>The New IO500 List Analysis</li>
-        <li>IO500 Award Presentations</li>
-        <li>Community Presentation(s)</li>
-        <li>Roadmap</li>
+        <li>What's New with the IO500 - Andreas Dilger</li>
+        <li>The New IO500 List Analysis - Jay Lofstead (remote)</li>
+        <li>IO500 Award Presentations - George Markomanolis</li>
+        <li>Community Presentation - IO500 with S3 - Frank Gadban</li>
+        <li>Roadmap - Julian Kunkel</li>
         <li>Questions and Discussion</li>
     </ul>
 

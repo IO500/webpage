@@ -628,7 +628,7 @@ dd {
     background: #fafaf9;
     border: #dadbd8 solid 1px;
     flex-grow: 1;
-    flex-basis: 16%;
+    flex-basis: 15%;
     border-radius: 3px;
     margin: 5px;
 }

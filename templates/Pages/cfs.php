@@ -31,7 +31,8 @@
     <p>
         Links to Older Call For Submissions Pages
     </p>
-    <ul>
+
+    <ul class="cfs-list">
         <li>
             <?php echo $this->Html->link("SC'21 CFS",
                 [ 'controller' => 'pages', 'action' => 'display', 'cfs-sc21' ],

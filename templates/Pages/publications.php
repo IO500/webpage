@@ -12,6 +12,16 @@ function cite($file) {
     <ul>
         <li>
             <h3 class="doi">
+                IO500 ISC22 Lists
+                <a href="https://doi.org/10.5281/zenodo.6772541"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6772541.svg" alt="DOI"></a>                
+            </h3>
+
+            <div class="code">
+                <p class="bib"><?php echo cite('resources/IO500-2022-05.bib'); ?></p>
+            </div>
+        </li>
+        <li>
+            <h3 class="doi">
                 User-Centric System Fault Identification Using IO500 Benchmark
                 <a href="https://doi.org/10.1109/PDSW54622.2021.00011"><img src="https://zenodo.org/badge/DOI/10.1109/PDSW54622.2021.00011.svg" alt="DOI"></a>
             </h3>

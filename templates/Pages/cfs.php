@@ -8,13 +8,13 @@
 
     <p class="call">
         Submissions are now open, see
-        <?php echo $this->Html->link(__('"Call for Submissions - ISC 22'),
-                [ 'controller' => 'pages', 'action' => 'display', 'cfs-isc22' ],
+        <?php echo $this->Html->link(__('"Call for Submissions - SC22'),
+                [ 'controller' => 'pages', 'action' => 'display', 'cfs-sc22' ],
                 [ 'class' => 'link' ]);
          ?>.
         The new ranked lists will be announced during
         <?php echo $this->Html->link(__('"The IO500 and the Virtual Institute of I/O" BoF'),
-                [ 'controller' => 'pages', 'action' => 'display', 'bof-isc22' ],
+                [ 'controller' => 'pages', 'action' => 'display', 'bof-sc22' ],
                 [ 'class' => 'link' ]);
          ?>.
         We hope to see many new results.

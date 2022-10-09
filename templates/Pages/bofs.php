@@ -84,6 +84,17 @@
     <ul>
         <li>
             <?php
+            echo $this->Html->link("SC'22", [
+                'controller' => 'pages',
+                'action' => 'display',
+                'bof-sc22'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
+        <li>
+            <?php
             echo $this->Html->link("SC'21", [
                 'controller' => 'pages',
                 'action' => 'display',

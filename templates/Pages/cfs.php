@@ -21,10 +21,10 @@
     </p>
 
     <p>
-        The IO500 is now accepting submissions for the
-        upcoming 10th semi-annual IO500 list in conjunction with ISC'22.
-        Once again, we will also be accepting submissions to the 10 Node
-        Challenge to encourage the submission of small scale results.
+        The IO500 is <b>no longer</b> accepting submissions for the
+        upcoming 11th semi-annual IO500 list in conjunction with SC'22.
+        Submissions for the 10 Node Challenge are encouraged to share
+        small scale storage system results.
     </p>
 
     <h3>Individual CFS Pages</h3>
@@ -33,6 +33,18 @@
     </p>
 
     <ul class="cfs-list">
+        <li>
+            <?php echo $this->Html->link("SC'22 CFS",
+                [ 'controller' => 'pages', 'action' => 'display', 'cfs-sc22' ],
+                [ 'class' => 'button' ]);
+             ?>
+        </li>
+        <li>
+            <?php echo $this->Html->link("ISC'22 CFS",
+                [ 'controller' => 'pages', 'action' => 'display', 'cfs-isc22' ],
+                [ 'class' => 'button' ]);
+             ?>
+        </li>
         <li>
             <?php echo $this->Html->link("SC'21 CFS",
                 [ 'controller' => 'pages', 'action' => 'display', 'cfs-sc21' ],

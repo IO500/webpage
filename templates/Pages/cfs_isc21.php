@@ -109,20 +109,4 @@
         GekkoFS, GFarm, IME, Lustre, MadFS, Qumulo, Spectrum Scale, Vast,
         WekaIO, and YRCloudFile. We hope that the upcoming list grows even more.
     </p>
-
-    <div id="disqus_thread"></div>
 </div>
-
-<script>
-var disqus_config = function () {
-    this.page.url = "<?php echo $this->Url->build($this->request->getRequestTarget(), ['fullBase' => true]); ?>";
-    this.page.identifier = "<?php echo $this->Url->build($this->request->getRequestTarget()); ?>";
-};
-
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://io500.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>

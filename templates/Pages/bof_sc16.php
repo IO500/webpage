@@ -104,20 +104,4 @@
             <strong>John Bent</strong>. As Chief Architect for Seagate Government Solutions, John Bent researches and designs storage systems necessary to support an exascale supercomputer. His prior work includes building several burst buffer prototypes while working for EMC and the PLFS virtual file system that achieved orders of magnitude bandwidth improvements for parallel writes to a single file while working for Los Alamos National Lab.
         </li>
     </ul>
-
-    <div id="disqus_thread"></div>
 </div>
-
-<script>
-var disqus_config = function () {
-    this.page.url = "<?php echo $this->Url->build($this->request->getRequestTarget(), ['fullBase' => true]); ?>";
-    this.page.identifier = "<?php echo $this->Url->build($this->request->getRequestTarget()); ?>";
-};
-
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://io500.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>

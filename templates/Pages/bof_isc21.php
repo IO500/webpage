@@ -118,21 +118,4 @@
         <li>Community presentation: <a href="https://www.youtube.com/watch?v=BJpkpA6hsDc&list=PLN0VUBsF9Di0Bsj4qia5SCqzBtTzGciA6&index=2"><strong>There is nothing mysterious behind MadFS</strong> - <em>Kang Chen (Tsinghua University)</em></li>
         <li>Community presentation: <a href="https://www.youtube.com/watch?v=M1OfldbeWig&list=PLN0VUBsF9Di0Bsj4qia5SCqzBtTzGciA6&index=3"><strong>An Analysis of the IO500 for Modeling Storage Systems</strong></a> - <em>Luke Logan (Illinois Tech)</em></li>
     </ul>
-
-
-    <div id="disqus_thread"></div>
 </div>
-
-<script>
-var disqus_config = function () {
-    this.page.url = "<?php echo $this->Url->build($this->request->getRequestTarget(), ['fullBase' => true]); ?>";
-    this.page.identifier = "<?php echo $this->Url->build($this->request->getRequestTarget()); ?>";
-};
-
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://io500.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>

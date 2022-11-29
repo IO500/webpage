@@ -104,20 +104,4 @@
     <p>
         With the online form, the submitter is able to individually opt-out the submission the name of the submitter/team (this will be then an anonymous submission)
     </p>
-
-    <div id="disqus_thread"></div>
 </div>
-
-<script>
-var disqus_config = function () {
-    this.page.url = "<?php echo $this->Url->build($this->request->getRequestTarget(), ['fullBase' => true]); ?>";
-    this.page.identifier = "<?php echo $this->Url->build($this->request->getRequestTarget()); ?>";
-};
-
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://io500.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>

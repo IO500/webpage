@@ -122,7 +122,9 @@
         The outcome of this BoF will steer the direction of community efforts.
     </p>
 
-    <h3>Proposed Agenda</h3>
+    <h3>Agenda</h3>
+    
+    <h4><a class="link" href="/files/ISC22_IO500_Presentation.pdf" target="_blank">Slides</a></h4>
 
     <ul>
         <li>Welcome - George Markomanolis</li>

@@ -1,7 +1,7 @@
 <div class="submissions index content">
     <div class="submissions-lists">
         <ol>
-            <?php foreach ($releases as $release) { ?>
+            <?php foreach (array_reverse($releases) as $release) { ?>
             <li>
                 <h4><?php echo strtoupper($release->acronym); ?></h4>
 

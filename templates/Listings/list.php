@@ -74,12 +74,12 @@
                     <th rowspan="2"><?php echo $this->Paginator->sort('information_system', _('System')) ?></th>
                     <th rowspan="2"><?php echo $this->Paginator->sort('information_storage_vendor', _('Storage Vendor')) ?></th>
                     <th rowspan="2"><?php echo $this->Paginator->sort('information_filesystem_type', _('File System Type')) ?></th>
-                    <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort('information_client_nodes', _('Client Nodes')) ?></th>
-                    <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort('information_client_total_procs', _('Total Client Proc.')) ?></th>
+                    <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort('information_client_nodes', _('Client Nodes'), ['direction' => 'desc']) ?></th>
+                    <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort('information_client_total_procs', _('Total Client Proc.'), ['direction' => 'desc']) ?></th>
 
-                    <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort('score', _('Score')) ?></th>
-                    <th class="tb-center"><?php echo $this->Paginator->sort('io500_bw', _('BW')) ?></th>
-                    <th class="tb-center"><?php echo $this->Paginator->sort('io500_md', _('MD')) ?></th>
+                    <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort('score', _('Score'), ['direction' => 'desc']) ?></th>
+                    <th class="tb-center"><?php echo $this->Paginator->sort('io500_bw', _('BW'), ['direction' => 'desc']) ?></th>
+                    <th class="tb-center"><?php echo $this->Paginator->sort('io500_md', _('MD'), ['direction' => 'desc']) ?></th>
                 </tr>
                 <tr>
                     <th class="tb-center">(GiB/s)</th>

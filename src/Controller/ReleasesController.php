@@ -28,7 +28,7 @@ class ReleasesController extends AppController
                 'Releases.release_date <=' => date('Y-m-d'),
             ])
             ->order([
-                'Releases.release_date' => 'ASC',
+                'Releases.release_date' => 'DESC',
             ]);
 
         $this->set(compact('releases'));

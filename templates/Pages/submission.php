@@ -1,21 +1,22 @@
 <?php $this->assign('title', 'Submission'); ?>
 
 <div class="submissions index content">
-    <h2>Submission</h2>
 
-    <div class="submissions-action">
-        <?php
-        echo $this->Html->link(_('Call for Submission'), [
-            'controller' => 'Pages',
-            'action' => 'display',
-            'cfs'
-        ], [
-            'class' => 'button'
-        ]);
-        ?>
-    </div>
+<div class="content">
+    <p class="call">
+        Submissions are not yet open for ISC23.
+    </p>
 
-    <div class="both"></div>
+    <h2>Call for Submissions</h2>
+
+    <p>
+        The IO500 is <b>no longer</b> accepting submissions for the
+        upcoming 11th semi-annual IO500 list in conjunction with SC'22.
+        Submissions for the 10 Node Challenge are encouraged to share
+        small scale storage system results.
+    </p>
+
+    <h2>How to Submit?</h2>
 
     <p>
         This page contains the information about the submission procedure.
@@ -104,4 +105,33 @@
     <p>
         With the online form, the submitter is able to individually opt-out the submission the name of the submitter/team (this will be then an anonymous submission)
     </p>
+
+    <h3>Previous Call for Submissions</h3>
+
+    <ul class="cfs-list">
+        <li>
+            <?php echo $this->Html->link("SC'22 CFS",
+                [ 'controller' => 'pages', 'action' => 'display', 'cfs-sc22' ],
+                [ 'class' => 'button' ]);
+             ?>
+        </li>
+        <li>
+            <?php echo $this->Html->link("ISC'22 CFS",
+                [ 'controller' => 'pages', 'action' => 'display', 'cfs-isc22' ],
+                [ 'class' => 'button' ]);
+             ?>
+        </li>
+        <li>
+            <?php echo $this->Html->link("SC'21 CFS",
+                [ 'controller' => 'pages', 'action' => 'display', 'cfs-sc21' ],
+                [ 'class' => 'button' ]);
+             ?>
+        </li>
+        <li>
+            <?php echo $this->Html->link("ISC'21 CFS",
+                [ 'controller' => 'pages', 'action' => 'display', 'cfs-isc21' ],
+                [ 'class' => 'button' ]);
+             ?>
+        </li>
+    </ul>
 </div>

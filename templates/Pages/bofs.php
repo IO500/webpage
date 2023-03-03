@@ -1,7 +1,4 @@
-<?php $this->assign('title', 'Birds-of-a-Feather');
- //-*- mode: c; c-basic-offset: 4; indent-tabs-mode: nil; -*-
- // * vim:expandtab:shiftwidth=4:tabstop=4:
- ?>
+<?php $this->assign('title', 'Birds-of-a-Feather'); ?>
 
 <div class="landing landing-bofs">
     <h1><?php echo __('BoFs') ?></h1>

@@ -67,7 +67,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
         [
             'controller' => 'Listings',
             'action' => 'list',
-            'sc22',
+            'sc21',
             'io500',
         ]
     );
@@ -78,6 +78,14 @@ $routes->scope('/', function (RouteBuilder $builder) {
             'controller' => 'Pages',
             'action' => 'display',
             'about',
+        ]
+    );
+    $builder->connect(
+        '/the-lists',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'the-lists',
         ]
     );
     $builder->connect(

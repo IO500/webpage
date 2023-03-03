@@ -21,49 +21,6 @@
         <li>Trustworthy</li>
     </ul>
 
-    <h3>The Lists</h3>
-
-    <p>
-        We publish multiple lists for each BoF at SC and ISC as well as maintaining the current most up-to-date lists. 
-        We intend to not modify a list after the release date but in exceptional circumstances. However, we allow to improve and clarify list metadata upon the request of the submitters.
-        We publish a <strong>Historic List</strong> of all submissions received and multiple filtered lists from the historic list. We maintain a <strong>Full List</strong> which is the subset of submissions which were valid according to the set of list-specific rules in place at the time of the list’s publication.
-    </p>
-
-    <p>
-        Our primary lists are <strong>Ranked Lists</strong> which show only opted-in submissions from the <strong>Full List</strong> and only the best submission per storage system. We have two ranked lists: the <strong>IO500 List</strong> for submissions which ran on any number of client nodes and the <strong>10 Node Challenge</strong> list for only those submissions which ran on exactly ten client nodes.
-    </p>
-
-    <p>
-        In summary, for each BoF, we have the following lists:
-    </p>
-
-    <ul>
-        <li><strong>Historic list</strong>: all submissions ever received</li>
-        <li><strong>Full list</strong>: the subset of the Historic list of
-            submissions that are currently valid</li>
-        <li><strong>IO500 List</strong>: the subset of the Full list of
-            submissions marked for inclusion in the IO500 ranked list, showing
-            only one highest-scoring result per storage system</li>
-        <li><strong>10-Node Challenge List</strong>: the subset from the Full
-            list of submissions run on exactly ten nodes and marked for
-            inclusion in the 10-Node Challenge ranked list, showing only one
-            highest-scoring result per storage system</li>
-    </ul>
-    
-    <p>
-        Please note that the Ranked Lists only show the best submission for
-	each storage systems, so if a storage system has multiple submissions
-	only the one with the <strong>highest overall score</strong> is shown
-	in the Ranked Lists.  All submissions will appear in the Full and
-	Historical lists.  However, please note that at the semi-annual BOFs
-	we present the <em>IO500 Bandwidth</em> and <em>IO500 Metadata</em>
-	awards based on the highest bandwidth and metadata scores.  In some
-	cases, the highest bandwidth and metadata scores are on submissions
-	for that do not have the highest overall score and are only visible in
-	the Full List.
-    </p>
-        
-
     <h3>Workloads</h3>
 
     <p>

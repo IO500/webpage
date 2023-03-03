@@ -36,19 +36,19 @@
     <ul>
         <li>
             <?php
-            echo $this->Html->link(__('Lastest List'), '/', [
-                'class' => 'button-highlight'
+            echo $this->Html->link(__('The Lists'), [
+                'controller' => 'pages',
+                'action' => 'display',
+                'the-lists'
+            ], [
+                'class' => 'button'
             ]);
             ?>
         </li>
         <li>
             <?php
-            echo $this->Html->link(__('About Lists'), [
-                'controller' => 'pages',
-                'action' => 'display',
-                'about'
-            ], [
-                'class' => 'button'
+            echo $this->Html->link(__('Lastest Release'), '/', [
+                'class' => 'button-highlight'
             ]);
             ?>
         </li>

@@ -189,8 +189,13 @@ footer a {
     background-size: contain;
 }
 
+.cfs-list {
+    padding: 0;
+}
+
 .cfs-list li {
-    line-height: 33px;
+    display: inline-block;
+    padding: 0 10px 15px 0;
 }
 
 .button, .button-navigation, .button-navigation-active {

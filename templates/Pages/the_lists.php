@@ -48,7 +48,7 @@
         There are 12 awards. We will have one each for overall score, metadata only, and bandwidth only for each of the Production and Research lists and their 10-client counterparts.
     </p>        
 
-    <h3>Production List Overview</h3>
+    <h3 id="production-list">Production List Overview</h3>
 
     <p>
         To be eligible for the Production List, a submission must meet the definition of a “Production System”. The spirit of the Production System definition below is to ensure entries on the Production List are systems that are used by scientists, quants, security teams, data scientists over an extended period of time. Often this means the cluster has a batch scheduler and queues up incoming Production Application execution requests.  It also further means that the duration of deployment is much longer than a few days, weeks or months…and is typically measured in years.
@@ -135,7 +135,7 @@
         For burst buffers to be considered a <strong>Production System</strong>, they must also meet the requirements listed above on failure, reproducibility, and that it is used in a <strong>'regular'</strong>, <strong>'frequent'</strong>, and <strong>'ongoing'</strong> basis for <strong>Production Applications</strong> that generate <strong>Production Data</strong>. For example, let's take a compute system that executes <strong>Production Applications</strong> with a Lustre-based storage system, but it's compute nodes also include NVMe devices for which a software storage layer exists that enables the execution of the IO500 benchmarks against these compute node NVMe devices.  Even if this software layer meets the reproducibility and failure requirements for the <strong>Production List</strong>, if this layer is not used by the majority of <strong>Production Applications</strong>, any submission using this storage software layer would not be eligible for the <strong>Production List</strong> (but a submission with the Lustre file system may be eligible for the <strong>Production List</strong>).
     </p>
 
-    <h3>Reproducibility Overview</h3>
+    <h3 id="reproducibility-scores">Reproducibility Overview</h3>
 
     <p>
         Based on the amount and quality of the information provided, each submission is assigned a score that will be published on the iO500 webpage. Submissions will be encouraged to submit their target score, so that the committee can clarify any discrepancies prior to publication.

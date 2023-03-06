@@ -159,8 +159,20 @@
     <h3>Additional Eligibility Rules for the Production List</h3>
 
     <p>
-        Each submission will only be on one of the Research or Production lists. The following additional requirements must be satisfied to be eligible for the Production list. Submission meets the definition of a "Production System" as defined in the <?php echo $this->Html->link('Production List description', ['controller' => 'pages', 'action' => 'display', 'about'], [ 'class' => 'link' ]); ?> achieves the highest 'reproducibility score' as defined in the Reproducibility description (add link) has no 'single point of failure'.
+        Each submission will only be on one of the Research or Production lists. The following additional requirements must be satisfied to be eligible for the Production list.
     </p>
+
+    <ul>
+        <li>
+            Submission meets the definition of a "Production System" as defined in the <?php echo $this->Html->link('Production List description', ['controller' => 'pages', 'action' => 'display', 'the-lists', '#' => 'production-list'], [ 'class' => 'link' ]); ?>
+        </li>
+        <li>
+            Submission achieves the highest 'reproducibility score' as defined in the  <?php echo $this->Html->link('Reproducibility description', ['controller' => 'pages', 'action' => 'display', 'the-lists', '#' => 'reproducibility-scores'], [ 'class' => 'link' ]); ?>
+        </li>
+        <li>
+            No 'single point of failure'
+        </li>
+    </ul>
 
     <p>
         The IO500 steering committee has final say on whether a submission meets the above requirements.

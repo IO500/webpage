@@ -10,8 +10,8 @@
     <h2>Call for Submissions</h2>
 
     <p>
-        The IO500 is <b>no longer</b> accepting submissions for the
-        upcoming 11th semi-annual IO500 list in conjunction with SC'22.
+        The IO500 <b>will soon</b> accepting submissions for the
+        upcoming 12th semi-annual IO500 list in conjunction with ISC'23.
         Submissions for the 10 Node Challenge are encouraged to share
         small scale storage system results.
     </p>

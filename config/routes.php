@@ -81,6 +81,14 @@ $routes->scope('/', function (RouteBuilder $builder) {
         ]
     );
     $builder->connect(
+        '/the-lists',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'the-lists',
+        ]
+    );
+    $builder->connect(
         '/contact',
         [
             'controller' => 'Pages',

@@ -13,7 +13,7 @@
 </nav>
 
 <div class="content">
-    <h3>Submission Rules</h3>
+    <h3>Submission Rules for the Research and Production Lists</h3>
 
     <p>
         The following rules should ensure a fair comparison of the IO500 results between systems and configurations. They serve to reduce mistakes and improve accuracy.
@@ -137,5 +137,52 @@
 
     <p>
         Please send any requests for changes to these rules or clarifying questions to our mailing list.
+    </p>
+
+    <p>
+        The IO500 committee will assign a <?php echo $this->Html->link('reproducibility score', ['controller' => 'pages', 'action' => 'display', 'about'], [ 'class' => 'link' ]); ?> per submission.
+    </p>
+
+    <p>
+        This will impact a submission as follows:
+    </p>
+
+    <ul>
+        <li>
+            <strong>Undefined/Limited Score</strong> - Lowest levels of reproducibility. The IO500 committee will work with submitters to try and gather more information and raise the score, but if additional information is not received the submission may be rejected.
+        </li>
+        <li>
+            <strong>Proprietary/Fully Reproducible Score</strong> - Eligible for IO500.  Entries with a 'Proprietary' score are eligible for the Research List and entries with a 'Fully Reproducible’ score are eligible for the Production list (if they also meet the other requirements for the Production List).
+        </li>
+    </ul>
+
+    <h3>Additional Eligibility Rules for the Production List</h3>
+
+    <p>
+        Each submission will only be on one of the Research or Production lists. The following additional requirements must be satisfied to be eligible for the Production list.
+    </p>
+
+    <ul>
+        <li>
+            Submission meets the definition of a "Production System" as defined in the <?php echo $this->Html->link('Production List description', ['controller' => 'pages', 'action' => 'display', 'the-lists', '#' => 'production-list'], [ 'class' => 'link' ]); ?>
+        </li>
+        <li>
+            Submission achieves the highest 'reproducibility score' as defined in the  <?php echo $this->Html->link('Reproducibility description', ['controller' => 'pages', 'action' => 'display', 'the-lists', '#' => 'reproducibility-scores'], [ 'class' => 'link' ]); ?>
+        </li>
+        <li>
+            No 'single point of failure'
+        </li>
+    </ul>
+
+    <p>
+        The IO500 steering committee has final say on whether a submission meets the above requirements.
+    </p>
+
+    <p>
+        All information, including fault tolerance mechanisms, will be listed prominently on the IO500 list so it is clear to everyone what tradeoffs are employed to achieve the published score.  Further, multiple submissions with different fault-tolerance/reliability mechanisms may be submitted and published in order to demonstrate the capabilities of a submission along different dimensions (although we may limit the total number that can be on a list).
+    </p>
+
+    <p>
+        For further details, please see both the <a href="/files/io500-reproducibility-proposal.pdf">IO500 Reproducibility Proposal</a> and <a href="/files/io500-list-split-proposal.pdf">List Split Proposal</a>.
     </p>
 </div>

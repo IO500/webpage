@@ -8,7 +8,7 @@
         "php": ">=7.2",
         "cakephp/cakephp": "^4.0",
         "cakephp/migrations": "^3.0",
-        "cakephp/plugin-installer": "^1.2",
+        "cakephp/plugin-installer": "^1.3",
         "friendsofcake/cakephp-csvview": "^4.0",
         "mobiledetect/mobiledetectlib": "^2.8",
         "mossadal/math-parser": "^1.3",
@@ -42,7 +42,6 @@
     "scripts": {
         "post-install-cmd": "App\\Console\\Installer::postInstall",
         "post-create-project-cmd": "App\\Console\\Installer::postInstall",
-        "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
         "check": [
             "@test",
             "@cs-check"
@@ -54,7 +53,11 @@
     },
     "prefer-stable": true,
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "cakephp/plugin-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     },
     "minimum-stability": "dev"
 }

@@ -6,14 +6,14 @@
     <?php
     $this->Breadcrumbs->add(__('HOME'), ['controller' => 'submissions', 'action' => 'latest']);
     $this->Breadcrumbs->add(__('BOF'), ['controller' => 'pages', 'action' => 'display', 'bofs']);
-    $this->Breadcrumbs->add(__("SC'22"), ['controller' => 'pages', 'action' => 'display', 'bof-sc22']);
+    $this->Breadcrumbs->add(__("ISC'23"), ['controller' => 'pages', 'action' => 'display', 'bof-isc23']);
 
     echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
     ?>
 </nav>
 
 <div class="content">
-    <h2>SC'22</h2>
+    <h2>ISC'23</h2>
 
     <h3>The IO500 and the Virtual Institute of I/O</h3>
 

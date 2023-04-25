@@ -133,7 +133,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
         [
             'controller' => 'Pages',
             'action' => 'display',
-            'cfs',
+            'submission',
         ]
     );
     $builder->connect(

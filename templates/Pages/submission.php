@@ -4,16 +4,30 @@
 
 <div class="content">
     <p class="call">
-        Submissions are not yet open for ISC23.
+        Submissions are now open for ISC23.
+    </p>
+    <p class="call">
+        Stabilization Period: Monday, April 3rd - Friday, April 14th, 2023
+        Submission Deadline: Tuesday, May 16th, 2023 AoE
     </p>
 
     <h2>Call for Submissions</h2>
 
     <p>
-        The IO500 <b>will soon</b> accepting submissions for the
+        The IO500 <b>is currently</b> accepting submissions for the
         upcoming 12th semi-annual IO500 list in conjunction with ISC'23.
         Submissions for the 10 Node Challenge are encouraged to share
         small scale storage system results.
+        The new ranked lists will be announced during
+        <?php echo $this->Html->link(__('"The IO500 and the Virtual Institute of I/O" BoF'),
+            [ 'controller' => 'pages', 'action' => 'display', 'bof-sc23' ],
+            [ 'class' => 'link' ]);
+         ?>.
+         We hope to see many new results.
+    </p>
+    <p>
+        The github repo has a new tag <code>io500-isc23</code> for the current
+        version of the benchmark for this list.
     </p>
 
     <h2>How to Submit?</h2>
@@ -30,42 +44,89 @@
     </p>
 
     <p>
-        The IO500 list is released during ISC and SC. See our
-        <?php echo $this->Html->link(_('call for submissions'),
-            [ 'controller' => 'Pages', 'action' => 'display',
-              'cfs'
-            ], [ 'class' => 'link' ]);
-         ?>
-        page for details.
+        The IO500 list is released during ISC and SC.
         Submissions to the upcoming list can be made all year. However,
         <strong>to be included in the next submission</strong>, we must receive
-        the submission before the deadline listed in our call for submissions.
+        the submission before the deadline listed above, unless you have
+        previously contacted the committee and approved an extension for
+        exceptional circumstances.
+    </p>
+
+    <h3>Production and Research Lists</h3>
+    <p>
+        Starting with ISC'22, we proposed a separation of the list into
+        separate
+            <?php echo $this->Html->link(__('Production and Research lists'),
+                [ 'controller' => 'pages', 'action' => 'display',
+                  'the-lists' ], [ 'class' => 'link' ]);
+             ?>.
+        This better reflects the
+        important distinction between storage systems that run in production
+        environments and those that may use more experimental hardware and
+        software configurations.  At ISC'23, we will formally create these
+        two lists and users will be able to submit to either of the two lists
+        (and their 10 client-node counterparts).
+        Please see the requirements for each list on the
+            <?php echo $this->Html->link(__('IO500 Submission Rules page'),
+                [ 'controller' => 'pages', 'action' => 'display',
+                  'rules-submission' ], [ 'class' => 'link' ]);
+             ?>.
+    </p>
+
+    <h3>Reproducibility Questionnaire</h3>
+    <p>
+        Every submission will now receive a reproducibility score based upon
+        the provided system details and the reproducibility questionnaire.
+        This score will inform the community on the amount of details provided
+        in the submission and the obtainability of the storage system.
+        Further, this score will be used to evaluate if a submission is
+        eligible for the Production list.
     </p>
 
     <h3>Submission Instructions</h3>
 
     <p>
-        There are two options to submit to the IO500, we prefer the online form:
+        There are two options to submit to the IO500, we strongly prefer
+        the online form:
     </p>
 
     <ol>
         <li>
-            Use our <a href="https://www.vi4io.org/io500-submission/" target="_blank" class="link">online form</a>. You have to receive a one-time token (please check your SPAM folder if you did not receive the initial response 5 minutes later).
+            Use our new <a href="https://io500.org/submission" target="_blank" class="link">online form</a>.
+            Users can create accounts and then update and manage all of their
+            submissions through that account.  As part of this new tool, we
+            have improved the submission fields that describe the hardware and
+            software of the system under test. For reproducibility and analysis
+            reasons, we now made the easily obtainable fields mandatory -
+            data from storage servers are for users often difficult to obtain,
+            therefore, most remain optional. As a new system, there may be
+            quirks, please reach out on Slack or the mailing list if you see
+            any issues.
         </li>
         <li>
-            If you experience any problems with the online form; send an <a href="mailto:submit@io500.org" class="link">email</a> with attachments:
-
+            If you experience problems with the online form that cannot be
+            resolved via Slack, please send the committee an
+            <a href="mailto:submit@io500.org" class="link">email</a> with
+            the following as attachments:
             <ul>
-                <li>The (potentially) adapted <span class="code">io500.sh</span></li>
-                <li>The output directory of the benchmark (variable <span class="code">io500_result_dir</span> in <span class="code">io500.sh</span>)</li>
-                <li>If possible, please mention which system is covered of the <a href="https://www.vi4io.org/hpsl/start" class="link">CDCL</a> or provide system information such that we can add the system to the CDCL!</li>
+                <li>The (potentially) adapted <span class="code">io500.sh</span>
+                </li>
+                <li>The output directory of the benchmark (variable
+                    <span class="code">io500_result_dir</span> in
+                    <span class="code">io500.sh</span>).
+                </li>
+                <li>If possible, please mention which system is covered of the
+                    <a href="https://www.vi4io.org/hpsl/start" class="link">CDCL</a>
+                    or provide system information such that we can add the
+                    system to the CDCL!
+                </li>
             </ul>
+            <p>
+                We will reply to you, to confirm reception and to ask any
+                question that may arise.
+            </p>
         </li>
     </ol>
-
-    <p>
-        We will reply to you, to confirm reception and any question that may arise.
-    </p>
 
     <h3>Handling of the Submitted Data</h3>
 

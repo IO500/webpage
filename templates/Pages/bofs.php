@@ -5,11 +5,22 @@
 
     <p>
         The <strong>IO500</strong> has held several Birds-of-a-Feather sessions.
-	<br>
+        <br>
         You can find more information about them in:.
     </p>
 
     <ul>
+        <li>
+            <?php
+            echo $this->Html->link("ISC'23", [
+                'controller' => 'pages',
+                'action' => 'display',
+                'bof-isc23'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
         <li>
             <?php
             echo $this->Html->link("ISC'22", [

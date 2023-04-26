@@ -20,7 +20,7 @@
         small scale storage system results.
         The new ranked lists will be announced during
         <?php echo $this->Html->link(__('"The IO500 and the Virtual Institute of I/O" BoF'),
-            [ 'controller' => 'pages', 'action' => 'display', 'bof-sc23' ],
+            [ 'controller' => 'pages', 'action' => 'display', 'bof-isc23' ],
             [ 'class' => 'link' ]);
          ?>.
          We hope to see many new results.
@@ -92,7 +92,7 @@
 
     <ol>
         <li>
-            Use our new <a href="https://io500.org/submission" target="_blank" class="link">online form</a>.
+            Use our new <a href="https://submission.io500.org/" target="_blank" class="link">online form</a>.
             Users can create accounts and then update and manage all of their
             submissions through that account.  As part of this new tool, we
             have improved the submission fields that describe the hardware and

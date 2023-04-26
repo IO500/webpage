@@ -113,6 +113,14 @@ $routes->scope('/', function (RouteBuilder $builder) {
         ]
     );
     $builder->connect(
+        '/running',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'running',
+        ]
+    );
+    $builder->connect(
         '/steering',
         [
             'controller' => 'Pages',

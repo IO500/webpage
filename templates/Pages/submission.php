@@ -20,7 +20,7 @@
         small scale storage system results.
         The new ranked lists will be announced during
         <?php echo $this->Html->link(__('"The IO500 and the Virtual Institute of I/O" BoF'),
-            [ 'controller' => 'pages', 'action' => 'display', 'bof-sc23' ],
+            [ 'controller' => 'pages', 'action' => 'display', 'bof-isc23' ],
             [ 'class' => 'link' ]);
          ?>.
          We hope to see many new results.
@@ -92,16 +92,52 @@
 
     <ol>
         <li>
-            Use our new <a href="https://io500.org/submission" target="_blank" class="link">online form</a>.
+            Use our new <a href="https://submission.io500.org/login"
+			   target="_blank" class="link">online form</a>.
             Users can create accounts and then update and manage all of their
-            submissions through that account.  As part of this new tool, we
+            submissions through that account.
+            <ol>
+                <li>
+                    Click on "[Register]" to create a new account
+                </li>
+                <li>
+                    You will receive an email to activate your account
+                    (also check your spam folder)
+                </li>
+                <li>
+                    Once your account is activated you can [Login]
+                </li>
+                <li>
+                    Go to the "[New Submission]" menu
+                </li>
+                <li>
+                    Complete the submission form with all required information
+                </li>
+                <ul>
+                    <li>
+                        You will be able to incrementally complete the submission
+                        (i.e., your progress will be saved)
+                    </li>
+                    <li>
+                        You are able to edit your submission until you submit it
+                    </li>
+                    <li>
+                        Once you double-check your submission data, click on
+                        "[Submit]" to send it to the IO500 committee for review
+                    </li>
+                </ul>
+            </ol>
+
+            As part of this new tool, we
             have improved the submission fields that describe the hardware and
             software of the system under test. For reproducibility and analysis
             reasons, we now made the easily obtainable fields mandatory -
             data from storage servers are for users often difficult to obtain,
-            therefore, most remain optional. As a new system, there may be
-            quirks, please reach out on Slack or the mailing list if you see
-            any issues.
+            therefore, most remain optional.
+            <p>
+                As a new system, there may be quirks, please reach out on
+                Slack or the mailing list if you see any issues.
+            </p>
         </li>
         <li>
             If you experience problems with the online form that cannot be

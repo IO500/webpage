@@ -140,7 +140,7 @@
     </p>
 
     <p>
-        The IO500 committee will assign a <?php echo $this->Html->link('reproducibility score', ['controller' => 'pages', 'action' => 'display', 'about'], [ 'class' => 'link' ]); ?> per submission.
+        The IO500 committee will assign a <?php echo $this->Html->link('reproducibility score', ['controller' => 'pages', 'action' => 'display', 'the-lists', '#' => 'reproducibility-scores'], [ 'class' => 'link' ]); ?> per submission.
     </p>
 
     <p>

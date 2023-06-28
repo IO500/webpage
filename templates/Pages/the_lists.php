@@ -160,6 +160,10 @@
         </li>
     </ul>
 
+    <p>
+        You can check out the <a href="https://www.submission.io500.org/questionnaires/sample" target="_blank" class="link">sample reproducibility questionnaire</a> while preparing your submission.
+    </p>
+
     <h3>Further Reading</h3>
 
     <p>

@@ -10,49 +10,6 @@
     ?>
 </nav>
 
-<div class="submissions index content">
-    <h2>IO500 Releases</h2>
-
-    <div class="submissions-action">
-        <?php
-        echo $this->Html->link(__('About The Lists'), [
-            'controller' => 'pages',
-            'action' => 'display',
-            'the-lists'
-        ], [
-            'class' => 'button'
-        ]);
-        ?>
-    </div>
-
-    <div class="both"></div>
-
-    <div class="submissions-lists">
-        <ol>
-            <?php foreach ($releases as $release) { ?>
-            <li>
-                <h4><?php echo strtoupper($release->acronym); ?></h4>
-
-                <ul>
-                    <?php foreach ($release->listings as $list) { ?>
-                    <li>
-                        <?php
-                        echo $this->Html->link($list->type->name, [
-                            'controller' => 'listings',
-                            'action' => 'list',
-                            strtolower($release->acronym),
-                            $list->type->url
-                        ]);
-                        ?>
-                    </li>
-                    <?php } ?>
-                </ul>
-            </li>
-            <?php } ?>
-        </ol>
-    </div>
-</div>
-
 <div class="landing landing-lists">
     <h1><?php echo __('IO500 Lists') ?></h1>
 
@@ -110,4 +67,35 @@
     </p>
 
     <a href="https://www.freepik.com/free-photos-vectors/business" class="credits">Business vector created by stories - www.freepik.com</a>
+</div>
+
+<div class="submissions index content">
+    <h2>IO500 Releases</h2>
+
+    <div class="both"></div>
+
+    <div class="submissions-lists">
+        <ol>
+            <?php foreach ($releases as $release) { ?>
+            <li>
+                <h4><?php echo strtoupper($release->acronym); ?></h4>
+
+                <ul>
+                    <?php foreach ($release->listings as $list) { ?>
+                    <li>
+                        <?php
+                        echo $this->Html->link($list->type->name, [
+                            'controller' => 'listings',
+                            'action' => 'list',
+                            strtolower($release->acronym),
+                            $list->type->url
+                        ]);
+                        ?>
+                    </li>
+                    <?php } ?>
+                </ul>
+            </li>
+            <?php } ?>
+        </ol>
+    </div>
 </div>

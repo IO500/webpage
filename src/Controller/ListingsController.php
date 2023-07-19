@@ -28,7 +28,10 @@ class ListingsController extends AppController
         $release = $this->Listings->Releases->find('all')
             ->contain([
                 'Listings' => [
-                    'Types',
+                    'Types', 
+                    'sort'=> [
+                        'Types.position' => 'ASC'
+                    ]
                 ],
             ])
             ->where([

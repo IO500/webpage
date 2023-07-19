@@ -702,7 +702,35 @@ dd {
 }
 
 .submissions-action a {
+    max-width: 175px;
+}
+
+.submissions-list-types {
+    margin: 15px 0;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    gap: 10px;
+    box-sizing: border-box;
+    justify-content: flex-end;
+}
+
+.submissions-list-types a {
     max-width: 200px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    gap: 0;
+}
+
+.submissions-list-types i {
+    font-size: 20px;
+    padding-bottom: 5px;
+    flex-basis: 100%;
 }
 
 /* Breadcumb */

@@ -71,7 +71,14 @@ $routes->scope('/', function (RouteBuilder $builder) {
             'io500',
         ]
     );
-
+    $builder->connect(
+        '/running',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'running',
+        ]
+    );
     $builder->connect(
         '/about',
         [

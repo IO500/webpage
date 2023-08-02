@@ -67,17 +67,32 @@ $routes->scope('/', function (RouteBuilder $builder) {
         [
             'controller' => 'Listings',
             'action' => 'list',
-            'sc22',
+            'isc23',
             'io500',
         ]
     );
-
+    $builder->connect(
+        '/running',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'running',
+        ]
+    );
     $builder->connect(
         '/about',
         [
             'controller' => 'Pages',
             'action' => 'display',
             'about',
+        ]
+    );
+    $builder->connect(
+        '/the-lists',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'the-lists',
         ]
     );
     $builder->connect(
@@ -105,6 +120,14 @@ $routes->scope('/', function (RouteBuilder $builder) {
         ]
     );
     $builder->connect(
+        '/running',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'running',
+        ]
+    );
+    $builder->connect(
         '/steering',
         [
             'controller' => 'Pages',
@@ -125,7 +148,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
         [
             'controller' => 'Pages',
             'action' => 'display',
-            'cfs',
+            'submission',
         ]
     );
     $builder->connect(

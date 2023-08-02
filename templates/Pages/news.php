@@ -1,5 +1,11 @@
 <?php $this->assign('title', 'News'); ?>
 
+<?php
+function cite($file) {
+    return file_get_contents(WWW_ROOT . $file);
+}
+?>
+
 <div class="content">
     <h2>News</h2>
 
@@ -161,7 +167,7 @@
         </li>
     </ul>
 
-    <h3>Talks and Publications</h3>
+    <h3>Talks</h3>
 
     <ul class="news">
         <li>
@@ -186,9 +192,6 @@
             <span class="date">2017-11-15</span> <a class="link" href="https://www.vi4io.org/io500/bofs/sc17/start">Talks available from our SC17 BOF</a>
         </li>
         <li>
-            <span class="date">2017-11-13</span> <a class="link" href="https://hps.vi4io.org/_media/research/talks/2017/2017-11-13-establishing_the_io_500_benchmark.pdf">Establishing the IO500 Benchmark: Julian Kunkel's talk at PDSW/DISC Workshop</a> (<a class="link" href="http://www.pdsw.org/pdsw-discs17/wips/kunkel-wip-pdsw-discs17.pdf">Extended abstract</a>)
-        </li>
-        <li>
             <span class="date">2017-06-25</span> <a class="link" href="https://hps.vi4io.org/_media/research/talks/2017/2017-06-25-io_500_status.pdf">The status of the IO500: Julian Kunkel's talk at LBNL</a>
         </li>
         <li>
@@ -197,6 +200,155 @@
         <li>
             <span class="date">2016-11-17</span> <a class="link" href="https://www.vi4io.org/io500/bofs/sc16/start">Talks available from our SC16 BOF</a>
         </li>
+    </ul>
+
+    <h3>Publications</h3>
+
+    <ul>
+        <li>
+            <h3 class="doi">
+                User-Centric System Fault Identification Using IO500 Benchmark
+                <a href="https://doi.org/10.1109/PDSW54622.2021.00011"><img src="https://zenodo.org/badge/DOI/10.1109/PDSW54622.2021.00011.svg" alt="DOI"></a>
+            </h3>
+        
+            <div class="code">
+                <p class="bib"><?php echo cite('resources/2021-PDSW-Liem.bib'); ?></p>
+            </div>
+        </li>
+        <li>
+            <h3 class="doi">
+                Benchmarking Parallel File System Sensitiveness to I/O Patterns
+                <a href="https://doi.org/10.1109/MASCOTS.2019.00054"><img src="https://zenodo.org/badge/DOI/10.1109/MASCOTS.2019.00054.svg" alt="DOI"></a>
+            </h3>
+        
+            <div class="code">
+                <p class="bib"><?php echo cite('resources/2019-MASCOTS-Chasapis.bib'); ?></p>
+            </div>
+        </li>
+        <li>
+            <h3 class="doi">
+                Profiling Platform Storage using IO500 and Mistral
+                <a href="https://doi.org/10.1109/PDSW49588.2019.00011"><img src="https://zenodo.org/badge/DOI/10.1109/PDSW49588.2019.00011.svg" alt="DOI"></a>
+            </h3>
+        
+            <div class="code">
+                <p class="bib"><?php echo cite('resources/2019-PDSW-Monnier.bib'); ?></p>
+            </div>
+        </li>
+        <li>
+            <h3>Scaling High-Performance Parallel File Systems in the Cloud</h3>
+        
+            <div class="code">
+                <p class="bib"><?php echo cite('resources/2018-PDSW-Beckett.bib'); ?></p>
+            </div>
+        </li>
+        <li>
+            <h3>Establishing the IO-500 Benchmark</h3>
+        
+            <div class="code">
+                <p class="bib"><?php echo cite('resources/2016-PDSW-Kunkel.bib'); ?></p>
+            </div>
+        </li>
+    </ul>
+
+    <h3>Datasets</h3>
+
+    <ul>
+        <li>
+            <h3 class="doi">
+                IO500 ISC22 Lists
+                <a href="https://doi.org/10.5281/zenodo.6772541"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6772541.svg" alt="DOI"></a>                
+            </h3>
+
+            <div class="code">
+                <p class="bib"><?php echo cite('resources/IO500-2022-05.bib'); ?></p>
+            </div>
+        </li>
+        <li>
+            <h3 class="doi">
+                IO500 SC21 Lists
+                <a href="https://doi.org/10.5281/zenodo.6462508"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6462508.svg" alt="DOI"></a>
+            </h3>
+
+            <div class="code">
+                <p class="bib"><?php echo cite('resources/IO500-2021-11.bib'); ?></p>
+            </div>
+        </li>
+        <li>
+            <h3 class="doi">
+                IO500 ISC21 Lists
+                <a href="https://doi.org/10.5281/zenodo.6462505"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6462505.svg" alt="DOI"></a>                
+            </h3>
+
+            <div class="code">
+                <p class="bib"><?php echo cite('resources/IO500-2021-07.bib'); ?></p>
+            </div>
+        </li>
+        <li>
+            <h3 class="doi">
+                IO500 SC20 Lists
+                <a href="https://doi.org/10.5281/zenodo.6462501"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6462501.svg" alt="DOI"></a>
+            </h3>
+
+            <div class="code">
+                <p class="bib"><?php echo cite('resources/IO500-2020-11.bib'); ?></p>
+            </div>
+        </li>
+        <li>
+            <h3 class="doi">
+                IO500 ISC20 Lists
+                <a href="https://doi.org/10.5281/zenodo.6462499"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6462499.svg" alt="DOI"></a>
+            </h3>
+
+            <div class="code">
+                <p class="bib"><?php echo cite('resources/IO500-2020-07.bib'); ?></p>
+            </div>
+        </li>
+        <li>
+            <h3 class="doi">
+                IO500 SC19 Lists
+                <a href="https://doi.org/10.5281/zenodo.6462493"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6462493.svg" alt="DOI"></a>
+            </h3>
+
+            <div class="code">
+                <p class="bib"><?php echo cite('resources/IO500-2019-11.bib'); ?></p>
+            </div>
+        </li>
+        <li>
+            <h3 class="doi">
+                IO500 Ranked List ISC19
+                <a href="https://doi.org/10.5281/zenodo.3354660"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3354660.svg" alt="DOI"></a>
+            </h3>
+
+            <div class="code">
+                <p class="bib"><?php echo cite('resources/IO500-2019-06.bib'); ?></p>
+            </div>
+        </li>
+        <li>
+            <h3 class="doi">
+                IO500 10 node challenge (2018)
+                <a href="https://doi.org/10.5281/zenodo.6462483"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6462483.svg" alt="DOI"></a>
+            </h3>
+
+            <div class="code">
+                <p class="bib"><?php echo cite('resources/IO500-2018-11.bib'); ?></p>
+            </div>
+        </li>
+    </ul>
+
+    <h3>Software</h3>
+
+    <ul>     
+        <li>
+            <h3 class="doi">
+                VI4IO/io-500-dev: Zenodo Citation Release
+                <a href="https://doi.org/10.5281/zenodo.2602025"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.2602025.svg" alt="DOI"></a>
+            </h3>
+
+            <div class="code">
+                <p class="bib"><?php echo cite('resources/IO500-2018-09.bib'); ?></p>
+            </div>
+        </li>        
     </ul>
 
     <h3>Other Public Discussion</h3>

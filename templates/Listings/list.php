@@ -19,22 +19,6 @@
 
     <div class="submissions-action">
         <?php
-        foreach ($release->listings as $list) {
-            $state = '';
-            if (strtolower($list->type->url) == strtolower($this->request->getParam('pass')[1])) {
-                $state = '-active';
-            }
-
-            echo $this->Html->link($list->type->name, [
-                'controller' => 'listings',
-                'action' => 'list',
-                strtolower($this->request->getParam('pass')[0]),
-                strtolower($list->type->url)
-            ], [
-                'class' => 'button-navigation' . $state
-            ]);
-        }
-
         echo $this->Html->link(_('Customize'), [
             'controller' => 'submissions',
             'action' => 'customize',
@@ -53,6 +37,32 @@
         ], [
             'class' => 'button-navigation'
         ]);
+        ?>
+    </div>
+
+    <div class="submissions-list-types">
+        <?php
+        foreach ($release->listings as $list) {
+            $state = '';
+            if (strtolower($list->type->url) == strtolower($this->request->getParam('pass')[1])) {
+                $state = '-active';
+            }
+
+            $icon = '';
+            if ($list->type->ranked) {
+                $icon = '<i class="fa-solid fa-trophy"></i><br/>';
+            }
+
+            echo $this->Html->link($icon . '<b>' . $list->type->name . '</b>', [
+                'controller' => 'listings',
+                'action' => 'list',
+                strtolower($this->request->getParam('pass')[0]),
+                strtolower($list->type->url)
+            ], [
+                'class' => 'button-navigation' . $state,
+                'escape' => false
+            ]);
+        }
         ?>
     </div>
 

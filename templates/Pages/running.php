@@ -21,21 +21,27 @@
         Thanks for your participation and good luck!
     </p>
 
-    <a href="https://www.freepik.com/free-photos-vectors/business" class="credits">Business vector created by stories - www.freepik.com</a>
+    <a href="https://www.freepik.com/free-photos-vectors/business"
+       class="credits">Business vector created by stories - www.freepik.com</a>
 </div>
 
 <div class="content">
-    <h3>Preparation</h3>
+    <h3>Preparation and Building</h3>
 
-    <p>The latest IO500 source code is available from Github:</p>
+    <p>The latest IO500 source code is available from the
+        <a href="https://github.com/IO500/io500/">IO500 Github repository</a>.
+        Running the <code>prepare.sh</code> script will fetch awditional
+        sources, such as <a href="https://github.com/hpc/ior/">IOR</a>,
+        in order to build the benchmark.
+    </p>
 
     <p class="code-block">
-        $ git clone https://github.com/IO500/io500.git -b io500-isc22<br/>
+        $ git clone https://github.com/IO500/io500.git -b io500-isc23<br/>
         $ cd io500<br/>
         $ ./prepare.sh<br/>
     </p>
 
-    <h3>Installation</h3>
+    <h3>Installation Video</h3>
 
     <p>
         A video with the installation procedure is
@@ -43,7 +49,7 @@
         here</a>.
     </p>
 
-    <h3>Steps</h3>
+    <h3>Steps to Run IO500 Benchmark</h3>
 
     <ol>
         <li>

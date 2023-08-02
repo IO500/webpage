@@ -1,29 +1,14 @@
-<div class="submissions index content">
-    <div class="submissions-lists">
-        <ol>
-            <?php foreach ($releases as $release) { ?>
-            <li>
-                <h4><?php echo strtoupper($release->acronym); ?></h4>
+<?php $this->assign('title', 'Releases'); ?>
 
-                <ul>
-                    <?php foreach ($release->listings as $list) { ?>
-                    <li>
-                        <?php
-                        echo $this->Html->link($list->type->name, [
-                            'controller' => 'listings',
-                            'action' => 'list',
-                            strtolower($release->acronym),
-                            $list->type->url
-                        ]);
-                        ?>
-                    </li>
-                    <?php } ?>
-                </ul>
-            </li>
-            <?php } ?>
-        </ol>
-    </div>
-</div>
+<nav id="breadcrumb">
+    <p>YOU ARE HERE</p>
+
+    <?php
+    $this->Breadcrumbs->add(_('RELEASES'), ['controller' => 'releases', 'action' => 'index']);
+
+    echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
+    ?>
+</nav>
 
 <div class="landing landing-lists">
     <h1><?php echo __('IO500 Lists') ?></h1>
@@ -36,19 +21,19 @@
     <ul>
         <li>
             <?php
-            echo $this->Html->link(__('Lastest List'), '/', [
-                'class' => 'button-highlight'
+            echo $this->Html->link(__('About The Lists'), [
+                'controller' => 'pages',
+                'action' => 'display',
+                'the-lists'
+            ], [
+                'class' => 'button'
             ]);
             ?>
         </li>
         <li>
             <?php
-            echo $this->Html->link(__('About Lists'), [
-                'controller' => 'pages',
-                'action' => 'display',
-                'about'
-            ], [
-                'class' => 'button'
+            echo $this->Html->link(__('Lastest Release'), '/', [
+                'class' => 'button-highlight'
             ]);
             ?>
         </li>
@@ -78,12 +63,39 @@
             ], [
                 'class' => 'link'
             ]);
-        } ?>. Note that these are unofficial lists created by the community.
-    </p>
-    
-    <p>
-        Get ready to submit for the next list!
+        } ?>. Note that these are <strong class="link">unofficial</strong> lists created by the community.
     </p>
 
     <a href="https://www.freepik.com/free-photos-vectors/business" class="credits">Business vector created by stories - www.freepik.com</a>
+</div>
+
+<div class="submissions index content">
+    <h2>IO500 Releases</h2>
+
+    <div class="both"></div>
+
+    <div class="submissions-lists">
+        <ol>
+            <?php foreach ($releases as $release) { ?>
+            <li>
+                <h4><?php echo strtoupper($release->acronym); ?></h4>
+
+                <ul>
+                    <?php foreach ($release->listings as $list) { ?>
+                    <li>
+                        <?php
+                        echo $this->Html->link($list->type->name, [
+                            'controller' => 'listings',
+                            'action' => 'list',
+                            strtolower($release->acronym),
+                            $list->type->url
+                        ]);
+                        ?>
+                    </li>
+                    <?php } ?>
+                </ul>
+            </li>
+            <?php } ?>
+        </ol>
+    </div>
 </div>

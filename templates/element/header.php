@@ -45,15 +45,6 @@
             </li>
             <li>
                 <?php
-                echo $this->Html->link(__('CFS'), [
-                    'controller' => 'pages',
-                    'action' => 'display',
-                    'cfs'
-                ]);
-                ?>
-            </li>
-            <li>
-                <?php
                 echo $this->Html->link(__('BoFs'), [
                     'controller' => 'pages',
                     'action' => 'display',
@@ -85,15 +76,6 @@
                     'controller' => 'pages',
                     'action' => 'display',
                     'submission'
-                ]);
-                ?>
-            </li>
-            <li>
-                <?php
-                echo $this->Html->link(__('Publications'), [
-                    'controller' => 'pages',
-                    'action' => 'display',
-                    'publications'
                 ]);
                 ?>
             </li>

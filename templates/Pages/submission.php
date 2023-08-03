@@ -93,7 +93,7 @@
     <ol>
         <li>
             Use our new <a href="https://submission.io500.org/login"
-			   target="_blank" class="link">online form</a>.
+               target="_blank" class="link">online form</a>.
             Users can create accounts and then update and manage all of their
             submissions through that account.
             <ol>

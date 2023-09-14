@@ -36,7 +36,7 @@
     </p>
 
     <p class="code-block">
-        $ git clone https://github.com/IO500/io500.git -b io500-isc23<br/>
+        $ git clone https://github.com/IO500/io500.git -b io500-sc23<br/>
         $ cd io500<br/>
         $ ./prepare.sh<br/>
     </p>

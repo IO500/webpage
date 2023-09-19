@@ -121,13 +121,16 @@
             The <strong>Compute System</strong> may be extremely dynamic, growing from 1 node to 1000s of nodes in minutes.  This doesn’t change our assessment, as long as those same types of compute nodes are executing <strong>Production Applications</strong>.
         </li>
         <li>
-            The <strong>Storage System</strong> may also be somewhat dynamic, and may even be shut down for short periods of time, but the general capacity and speeds/feeds should be similar to the <strong>Storage System</strong> that is used to execute <strong>Production Applications</strong>.
+            The <strong>Storage System</strong> may dynamically grow and shrink, and may even be shut down for short periods of time. The <strong>Storage System</strong> used in the submission does not need to be the identical cloud deployment used to execute <strong>Production Applications</strong>, but its configuration must accurately represent the deployment configuration (e.g., VMs, storage, load-balancers) and size or shape of the storage system that has been or is currently used to execute <strong>Production Applications</strong>. For example, if a storage system reached 1PB with 32 storage server VMs while executing <strong>Production Applications</strong>, then the submitted Storage System could not be larger than 1PB, use more than 32 storage server VMs, or change the storage server VM/storage configuration.
         </li>
         <li>
             Many HPC cloud deployments are for burst use cases, where the <strong>Production System</strong> will vary in size and shape depending on the required compute/storage resources to augment the on-premise system. This continues to fit the above definition since Burst is not a one time activity of running <strong>Production Applications</strong> but rather a continuous activity that is by its very nature bursty.
         </li>
         <li>
             To obtain the highest <strong>Reproducibility Score</strong>, any cloud-based submission must list all of the specific cloud vendor’s compute/storage/networking offerings utilized so that anyone from the community could reproduce the IO500 results exactly assuming they could obtain the exact same storage system software.
+        </li>
+        <li>        
+            The Institution in the IO500 submission must be the institution that is running the <strong>Production Applications</strong>, and not a cloud, storage, or any other type of vendor. Vendors may support the submission of an institution or, with their consent, submit on their behalf.
         </li>
     </ol>
 

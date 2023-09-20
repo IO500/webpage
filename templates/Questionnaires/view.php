@@ -254,28 +254,6 @@
                 ]);
                 ?>
             </fieldset>
-
-            <fieldset>
-                <legend>Feedback</legend>
-
-                <p>
-                    Please provide feedback on this questionnaire. For example:
-                </p>
-
-                <ul>
-                    <li>What additional questions would you like to see?</li>
-                    <li>Were there reasons why you couldn’t complete certain questions?</li>
-                    <li>Would you like to change certain questions?</li>
-                </ul>
-
-                <?php
-                echo $this->Form->control('feedback', [
-                    'label' => false,
-                    'required' => true,
-                    'class' => 'tinymce'
-                ]);
-                ?>
-            </fieldset>
         </div>
     </div>
 </div>

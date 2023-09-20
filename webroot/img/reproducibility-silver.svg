@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg2301"
+   sodipodi:docname="reproducibility-lock.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2305" />
+  <sodipodi:namedview
+     id="namedview2303"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="42.791667"
+     inkscape:cx="12.023369"
+     inkscape:cy="11.988315"
+     inkscape:window-width="3840"
+     inkscape:window-height="2029"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2301" />
+  <g
+     data-name="49. Lock"
+     id="_49._Lock"
+     style="fill:#b4b4b4;fill-opacity:1">
+    <path
+       d="M18,8V6A6,6,0,0,0,6,6V8a3.009,3.009,0,0,0-3,3v7a6,6,0,0,0,6,6h6a6,6,0,0,0,6-6V11A3.009,3.009,0,0,0,18,8ZM8,6a4,4,0,0,1,8,0V8H8Zm5,12a1,1,0,0,1-2,0V14a1,1,0,0,1,2,0Z"
+       id="path2298"
+       style="fill:#b4b4b4;fill-opacity:1" />
+  </g>
+</svg>

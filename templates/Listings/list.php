@@ -90,6 +90,8 @@
                     <th rowspan="2" class="tb-number"><?php echo $this->Paginator->sort('score', _('Score'), ['direction' => 'desc']) ?></th>
                     <th class="tb-center"><?php echo $this->Paginator->sort('io500_bw', _('BW'), ['direction' => 'desc']) ?></th>
                     <th class="tb-center"><?php echo $this->Paginator->sort('io500_md', _('MD'), ['direction' => 'desc']) ?></th>
+
+                    <th rowspan="2" class="tb-center"><?php echo _('Repro.') ?></th>
                 </tr>
                 <tr>
                     <th class="tb-center">(GiB/s)</th>
@@ -139,6 +141,18 @@
                     <td class="tb-number"><?php echo $this->Number->format($entry->score, ['places' => 2, 'precision' => 2]) ?></td>
                     <td class="tb-number"><?php echo $this->Number->format($entry->submission->io500_bw, ['places' => 2, 'precision' => 2]) ?></td>
                     <td class="tb-number"><?php echo $this->Number->format($entry->submission->io500_md, ['places' => 2, 'precision' => 2]) ?></td>
+
+                    <td class="tb-center">
+                        <?php
+                        echo $this->Html->link("<i class='badge badge-" . $entry->submission->questionnaire->reproducibility_score->id . "' data-tippy-content='" . $entry->submission->questionnaire->reproducibility_score->name . "'></i>", [
+                            'controller' => 'questionnaires',
+                            'action' => 'view',
+                            $entry->submission->id
+                        ], [
+                            'escape' => false
+                        ]);
+                        ?>
+                    </td>
                 </tr>
                 <?php } ?>
             </tbody>
@@ -202,6 +216,8 @@ $plot_background[4] = 'rgba(243, 68, 35, 0.2)';
 ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
 <script type="text/javascript">
 var ctx = document.getElementById('radio-chart').getContext('2d');
 
@@ -244,8 +260,9 @@ var myRadarChart = new Chart(ctx, {
         'legend': {
             'position': 'right'
         }
-    }
-    
+    }    
 });
+
+tippy(document.querySelectorAll('.badge'));
 
 </script>

@@ -67,6 +67,9 @@ class ListingsController extends AppController
             ->contain([
                 'Submissions' => [
                     'Releases',
+                    'Questionnaires' => [
+                        'ReproducibilityScores'
+                    ]
                 ],
             ])
             ->where([

@@ -679,7 +679,7 @@ dd {
 .submissions > h2 {
     float: left;
     margin-bottom: 30px;
-    width: 30%;
+    /*width: 30%;*/
 }
 
 .submissions > h2 span {
@@ -936,4 +936,54 @@ footer > .container{
     font-weight: bold;
     padding: 15px;
     text-align: center;
+}
+
+.badge {
+    display: inline-block;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+}
+
+.badge-1 {
+
+}
+
+.badge-2 {
+    background-image: url('../img/reproducibility-bronze.svg');
+}
+
+.badge-3 {
+    background-image: url('../img/reproducibility-silver.svg');
+}
+
+.badge-4 {
+    background-image: url('../img/reproducibility-gold.svg');
+}
+
+.questionnaires fieldset { 
+    border: #bbb solid 1px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding: 15px 20px;
+    position: relative;
+    flex-basis: 400px;
+    flex-grow: 1;
+    margin-bottom: 30px;
+}
+
+.questionnaires fieldset legend {
+    background: #fff;
+    color: #d63b1e;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    left: 20px;
+    margin: 0;
+    padding: 5px;
+    position: absolute;
+    text-transform: uppercase;
+    top: -12px;
 }

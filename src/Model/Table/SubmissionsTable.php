@@ -48,6 +48,10 @@ class SubmissionsTable extends Table
         $this->hasMany('ListingsSubmissions', [
             'foreignKey' => 'submission_id',
         ]);
+
+        $this->hasOne('Questionnaires', [
+            'foreignKey' => 'submission_id',
+        ]);
     }
 
     /**

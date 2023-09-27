@@ -144,13 +144,17 @@
 
                     <td class="tb-center">
                         <?php
-                        echo $this->Html->link("<i class='badge badge-" . $entry->submission->questionnaire->reproducibility_score->id . "' data-tippy-content='" . $entry->submission->questionnaire->reproducibility_score->name . "'></i>", [
-                            'controller' => 'questionnaires',
-                            'action' => 'view',
-                            $entry->submission->id
-                        ], [
-                            'escape' => false
-                        ]);
+                        if (isset($entry->submission->questionnaire->reproducibility_score)) {
+                            echo $this->Html->link("<i class='badge badge-" . $entry->submission->questionnaire->reproducibility_score->id . "' data-tippy-content='" . $entry->submission->questionnaire->reproducibility_score->name . "'></i>", [
+                                'controller' => 'questionnaires',
+                                'action' => 'view',
+                                $entry->submission->id
+                            ], [
+                                'escape' => false
+                            ]);
+                        } else {
+                            echo '-';
+                        }
                         ?>
                     </td>
                 </tr>

@@ -51,7 +51,7 @@ class QuestionnairesTable extends Table
 
         $this->belongsTo('ReproducibilityScores', [
             'foreignKey' => 'reproducibility_score_id',
-            'joinType' => 'INNER',
+            'joinType' => 'LEFT',
         ]);
     }
 

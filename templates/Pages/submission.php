@@ -4,29 +4,30 @@
 
 <div class="content">
     <p class="call">
-        Submissions are now open for ISC23.
+        Submissions are now open for SC'23.
     </p>
     <p class="call">
-        Stabilization Period: Monday, April 3rd - Friday, April 14th, 2023
-        Submission Deadline: Tuesday, May 16th, 2023 AoE
+        Stabilization Period: Wednesday, Sept 27th - Friday, Oct 6th, 2023
+        Submission Deadline: Tuesday, Nov 7th, 2023 AoE
     </p>
 
     <h2>Call for Submissions</h2>
 
     <p>
-        The IO500 <b>is currently</b> accepting submissions for the
-        upcoming 12th semi-annual IO500 list in conjunction with ISC'23.
-        Submissions for the 10 Node Challenge are encouraged to share
-        small scale storage system results.
-        The new ranked lists will be announced during
-        <?php echo $this->Html->link(__('"The IO500 and the Virtual Institute of I/O" BoF'),
-            [ 'controller' => 'pages', 'action' => 'display', 'bof-isc23' ],
+        The IO500 <strong>is now</strong> accepting and encouraging submissions
+        for the upcoming 13th semi-annual IO500 lists, in conjunction with
+        <strong>SC23</strong>.  Once again, we are also accepting submissions
+        to the 10 Client Node Challenge to encourage the submission of small
+        scale results.  The new ranked lists will be announced at the
+        <?php echo $this->Html->link(__('"IO500: High Performance Storage
+         Community" BoF'),
+            [ 'controller' => 'pages', 'action' => 'display', 'bof-sc23' ],
             [ 'class' => 'link' ]);
          ?>.
          We hope to see many new results.
     </p>
     <p>
-        The github repo has a new tag <code>io500-isc23</code> for the current
+        The github repo has a new tag <code>io500-sc23</code> for the current
         version of the benchmark for this list.
     </p>
 
@@ -44,7 +45,7 @@
     </p>
 
     <p>
-        The IO500 list is released during ISC and SC.
+        The IO500 list is released during ISC and SC each year.
         Submissions to the upcoming list can be made all year. However,
         <strong>to be included in the next submission</strong>, we must receive
         the submission before the deadline listed above, unless you have
@@ -54,23 +55,25 @@
 
     <h3>Production and Research Lists</h3>
     <p>
-        Starting with ISC'22, we proposed a separation of the list into
-        separate
-            <?php echo $this->Html->link(__('Production and Research lists'),
+        Starting with ISC'23, we implemented a separation of the IO500 list into
+        <?php echo $this->Html->link(__('Production and Research lists'),
                 [ 'controller' => 'pages', 'action' => 'display',
                   'the-lists' ], [ 'class' => 'link' ]);
-             ?>.
+         ?>.
         This better reflects the
         important distinction between storage systems that run in production
         environments and those that may use more experimental hardware and
-        software configurations.  At ISC'23, we will formally create these
+        software configurations.  At SC'23, we continue to populate these
         two lists and users will be able to submit to either of the two lists
-        (and their 10 client-node counterparts).
-        Please see the requirements for each list on the
-            <?php echo $this->Html->link(__('IO500 Submission Rules page'),
-                [ 'controller' => 'pages', 'action' => 'display',
-                  'rules-submission' ], [ 'class' => 'link' ]);
-             ?>.
+        (and their 10 client-node counterparts).  Please see
+        <?php echo $this->Html->link('the requirements for each list',
+            [ 'controller' => 'pages', 'action' => 'display', 'the-lists' ],
+            [ 'class' => 'link' ]);
+        ?> and the
+        <?php echo $this->Html->link('IO500 submission rules page',
+            [ 'controller' => 'pages', 'action' => 'display', 'rules-submission' ],
+            [ 'class' => 'link' ]);
+        ?>.
     </p>
 
     <h3>Reproducibility Questionnaire</h3>
@@ -84,7 +87,6 @@
     </p>
 
     <h3>Submission Instructions</h3>
-
     <p>
         There are two options to submit to the IO500, we strongly prefer
         the online form:
@@ -92,7 +94,7 @@
 
     <ol>
         <li>
-            Use our new <a href="https://submission.io500.org/login"
+            Use our <a href="https://submission.io500.org/login"
                target="_blank" class="link">online form</a>.
             Users can create accounts and then update and manage all of their
             submissions through that account.
@@ -115,8 +117,8 @@
                 </li>
                 <ul>
                     <li>
-                        You will be able to incrementally complete the submission
-                        (i.e., your progress will be saved)
+                        You will be able to incrementally complete the
+                        submission (i.e., your progress will be saved)
                     </li>
                     <li>
                         You are able to edit your submission until you submit it
@@ -140,8 +142,9 @@
             </p>
         </li>
         <li>
-            If you experience problems with the online form that cannot be
-            resolved via Slack, please send the committee an
+            If you experience problems with the online form, please reach out on
+            <a href="https://join.slack.com/t/io500workspace/shared_invite/zt-j3i9c00k-niCcUHisgLT2JluYhcxlQQ" class="link">Slack</a>
+            to see if this can be resolved quickly.  Alternately, send an
             <a href="mailto:submit@io500.org" class="link">email</a> with
             the following as attachments:
             <ul>
@@ -175,7 +178,8 @@
     <h4>Privacy</h4>
 
     <p>
-        We will publish all data submitted, so by submitting the information you <strong>give us the right to publish the uploaded data</strong>.
+        We will publish all data submitted, so by submitting the information
+        you <strong>give us the right to publish the uploaded data</strong>.
     </p>
 
     <h5>Submitter Name</h5>
@@ -194,18 +198,34 @@
     </p>
 
     <p>
-        Starting with the SC'18 list, submissions include the name of the submitter (or team) to give them the credit they deserve to execute the benchmark; this can be opted out.
+        Starting with the SC'18 list, submissions include the name of the
+        submitter (or team) to give them the credit they deserve to execute
+        the benchmark; this can be opted out.
     </p>
 
     <h4>Annonymity</h4>
 
     <p>
-        With the online form, the submitter is able to individually opt-out the submission the name of the submitter/team (this will be then an anonymous submission)
+        With the online form, the submitter is able to individually opt-out
+        the submission the name of the submitter/team (this will be then an
+        anonymous submission).
     </p>
 
-    <h3>Previous Call for Submissions</h3>
+    <h3>Previous Calls for Submissions</h3>
 
     <ul class="cfs-list">
+        <li>
+            <?php echo $this->Html->link("SC'23 CFS",
+                [ 'controller' => 'pages', 'action' => 'display', 'cfs-sc23' ],
+                [ 'class' => 'button' ]);
+             ?>
+        </li>
+        <li>
+            <?php echo $this->Html->link("ISC'23 CFS",
+                [ 'controller' => 'pages', 'action' => 'display', 'cfs-isc23' ],
+                [ 'class' => 'button' ]);
+             ?>
+        </li>
         <li>
             <?php echo $this->Html->link("SC'22 CFS",
                 [ 'controller' => 'pages', 'action' => 'display', 'cfs-sc22' ],

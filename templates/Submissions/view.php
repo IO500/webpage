@@ -279,44 +279,7 @@
                     ?>
                 </li>
                 <?php } ?>
-                <li>
-                    <?php
-                    echo $this->Html->link(
-                        _('Browse Files'),
-                        'https://io500.org/storage/' . $submission->information_list_name . '/' . str_replace('.zip', '', $submission->storage_data),
-                        [
-                            'target' => '_blank',
-                            'class' => 'button'
-                        ]
-                    );
-                    ?>
-                </li>
-                <li>
-                    <?php
-                    echo $this->Html->link(
-                        _('Download ZIP'),
-                        'https://io500.org/storage/' . $submission->information_list_name . '/' . $submission->storage_data,
-                        [
-                            'target' => '_blank',
-                            'class' => 'button-highlight'
-                        ]
-                    );
-                    ?>
-                </li>
             </ul>
-
-            <?php if (empty($submitted_files)) { ?>
-            <p><?php echo _('No files were found for this submmision.'); ?></p>
-            <?php }?>
-
-            <dl>
-                <?php foreach ($submitted_files as $name => $file) { ?>
-                <dt class="file"><?php echo h($name); ?></dt>
-                <dd>
-                    <pre class=code-block><?php echo $file; ?></pre>
-                </dd>
-                <?php } ?>
-            </dl>
         </div>
     </div>
 </div>

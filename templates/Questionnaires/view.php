@@ -30,7 +30,7 @@
                         $submission->id
                     ],
                     [
-                        'class' => 'button'
+                        'class' => 'button-navigation'
                     ]
                 );
             
@@ -55,7 +55,7 @@
                             $submission->id
                         ],
                         [
-                            'class' => 'button-navigation'
+                            'class' => 'button'
                         ]
                     );
                 }

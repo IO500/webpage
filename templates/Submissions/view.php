@@ -13,18 +13,77 @@
 <div class="row">
     <div class="column-responsive column-80">
         <div class="submissions view content">
-            <h2><?php echo h($submission->information_system) ?></h2>
+            <h2 class="submissions-name">
+                <?php if ($questionnaire) { ?>
+                <div class="badge badge-<?php echo $questionnaire->reproducibility_score_id; ?>"></div>
+                <?php } ?>
 
-            <?php if ($submission->cdcl_url) { ?>
+                <?php echo h($submission->information_system); ?>
+            </h2>
+
             <div class="submissions-action">
                 <?php
-                echo $this->Html->link(_('Data Center List'), $submission->cdcl_url, [
-                    'class' => 'button-navigation',
-                    'target' => '_blank'
-                ]);
+                echo $this->Html->link(
+                    _('Summary'),
+                    [
+                        'controller' => 'submissions',
+                        'action' => 'view',
+                        $submission->id
+                    ],
+                    [
+                        'class' => 'button'
+                    ]
+                );
+            
+                echo $this->Html->link(
+                    _('Configuration'),
+                    [
+                        'controller' => 'submissions',
+                        'action' => 'configuration',
+                        $submission->id
+                    ],
+                    [
+                        'class' => 'button-navigation'
+                    ]
+                );
+
+                if ($questionnaire) {
+                    echo $this->Html->link(
+                        _('Reproducibility'),
+                        [
+                            'controller' => 'questionnaires',
+                            'action' => 'view',
+                            $submission->id
+                        ],
+                        [
+                            'class' => 'button-navigation'
+                        ]
+                    );
+                }
+
+                if ($submission->repository_url) {
+                    echo $this->Html->link(
+                        _('Files'),
+                        $submission->repository_url,
+                        [
+                            'target' => '_blank',
+                            'class' => 'button-navigation'
+                        ]
+                    );
+                }
+
+                if ($submission->cdcl_url) {
+                    echo $this->Html->link(
+                        _('Data Center'),
+                        $submission->cdcl_url,
+                        [
+                            'class' => 'button-navigation',
+                            'target' => '_blank'
+                        ]
+                    );
+                }
                 ?>
             </div>
-            <?php } ?>
 
             <div class="information">
                 <div class="information-metadata">
@@ -75,68 +134,6 @@
                         <tr>
                             <th><?php echo _('Client Kernel Version') ?></th>
                             <td><?php echo h($submission->information_client_kernel_version) ?></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="information-metadata">
-                    <h4>METADATA SERVER</h4>
-
-                    <table class="tb tb-info">
-                        <tr>
-                            <th><?php echo _('Storage Type') ?></th>
-                            <td><?php echo h($submission->information_md_storage_type) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?php echo _('Volatile Memory') ?></th>
-                            <td><?php echo h($submission->information_md_volatile_memory_capacity) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?php echo _('Storage Interface') ?></th>
-                            <td><?php echo h($submission->information_md_storage_interface) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?php echo _('Network') ?></th>
-                            <td><?php echo h($submission->information_md_network) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?php echo _('Software Version') ?></th>
-                            <td><?php echo h($submission->information_md_software_version) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?php echo _('OS Version') ?></th>
-                            <td><?php echo h($submission->information_md_operating_system_version) ?></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="information-data">
-                    <h4>DATA SERVER</h4>
-
-                    <table class="tb tb-info">
-                        <tr>
-                            <th><?php echo _('Storage Type') ?></th>
-                            <td><?php echo h($submission->information_ds_storage_type) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?php echo _('Volatile Memory') ?></th>
-                            <td><?php echo h($submission->information_ds_volatile_memory_capacity) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?php echo _('Storage Interface') ?></th>
-                            <td><?php echo h($submission->information_ds_storage_interface) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?php echo _('Network') ?></th>
-                            <td><?php echo h($submission->information_ds_network) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?php echo _('Software Version') ?></th>
-                            <td><?php echo h($submission->information_ds_software_version) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?php echo _('OS Version') ?></th>
-                            <td><?php echo h($submission->information_ds_operating_system_version) ?></td>
                         </tr>
                     </table>
                 </div>
@@ -261,25 +258,6 @@
                     </table>
                 </div>
             </div>
-
-            <h3>Submitted Files</h3>
-
-            <ul class="file-buttons">
-                <?php if ($submission->repository_url) { ?>
-                <li>
-                    <?php
-                    echo $this->Html->link(
-                        _('Browse in GitHub'),
-                        $submission->repository_url,
-                        [
-                            'target' => '_blank',
-                            'class' => 'button'
-                        ]
-                    );
-                    ?>
-                </li>
-                <?php } ?>
-            </ul>
         </div>
     </div>
 </div>

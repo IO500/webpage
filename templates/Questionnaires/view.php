@@ -19,6 +19,70 @@
 
                 <?php echo h($submission->information_system) ?>
             </h2>
+
+            <div class="submissions-action">
+                <?php
+                echo $this->Html->link(
+                    _('Summary'),
+                    [
+                        'controller' => 'submissions',
+                        'action' => 'view',
+                        $submission->id
+                    ],
+                    [
+                        'class' => 'button-navigation'
+                    ]
+                );
+            
+                echo $this->Html->link(
+                    _('Configuration'),
+                    [
+                        'controller' => 'submissions',
+                        'action' => 'configuration',
+                        $submission->id
+                    ],
+                    [
+                        'class' => 'button-navigation'
+                    ]
+                );
+
+                if ($questionnaire) {
+                    echo $this->Html->link(
+                        _('Reproducibility'),
+                        [
+                            'controller' => 'questionnaires',
+                            'action' => 'view',
+                            $submission->id
+                        ],
+                        [
+                            'class' => 'button'
+                        ]
+                    );
+                }
+
+                if ($submission->repository_url) {
+                    echo $this->Html->link(
+                        _('Files'),
+                        $submission->repository_url,
+                        [
+                            'target' => '_blank',
+                            'class' => 'button-navigation'
+                        ]
+                    );
+                }
+
+                if ($submission->cdcl_url) {
+                    echo $this->Html->link(
+                        _('Data Center'),
+                        $submission->cdcl_url,
+                        [
+                            'class' => 'button-navigation',
+                            'target' => '_blank'
+                        ]
+                    );
+                }
+                ?>
+            </div>
         </div>
     </div>
 </div>

@@ -41,8 +41,6 @@ class SubmissionsController extends AppController
      */
     public function view($id = null)
     {
-        $prefix = Configure::read('IO500.storage');
-
         $submission = $this->Submissions->get($id);
 
         // We need to fetch the scores
@@ -65,60 +63,35 @@ class SubmissionsController extends AppController
 
         $submission->io500_score = $score->score;
 
-        $target_files = [
-            'ior_easy_read',
-            'ior_easy_write',
-            'ior_hard_read',
-            'ior_hard_write',
-            'mdtest_easy_delete',
-            'mdtest_easy_stat',
-            'mdtest_easy_write',
-            'mdtest_hard_delete',
-            'mdtest_hard_stat',
-            'mdtest_hard_write',
-            'mdtest_hard_read',
-            'result_summary',
-            'result.txt',
-            'result-summary.txt',
-            'io500.sh',
-        ];
-
-        $selected_files = [];
-        $submitted_files = [];
-
-        $path = $prefix . $submission->information_list_name . '/' . str_replace('.zip', '', $submission->storage_data);
-
-        if ($submission->storage_data && is_dir($path)) {
-            $dir_iterator = new \RecursiveDirectoryIterator($path);
-            $iterator = new \RecursiveIteratorIterator($dir_iterator, \RecursiveIteratorIterator::SELF_FIRST);
-
-            foreach ($iterator as $file) {
-                if ($file->isFile()) {
-                    foreach ($target_files as $target) {
-                        if (
-                            (
-                             strpos($file->getPathname(), $target) !== false ||
-                             strpos(str_replace('_', '-', $file->getPathname()), str_replace('_', '-', $target)) !== false
-                            ) &&
-                            strpos($file->getPathname(), '._') === false
-                        ) {
-                            $selected_files[] = $file->getPathname();
-                        }
-                    }
-                }
-            }
-
-            foreach ($selected_files as $file) {
-                $file = new File($file);
-                $submitted_files[$file->name()] = $file->read();
-                $file->close();
-            }
-
-            ksort($submitted_files);
-        }
+        $questionnaire = $this->Submissions->Questionnaires->find('all')
+            ->where([
+                'Questionnaires.submission_id' => $submission->id
+            ])
+            ->first();
 
         $this->set('submission', $submission);
-        $this->set('submitted_files', $submitted_files);
+        $this->set('questionnaire', $questionnaire);
+    }
+
+    /**
+     * Configuration method
+     *
+     * @param string|null $id Submission id.
+     * @return \Cake\Http\Response|null|void Renders view
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function configuration($id = null)
+    {
+        $submission = $this->Submissions->get($id);
+
+        $questionnaire = $this->Submissions->Questionnaires->find('all')
+            ->where([
+                'Questionnaires.submission_id' => $submission->id
+            ])
+            ->first();
+
+        $this->set('submission', $submission);
+        $this->set('questionnaire', $questionnaire);
     }
 
     /**

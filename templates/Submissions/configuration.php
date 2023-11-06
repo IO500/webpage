@@ -86,7 +86,9 @@
                 ?>
             </div>
 
-            <div class="information">
+            <div class="both"></div>
+
+            <div class="submissions index content">
                 <div id="dcl_wrap"></div>
             </div>
         </div>

@@ -61,6 +61,12 @@ class SubmissionsController extends AppController
             ])
             ->first();
 
+        if (empty($score)) {
+            $this->Flash->error(__('This submission is not yet available.'));
+
+            return $this->redirect('/');
+        }
+
         $submission->io500_score = $score->score;
 
         $questionnaire = $this->Submissions->Questionnaires->find('all')

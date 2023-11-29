@@ -9,24 +9,20 @@
 
     <ul>
         <li>The community</li>
-        <li>Advisory vendor committee</li>
         <li>Steering committee</li>
     </ul>
 
     <h3>Community</h3>
 
     <p>
-        The community provides suggestions and is asked to provide feedback on relevant questions before decisions are made.
-        It is organized officially via Birds-of-a-feather sessions during the ISC-HPC and Supercomputing conference series.
-        Everyone is welcome to join the <a href="http://lists.io500.org/listinfo.cgi/io500-io500.org" class="link">mailing list</a> and
+        The community consists of users, vendors, developers and anyone that is passionate and interested in HPC Storage.
+        Community member participation is extremely valuable and is critical to ensure at the IO500 continues to deliver
+        on its mission to benefit the HPC storage community and ensure there is a fair playing field for all participants and vendors.
+        Everyone is encouraged to provide suggestions on all aspects of IO500, feedback on any changes and proposals, and generally
+        help build a safe, inclusive, and supportive community.
+        The community meets in-person via Birds-of-a-feather sessions during the ISC-HPC and Supercomputing conference series.
+        Throughout the year, cveryone is encouraged to join the <a href="http://lists.io500.org/listinfo.cgi/io500-io500.org" class="link">mailing list</a> and
         our <a href="https://join.slack.com/t/io500workspace/shared_invite/zt-j3i9c00k-niCcUHisgLT2JluYhcxlQQ" class="link">Slack channel</a> to discuss issues and participate.
-    </p>
-
-    <h3>Advisory committee</h3>
-
-    <p>
-        This committee provides a closed but fair playing field for all vendors to discuss issues together with the steering committee. Its purpose is to encourage the vendors to participate but allowing vendors to benefit from further information.
-        If you are interested to join, please join the <a href="http://lists.io500.org/listinfo.cgi/vendors-io500.org" class="link">vendors@io500.org</a> mailing list.
     </p>
 
     <h3>Steering Committee</h3>

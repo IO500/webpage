@@ -11,8 +11,74 @@ function cite($file) {
 
     <ul class="news">
         <li>
+            <span class="date">2024-03-30</span>
+            The <?php echo $this->Html->link(__('Call for Submissions'),
+                    [ 'controller' => 'pages', 'action' => 'display',
+                      'cfs_isc24'
+                    ], [ 'class' => 'link' ]);
+                ?>
+            for the fourteenth IO500 list at ISC 2024 is sent out.
+        </li>
+        <li>
+            <span class="date">2023-11-15</span>
+            The thirteenth IO500 lists are published at SC'23.
+            <ul>
+                <li>
+                    Congratulations to Argonne National Laboratory for their
+                    Aurora DAOS submission that took over the #1 spot on the
+                    Production list, and also the "10 Node Challenge Production"
+                    list.
+                    Pengcheng Laboratory and their Cloudbrain-II system using
+                    MadFS maintained the #1 Research spot, while JNIST and
+                    HUST PDSL maintained the #1 spot on the "10 Node Challenge
+                    Research" list with OceanFS2.
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span class="date">2023-05-24</span>
+            The twelfth IO500 lists are published at ISC'23.
+            <ul>
+                <li>
+                    Congratulations to LRZ for their SuperMUC-NG DAOS
+                    submission that had #1 spot on the innaugural Production
+                    list, and also the "10 Node Challenge Production" list.
+                    Pengcheng Laboratory and their Cloudbrain-II system using
+                    MadFS maintained the #1 Research spot, while JNIST and
+                    HUST PDSL took over the #1 spot on the "10 Node Challenge
+                    Research" list with OceanFS2.
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span class="date">2022-11-15</span>
+            The eleventh IO500 lists are published at SC'22.
+            <ul>
+                <li>
+                    Congratulations again to Pengcheng Laboratory for their
+                    Cloudbrain-II system using MadFS, which maintained the
+                    #1 overall spot, while Argonne National Laboratory debut
+                    a new DAOS system for their Aurora cluster in the #2 spot.
+                    Sugon Cloud Storage Laboratory maintained
+                    the #1 spot on the "10 Node Challenge" list.
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span class="date">2021-05-30</span>
+            The tenth IO500 list is published at ISC'22.
+            <ul>
+                <li>
+                    Congratulations again to Pengcheng Laboratory for their
+                    Cloudbrain-II system using MadFS, which maintained the
+                    #1 overall spot. The Sugon Cloud Storage Laboratory won
+                    the "10 Node Challenge".
+                </li>
+            </ul>
+        </li>
+        <li>
             <span class="date">2021-11-18</span>
-	    The ninth IO500 list is published at SC'21.
+            The ninth IO500 list is published at SC'21.
             <ul>
                 <li>
                     Congratulations again to Pengcheng Laboratory for their
@@ -23,16 +89,8 @@ function cite($file) {
             </ul>
         </li>
         <li>
-            <span class="date">2021-09-17</span> The
-                <?php echo $this->Html->link(__('Call for Submissions'),
-                    [ 'controller' => 'pages', 'action' => 'display',
-                      'cfs'
-                    ], [ 'class' => 'link' ]);
-                ?>
-            for the ninth IO500 list at SC 2021 is sent out.
-        </li>
-        <li>
-            <span class="date">2021-07-01</span>The eighth IO500 list is published at ISC'21.
+            <span class="date">2021-07-01</span>
+            The eighth IO500 list is published at ISC'21.
             <ul>
                 <li>
                     Congratulations to Pengcheng Laboratory for their
@@ -47,22 +105,27 @@ function cite($file) {
                     [ 'controller' => 'pages', 'action' => 'display',
                       'news-20210414'
                     ], [ 'class' => 'link' ]);
-                ?>. 
+                ?>.
         </li>
         <li>
-            <span class="date">2020-11-18</span>The seventh IO500 list is published at SC'20.
+            <span class="date">2020-11-18</span>
+            The seventh IO500 list is published at SC'20.
         </li>
         <li>
-            <span class="date">2020-07-23</span>The sixth IO500 list is published at ISC'20.
+            <span class="date">2020-07-23</span>
+            The sixth IO500 list is published at ISC'20.
         </li>
         <li>
-            <span class="date">2019-11-19</span>The fifth IO500 list is published at SC'19.
+            <span class="date">2019-11-19</span>
+            The fifth IO500 list is published at SC'19.
         </li>
         <li>
-            <span class="date">2020-06-23</span>The fourth IO500 list is published at ISC'19.
+            <span class="date">2019-06-23</span>
+            The fourth IO500 list is published at ISC'19.
         </li>
         <li>
-            <span class="date">2018-11-14</span>The third IO500 list is published.
+            <span class="date">2018-11-14</span>
+            The third IO500 list is published.
 
             <ul>
                 <li>
@@ -74,13 +137,12 @@ function cite($file) {
             </ul>
         </li>
         <li>
-            <span class="date">2018-09-27</span> The schedule for our Supercomputing <a class="link" href="https://sc18.supercomputing.org/presentation/?id=bof134&sess=sess390" target="_blank">Birds-of-a-Feather</a> session is now defined
+            <span class="date">2018-06-28</span>
+            The second IO500 list is published. Congrats again to Oakforest-PACS.
         </li>
         <li>
-            <span class="date">2018-06-28</span> The second IO500 list is published. Congrats again to Oakforest-PACS.
-        </li>
-        <li>
-            <span class="date">2017-11-15</span> The first IO500 list is published. We congratulate Oakforest-PACS for their winning submission.
+            <span class="date">2017-11-15</span>
+            The first IO500 list is published. We congratulate Oakforest-PACS for their winning submission.
         </li>
     </ul>
 
@@ -210,7 +272,7 @@ function cite($file) {
                 User-Centric System Fault Identification Using IO500 Benchmark
                 <a href="https://doi.org/10.1109/PDSW54622.2021.00011"><img src="https://zenodo.org/badge/DOI/10.1109/PDSW54622.2021.00011.svg" alt="DOI"></a>
             </h3>
-        
+
             <div class="code">
                 <p class="bib"><?php echo cite('resources/2021-PDSW-Liem.bib'); ?></p>
             </div>
@@ -220,7 +282,7 @@ function cite($file) {
                 Benchmarking Parallel File System Sensitiveness to I/O Patterns
                 <a href="https://doi.org/10.1109/MASCOTS.2019.00054"><img src="https://zenodo.org/badge/DOI/10.1109/MASCOTS.2019.00054.svg" alt="DOI"></a>
             </h3>
-        
+
             <div class="code">
                 <p class="bib"><?php echo cite('resources/2019-MASCOTS-Chasapis.bib'); ?></p>
             </div>
@@ -230,21 +292,21 @@ function cite($file) {
                 Profiling Platform Storage using IO500 and Mistral
                 <a href="https://doi.org/10.1109/PDSW49588.2019.00011"><img src="https://zenodo.org/badge/DOI/10.1109/PDSW49588.2019.00011.svg" alt="DOI"></a>
             </h3>
-        
+
             <div class="code">
                 <p class="bib"><?php echo cite('resources/2019-PDSW-Monnier.bib'); ?></p>
             </div>
         </li>
         <li>
             <h3>Scaling High-Performance Parallel File Systems in the Cloud</h3>
-        
+
             <div class="code">
                 <p class="bib"><?php echo cite('resources/2018-PDSW-Beckett.bib'); ?></p>
             </div>
         </li>
         <li>
             <h3>Establishing the IO-500 Benchmark</h3>
-        
+
             <div class="code">
                 <p class="bib"><?php echo cite('resources/2016-PDSW-Kunkel.bib'); ?></p>
             </div>
@@ -257,7 +319,7 @@ function cite($file) {
         <li>
             <h3 class="doi">
                 IO500 ISC22 Lists
-                <a href="https://doi.org/10.5281/zenodo.6772541"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6772541.svg" alt="DOI"></a>                
+                <a href="https://doi.org/10.5281/zenodo.6772541"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6772541.svg" alt="DOI"></a>
             </h3>
 
             <div class="code">
@@ -277,7 +339,7 @@ function cite($file) {
         <li>
             <h3 class="doi">
                 IO500 ISC21 Lists
-                <a href="https://doi.org/10.5281/zenodo.6462505"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6462505.svg" alt="DOI"></a>                
+                <a href="https://doi.org/10.5281/zenodo.6462505"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6462505.svg" alt="DOI"></a>
             </h3>
 
             <div class="code">
@@ -338,7 +400,7 @@ function cite($file) {
 
     <h3>Software</h3>
 
-    <ul>     
+    <ul>
         <li>
             <h3 class="doi">
                 VI4IO/io-500-dev: Zenodo Citation Release
@@ -348,7 +410,7 @@ function cite($file) {
             <div class="code">
                 <p class="bib"><?php echo cite('resources/IO500-2018-09.bib'); ?></p>
             </div>
-        </li>        
+        </li>
     </ul>
 
     <h3>Other Public Discussion</h3>

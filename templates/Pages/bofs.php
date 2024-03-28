@@ -4,12 +4,23 @@
     <h1><?php echo __('BoFs') ?></h1>
 
     <p>
-        The <strong>IO500</strong> has held several Birds-of-a-Feather sessions.
+        The <strong>IO500</strong> has held numerous Birds-of-a-Feather sessions.
         <br>
-        You can find more information about them in:.
+        You can find more information about them in the following pages:
     </p>
 
     <ul>
+        <li>
+            <?php
+            echo $this->Html->link("ISC'24", [
+                'controller' => 'pages',
+                'action' => 'display',
+                'bof-isc24'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
         <li>
             <?php
             echo $this->Html->link("SC'23", [
@@ -184,5 +195,5 @@
 </div>
 
 <div class="submissions index content">
-    
+
 </div>

@@ -78,5 +78,5 @@
         The outcome of this BoF will steer the direction of the community efforts.
     </p>
 
-    <a class="link" href="/files/SC22_IO500_Presentation.pdf" target="_blank">Slides</a>
+    <a class="link" href="/files/SC22_IO500_Presentation.pdf" target="_blank">BOF Slides</a>
 </div>

@@ -4,30 +4,30 @@
 
 <div class="content">
     <p class="call">
-        Submissions are now open for SC'23.
+        Submissions are now open for ISC'24.
     </p>
     <p class="call">
-        Stabilization Period: Wednesday, Sept 27th - Friday, Oct 6th, 2023
-        Submission Deadline: Tuesday, Nov 7th, 2023 AoE
+        Stabilization Period: Monday, April 1st - Friday, April 15th, 2024
+        Submission Deadline: Tuesday, May 3rd, 2024 AoE
     </p>
 
     <h2>Call for Submissions</h2>
 
     <p>
         The IO500 <strong>is now</strong> accepting and encouraging submissions
-        for the upcoming 13th semi-annual IO500 lists, in conjunction with
-        <strong>SC23</strong>.  Once again, we are also accepting submissions
+        for the upcoming 14th semi-annual IO500 lists, in conjunction with
+        <strong>ISC'24</strong>.  Once again, we are also accepting submissions
         to the 10 Client Node Challenge to encourage the submission of small
         scale results.  The new ranked lists will be announced at the
         <?php echo $this->Html->link(__('"IO500: High Performance Storage
          Community" BoF'),
-            [ 'controller' => 'pages', 'action' => 'display', 'bof-sc23' ],
+            [ 'controller' => 'pages', 'action' => 'display', 'bof-isc24' ],
             [ 'class' => 'link' ]);
          ?>.
          We hope to see many new results.
     </p>
     <p>
-        The github repo has a new tag <code>io500-sc23</code> for the current
+        The github repo has a new tag <code>io500-sc24</code> for the current
         version of the benchmark for this list.
     </p>
 
@@ -63,7 +63,7 @@
         This better reflects the
         important distinction between storage systems that run in production
         environments and those that may use more experimental hardware and
-        software configurations.  At SC'23, we continue to populate these
+        software configurations.  At ISC'24, we continue to populate these
         two lists and users will be able to submit to either of the two lists
         (and their 10 client-node counterparts).  Please see
         <?php echo $this->Html->link('the requirements for each list',
@@ -214,6 +214,12 @@
     <h3>Previous Calls for Submissions</h3>
 
     <ul class="cfs-list">
+        <li>
+            <?php echo $this->Html->link("ISC'24 CFS",
+                [ 'controller' => 'pages', 'action' => 'display', 'cfs-isc24' ],
+                [ 'class' => 'button' ]);
+             ?>
+        </li>
         <li>
             <?php echo $this->Html->link("SC'23 CFS",
                 [ 'controller' => 'pages', 'action' => 'display', 'cfs-sc23' ],

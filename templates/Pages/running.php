@@ -36,7 +36,7 @@
     </p>
 
     <p class="code-block">
-        $ git clone https://github.com/IO500/io500.git -b io500-sc23<br/>
+        $ git clone https://github.com/IO500/io500.git -b io500-isc24<br/>
         $ cd io500<br/>
         $ ./prepare.sh<br/>
     </p>
@@ -54,7 +54,7 @@
     <ol>
         <li>
             Modify the existing <span class="code">io500.sh</span> script to
-            include the information necessary for your scheduler. Provide
+            include information necessary for your MPI job scheduler. Provide
             enough execution time (typically, 2h is enough for a full run) and
             adjust the reserved resources if needed:
             <ul>
@@ -82,10 +82,17 @@
             Create a new <span class="code">.ini</span> file.
             <ul>
                 <li>The existing template <span class="code">config-minimal.ini</span> provides the minimum options that you need to change.</li>
-                <li>We recommend to test your configuration first, the <span class="code">config-debug-run.ini</span> shows how to setup a 1 second run. Note that the results will be invalid but it is useful to see that everything works as intended.</li>
-                <li>You can create a new file with all available options using e.g. <span class="code">./io500 --list &gt; myconfig.ini</span>.</li>
-            </ul>           
-            Please edit available parameters appropriately for your environment. 
+                <li>We recommend to test your configuration first, the
+                    <span class="code">config-debug-run.ini</span> shows how
+                    to setup a 1 second run in order to verify proper operation
+                    of all test phases without taking a long time to finish.
+                    Note that the results will be invalid, but it is useful to
+                    see that everything works as intended.</li>
+                <li>You can create a new file with all available options using
+                e.g. <span class="code">./io500 --list &gt; myconfig.ini</span>.
+                </li>
+            </ul>
+            Please edit available parameters appropriately for your environment.
             In particular, the following parameters are critical to set correctly:
             <ul>
                 <li>
@@ -102,7 +109,8 @@
                 </li>
             </ul>
             Remember that you need to execute all the mandatory phases
-            (ior-easy, ior-hard, mdtest-easy, mdtest-hard, find) for a
+            (ior-easy, ior-hard, mdtest-easy, mdtest-hard, find), with
+            a minimum 300s test duration for <em>write</em> phases, for a
             valid submission.  The following variables could be adjusted
             in order to achieve the minimum 300 seconds execution time,
             if the current values are too small for the stonewall timer:
@@ -145,7 +153,7 @@
             or via a batch job submission.
         </li>
         <li>
-            Check the resulting output, and verify that none of the results
+            Review the resulting output, and verify that none of the results
             in <span class="code">$resultdir/result_summary.txt</span>
             are marked <span class="code">[INVALID]</span> (e.g. because of a
             runtime below 300s, or other error).  There must also be a
@@ -168,7 +176,7 @@
             A script may support to configure a specific file system or node, useful particularly if you have multiple different node configurations.
         </li>
         <li>
-            Submit your results, see the 
+            Submit your results, see the
                 <?php echo $this->Html->link(__('submission page'),
                 [ 'controller' => 'pages', 'action' => 'display',
                    'submission'

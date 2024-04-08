@@ -1,0 +1,1 @@
+ALTER TABLE `submissions` ADD `information_storage_capacity` VARCHAR(255) NULL AFTER `information_md_sockets`, ADD `information_clients_interconnect_bandwidth` VARCHAR(255) NULL AFTER `information_storage_capacity`, ADD `information_servers_interconnect_bandwidth` VARCHAR(255) NULL AFTER `information_clients_interconnect_bandwidth`;

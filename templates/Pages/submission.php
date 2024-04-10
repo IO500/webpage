@@ -7,8 +7,8 @@
         Submissions are now open for ISC'24.
     </p>
     <p class="call">
-        Stabilization Period: Monday, April 1st - Friday, April 15th, 2024
-        Submission Deadline: Tuesday, May 3rd, 2024 AoE
+        Stabilization Period: April 1st - April 15th, 2024
+        Submission Deadline: May 3rd, 2024 AoE
     </p>
 
     <h2>Call for Submissions</h2>

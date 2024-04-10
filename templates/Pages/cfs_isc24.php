@@ -3,9 +3,9 @@
 <div class="content">
     <h2>Call for Submission</h2>
     <p class="call">
-        Stabilization Period: Monday, April 1st - Friday, April 15th, 2024
+        Stabilization Period: April 1st - April 15th, 2024
         <br/>
-        Submission Deadline: Tuesday, May 3rd, 2024 AoE
+        Submission Deadline: May 3rd, 2024 AoE
     </p>
 
     <p>

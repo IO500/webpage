@@ -42,8 +42,8 @@
     <p>
         You can <?php
             echo $this->Html->link(__('download the CSV-file'), [
-                    'controller' => 'submissions',
-                    'action' => 'export'
+                    'controller' => 'listings',
+                    'action' => 'download'
                 ],
                 [
                     'class' => 'link'

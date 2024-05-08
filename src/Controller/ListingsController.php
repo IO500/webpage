@@ -92,8 +92,6 @@ class ListingsController extends AppController
      */
     public function download($bof = null, $url = null)
     {
-        $limit = Configure::read('IO500.pagination');
-
         $db = ConnectionManager::get('default');
 
         // Create a schema collection.
@@ -105,17 +103,41 @@ class ListingsController extends AppController
         // Get columns list from table
         $columns = $tableSchema->columns();
 
-        $release = $this->Listings->Releases->find('all')
-            ->contain([
-                'Listings' => [
-                    'Types',
-                ],
-            ])
-            ->where([
-                'Releases.release_date <=' => date('Y-m-d'),
-                'Releases.acronym' => strtoupper($bof),
-            ])
-            ->first();
+        // If empty $bof get the last released one
+        if ($bof == null) {
+            $release = $this->Listings->Releases->find('all')
+                ->contain([
+                    'Listings' => [
+                        'Types',
+                    ],
+                ])
+                ->where([
+                    'Releases.release_date <=' => date('Y-m-d')
+                ])
+                ->order([
+                    'Releases.release_date' => 'DESC'
+                ])
+                ->first();
+
+            $bof = $release->acronym;
+        } else {
+            $release = $this->Listings->Releases->find('all')
+                ->contain([
+                    'Listings' => [
+                        'Types',
+                    ],
+                ])
+                ->where([
+                    'Releases.release_date <=' => date('Y-m-d'),
+                    'Releases.acronym' => strtoupper($bof),
+                ])
+                ->first();
+        }
+
+        // If empty $url get the historical one
+        if ($url == null) {
+            $url = 'historical';
+        }
 
         $listing = $this->Listings->find('all')
             ->contain([
@@ -127,14 +149,10 @@ class ListingsController extends AppController
                 'Releases.release_date <=' => date('Y-m-d'),
                 'Releases.acronym' => strtoupper($bof),
             ])
+            ->order([
+                'Releases.release_date' => 'DESC'
+            ])
             ->first();
-
-        $settings = [
-            'order' => [
-                'score' => 'DESC',
-            ],
-            'limit' => $limit,
-        ];
 
         if (isset($this->request->getParam('?')['sort'])) {
             $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
@@ -148,9 +166,10 @@ class ListingsController extends AppController
             ])
             ->where([
                 'ListingsSubmissions.listing_id' => $listing->id,
+            ])
+            ->order([
+                'ListingsSubmissions.score' => 'DESC'
             ]);
-
-        $submissions = $this->paginate($submissions, $settings);
 
         $records = [];
 

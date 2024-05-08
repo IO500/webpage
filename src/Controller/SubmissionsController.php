@@ -118,7 +118,7 @@ class SubmissionsController extends AppController
         $submissions = $this->Submissions->find('all')
             ->where([
                 'LOWER(Submissions.information_list_name) IN' => $lists,
-                'Submissions.status' => 'VALID',
+                'Submissions.status_id' => 3,
             ]);
 
         $this->set('lists', $lists);
@@ -143,7 +143,7 @@ class SubmissionsController extends AppController
         $submissions = $this->Submissions->find('all')
             ->where([
                 'LOWER(Submissions.information_list_name) IN' => $lists,
-                'Submissions.status' => 'VALID',
+                'Submissions.status_id' => 3,
             ]);
 
         $this->set('lists', $lists);
@@ -168,7 +168,7 @@ class SubmissionsController extends AppController
         $submissions = $this->Submissions->find('all')
             ->where([
                 'LOWER(Submissions.information_list_name) IN' => $lists,
-                'Submissions.status' => 'VALID',
+                'Submissions.status_id' => 3,
             ]);
 
         $this->set('lists', $lists);
@@ -193,7 +193,7 @@ class SubmissionsController extends AppController
         $submissions = $this->Submissions->find('all')
             ->where([
                 'LOWER(Submissions.information_list_name) IN' => $lists,
-                'Submissions.status' => 'VALID',
+                'Submissions.status_id' => 3,
             ]);
 
         $this->set('lists', $lists);
@@ -422,64 +422,5 @@ class SubmissionsController extends AppController
         $this->set('equation', $equation);
         $this->set('valid', $valid);
         $this->set('submissions', $submissions);
-    }
-
-    /**
-     * Export method
-     *
-     * @return \Cake\Http\Response|null|void Downloads a CSV
-     */
-    public function export()
-    {
-        $db = ConnectionManager::get('default');
-
-        // Create a schema collection.
-        $collection = $db->getSchemaCollection();
-
-        // Get a single table (instance of Schema\TableSchema)
-        $tableSchema = $collection->describe('submissions');
-
-        // Get columns list from table
-        $columns = $tableSchema->columns();
-
-        $releases = $this->Submissions->Releases->find('all')
-            ->where([
-                'Releases.release_date <=' => date('Y-m-d'),
-            ])
-            ->order([
-                'Releases.release_date' => 'DESC',
-            ]);
-
-        $records = [];
-
-        foreach ($releases as $release) {
-            $submissions = $this->Submissions->find('all')
-                ->where([
-                    'Submissions.information_submission_date <=' => $release->release_date->format('Y-m-d'),
-                    'Submissions.valid_from <=' => $release->release_date,
-                    'OR' => [
-                        'Submissions.valid_to IS NULL',
-                        'Submissions.valid_to >=' => $release->release_date,
-                    ],
-                    'Submissions.status' => 'VALID',
-                ])
-                ->order([
-                    'Submissions.io500_score' => 'DESC',
-                ]);
-
-            foreach ($submissions as $submission) {
-                $submission['release_id'] = $release->acronym;
-                $records[] = $submission;
-            }
-        }
-
-        $this->set(compact('records'));
-        $this->setResponse($this->getResponse()->withDownload('io500-full-list.csv'));
-        $this->viewBuilder()
-            ->setClassName('CsvView.Csv')
-            ->setOptions([
-                'header' => $columns,
-                'serialize' => 'records',
-            ]);
     }
 }

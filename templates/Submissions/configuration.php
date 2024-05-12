@@ -98,30 +98,30 @@
 
 <?php
 echo $this->Html->css([
-    'https://www.submission.io500.org/css/dcl.min.css'
+    'http://localhost/submission-system/css/dcl.min.css'
 ]);
 
 echo $this->Html->script(
     [
-        'https://www.submission.io500.org/js/js-yaml.min.js',
-        'https://www.submission.io500.org/js/c3.min.js',
-        'https://www.submission.io500.org/js/d3.min.js',
-        'https://www.submission.io500.org/js/jquery.min.js',
-        'https://www.submission.io500.org/js/math.min.js',
+        'http://localhost/submission-system/js/js-yaml.min.js',
+        'http://localhost/submission-system/js/c3.min.js',
+        'http://localhost/submission-system/js/d3.min.js',
+        'http://localhost/submission-system/js/jquery.min.js',
+        'http://localhost/submission-system/js/math.min.js',
         'https://unpkg.com/@popperjs/core@2',
         'https://unpkg.com/tippy.js@6',
-        'https://www.submission.io500.org/js/dcl.js',
-        'https://www.submission.io500.org/js/dcl-load.js',
-        'https://www.submission.io500.org/js/dcl-move.js',
-        'https://www.submission.io500.org/js/dcl-vis.js'
+        'http://localhost/submission-system/js/dcl.js',
+        'http://localhost/submission-system/js/dcl-load.js',
+        'http://localhost/submission-system/js/dcl-move.js',
+        'http://localhost/submission-system/js/dcl-vis.js'
     ],
     [
         'block' => 'script'
     ]
 );
 
-$url_site = 'https://www.submission.io500.org/files/submissions/' . $submission->id . '.json?timestamp=' . time();
-$url_schema = 'https://www.submission.io500.org/model/schema-io500.json?timestamp=' . time();
+$url_site = 'http://localhost/submission-system/files/submissions/' . $submission->id . '.json?timestamp=' . time();
+$url_schema = 'http://localhost/submission-system/model/schema-io500.json?timestamp=' . time();
 
 $this->Html->scriptBlock(
     "

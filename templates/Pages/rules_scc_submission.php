@@ -13,6 +13,8 @@
 </nav>
 
 <div class="content">
+    <h2>The IO500 Foundation Steering Committee Rules - Version 2.0</h2>
+
     <h3>Submission Student Cluster Competition Rules</h3>
 
     <p>

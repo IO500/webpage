@@ -12,11 +12,25 @@
 </nav>
 
 <div class="content">
-    <h2>Rules</h2>
+    <h2>The IO500 Foundation Steering Committee Rules - Version 2.0</h2>
 
     <p>
-        Based on the community feedback, the committee provides rules for:
+        The IO500 Steering Committee (hereafter "committee" or also referred to as the "board") is the operational group for the IO500 Foundation, a 501(c)3 public charity corporation in New Mexico, USA. The IO500 Foundation operates as a standards body seeking to support the improvement of high performance computing storage systems and to serve as a repository of detailed system information as a public research repository documenting large scale storage system evolution over time. To collect the data, the committee operates a twice annual competition coinciding with SC (November) and ISC (May). The committee consists of a small group, and optionally, sub-committees focused on particular activities. The committee manages all of the day to day operations, operates the competitions, and oversees the activities of any sub-committee(s).
     </p>
+
+    <h3>Current Committee Members</h3>
+
+    <p>
+        <ul>
+            <li>Andreas Dilger</li>
+            <li>Dean Hildebrand</li>
+            <li>Julian Kunkel</li>
+            <li>Jay Lofstead</li>
+            <li>George Markomanolis</li>
+        </ul>
+    </p>
+
+    <h3>Rules</h3>
 
     <ul>
         <li>
@@ -29,7 +43,6 @@
                 ]);
                 ?>
             </b>
-            &mdash; rules for executing the IO500 bechmark
         </li>
         <li>
             <b>
@@ -41,67 +54,75 @@
                 ]);
                 ?>
             </b>
-            &mdash; rules for executing the IO500 benchmark for the Student Cluster Competition
         </li>
         <li>
             <b>
                 <?php
-                echo $this->Html->link(__('Process to Modify the Benchmark'), [
+                echo $this->Html->link(__('Major Benchmark Change Request/Proposal'), [
                     'controller' => 'pages',
                     'action' => 'display',
                     'rules-benchmark'
                 ]);
                 ?>
             </b>
-            &mdash; that includes change requests but also the inclusion of additional benchmarks
         </li>
+    </ul>
+
+    <ul>
         <li>
             <b>
                 <?php
-                echo $this->Html->link(__('Internal Committee Rules'), [
+                echo $this->Html->link(__('Committee Size and Members'), [
                     'controller' => 'pages',
                     'action' => 'display',
                     'rules-committee'
                 ]);
                 ?>
             </b>
-            &mdash; the operation of the committee
         </li>
         <li>
             <b>
                 <?php
-                echo $this->Html->link(__('Committee Membership'), [
+                echo $this->Html->link(__('Decision Process'), [
                     'controller' => 'pages',
                     'action' => 'display',
-                    'rules-membership'
+                    'rules-decision'
                 ]);
                 ?>
             </b>
-            &mdash; how the committee membership changes
         </li>
         <li>
             <b>
                 <?php
-                echo $this->Html->link(__('IO500 Foundation New Role Creation'), [
+                echo $this->Html->link(__('New Committee Member Process'), [
                     'controller' => 'pages',
                     'action' => 'display',
-                    'foundation-new-roles'
+                    'rules-committee-member'
                 ]);
                 ?>
             </b>
-            &mdash; how to create new volunteer roles
         </li>
         <li>
             <b>
                 <?php
-                echo $this->Html->link(__('IO500 Foundation Additional Roles'), [
+                echo $this->Html->link(__('Public Facing Information Related Rules'), [
                     'controller' => 'pages',
                     'action' => 'display',
-                    'additional-roles'
+                    'rules-public'
                 ]);
                 ?>
             </b>
-            &mdash; how to create new volunteer roles
+        </li>
+        <li>
+            <b>
+                <?php
+                echo $this->Html->link(__('Sub-Committees'), [
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'rules-sub-committees'
+                ]);
+                ?>
+            </b>
         </li>
 
     </ul>

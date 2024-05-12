@@ -13,6 +13,8 @@
 </nav>
 
 <div class="content">
+    <h2>The IO500 Foundation Steering Committee Rules - Version 2.0</h2>
+
     <h3>Submission Rules for the Research and Production Lists</h3>
 
     <p>

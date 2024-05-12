@@ -160,7 +160,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
         ]
     );
     $builder->connect(
-        '/rules-submission',
+        '/rules/submission',
         [
             'controller' => 'Pages',
             'action' => 'display',
@@ -168,7 +168,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
         ]
     );
     $builder->connect(
-        '/rules-scc-submission',
+        '/rules/scc-submission',
         [
             'controller' => 'Pages',
             'action' => 'display',
@@ -176,7 +176,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
         ]
     );
     $builder->connect(
-        '/rules-benchmark',
+        '/rules/benchmark',
         [
             'controller' => 'Pages',
             'action' => 'display',
@@ -184,7 +184,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
         ]
     );
     $builder->connect(
-        '/rules-committee',
+        '/rules/committee',
         [
             'controller' => 'Pages',
             'action' => 'display',
@@ -192,11 +192,27 @@ $routes->scope('/', function (RouteBuilder $builder) {
         ]
     );
     $builder->connect(
-        '/rules-membership',
+        '/rules/sub-committees',
         [
             'controller' => 'Pages',
             'action' => 'display',
-            'rules-membership',
+            'rules-sub-committees',
+        ]
+    );
+    $builder->connect(
+        '/rules/committee-member',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'rules-committee-member',
+        ]
+    );
+    $builder->connect(
+        '/rules/public',
+        [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'rules-public',
         ]
     );
 

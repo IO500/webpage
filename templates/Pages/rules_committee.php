@@ -13,83 +13,41 @@
 </nav>
 
 <div class="content">
-    <h3>Committee</h3>
+    <h2>The IO500 Foundation Steering Committee Rules - Version 2.0</h2>
+
+    <h3>Committee Size and Members</h3>
 
     <p>
-        The committee governs itself with the following rules:
+        The committee size will vary based on a member’s ability to participate and contribute as well as desire to incorporate additional members. There are two classifications of committee members: Founders and Organizers.
     </p>
 
-    <ol>
-        <li>
-            All changes to the benchmarking scripts or methodology require all committee members to review and approve.
-        </li>
-        <li>
-            Changes to the website are performed via GitHub pull requests and require consent among all committee members.
-        </li>
-        <ul>
-            <li>
-                Core parts (such as rules) must be unanimously approved.
-            </li>
-            <li>
-                Other changes just require one additional committee member and one web reviewer to approve the pull request. However, in case a committee member has concerns of any change made, it will be reverted/updated.
-            </li>
-        </ul>
-        <li>
-            By default, all submissions marked <span class="code">VALID</span> by the <span class="code">io500.sh</span> script are accepted. However, any committee member can raise an objection if they think a submission violates any of the IO500 rules. In typical situations, the committee will discuss the concerns with the submitter. After this discussion, the committee will vote. If 50% or more think the submission should be rejected, it will be rejected.
-        </li>
-        <li>
-            All requests for media interviews are discussed by the full committee who most unanimously decide how to respond.
-        </li>
-        <li>
-            There are two official channels of communication for the IO500:
-            the Twitter handle and the email address
-            <a class="link" href="mailto:committee@io500.org">
-            committee@io500.org</a>. The only mechanism for communicating
-            official IO500 announcements, policies, statements, or decisions
-            is via the email address (hereafter referred to as The Email
-            Address). All communication from The Email Address must be
-            unanimously pre-approved by the full committee. Official
-            communication will also be echoed to the twitter handle.
-        </li>
-        <ul>
-            <li>
-                The Twitter handle can be used without pre-approval to advertise IO500 and to rebroadcast any official statements issued from The Email Address. Retweets of news reports including IO500 and other IO500 mentions do not require committee approval.
-            </li>
-            <li>
-                All private conversations between community members and committee members must be reported back to the committee with the only exception being requests for clarification of existing published information (this includes technical information available on GitHub).
-            </li>
-            <li>
-                Any and all communications from individual committee members are merely expressions of their personal opinion and represent neither official positions nor opinions of the IO500. When committee members reply as individuals to questions asked about official IO500 policies, they must include the following statement, <em>"These statements merely reflect my own personal view; the only mechanism for announcing official IO500 policies and decisions is the committee@io500.org email address."</em> This covers face-to-face conversations, conversations in slack, social media such as LinkedIn and Facebook, and all other communication methods not explicitly mentioned elsewhere in these rules.
-            </li>
-            <li>
-                Community members can ask individual committee members for clarification about existing policies. However, if the question has not yet been publicly answered, then the committee member must bring the question to the full committee and the answer must be issued from The Email Address and twitter in accordance with these rules.
-            </li>
-            <li>
-                These rules apply to the benchmark applications used in the IO500 when the context is IO500 related but do not apply to general conversations about IO unrelated to IO500.
-            </li>
-        </ul>
-        <li>
-            All lists of names should follow alphabetical order.
-        </li>
-        <ul>
-            <li>
-                For casual material, first name ordering is fine;
-            </li>
-            <li>
-                For official purposes, last name ordering should be used;
-            </li>
-            <li>
-                Bibtex, any documentation about the list or the benchmarks should use {author: IO500 Committee; editors: alpha names by last};
-            </li>
-            <li>
-                For academic publishing (e.g., analysis of the list), name order should follow contribution effort. If equal contributions, then follow the other rules.
-            </li>
-        </ul>
-    </ol>
+    <h4>Founders</h4>
 
     <p>
-        The committee can be reached at
-	<a class="link" href="mailto:committee@io500.org">
-	<span class="code">committee@io500.org</span></a>.
+        The founders classification is limited to the three founding members: John Bent, Julian Kunkel, and Jay Lofstead. These people are entitled to use “co-founder” when describing their affiliation with the organization.
+    </p>
+
+    <h4>Organizers</h4>
+
+    <p>
+        All committee members are considered a co-organizer and entitled to voting rights. Sub-committee members are not considered committee members and therefore not entitled to a vote unless they are also a committee member independently. The public designation is a co-organizer.
+    </p>
+
+    <p>
+        Key information related to access to hosting and online service administrator/owner logins and related services are limited to and open to all committee members. Sub committee members will be granted access to information and resources on a need to know basis.
+    </p>
+
+    <p>
+        All committee members must confirm that their role must be treated separately from their responsibilities to their employers and must not lead to a conflict of interest. Some information discussed by the committee will be considered confidential to the committee and cannot be shared outside of the committee. Members must confirm this separation of roles in good conscience. If any committee member detects that their employer wishes to abuse their position in the IO500 committee, they must report this immediately to the rest of the committee.
+    </p>
+
+    <p>
+        Committee members have no fixed term limits. Instead, a committee member is free to participate as long as they feel like they have time and can work to support the IO500 efforts. As with all roles in IO500, committee and subcommittee roles are all unpaid, but considered volunteer time for the non-profit. Committee members are free to document this time for tax purposes. Should they do this, the documentation must be shared with the IO500 Foundation in case of tax audit.
+    </p>
+
+    <h4>Former Committee Members</h4>
+
+    <p>
+        People who were once committee members, but are no longer part of the committee can list themselves as “former” or “emeritus” or some other designation to show the previous affiliation and guidance role while acknowledging that they are not an active part of steering the organization anymore.
     </p>
 </div>

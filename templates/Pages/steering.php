@@ -33,6 +33,7 @@
         The current <b>IO500 Committee<b>, consists of the following members (in alphabetical order):
     </p>
     <ul>
+      <li>Jean Luca Bez - Lawrence Berkeley National Laboratory</li>
       <li>Andreas Dilger - Whamcloud/DDN</li>
       <li>Dean Hildebrand - Google</li>
       <li><a class="link" href="https://hps.vi4io.org/about/people/julian_kunkel">Julian Kunkel - Georg-August-Universität Göttingen/GWDG</a></li>

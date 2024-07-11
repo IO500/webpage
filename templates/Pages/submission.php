@@ -3,26 +3,6 @@
 <div class="submissions index content">
 
 <div class="content">
-    <h2>Call for Submissions</h2>
-
-    <p>
-        The IO500 <strong>is now</strong> accepting and encouraging submissions
-        for the upcoming 14th semi-annual IO500 lists, in conjunction with
-        <strong>ISC'24</strong>.  Once again, we are also accepting submissions
-        to the 10 Client Node Challenge to encourage the submission of small
-        scale results.  The new ranked lists will be announced at the
-        <?php echo $this->Html->link(__('"IO500: High Performance Storage
-         Community" BoF'),
-            [ 'controller' => 'pages', 'action' => 'display', 'bof-isc24' ],
-            [ 'class' => 'link' ]);
-         ?>.
-         We hope to see many new results.
-    </p>
-    <p>
-        The github repo has a new tag <code>io500-sc24</code> for the current
-        version of the benchmark for this list.
-    </p>
-
     <h2>How to Submit?</h2>
 
     <p>

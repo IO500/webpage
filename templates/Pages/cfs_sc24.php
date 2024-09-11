@@ -3,15 +3,13 @@
 <div class="content">
     <h2>Call for Submission</h2>
     <p class="call">
-        Stabilization Period: April 1st - April 15th, 2024
-        <br/>
-        Submission Deadline: May 3rd, 2024 AoE
+        Submission Deadline: Nov 10th, 2024 AoE
     </p>
 
     <p>
         The IO500 <strong>is now</strong> accepting and encouraging submissions
-        for the upcoming 14th semi-annual IO500 Production and Research lists,
-        in conjunction with <strong>ISC'24</strong>.  Once again, we are also
+        for the upcoming 15th semi-annual IO500 Production and Research lists,
+        in conjunction with <strong>SC'24</strong>.  We are also
         accepting submissions to the 10 Client Node Challenge to encourage the
         submission of small scale results.  View the requirements for submitting
         to each list on the
@@ -22,7 +20,7 @@
         The new ranked lists will be announced at the
         <?php echo $this->Html->link(__('"IO500: High Performance Storage
          Community" BoF'),
-            [ 'controller' => 'pages', 'action' => 'display', 'bof-isc24' ],
+            [ 'controller' => 'pages', 'action' => 'display', 'bof-sc24' ],
             [ 'class' => 'link' ]);
          ?>.
          We hope to see many new results.
@@ -99,15 +97,9 @@
         design changes over time.
     </p>
     <p>
-        The IO500 follows a two-staged approach. First, there will
-        be a two-week stabilization period during which we encourage
-        the community to verify that the benchmark runs properly
-        on a variety of storage systems. During this period the
-        benchmark may be updated based upon feedback from the
-        community. The final benchmark will then be released. We
-        expect that runs compliant with the rules made during the
-        stabilization period will be valid as a final submission
-        unless a significant defect is found.
+        This year, since there are no changes to the benchmark,
+        we are skipping the stabilization period and just releasing
+        the final benchmark.
     </p>
 
 
@@ -128,11 +120,11 @@
             [ 'class' => 'link' ]);
          ?>
         to join our community, and to attend the
-        <?php echo $this->Html->link('ISC24 BoF',
-            [ 'controller' => 'pages', 'action' => 'display', 'bof-isc24' ],
+        <?php echo $this->Html->link('SC24 BoF',
+            [ 'controller' => 'pages', 'action' => 'display', 'bof-sc24' ],
             [ 'class' => 'link' ]);
          ?>
-        on Tuesday, May 12, 2024 at 10:05am - 11:05am CEST,
+        on Tuesday, Nov 19, 2024 at 12:15pm - 1:15pm EST,
         where we will announce the new IO500 Production and Research lists
         and their 10 client node counterparts.
     </p>

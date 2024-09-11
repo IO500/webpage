@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'Birds-of-a-Feather - ISC 24'); ?>
+<?php $this->assign('title', 'Birds-of-a-Feather - SC 24'); ?>
 
 <nav id="breadcrumb">
     <p>YOU ARE HERE</p>
@@ -6,16 +6,16 @@
     <?php
     $this->Breadcrumbs->add(__('HOME'), ['controller' => 'submissions', 'action' => 'latest']);
     $this->Breadcrumbs->add(__('BOF'), ['controller' => 'pages', 'action' => 'display', 'bofs']);
-    $this->Breadcrumbs->add(__("ISC'24"), ['controller' => 'pages', 'action' => 'display', 'bof-isc24']);
+    $this->Breadcrumbs->add(__("SC'24"), ['controller' => 'pages', 'action' => 'display', 'bof-sc24']);
 
     echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
     ?>
 </nav>
 
 <div class="content">
-    <h2>ISC'24</h2>
+    <h2>SC'24</h2>
 
-    <h3>The IO500 and the Virtual Institute of I/O</h3>
+    <h3>IO500: The High-Performance Storage Community</h3>
 
     <table class="tb">
         <thread>
@@ -27,18 +27,18 @@
         <tbody>
             <tr>
                 <td><strong>Date</strong></td>
-                <td>Tuesday, May 14, 2024 10:05 AM to 11:05 aM</td>
+                <td>Tuesday, Nov 19, 2024 at 12:15pm - 1:15pm EST</td>
             </tr>
             <tr>
                 <td><strong>Venue</strong></td>
-                <td>Congress Center Hamburg</td>
-                <td>Hall E - 2nd Floor</td>
+                <td>Georgia World Congress Center</td>
+                <td>Room B20 </td>
             </tr>
         </tbody>
     </table>
 
     <p>
-        Official ISC event link: <a class="link" href="https://app.swapcard.com/widget/event/isc-high-performance-2024/planning/UGxhbm5pbmdfMTgyNjgxNQ==" target="_blank">IO500: The High-Performance Storage Community</a>.
+        Official SC event link: <a class="link" href="https://sc24.conference-program.com/presentation/?id=bof108&sess=sess606" target="_blank">IO500: The High-Performance Storage Community</a>.
     </p>
 
     <h3>Abstract</h3>
@@ -51,8 +51,8 @@
     </p>
 
     <p>
-        The general purpose of this BoF is to foster the IO500 and
-        VI4IO communities to ensure forward progress towards the
+        The general purpose of this BoF is to foster the IO500
+        community to ensure forward progress towards the
         common goals of creating, sharing, and benefiting from a
         large corpus of shared storage data. We also serve as a
         repository of detailed information about production storage
@@ -88,25 +88,6 @@
     </p>
 
     <p>
-        Goals of the Virtual Institute for I/O are:
-    </p>
-
-    <ul>
-        <li>
-            Provide a platform for I/O researchers and enthusiasts for
-            exchanging information
-        </li>
-        <li>
-            Foster international collaboration in the field of
-            high-performance I/O
-        </li>
-        <li>
-            Track, and encourage, the deployment of large storage systems
-            by hosting information about high-performance storage systems
-        </li>
-    </ul>
-
-    <p>
         Expected HPC audience are:
     </p>
     <ul>
@@ -126,5 +107,5 @@
         The outcome of this BoF will steer the direction of community efforts.
     </p>
 
-    <!-- insert presentation link <a class="link" href="/files/ISC24_IO500_Presentation.pdf" target="_blank">BOF Slides</a> -->
+    <!-- insert presentation link <a class="link" href="/files/SC24_IO500_Presentation.pdf" target="_blank">BOF Slides</a> -->
 </div>

@@ -107,5 +107,5 @@
         The outcome of this BoF will steer the direction of community efforts.
     </p>
 
-    <!-- insert presentation link <a class="link" href="/files/SC24_IO500_Presentation.pdf" target="_blank">BOF Slides</a> -->
+    <a class="link" href="/files/SC24_IO500_Presentation.pdf" target="_blank">BOF Slides</a>
 </div>

@@ -26,7 +26,7 @@
          We hope to see many new results.
     </p>
     <p>
-        The github repo has a new tag <code>io500-isc24</code> for the current
+        The github repo has a new tag <code>io500-sc24</code> for the current
         version of the benchmark for this list.
     </p>
 

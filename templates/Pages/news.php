@@ -11,6 +11,15 @@ function cite($file) {
 
     <ul class="news">
         <li>
+            <span class="date">2024-09-12</span>
+            The <?php echo $this->Html->link(__('Call for Submissions'),
+                    [ 'controller' => 'pages', 'action' => 'display',
+                      'cfs_sc24'
+                    ], [ 'class' => 'link' ]);
+                ?>
+            for the fifteenth IO500 list at SC 2024 has been released!
+        </li>
+        <li>
             <span class="date">2024-03-30</span>
             The <?php echo $this->Html->link(__('Call for Submissions'),
                     [ 'controller' => 'pages', 'action' => 'display',

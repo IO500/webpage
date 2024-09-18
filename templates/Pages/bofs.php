@@ -17,18 +17,7 @@
                 'action' => 'display',
                 'bof-sc24'
             ], [
-                'class' => 'button'
-            ]);
-            ?>
-        </li>
-        <li>
-            <?php
-            echo $this->Html->link("ISC'24", [
-                'controller' => 'pages',
-                'action' => 'display',
-                'bof-isc24'
-            ], [
-                'class' => 'button'
+                'class' => 'button button-navigation-active'
             ]);
             ?>
         </li>
@@ -38,6 +27,97 @@
                 'controller' => 'pages',
                 'action' => 'display',
                 'bof-sc23'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
+        <li>
+            <?php
+            echo $this->Html->link("SC'22", [
+                'controller' => 'pages',
+                'action' => 'display',
+                'bof-sc22'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
+        <li>
+            <?php
+            echo $this->Html->link("SC'21", [
+                'controller' => 'pages',
+                'action' => 'display',
+                'bof-sc21'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
+        <li>
+            <?php
+            echo $this->Html->link("SC'20", [
+                'controller' => 'pages',
+                'action' => 'display',
+                'bof-sc20'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
+        <li>
+            <?php
+            echo $this->Html->link("SC'19", [
+                'controller' => 'pages',
+                'action' => 'display',
+                'bof-sc19'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
+        <li>
+            <?php
+            echo $this->Html->link("SC'18", [
+                'controller' => 'pages',
+                'action' => 'display',
+                'bof-sc18'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
+        <li>
+            <?php
+            echo $this->Html->link("SC'17", [
+                'controller' => 'pages',
+                'action' => 'display',
+                'bof-sc17'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
+        <li>
+            <?php
+            echo $this->Html->link("SC'16", [
+                'controller' => 'pages',
+                'action' => 'display',
+                'bof-sc16'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            <?php
+            echo $this->Html->link("ISC'24", [
+                'controller' => 'pages',
+                'action' => 'display',
+                'bof-isc24'
             ], [
                 'class' => 'button'
             ]);
@@ -115,86 +195,6 @@
                 'controller' => 'pages',
                 'action' => 'display',
                 'bof-isc16'
-            ], [
-                'class' => 'button'
-            ]);
-            ?>
-        </li>
-    </ul>
-
-    <ul>
-        <li>
-            <?php
-            echo $this->Html->link("SC'22", [
-                'controller' => 'pages',
-                'action' => 'display',
-                'bof-sc22'
-            ], [
-                'class' => 'button'
-            ]);
-            ?>
-        </li>
-        <li>
-            <?php
-            echo $this->Html->link("SC'21", [
-                'controller' => 'pages',
-                'action' => 'display',
-                'bof-sc21'
-            ], [
-                'class' => 'button'
-            ]);
-            ?>
-        </li>
-        <li>
-            <?php
-            echo $this->Html->link("SC'20", [
-                'controller' => 'pages',
-                'action' => 'display',
-                'bof-sc20'
-            ], [
-                'class' => 'button'
-            ]);
-            ?>
-        </li>
-        <li>
-            <?php
-            echo $this->Html->link("SC'19", [
-                'controller' => 'pages',
-                'action' => 'display',
-                'bof-sc19'
-            ], [
-                'class' => 'button'
-            ]);
-            ?>
-        </li>
-        <li>
-            <?php
-            echo $this->Html->link("SC'18", [
-                'controller' => 'pages',
-                'action' => 'display',
-                'bof-sc18'
-            ], [
-                'class' => 'button'
-            ]);
-            ?>
-        </li>
-        <li>
-            <?php
-            echo $this->Html->link("SC'17", [
-                'controller' => 'pages',
-                'action' => 'display',
-                'bof-sc17'
-            ], [
-                'class' => 'button'
-            ]);
-            ?>
-        </li>
-        <li>
-            <?php
-            echo $this->Html->link("SC'16", [
-                'controller' => 'pages',
-                'action' => 'display',
-                'bof-sc16'
             ], [
                 'class' => 'button'
             ]);

@@ -27,7 +27,7 @@
         <tbody>
             <tr>
                 <td><strong>Date</strong></td>
-                <td>Tuesday, Nov 19, 2024 at 12:15pm - 1:15pm EST</td>
+                <td colspan="2">Tuesday, Nov 19, 2024 at 12:15pm - 1:15pm EST</td>
             </tr>
             <tr>
                 <td><strong>Venue</strong></td>
@@ -107,5 +107,5 @@
         The outcome of this BoF will steer the direction of community efforts.
     </p>
 
-    <a class="link" href="/files/SC24_IO500_Presentation.pdf" target="_blank">BOF Slides</a>
+    <!--<a class="link" href="/files/SC24_IO500_Presentation.pdf" target="_blank">BOF Slides</a>-->
 </div>

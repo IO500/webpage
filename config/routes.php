@@ -68,7 +68,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
             'controller' => 'Listings',
             'action' => 'list',
             'sc24',
-            'io500',
+            'production',
         ]
     );
     $builder->connect(

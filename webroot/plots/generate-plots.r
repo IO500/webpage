@@ -11,7 +11,7 @@ list.of.packages <- c(
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 
 if (length(new.packages)) {
-  install.packages(new.packages)
+  install.packages(new.packages, repos = "http://cran.rstudio.com", dependecies = TRUE)
 }
 
 library(plyr, warn.conflicts = FALSE, quietly = T)
@@ -36,7 +36,11 @@ bofs = list(
   'ISC21',
   'SC21',
   'ISC22',
-  'SC22'
+  'SC22',
+  'ISC23',
+  'SC23',
+  'ISC24',
+  'SC24'
 )
 
 datalist = list()
@@ -102,6 +106,12 @@ plot <- ggplot(
       "#1d2a30",
       "#ec563c",
       "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
       "#ec563c"
     )
   ) +
@@ -157,6 +167,12 @@ plot <- ggplot(
       "#1d2a30",
       "#ec563c",
       "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
       "#ec563c"
     )
   ) +
@@ -198,6 +214,12 @@ plot <- ggplot(
       "#ec563c",
       "#1d2a30",
       "#ec563c",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
       "#ec563c",
       "#1d2a30",
       "#ec563c",
@@ -265,6 +287,12 @@ plot <- ggplot(
       "#1d2a30",
       "#ec563c",
       "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
       "#ec563c"
     )
   ) +
@@ -306,6 +334,12 @@ plot <- ggplot(
       "#ec563c",
       "#1d2a30",
       "#ec563c",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
       "#ec563c",
       "#1d2a30",
       "#ec563c",
@@ -371,6 +405,12 @@ plot <- ggplot(
       "#1d2a30",
       "#ec563c",
       "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
       "#ec563c"
     )
   ) +
@@ -412,6 +452,12 @@ plot <- ggplot(
       "#ec563c",
       "#1d2a30",
       "#ec563c",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
       "#ec563c",
       "#1d2a30",
       "#ec563c",
@@ -479,6 +525,12 @@ plot <- ggplot(
       "#1d2a30",
       "#ec563c",
       "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
       "#ec563c"
     )
   ) +
@@ -520,6 +572,12 @@ plot <- ggplot(
       "#ec563c",
       "#1d2a30",
       "#ec563c",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
       "#ec563c",
       "#1d2a30",
       "#ec563c",
@@ -585,6 +643,12 @@ plot <- ggplot(
       "#1d2a30",
       "#ec563c",
       "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
       "#ec563c"
     )
   ) +
@@ -626,6 +690,12 @@ plot <- ggplot(
       "#ec563c",
       "#1d2a30",
       "#ec563c",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
       "#ec563c",
       "#1d2a30",
       "#ec563c",
@@ -691,6 +761,12 @@ plot <- ggplot(
       "#1d2a30",
       "#ec563c",
       "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
       "#ec563c"
     )
   ) +
@@ -732,6 +808,12 @@ plot <- ggplot(
       "#ec563c",
       "#1d2a30",
       "#ec563c",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
       "#ec563c",
       "#1d2a30",
       "#ec563c",
@@ -797,6 +879,12 @@ plot <- ggplot(
       "#1d2a30",
       "#ec563c",
       "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
       "#ec563c"
     )
   ) +
@@ -828,7 +916,7 @@ plot <- ggplot(
   df,
   aes(
     x = list_name,
-    y = as.numeric(as.character(find_hard)),
+    y = as.numeric(as.character(find_mixed)),
     color = list_name,
     text = text
   )) + 
@@ -838,6 +926,12 @@ plot <- ggplot(
       "#ec563c",
       "#1d2a30",
       "#ec563c",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
+      "#ec563c",
+      "#1d2a30",
       "#ec563c",
       "#1d2a30",
       "#ec563c",

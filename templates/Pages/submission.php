@@ -187,6 +187,12 @@
 
     <ul class="cfs-list">
         <li>
+            <?php echo $this->Html->link("SC'24 CFS",
+                [ 'controller' => 'pages', 'action' => 'display', 'cfs-sc24' ],
+                [ 'class' => 'button' ]);
+             ?>
+        </li>
+        <li>
             <?php echo $this->Html->link("ISC'24 CFS",
                 [ 'controller' => 'pages', 'action' => 'display', 'cfs-isc24' ],
                 [ 'class' => 'button' ]);

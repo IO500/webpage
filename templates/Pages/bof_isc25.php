@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'Birds-of-a-Feather - SC 24'); ?>
+<?php $this->assign('title', 'Birds-of-a-Feather - ISC 25'); ?>
 
 <nav id="breadcrumb">
     <p>YOU ARE HERE</p>
@@ -6,14 +6,14 @@
     <?php
     $this->Breadcrumbs->add(__('HOME'), ['controller' => 'submissions', 'action' => 'latest']);
     $this->Breadcrumbs->add(__('BOF'), ['controller' => 'pages', 'action' => 'display', 'bofs']);
-    $this->Breadcrumbs->add(__("SC'24"), ['controller' => 'pages', 'action' => 'display', 'bof-sc24']);
+    $this->Breadcrumbs->add(__("ISC'25"), ['controller' => 'pages', 'action' => 'display', 'bof-isc25']);
 
     echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
     ?>
 </nav>
 
 <div class="content">
-    <h2>SC'24</h2>
+    <h2>ISC'25</h2>
 
     <h3>IO500: The High-Performance Storage Community</h3>
 
@@ -27,18 +27,18 @@
         <tbody>
             <tr>
                 <td><strong>Date</strong></td>
-                <td colspan="2">Tuesday, Nov 19, 2024 at 12:15pm - 1:15pm EST</td>
+                <td>Tuesday, June 11, 2025 11:30 AM to 12:30 AM</td>
             </tr>
             <tr>
                 <td><strong>Venue</strong></td>
-                <td>Georgia World Congress Center</td>
-                <td>Room B20 </td>
+                <td>Congress Center Hamburg</td>
+                <td>Hall G1 - 2nd Floor</td>
             </tr>
         </tbody>
     </table>
 
     <p>
-        Official SC event link: <a class="link" href="https://sc24.conference-program.com/presentation/?id=bof108&sess=sess606" target="_blank">IO500: The High-Performance Storage Community</a>.
+        Official ISC event link: <a class="link" href="https://isc.app.swapcard.com/widget/event/isc-high-performance-2025/planning/UGxhbm5pbmdfMjU4NjE0Mw==" target="_blank">IO500: The High-Performance Storage Community</a>.
     </p>
 
     <h3>Abstract</h3>
@@ -107,5 +107,5 @@
         The outcome of this BoF will steer the direction of community efforts.
     </p>
 
-    <a class="link" href="/files/SC24_IO500_Presentation.pdf" target="_blank">BOF Slides</a>
+    <!-- insert presentation link <a class="link" href="/files/ISC25_IO500_Presentation.pdf" target="_blank">BOF Slides</a> -->
 </div>

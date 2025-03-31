@@ -114,6 +114,17 @@
     <ul>
         <li>
             <?php
+            echo $this->Html->link("ISC'25", [
+                'controller' => 'pages',
+                'action' => 'display',
+                'bof-isc25'
+            ], [
+                'class' => 'button'
+            ]);
+            ?>
+        </li>
+        <li>
+            <?php
             echo $this->Html->link("ISC'24", [
                 'controller' => 'pages',
                 'action' => 'display',

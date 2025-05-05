@@ -10,7 +10,7 @@
 
     <p>
         The IO500 is now accepting and encouraging submissions for the
-        upcoming 10th semi-annual IO500 list, in conjunction with SC22.
+        upcoming 11th semi-annual IO500 list, in conjunction with SC22.
         Once again, we are also accepting submissions to the 10 Node
         Challenge to encourage the submission of small scale results.
         The new ranked lists will be announced during
@@ -57,7 +57,7 @@ benchmark for this list.
             do not significaantly impact the results of a standard run
             and an extended run to facilitate comparisons between the
             existing and new benchmark phases.  In a future release, we
-            may include some or all of these results as part of the 
+            may include some or all of these results as part of the
             standard benchmark.  The extended results are not currently
             included in the scoring of any ranked list.
         </li>
@@ -149,7 +149,7 @@ benchmark for this list.
             [ 'controller' => 'pages', 'action' => 'display', 'submission' ],
             [ 'class' => 'link' ]);
          ?>
-        to join our community, and to attend our BoF 
+        to join our community, and to attend our BoF
         <?php echo $this->Html->link(__('"The IO500 and the Virtual Institute of I/O"'),
             [ 'controller' => 'pages', 'action' => 'display', 'bof-sc22' ],
             [ 'class' => 'link' ]);

@@ -1,31 +1,38 @@
 <?php $this->assign('title', 'Call for Submission'); ?>
 
 <div class="content">
-    <h2>Call for Submission</h2>
+    <h2>Call for Submissions</h2>
+    <!--
     <p class="call">
         Stabilization Period: May 1st - May 9th, 2025
         <br/>
         Submission Deadline: June 2nd, 2025 AoE
     </p>
+    -->
 
     <p>
+        The IO500 <strong>is not currently</strong> accepting submissions.
+        <!--
         The IO500 <strong>is now</strong> accepting and encouraging submissions
         for the upcoming 16th semi-annual IO500 Production and Research lists,
         in conjunction with <strong>ISC'25</strong>.  Once again, we are also
         accepting submissions to the 10 Client Node Challenge to encourage the
-        submission of small scale results.  View the requirements for submitting
-        to each list on the
+        submission of small scale results.
+        -->
+        View the requirements for submitting to each list on the
         <?php echo $this->Html->link(__('IO500 Submissions Webpage'),
             [ 'controller' => 'pages', 'action' => 'display', 'submission' ],
             [ 'class' => 'link' ]);
          ?>.
-        The new ranked lists will be announced at the
+        <!--
+        We hope to see many new results in the ranked lists announced at the
+        -->
+        The most recent ranked lists were announced at the
         <?php echo $this->Html->link(__('"IO500: High Performance Storage
          Community" BoF'),
             [ 'controller' => 'pages', 'action' => 'display', 'bof-isc25' ],
             [ 'class' => 'link' ]);
          ?>.
-         We hope to see many new results.
     </p>
     <p>
         The github repo has a new tag <code>io500-isc25</code> for the current

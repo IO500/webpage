@@ -12,6 +12,17 @@
     <ul>
         <li>
             <?php
+            echo $this->Html->link("SC'25", [
+                'controller' => 'pages',
+                'action' => 'display',
+                'bof-sc24'
+            ], [
+                'class' => 'button button-navigation-active'
+            ]);
+            ?>
+        </li>
+        <li>
+            <?php
             echo $this->Html->link("SC'24", [
                 'controller' => 'pages',
                 'action' => 'display',

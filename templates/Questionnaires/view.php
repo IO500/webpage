@@ -335,7 +335,7 @@ echo $this->Html->script('tinymce/tinymce.min.js', [
         menubar: false,
         selector: 'textarea',
         height: 300,
-        readonly: 1,
+        readonly: true,
         plugins: 'image link lists searchreplace table wordcount',
         toolbar: false,
         license_key: 'gpl'

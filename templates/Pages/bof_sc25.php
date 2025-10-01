@@ -27,17 +27,17 @@
         <tbody>
             <tr>
                 <td><strong>Date</strong></td>
-                <td>TBD (Nov 18-20 2025)</td>
+                <td>Thursday, November 20th at 12:15pm - 1:15pm CST</td>
             </tr>
             <tr>
                 <td><strong>Venue</strong></td>
-                <td>TBD</td>
+                <td>America’s Center Room 263-264, St. Louis, MO, USA</td>
             </tr>
         </tbody>
     </table>
 
     <p>
-        Official SC event link: <a class="link" href="https://sc25.supercomputing.org/program/birds-of-a-feather" target="_blank">IO500: The High-Performance Storage Community</a>.
+        Official SC event link: <a class="link" href="https://sc25.conference-program.com/presentation/?id=bof135&sess=sess473" target="_blank">IO500: The High-Performance Storage Community</a>.
     </p>
 
     <h3>Abstract</h3>

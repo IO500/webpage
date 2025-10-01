@@ -115,3 +115,33 @@
 
     </ul>
 </div>
+
+<div class="content">
+    <h2>Current and Past Proposals</h2>
+
+    <p>
+        This is a list of all current and past proposals that have been reviewed by the Steering Committee and Community.  All changes to the rules are goverened by the 
+            <b>
+                <?php
+                echo $this->Html->link(__('Major Benchmark Change Request/Proposal.'), [
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'rules-benchmark'
+                ]);
+                ?>
+            </b>
+    </p>
+
+    <ul>
+        <li>
+            <a href="https://docs.google.com/document/d/1zr88byIhNIhVXp6KN6v4zGB828oNs2LDZSbIj-3zGpc/edit?usp=sharing">Random Read Proposal (Pilot)</a>
+        </li>
+        <li>
+            <a href="/files/io500-reproducibility-proposal.pdf">Reproducibility Proposal (Incorporated)</a>
+        </li>
+        <li>
+          <a href="/files/io500-list-split-proposal.pdf">List Split Proposal (Incorporated)</a>  
+        </li>
+    </ul>
+</div>
+

@@ -18,18 +18,6 @@
         The IO500 Steering Committee (hereafter "committee" or also referred to as the "board") is the operational group for the IO500 Foundation, a 501(c)3 public charity corporation in New Mexico, USA. The IO500 Foundation operates as a standards body seeking to support the improvement of high performance computing storage systems and to serve as a repository of detailed system information as a public research repository documenting large scale storage system evolution over time. To collect the data, the committee operates a twice annual competition coinciding with SC (November) and ISC (May). The committee consists of a small group, and optionally, sub-committees focused on particular activities. The committee manages all of the day to day operations, operates the competitions, and oversees the activities of any sub-committee(s).
     </p>
 
-    <h3>Current Committee Members</h3>
-
-    <p>
-        <ul>
-            <li>Andreas Dilger</li>
-            <li>Dean Hildebrand</li>
-            <li>Julian Kunkel</li>
-            <li>Jay Lofstead</li>
-            <li>George Markomanolis</li>
-        </ul>
-    </p>
-
     <h3>Rules</h3>
 
     <ul>

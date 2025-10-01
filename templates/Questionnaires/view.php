@@ -320,22 +320,25 @@
 
 <?php echo $this->Form->end(); ?>
 
-<script src="https://cdn.tiny.cloud/1/1q5sjjedyv15tfpn9b7cvojp4i72ahfneyqj7yrfu771hcu1/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<?php
+echo $this->Html->script('tinymce/tinymce.min.js', [
+     'referrerpolicy' => 'origin',
+     'crossorigin' => 'anonymous'
+]);
+?>
 
 <script type="text/javascript">
     var t_editors;
 
     editors = tinymce.init({
-        skin: 'outside',
-        icons: 'small',
         statusbar: false,
         menubar: false,
         selector: 'textarea',
         height: 300,
-        readonly: 1,
+        readonly: true,
         plugins: 'image link lists searchreplace table wordcount',
         toolbar: false,
-        content_css: ['/io-500-hub/css/editor.css']
+        license_key: 'gpl'
     }).then(function(editors) {
         t_editors = editors;
     });

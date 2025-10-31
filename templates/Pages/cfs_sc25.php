@@ -5,7 +5,7 @@
     <p class="call">
         Stabilization Period: Sep 29th - Oct 3rd, 2025
         <br/>
-        Submission Deadline: Nov 3rd, 2025 AoE
+        Submission Deadline: Nov 7th, 2025 AoE
     </p>
 
     <p>

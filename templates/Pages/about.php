@@ -116,7 +116,8 @@
                 Scans the full set of files created by all of the
                 <strong>*-write</strong> phases, and look for files created
                 after the <strong>mdtest-easy-write</strong> phase with a
-                filename containing the string '01' somewhere within it.
+                file size of 3901 bytes and a filename containing the string
+		'01' somewhere within it.
                 Reports the total number of such files found.
             </li>
             </ul>

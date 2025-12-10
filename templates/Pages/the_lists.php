@@ -118,7 +118,10 @@
 
     <ol>
         <li>
-            The <strong>Compute System</strong> may be extremely dynamic, growing from 1 node to 1000s of nodes in minutes.  This doesn’t change our assessment, as long as those same types of compute nodes are executing <strong>Production Applications</strong>.
+            The <strong>Compute System</strong> may be extremely dynamic,
+	    growing from 10 client nodes to 1000s of client nodes in minutes.
+	    This doesn’t change our assessment, as long as those same types of
+	    compute nodes execute <strong>Production Applications</strong>.
         </li>
         <li>
             The <strong>Storage System</strong> may dynamically grow and shrink, and may even be shut down for short periods of time. The <strong>Storage System</strong> used in the submission does not need to be the identical cloud deployment used to execute <strong>Production Applications</strong>, but its configuration must accurately represent the deployment configuration (e.g., VMs, storage, load-balancers) and size or shape of the storage system that has been or is currently used to execute <strong>Production Applications</strong>. For example, if a storage system reached 1PB with 32 storage server VMs while executing <strong>Production Applications</strong>, then the submitted Storage System could not be larger than 1PB, use more than 32 storage server VMs, or change the storage server VM/storage configuration.

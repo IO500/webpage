@@ -177,6 +177,12 @@ function cite($file) {
 
     <ul class="news">
         <li>
+            <span class="date">2025-11-25</span>
+	    <a class="link"
+	     href="https://www.storagenewsletter.com/2025/11/25/sc25-the-io500-lists-show-interesting-results-as-usual/"
+	     target="_blank">SC25: The IO500 Lists Show Interesting Results as Usual</a>
+        </li>
+        <li>
             <span class="date">2021-11-18</span>
 	    <a class="link"
 	     href="https://e.huawei.com/en/news/ebg/2021/huawei-oceanstor-pacific-storage-takes-second-io500-list"
@@ -260,10 +266,10 @@ function cite($file) {
 
     <ul class="news">
         <li>
-            <span class="date">2019-09-23</span> <a class="link" href="https://www.eofs.eu/_media/events/lad19/03_matt_raso-barnett-io500-cambridge.pdf">Matt Rásó-Barnett talk at LAD'19</a>
+            <span class="date">2019-09-23</span> <a class="link" href="https://www.eofs.eu/wp-content/uploads/2024/02/03_matt_raso-barnett-io500-cambridge.pdf">Matt Rásó-Barnett talk at LAD'19</a>
         </li>
         <li>
-            <span class="date">2019-05-17</span> <a class="link" href="https://conference.cacds.uh.edu/wp-content/uploads/2019/05/LUG2019-IO500-Dilger.pdf">Andreas Dilger talk at LUG'19</a>
+            <span class="date">2019-05-17</span> <a class="link" href="https://wiki.lustre.org/images/9/92/LUG2019-IO500_Storage_Benchmark_for_HPC-Dilger.pdf">Andreas Dilger talk at LUG'19</a>
         </li>
         <li>
             <span class="date">2019-03-04</span> <a class="link" href="https://2019riceoilgasconference.sched.com/event/JxRM/data-storage-io-performance-providing-balanced-systems-and-expectations-with-the-io500">John Bent and Steve Crusan talk at Rice O&G</a>

@@ -27,6 +27,24 @@ use Cake\Validation\Validator;
 class SubmissionsTable extends Table
 {
     /**
+     * Submission fields that must never be exposed, selected, or downloadable.
+     */
+    public const PRIVATE_FIELDS = ['information_submitter'];
+
+    /**
+     * Only columns whose names begin with one of these prefixes are meaningful
+     * for display and selection in the customize list. All other DB columns
+     * (e.g. job_script*, storage_data, valid_from) are implicitly excluded.
+     */
+    public const DISPLAY_PREFIXES = ['information_', 'io500_', 'mdtest_', 'ior_', 'find_'];
+
+    /**
+     * Additional columns that do not match DISPLAY_PREFIXES but should still
+     * be available as options in the customize list.
+     */
+    public const EXTRA_DISPLAY_FIELDS = ['id', 'release_id', 'status'];
+
+    /**
      * Initialize method
      *
      * @param array $config The configuration for the Table.

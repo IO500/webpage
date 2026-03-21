@@ -197,7 +197,7 @@
                 </div>
 
                 <div class="information-metadata">
-                    <h4>IOR & FIND</h4>
+                    <h4>IOR</h4>
 
                     <table class="tb tb-info">
                         <tr>
@@ -215,10 +215,6 @@
                         <tr>
                             <th><?php echo _('Hard Read') ?></th>
                             <td><?php echo $this->Number->format($submission->ior_hard_read, ['places' => 2, 'precision' => 2]) ?> GiB/s</td>
-                        </tr>
-                        <tr>
-                            <th><?php echo _('Find') ?></th>
-                            <td><?php echo $this->Number->format($submission->find_mixed, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
                         </tr>
                     </table>
                 </div>
@@ -254,6 +250,28 @@
                         <tr>
                             <th><?php echo _('Hard Delete') ?></th>
                             <td><?php echo $this->Number->format($submission->mdtest_hard_delete, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="information-metadata">
+                    <h4>RANDOM</h4>
+
+                    <table class="tb tb-info">
+                        <tr>
+                            <th><?php echo _('4K Reads') ?></th>
+                            <td><?php echo $this->Number->format($submission->find_mixed, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="information-metadata">
+                    <h4>FIND</h4>
+
+                    <table class="tb tb-info">
+                        <tr>
+                            <th><?php echo _('Find') ?></th>
+                            <td><?php echo $this->Number->format($submission->find_mixed, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
                         </tr>
                     </table>
                 </div>

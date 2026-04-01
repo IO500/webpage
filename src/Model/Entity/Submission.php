@@ -84,6 +84,15 @@ class Submission extends Entity
      *
      * @var array
      */
+    /**
+     * Fields that are hidden from array/JSON serialization (e.g. downloads, API responses).
+     *
+     * @var array
+     */
+    protected $_hidden = [
+        'information_submitter',
+    ];
+
     protected $_accessible = [
         'id' => true,
         'release_id' => true,

@@ -2,8 +2,7 @@
     <p>YOU ARE HERE</p>
 
     <?php
-    $this->Breadcrumbs->add(_('LISTS'), ['controller' => 'releases', 'action' => 'index']);
-    $this->Breadcrumbs->add(strtoupper($submission->information_list_name), ['controller' => 'listings', 'action' => 'list', strtolower($submission->information_list_name), 'io500']);
+    $this->Breadcrumbs->add(strtoupper($submission->release->acronym), ['controller' => 'listings', 'action' => 'list', strtolower($submission->release->acronym), 'io500']);
     $this->Breadcrumbs->add(strtoupper($submission->information_system), ['controller' => 'submissions', 'action' => 'view', $submission->id]);
 
     echo $this->Breadcrumbs->render([], ['separator' => ' / ']);

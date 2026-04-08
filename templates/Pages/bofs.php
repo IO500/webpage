@@ -28,7 +28,7 @@
                 'action' => 'display',
                 'bof-sc24'
             ], [
-                'class' => 'button button-navigation-active'
+                'class' => 'button'
             ]);
             ?>
         </li>

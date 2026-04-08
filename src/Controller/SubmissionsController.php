@@ -41,7 +41,11 @@ class SubmissionsController extends AppController
      */
     public function view($id = null)
     {
-        $submission = $this->Submissions->get($id);
+        $submission = $this->Submissions->get($id, [
+            'contain' => [
+                'Releases',
+            ]
+        ]);
 
         // We need to fetch the scores
         $score = $this->Submissions->ListingsSubmissions->find('all')
@@ -88,7 +92,11 @@ class SubmissionsController extends AppController
      */
     public function configuration($id = null)
     {
-        $submission = $this->Submissions->get($id);
+        $submission = $this->Submissions->get($id, [
+            'contain' => [
+                'Releases',
+            ]
+        ]);
 
         $questionnaire = $this->Submissions->Questionnaires->find('all')
             ->where([

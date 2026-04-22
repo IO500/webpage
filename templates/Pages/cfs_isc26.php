@@ -28,7 +28,7 @@
          We hope to see many new results.
     </p>
     <p>
-        The tag <code>io500-sc26</code> should be used for submissions to
+        The tag <code>io500-isc26</code> should be used for submissions to
         this version of the benchmark list.
     </p>
 

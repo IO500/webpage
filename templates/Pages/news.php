@@ -9,7 +9,16 @@ function cite($file) {
 <div class="content">
     <h2>News</h2>
 
-    <ul class="news">
+    <ul class="news">        
+        <li>
+            <span class="date">2025-10-01</span>
+            The <?php echo $this->Html->link(__('Call for Submissions'),
+                    [ 'controller' => 'pages', 'action' => 'display',
+                      'cfs_isc26'
+                    ], [ 'class' => 'link' ]);
+                ?>
+            for the next IO500 list at ISC 2026 is sent out.
+        </li>
         <li>
             <span class="date">2025-10-01</span>
             The <?php echo $this->Html->link(__('Call for Submissions'),

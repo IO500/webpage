@@ -258,8 +258,12 @@
 
                     <table class="tb tb-info">
                         <tr>
-                            <th><?php echo _('4K Reads') ?></th>
-                            <td><?php echo $this->Number->format($submission->find_mixed, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
+                            <th><?php echo _('4KiB Reads') ?></th>
+                            <td><?php echo $this->Number->format($submission->ior_easy_read_random, ['places' => 2, 'precision' => 2]) ?> GiB/s</td>
+                        </tr>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <td><?php echo $this->Number->format($submission->ior_easy_read_random * 256, ['places' => 2, 'precision' => 2]) ?> kIOP/s</td>
                         </tr>
                     </table>
                 </div>

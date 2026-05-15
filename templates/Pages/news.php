@@ -11,7 +11,8 @@ function cite($file) {
 
     <ul class="news">        
         <li>
-            <span class="date">2025-10-01</span>
+
+            <span class="date">2026-05-06</span>
             The <?php echo $this->Html->link(__('Call for Submissions'),
                     [ 'controller' => 'pages', 'action' => 'display',
                       'cfs_isc26'

@@ -43,18 +43,6 @@
                     );
                     ?>
                 </li>
-                <li>
-                    <?php
-                    echo $this->Html->link(
-                        file_get_contents('img/twitter.svg'),
-                        'https://twitter.com/io500benchmark',
-                        [
-                            'escape' => false,
-                            'target' => '_blank'
-                        ]
-                    );
-                    ?>
-                </li>
             </ul>
         </div>
     </div>

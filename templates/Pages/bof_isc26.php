@@ -38,7 +38,7 @@
     </table>
 
     <p>
-        Official ISC event link: <a class="link" href="httpshttps://isc.app.swapcard.com/widget/event/isc-high-performance-2026/planning/UGxhbm5pbmdfNDQwOTI5NA==" target="_blank">IO500: The High-Performance Storage Community</a>.
+        Official ISC event link: <a class="link" href="https://isc.app.swapcard.com/widget/event/isc-high-performance-2026/planning/UGxhbm5pbmdfNDQwOTI5NA==" target="_blank">IO500: The High-Performance Storage Community</a>.
     </p>
 
     <h3>Abstract</h3>

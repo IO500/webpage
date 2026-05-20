@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\Table\SubmissionsTable;
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 
@@ -100,8 +101,12 @@ class ListingsController extends AppController
         // Get a single table (instance of Schema\TableSchema)
         $tableSchema = $collection->describe('submissions');
 
-        // Get columns list from table
-        $columns = $tableSchema->columns();
+        // Get columns list from table, excluding fields hidden from the entity
+        // (e.g. PII) so the CSV header stays aligned with the serialized rows.
+        $columns = array_values(array_diff(
+            $tableSchema->columns(),
+            SubmissionsTable::PRIVATE_FIELDS
+        ));
 
         // If empty $bof get the last released one
         if ($bof == null) {

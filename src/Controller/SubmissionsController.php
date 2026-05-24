@@ -44,7 +44,7 @@ class SubmissionsController extends AppController
         $submission = $this->Submissions->get($id, [
             'contain' => [
                 'Releases',
-            ]
+            ],
         ]);
 
         // We need to fetch the scores
@@ -75,7 +75,7 @@ class SubmissionsController extends AppController
 
         $questionnaire = $this->Submissions->Questionnaires->find('all')
             ->where([
-                'Questionnaires.submission_id' => $submission->id
+                'Questionnaires.submission_id' => $submission->id,
             ])
             ->first();
 
@@ -95,12 +95,12 @@ class SubmissionsController extends AppController
         $submission = $this->Submissions->get($id, [
             'contain' => [
                 'Releases',
-            ]
+            ],
         ]);
 
         $questionnaire = $this->Submissions->Questionnaires->find('all')
             ->where([
-                'Questionnaires.submission_id' => $submission->id
+                'Questionnaires.submission_id' => $submission->id,
             ])
             ->first();
 
@@ -301,6 +301,7 @@ class SubmissionsController extends AppController
                     // Allow wildcard group options (e.g. "information_*")
                     if (str_ends_with($field, '*')) {
                         $prefix = substr($field, 0, -1);
+
                         return in_array($prefix, $displayPrefixes, true);
                     }
                     foreach ($displayPrefixes as $prefix) {
@@ -308,6 +309,7 @@ class SubmissionsController extends AppController
                             return true;
                         }
                     }
+
                     return in_array($field, $extraDisplayFields, true);
                 }
             ));

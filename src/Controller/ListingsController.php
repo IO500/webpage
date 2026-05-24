@@ -28,10 +28,10 @@ class ListingsController extends AppController
         $release = $this->Listings->Releases->find('all')
             ->contain([
                 'Listings' => [
-                    'Types', 
-                    'sort'=> [
-                        'Types.position' => 'ASC'
-                    ]
+                    'Types',
+                    'sort' => [
+                        'Types.position' => 'ASC',
+                    ],
                 ],
             ])
             ->where([
@@ -68,8 +68,8 @@ class ListingsController extends AppController
                 'Submissions' => [
                     'Releases',
                     'Questionnaires' => [
-                        'ReproducibilityScores'
-                    ]
+                        'ReproducibilityScores',
+                    ],
                 ],
             ])
             ->where([
@@ -112,10 +112,10 @@ class ListingsController extends AppController
                     ],
                 ])
                 ->where([
-                    'Releases.release_date <=' => date('Y-m-d')
+                    'Releases.release_date <=' => date('Y-m-d'),
                 ])
                 ->order([
-                    'Releases.release_date' => 'DESC'
+                    'Releases.release_date' => 'DESC',
                 ])
                 ->first();
 
@@ -150,7 +150,7 @@ class ListingsController extends AppController
                 'Releases.acronym' => strtoupper($bof),
             ])
             ->order([
-                'Releases.release_date' => 'DESC'
+                'Releases.release_date' => 'DESC',
             ])
             ->first();
 
@@ -168,7 +168,7 @@ class ListingsController extends AppController
                 'ListingsSubmissions.listing_id' => $listing->id,
             ])
             ->order([
-                'ListingsSubmissions.score' => 'DESC'
+                'ListingsSubmissions.score' => 'DESC',
             ]);
 
         $records = [];

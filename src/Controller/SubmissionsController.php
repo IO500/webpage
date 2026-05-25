@@ -109,103 +109,40 @@ class SubmissionsController extends AppController
     }
 
     /**
-     * Graphs method
+     * Graphs method. View-only — data is fetched client-side from /plots/data.json
+     * by webroot/js/plots.js. See templates/Submissions/graphs.php.
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
     public function graphs()
     {
-        $lists = [
-            'sc17',
-            'isc18',
-            'sc18',
-            'isc19',
-            'sc19',
-        ];
-
-        $submissions = $this->Submissions->find('all')
-            ->where([
-                'LOWER(Submissions.information_list_name) IN' => $lists,
-                'Submissions.status_id' => 3,
-            ]);
-
-        $this->set('lists', $lists);
-        $this->set(compact('submissions'));
     }
 
     /**
-     * IOR method
+     * IOR method. View-only — data is fetched client-side from /plots/data.json.
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
     public function ior()
     {
-        $lists = [
-            'sc17',
-            'isc18',
-            'sc18',
-            'isc19',
-            'sc19',
-        ];
-
-        $submissions = $this->Submissions->find('all')
-            ->where([
-                'LOWER(Submissions.information_list_name) IN' => $lists,
-                'Submissions.status_id' => 3,
-            ]);
-
-        $this->set('lists', $lists);
-        $this->set(compact('submissions'));
     }
 
     /**
-     * MDtest method
+     * MDtest method. View-only — data is fetched client-side from /plots/data.json.
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
     public function mdtest()
     {
-        $lists = [
-            'sc17',
-            'isc18',
-            'sc18',
-            'isc19',
-            'sc19',
-        ];
-
-        $submissions = $this->Submissions->find('all')
-            ->where([
-                'LOWER(Submissions.information_list_name) IN' => $lists,
-                'Submissions.status_id' => 3,
-            ]);
-
-        $this->set('lists', $lists);
-        $this->set(compact('submissions'));
     }
 
     /**
-     * Pfind method
+     * Pfind method. View-only — data is fetched client-side from /plots/data.json.
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
     public function pfind()
     {
-        $lists = [
-            'sc17',
-            'isc18',
-            'sc18',
-            'isc19',
-            'sc19',
-        ];
-
-        $submissions = $this->Submissions->find('all')
-            ->where([
-                'LOWER(Submissions.information_list_name) IN' => $lists,
-                'Submissions.status_id' => 3,
-            ]);
-
-        $this->set('lists', $lists);
-        $this->set(compact('submissions'));
     }
 
     /**

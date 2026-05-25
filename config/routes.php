@@ -232,6 +232,14 @@ $routes->scope('/', function (RouteBuilder $builder) {
         ]
     );
 
+    $builder->connect(
+        '/plots/data.json',
+        [
+            'controller' => 'Listings',
+            'action' => 'plotsData',
+        ]
+    );
+
     /*
      * ...and connect the rest of 'Pages' controller's URLs.
      */

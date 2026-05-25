@@ -14,8 +14,7 @@ CI runs the same checks on every pull request. To reproduce them locally before 
 composer install            # one-time, pulls phpcs and the CakePHP codesniffer
 composer cs-check           # PHP coding standard (CakePHP)
 find src tests config templates -name '*.php' -print0 | xargs -0 -n1 php -l   # PHP syntax
-yamllint -d relaxed .github/ config/                                 # YAML
-Rscript -e 'parse(file="webroot/plots/generate-plots.r")'            # R plot script
+yamllint -d relaxed .github/ config/                                          # YAML
 ```
 
 `composer cs-fix` will auto-fix most coding-standard violations.

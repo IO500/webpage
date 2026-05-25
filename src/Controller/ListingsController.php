@@ -84,6 +84,69 @@ class ListingsController extends AppController
     }
 
     /**
+     * Data feed for the client-side plotly charts under /submissions/{graphs,ior,mdtest,pfind}.
+     *
+     * Returns a JSON array of one row per ListingsSubmissions entry in the "io500"
+     * Types listing across all released BoFs, with only the columns the 18 charts
+     * in webroot/js/plots.js need (x-axis grouping, tooltip text, y-values).
+     *
+     * Adding a new release to the database is enough to make its data appear
+     * in the plots — no script run, no commit of regenerated HTML.
+     *
+     * @return \Cake\Http\Response
+     */
+    public function plotsData()
+    {
+        $rows = $this->Listings->ListingsSubmissions->find('all')
+            ->contain([
+                'Listings' => ['Types', 'Releases'],
+                'Submissions',
+            ])
+            ->where([
+                'Types.url' => 'io500',
+                'Releases.release_date <=' => date('Y-m-d'),
+            ])
+            ->order([
+                'Releases.release_date' => 'ASC',
+                'ListingsSubmissions.score' => 'DESC',
+            ])
+            ->all();
+
+        $payload = [];
+        foreach ($rows as $ls) {
+            $s = $ls->submission;
+            $payload[] = [
+                'list_name' => $ls->listing->release->acronym,
+                'information_system' => $s->information_system,
+                'information_filesystem_type' => $s->information_filesystem_type,
+                'information_institution' => $s->information_institution,
+                'score' => $ls->score,
+                'io500_bw' => $s->io500_bw,
+                'io500_md' => $s->io500_md,
+                'ior_easy_write' => $s->ior_easy_write,
+                'ior_easy_read' => $s->ior_easy_read,
+                'ior_hard_write' => $s->ior_hard_write,
+                'ior_hard_read' => $s->ior_hard_read,
+                'mdtest_easy_write' => $s->mdtest_easy_write,
+                'mdtest_easy_stat' => $s->mdtest_easy_stat,
+                'mdtest_easy_delete' => $s->mdtest_easy_delete,
+                'mdtest_hard_write' => $s->mdtest_hard_write,
+                'mdtest_hard_read' => $s->mdtest_hard_read,
+                'mdtest_hard_stat' => $s->mdtest_hard_stat,
+                'mdtest_hard_delete' => $s->mdtest_hard_delete,
+                'find_easy' => $s->find_easy,
+            ];
+        }
+
+        $this->autoRender = false;
+
+        return $this->response
+            ->withType('application/json')
+            ->withHeader('Cache-Control', 'public, max-age=600')
+            ->withStringBody(json_encode($payload));
+    }
+
+    /**
      * Download method
      *
      * @param null $bof Release acronym.

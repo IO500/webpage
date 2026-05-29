@@ -13,7 +13,8 @@
 (function () {
     'use strict';
 
-    var COLORS = ['#ec563c', '#1d2a30'];
+    var COLOR_PRODUCTION = '#ec563c';
+    var COLOR_RESEARCH = '#1d2a30';
 
     // data-plot-metric value -> { column, ylabel }
     var METRICS = {
@@ -54,10 +55,9 @@
             indexByBof[bofs[i]] = i;
         }
 
-        var xs = [];
-        var ys = [];
-        var texts = [];
-        var colors = [];
+        // Pre-compute every point once (jitter fixed at render time so
+        // toggling the filter doesn't reshuffle the dots).
+        var allPoints = [];
         for (var j = 0; j < rows.length; j++) {
             var row = rows[j];
             var raw = row[metric.column];
@@ -70,25 +70,49 @@
             }
             var baseX = indexByBof[row.list_name];
             var jitter = (Math.random() - 0.5) * 0.6;
-            xs.push(baseX + jitter);
-            ys.push(y);
-            texts.push(
-                'List: ' + row.list_name + '<br>' +
-                'System: ' + row.information_system + '<br>' +
-                'File System: ' + row.information_filesystem_type + '<br>' +
-                'Institution: ' + row.information_institution + '<br>' +
-                metric.ylabel + ': ' + y.toLocaleString('en-US', { maximumFractionDigits: 2 })
-            );
-            colors.push(COLORS[baseX % COLORS.length]);
+            allPoints.push({
+                x: baseX + jitter,
+                y: y,
+                text: 'List: ' + row.list_name + '<br>' +
+                    'System: ' + row.information_system + '<br>' +
+                    'File System: ' + row.information_filesystem_type + '<br>' +
+                    'Institution: ' + row.information_institution + '<br>' +
+                    metric.ylabel + ': ' + y.toLocaleString('en-US', { maximumFractionDigits: 2 }),
+                color: row.is_production ? COLOR_PRODUCTION : COLOR_RESEARCH,
+                isProduction: !!row.is_production
+            });
         }
 
+        function filterPoints(filter) {
+            if (filter === 'both') {
+                return allPoints;
+            }
+            if (filter === 'production') {
+                return allPoints.filter(function (p) { return p.isProduction; });
+            }
+            return allPoints.filter(function (p) { return !p.isProduction; });
+        }
+
+        function pointsToArrays(points) {
+            var xs = [], ys = [], texts = [], colors = [];
+            for (var i = 0; i < points.length; i++) {
+                xs.push(points[i].x);
+                ys.push(points[i].y);
+                texts.push(points[i].text);
+                colors.push(points[i].color);
+            }
+            return { x: xs, y: ys, text: texts, colors: colors };
+        }
+
+        var initialFilter = 'production';
+        var initial = pointsToArrays(filterPoints(initialFilter));
         var trace = {
-            x: xs,
-            y: ys,
-            text: texts,
+            x: initial.x,
+            y: initial.y,
+            text: initial.text,
             mode: 'markers',
             type: 'scattergl',
-            marker: { size: 5, color: colors },
+            marker: { size: 5, color: initial.colors },
             hoverinfo: 'text',
             showlegend: false
         };
@@ -131,7 +155,49 @@
             responsive: true
         });
 
+        addListFilterToggle(target, initialFilter, function (filter) {
+            var arr = pointsToArrays(filterPoints(filter));
+            Plotly.restyle(target, {
+                x: [arr.x],
+                y: [arr.y],
+                text: [arr.text],
+                'marker.color': [arr.colors]
+            });
+        });
         addScaleToggle(target, 'log');
+    }
+
+    function addListFilterToggle(plotDiv, initial, onChange) {
+        var bar = document.createElement('div');
+        bar.className = 'plot-controls';
+
+        var filters = ['production', 'research', 'both'];
+        var buttons = filters.map(function (f) {
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.textContent = f.charAt(0).toUpperCase() + f.slice(1);
+            btn.dataset.filter = f;
+            return btn;
+        });
+
+        function setActive(which) {
+            buttons.forEach(function (btn) {
+                btn.className = btn.dataset.filter === which
+                    ? 'button-navigation-active'
+                    : 'button-navigation';
+            });
+        }
+        setActive(initial);
+
+        buttons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                setActive(btn.dataset.filter);
+                onChange(btn.dataset.filter);
+            });
+            bar.appendChild(btn);
+        });
+
+        plotDiv.parentNode.insertBefore(bar, plotDiv);
     }
 
     function addScaleToggle(plotDiv, initial) {

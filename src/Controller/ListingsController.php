@@ -112,11 +112,29 @@ class ListingsController extends AppController
             ])
             ->all();
 
+        // Build a set of (submission_id, release_acronym) pairs that appear
+        // in any production listing, so each io500 row can be tagged.
+        $productionRows = $this->Listings->ListingsSubmissions->find('all')
+            ->contain([
+                'Listings' => ['Types', 'Releases'],
+            ])
+            ->where([
+                'Types.url' => 'production',
+                'Releases.release_date <=' => date('Y-m-d'),
+            ])
+            ->all();
+        $productionSet = [];
+        foreach ($productionRows as $pr) {
+            $productionSet[$pr->submission_id . '|' . $pr->listing->release->acronym] = true;
+        }
+
         $payload = [];
         foreach ($rows as $ls) {
             $s = $ls->submission;
+            $acronym = $ls->listing->release->acronym;
             $payload[] = [
-                'list_name' => $ls->listing->release->acronym,
+                'list_name' => $acronym,
+                'is_production' => isset($productionSet[$ls->submission_id . '|' . $acronym]),
                 'information_system' => $s->information_system,
                 'information_filesystem_type' => $s->information_filesystem_type,
                 'information_institution' => $s->information_institution,

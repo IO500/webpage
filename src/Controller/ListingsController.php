@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\Table\SubmissionsTable;
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 
@@ -24,6 +25,30 @@ class ListingsController extends AppController
     public function list($bof = null, $url = null)
     {
         $limit = Configure::read('IO500.pagination');
+
+        if ($url === null) {
+            $url = 'production';
+        }
+        // When the homepage route is hit (no $bof), serve the most recent BoF
+        // that already has a published listing for the requested type. This
+        // skips a release whose listing hasn't been built yet so the homepage
+        // doesn't fall over between release-date and listing-creation.
+        if ($bof === null) {
+            $latest = $this->Listings->find('all')
+                ->contain(['Types', 'Releases'])
+                ->where([
+                    'Types.url' => $url,
+                    'Releases.release_date <=' => date('Y-m-d'),
+                ])
+                ->order(['Releases.release_date' => 'DESC'])
+                ->first();
+            if ($latest === null) {
+                throw new \Cake\Http\Exception\NotFoundException(
+                    __('No published lists yet')
+                );
+            }
+            $bof = $latest->release->acronym;
+        }
 
         $release = $this->Listings->Releases->find('all')
             ->contain([
@@ -181,8 +206,12 @@ class ListingsController extends AppController
         // Get a single table (instance of Schema\TableSchema)
         $tableSchema = $collection->describe('submissions');
 
-        // Get columns list from table
-        $columns = $tableSchema->columns();
+        // Get columns list from table, excluding fields hidden from the entity
+        // (e.g. PII) so the CSV header stays aligned with the serialized rows.
+        $columns = array_values(array_diff(
+            $tableSchema->columns(),
+            SubmissionsTable::PRIVATE_FIELDS
+        ));
 
         // If empty $bof get the last released one
         if ($bof == null) {

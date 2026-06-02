@@ -39,26 +39,18 @@
     </ul>
     
     <p>
-        You may also 
+        For raw data, browse our
             <?php
-            echo $this->Html->link(__('download the CSV-file'), [
-                    'controller' => 'submissions',
-                    'action' => 'export'
+            echo $this->Html->link(__('release pages'), [
+                    'controller' => 'releases',
+                    'action' => 'index',
                 ],
                 [
-                    'class' => 'link'
+                    'class' => 'link',
                 ]
             );
             ?>
-        and modify the         <?php
-            echo $this->Html->link(__('R-Scripts'),
-                'https://github.com/VI4IO/io-500-webpage/blob/main/webroot/plots/plots.org',
-                [
-                    'class' => 'link'
-                ]
-            );
-            ?> that we use for plotting on the webpage.
-        If you created nice graphs, please feel free to share them with us using a pull request on GitHub.
+        to download per-release CSVs and create your own visualisations.
     </p>
     <a href="https://www.freepik.com/free-photos-vectors/business" class="credits">Business vector created by stories - www.freepik.com</a>
 </div>
@@ -67,15 +59,17 @@
     <ul class="plots">
         <li>
             <h3>IO500 Score</h3>
-            <iframe src="/webroot/plots/plotly/io500-score.html"></iframe>
+            <div data-plot-metric="score"></div>
         </li>
         <li>
             <h3>IO500 Bandwidth</h3>
-            <iframe src="/webroot/plots/plotly/io500-bandwidth.html"></iframe>
+            <div data-plot-metric="io500_bw"></div>
         </li>
         <li>
             <h3>IO500 Metadata</h3>
-            <iframe src="/webroot/plots/plotly/io500-metadata.html"></iframe>
+            <div data-plot-metric="io500_md"></div>
         </li>
     </ul>
 </div>
+
+<?= $this->element('plots-scripts') ?>

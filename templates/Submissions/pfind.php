@@ -2,7 +2,9 @@
     <ul class="plots">
         <li>
             <h3>Find</h3>
-            <iframe src="/webroot/plots/plotly/io500-find-easy.html"></iframe>
+            <div data-plot-metric="find_easy"></div>
         </li>
     </ul>
 </div>
+
+<?= $this->element('plots-scripts') ?>

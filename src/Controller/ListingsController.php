@@ -54,9 +54,9 @@ class ListingsController extends AppController
             ->contain([
                 'Listings' => [
                     'Types',
-                    'sort'=> [
-                        'Types.position' => 'ASC'
-                    ]
+                    'sort' => [
+                        'Types.position' => 'ASC',
+                    ],
                 ],
             ])
             ->where([
@@ -93,8 +93,8 @@ class ListingsController extends AppController
                 'Submissions' => [
                     'Releases',
                     'Questionnaires' => [
-                        'ReproducibilityScores'
-                    ]
+                        'ReproducibilityScores',
+                    ],
                 ],
             ])
             ->where([
@@ -106,6 +106,87 @@ class ListingsController extends AppController
         $this->set('release', $release);
         $this->set('listing', $listing);
         $this->set('submissions', $this->paginate($submissions, $settings));
+    }
+
+    /**
+     * Data feed for the client-side plotly charts under /submissions/{graphs,ior,mdtest,pfind}.
+     *
+     * Returns a JSON array of one row per ListingsSubmissions entry in the "io500"
+     * Types listing across all released BoFs, with only the columns the 18 charts
+     * in webroot/js/plots.js need (x-axis grouping, tooltip text, y-values).
+     *
+     * Adding a new release to the database is enough to make its data appear
+     * in the plots — no script run, no commit of regenerated HTML.
+     *
+     * @return \Cake\Http\Response
+     */
+    public function plotsData()
+    {
+        $rows = $this->Listings->ListingsSubmissions->find('all')
+            ->contain([
+                'Listings' => ['Types', 'Releases'],
+                'Submissions',
+            ])
+            ->where([
+                'Types.url' => 'io500',
+                'Releases.release_date <=' => date('Y-m-d'),
+            ])
+            ->order([
+                'Releases.release_date' => 'ASC',
+                'ListingsSubmissions.score' => 'DESC',
+            ])
+            ->all();
+
+        // Build a set of (submission_id, release_acronym) pairs that appear
+        // in any production listing, so each io500 row can be tagged.
+        $productionRows = $this->Listings->ListingsSubmissions->find('all')
+            ->contain([
+                'Listings' => ['Types', 'Releases'],
+            ])
+            ->where([
+                'Types.url' => 'production',
+                'Releases.release_date <=' => date('Y-m-d'),
+            ])
+            ->all();
+        $productionSet = [];
+        foreach ($productionRows as $pr) {
+            $productionSet[$pr->submission_id . '|' . $pr->listing->release->acronym] = true;
+        }
+
+        $payload = [];
+        foreach ($rows as $ls) {
+            $s = $ls->submission;
+            $acronym = $ls->listing->release->acronym;
+            $payload[] = [
+                'list_name' => $acronym,
+                'is_production' => isset($productionSet[$ls->submission_id . '|' . $acronym]),
+                'information_system' => $s->information_system,
+                'information_filesystem_type' => $s->information_filesystem_type,
+                'information_institution' => $s->information_institution,
+                'score' => $ls->score,
+                'io500_bw' => $s->io500_bw,
+                'io500_md' => $s->io500_md,
+                'ior_easy_write' => $s->ior_easy_write,
+                'ior_easy_read' => $s->ior_easy_read,
+                'ior_hard_write' => $s->ior_hard_write,
+                'ior_hard_read' => $s->ior_hard_read,
+                'mdtest_easy_write' => $s->mdtest_easy_write,
+                'mdtest_easy_stat' => $s->mdtest_easy_stat,
+                'mdtest_easy_delete' => $s->mdtest_easy_delete,
+                'mdtest_hard_write' => $s->mdtest_hard_write,
+                'mdtest_hard_read' => $s->mdtest_hard_read,
+                'mdtest_hard_stat' => $s->mdtest_hard_stat,
+                'mdtest_hard_delete' => $s->mdtest_hard_delete,
+                'find_easy' => $s->find_easy,
+            ];
+        }
+
+        $this->autoRender = false;
+
+        return $this->response
+            ->withType('application/json')
+            ->withHeader('Cache-Control', 'public, max-age=600')
+            ->withStringBody(json_encode($payload));
     }
 
     /**
@@ -141,10 +222,10 @@ class ListingsController extends AppController
                     ],
                 ])
                 ->where([
-                    'Releases.release_date <=' => date('Y-m-d')
+                    'Releases.release_date <=' => date('Y-m-d'),
                 ])
                 ->order([
-                    'Releases.release_date' => 'DESC'
+                    'Releases.release_date' => 'DESC',
                 ])
                 ->first();
 
@@ -179,7 +260,7 @@ class ListingsController extends AppController
                 'Releases.acronym' => strtoupper($bof),
             ])
             ->order([
-                'Releases.release_date' => 'DESC'
+                'Releases.release_date' => 'DESC',
             ])
             ->first();
 
@@ -197,7 +278,7 @@ class ListingsController extends AppController
                 'ListingsSubmissions.listing_id' => $listing->id,
             ])
             ->order([
-                'ListingsSubmissions.score' => 'DESC'
+                'ListingsSubmissions.score' => 'DESC',
             ]);
 
         $records = [];

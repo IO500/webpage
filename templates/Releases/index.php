@@ -39,20 +39,6 @@
         </li>
     </ul>
 
-    <p>
-        You can <?php
-            echo $this->Html->link(__('download the CSV-file'), [
-                    'controller' => 'listings',
-                    'action' => 'download'
-                ],
-                [
-                    'class' => 'link'
-                ]
-            );
-            ?>
-       of the full historic list.
-    </p>
-    
     <h2>User-Defined Lists</h2>
     <p>
         We also support the creation of 

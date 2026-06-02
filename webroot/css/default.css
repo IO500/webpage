@@ -776,12 +776,38 @@ dd {
     font-weight: bold;
 }
 
-.plots iframe {
+.plots iframe,
+.plots [data-plot-metric] {
     border: 0;
     height: 405px;
     margin: 0;
     padding: 0;
     width: 100%;
+}
+
+.plot-controls {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    justify-content: flex-end;
+    margin: 0 0 8px;
+}
+
+.rangeslider-mask-min,
+.rangeslider-mask-max {
+    fill: rgba(0, 0, 0, 0.06) !important;
+    fill-opacity: 1 !important;
+}
+
+.plot-controls button {
+    background: transparent;
+    cursor: pointer;
+    flex-grow: 0;
+    font-family: inherit;
+    font-size: 0.85em;
+    min-width: 70px;
+    padding: 3px 10px;
+    width: auto;
 }
 
 .plots {

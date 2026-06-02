@@ -26,10 +26,34 @@ class ListingsController extends AppController
     {
         $limit = Configure::read('IO500.pagination');
 
+        if ($url === null) {
+            $url = 'production';
+        }
+        // When the homepage route is hit (no $bof), serve the most recent BoF
+        // that already has a published listing for the requested type. This
+        // skips a release whose listing hasn't been built yet so the homepage
+        // doesn't fall over between release-date and listing-creation.
+        if ($bof === null) {
+            $latest = $this->Listings->find('all')
+                ->contain(['Types', 'Releases'])
+                ->where([
+                    'Types.url' => $url,
+                    'Releases.release_date <=' => date('Y-m-d'),
+                ])
+                ->order(['Releases.release_date' => 'DESC'])
+                ->first();
+            if ($latest === null) {
+                throw new \Cake\Http\Exception\NotFoundException(
+                    __('No published lists yet')
+                );
+            }
+            $bof = $latest->release->acronym;
+        }
+
         $release = $this->Listings->Releases->find('all')
             ->contain([
                 'Listings' => [
-                    'Types', 
+                    'Types',
                     'sort'=> [
                         'Types.position' => 'ASC'
                     ]

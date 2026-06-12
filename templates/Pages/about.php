@@ -4,7 +4,11 @@
     <h2>IO500</h2>
 
     <p>
-        The IO500 benchmark has been developed together with the community and its development is still ongoing. The benchmark is essentially a benchmark suite bundled with execution rules. It harnesses existing and trusted open source benchmarks.
+        The IO500 benchmark has been developed together with the community and its development is still ongoing. 
+        The benchmark is actually a benchmark suite bundled with execution rules. It harnesses existing and 
+        trusted open source benchmarks.  The results are published in a 
+        <a href="https://io500.org/the-lists">set of lists</a>,
+        with awards for the top bandwidth, metadata, and overall scores.
     </p>
 
     <p>
@@ -124,7 +128,8 @@
     </ul>
 
     <p>
-        The individual performance numbers are preserved and accessible via the web or the raw data. This allows deriving other relevant metrics.
+        The individual performance numbers are preserved and accessible via the web or the raw data. 
+        This allows deriving other relevant metrics.
     </p>
 
     <p>

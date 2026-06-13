@@ -28,7 +28,8 @@
             to the instructions in
             <?php echo $this->Html->link(__('Running'),
                 [ 'controller' => 'pages', 'action' => 'display',
-                  'running'
+                  'benchmark',
+                  '#' => 'running'
                 ], [ 'class' => 'link' ]);
              ?>.
         </li>

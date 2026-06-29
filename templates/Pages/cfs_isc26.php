@@ -1,4 +1,7 @@
-<?php $this->assign('title', 'Call for Submission'); ?>
+<?php $this->assign('title', 'Call for Submission');
+ //-*- mode: c; c-basic-offset: 4; indent-tabs-mode: nil; -*-
+ // * vim:expandtab:shiftwidth=4:tabstop=4:
+ ?>
 
 <div class="content">
     <h2>Call for Submission</h2>
@@ -11,10 +14,10 @@
     <p>
         The IO500 <strong>is now</strong> accepting and encouraging submissions
         for the upcoming semi-annual IO500 Production and Research lists,
-        in conjunction with <strong>ISC'26</strong>.  Once again, we will also be
-        accepting submissions to the 10 Client Node Challenge to encourage the
-        submission of small scale results. View the requirements for submitting
-        to each list on the
+        in conjunction with <strong>ISC'26</strong>.  Once again, we will also
+        be accepting submissions to the 10 Client Node Challenge to encourage
+        the submission of small scale results. View the requirements for
+        submitting to each list on the
         <?php echo $this->Html->link(__('IO500 Submissions Webpage'),
             [ 'controller' => 'pages', 'action' => 'display', 'submission' ],
             [ 'class' => 'link' ]);

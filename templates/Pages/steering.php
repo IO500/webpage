@@ -34,7 +34,7 @@
     </p>
     <ul>
       <li>Jean Luca Bez - Lawrence Berkeley National Laboratory</li>
-      <li>Andreas Dilger - The Lustre Collective</li>
+      <li><a class="link" href="https://www.linkedin.com/in/adilger">Andreas Dilger - The Lustre Collective</a></li>
       <li><a class="link" href="https://www.linkedin.com/in/dean">Dean Hildebrand - Google</a></li>
       <li><a class="link" href="https://hps.vi4io.org/about/people/julian_kunkel">Julian Kunkel - Georg-August-Universität Göttingen/GWDG</a></li>
       <li><a class="link" href="https://cfwebprod.sandia.gov/cfdocs/CompResearch/templates/insert/profile.cfm?gflofst">Jay Lofstead - Sandia National Laboratories</a></li>

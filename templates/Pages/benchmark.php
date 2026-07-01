@@ -1,6 +1,26 @@
-<?php $this->assign('title', 'Submission'); ?>
+<?php $this->assign('title', 'Benchmark'); ?>
 
 <div class="submissions index content">
+
+<div class="landing landing-running" id="running">
+    <h1><?php echo __('Run IO500') ?></h1>
+
+    <p>
+        You can download <b>IO500</b> from the <b>GitHub</b> repository. Follow the instructions in the GitHub
+        README file to install, configure, and run the benchmark!
+    </p>
+
+    <ul>
+        <li>
+            <?php
+            echo $this->Html->link(__('Get IO500'), 'https://github.com/IO500/io500', [
+                'class' => 'button-highlight'
+            ]);
+            ?>
+        </li>
+    </ul>
+
+</div>
 
 <div class="content">
     <h2>How to Submit?</h2>
@@ -8,17 +28,15 @@
     <p>
         This page contains the information about the submission procedure.
         First, you need to
-        <?php echo $this->Html->link(_('run the benchmark'),
-            [ 'controller' => 'Pages', 'action' => 'display',
-              'running'
-            ], [ 'class' => 'link' ]);
+        <?php echo $this->Html->link(__('run the benchmark'),
+            '#running', [ 'class' => 'link' ]);
          ?>
         .
     </p>
 
     <p>
-        The IO500 list is released during ISC and SC each year.
-        Submissions to the upcoming list can be made all year. However,
+        The IO500 lists are released during ISC and SC each year.
+        Submissions to the upcoming lists can be made all year. However,
         <strong>to be included in the next submission</strong>, we must receive
         the submission before the deadline listed above, unless you have
         previously contacted the committee and approved an extension for
@@ -35,9 +53,7 @@
         This better reflects the
         important distinction between storage systems that run in production
         environments and those that may use more experimental hardware and
-        software configurations.  At ISC'24, we continue to populate these
-        two lists and users will be able to submit to either of the two lists
-        (and their 10 client-node counterparts).  Please see
+        software configurations.  Please see
         <?php echo $this->Html->link('the requirements for each list',
             [ 'controller' => 'pages', 'action' => 'display', 'the-lists' ],
             [ 'class' => 'link' ]);
@@ -86,32 +102,40 @@
                 </li>
                 <li>
                     Complete the submission form with all required information
+                    <ul>
+                        <li>
+                            You will be able to incrementally complete the
+                            submission (i.e., your progress will be saved)
+                        </li>
+                        <li>
+                            You are able to edit your submission until you submit it
+                        </li>
+                        <li>
+                            Once you double-check your submission data, click on
+                            "[Submit]" to send it to the IO500 committee for review
+                        </li>
+                    </ul>
                 </li>
-                <ul>
-                    <li>
-                        You will be able to incrementally complete the
-                        submission (i.e., your progress will be saved)
-                    </li>
-                    <li>
-                        You are able to edit your submission until you submit it
-                    </li>
-                    <li>
-                        Once you double-check your submission data, click on
-                        "[Submit]" to send it to the IO500 committee for review
-                    </li>
-                </ul>
             </ol>
 
-            As part of this new tool, we
-            have improved the submission fields that describe the hardware and
-            software of the system under test. For reproducibility and analysis
-            reasons, we now made the easily obtainable fields mandatory -
-            data from storage servers are for users often difficult to obtain,
-            therefore, most remain optional.
-            <p>
-                As a new system, there may be quirks, please reach out on
-                Slack or the mailing list if you see any issues.
-            </p>
+            The form is designed to handle submissions from a wide range of storage system types,
+            each with different numbers of hardware components. For reproducibility and analysis
+            reasons, within each component, the easily obtainable fields are mandatory, but it is up
+            to the submitter to select the right components.  The key components are:
+            <ul>
+                <li>Site - High Level details of the submitting institution</li>
+                <li>IO500 - Summary of storage client and server information utilized in benchmark execution</li>
+                <li>Storage System - General storage system information and which list is targeted (Production or Research)</li>
+                <li>Specific Storage System Component (e.g., Lustre, DAOS, SpectrumScale) - Detailed per-file system information
+                    <ul>
+                        <li>Depending on the Storage System, there is a series of sub-components to fill out that provide
+                            the full details of the server, network, and storage of each server in the storage system.
+                        </li>
+                    </ul>
+                </li>
+                <li>Supercomputer - Detailed information regarding the client nodes utilized in benchmark execution</li>
+            </ul>
+
         </li>
         <li>
             If you experience problems with the online form, please reach out on
@@ -150,15 +174,17 @@
     <h4>Privacy</h4>
 
     <p>
-        We will publish all data submitted, so by submitting the information
-        you <strong>give us the right to publish the uploaded data</strong>.
+        We will handle all data submitted as per our data handling policy.
+        The key point is that by submitting you and your organization 
+        <strong>give the IO500 Committee the right to publish all uploaded data</strong>
+        (except for contact information).
     </p>
 
     <h5>Submitter Name</h5>
 
     <p>
         Submissions will be visible immediately to the members of the
-        <?php echo $this->Html->link(_('IO500 Steering Committee'),
+        <?php echo $this->Html->link(__('IO500 Steering Committee'),
             [ 'controller' => 'Pages', 'action' => 'display',
               'steering'
             ], [ 'class' => 'link' ]);
@@ -168,7 +194,6 @@
         results privately to a subset of the committee (i.e. do not use
         the official submission tools if you have privacy concerns).
     </p>
-
     <p>
         Starting with the SC'18 list, submissions include the name of the
         submitter (or team) to give them the credit they deserve to execute

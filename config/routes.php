@@ -69,14 +69,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
             'action' => 'list',
         ]
     );
-    $builder->connect(
-        '/running',
-        [
-            'controller' => 'Pages',
-            'action' => 'display',
-            'running',
-        ]
-    );
+    $builder->redirect('/running', '/benchmark#running', ['status' => 301]);
     $builder->connect(
         '/about',
         [
@@ -117,14 +110,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
             'bofs',
         ]
     );
-    $builder->connect(
-        '/running',
-        [
-            'controller' => 'Pages',
-            'action' => 'display',
-            'running',
-        ]
-    );
+
     $builder->connect(
         '/steering',
         [
@@ -134,19 +120,21 @@ $routes->scope('/', function (RouteBuilder $builder) {
         ]
     );
     $builder->connect(
-        '/submission',
+        '/benchmark',
         [
             'controller' => 'Pages',
             'action' => 'display',
-            'submission',
+            'benchmark',
         ]
     );
+    $builder->redirect('/submission', '/benchmark', ['status' => 301]);
+    $builder->redirect('/pages/display/submission', '/benchmark', ['status' => 301]);
     $builder->connect(
         '/cfs',
         [
             'controller' => 'Pages',
             'action' => 'display',
-            'submission',
+            'benchmark',
         ]
     );
     $builder->connect(

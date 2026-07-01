@@ -61,21 +61,13 @@
                 ]);
                 ?>
             </li>
+
             <li>
                 <?php
-                echo $this->Html->link(__('Running'), [
+                echo $this->Html->link(__('Benchmark'), [
                     'controller' => 'pages',
                     'action' => 'display',
-                    'running'
-                ]);
-                ?>
-            </li>
-            <li>
-                <?php
-                echo $this->Html->link(__('Submission'), [
-                    'controller' => 'pages',
-                    'action' => 'display',
-                    'submission'
+                    'benchmark'
                 ]);
                 ?>
             </li>

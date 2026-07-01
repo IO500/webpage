@@ -14,12 +14,12 @@
     <p>
         The IO500 <strong>is now</strong> accepting and encouraging submissions
         for the upcoming semi-annual IO500 Production and Research lists,
-        in conjunction with <strong>ISC'26</strong>.  Once again, we will also
-        be accepting submissions to the 10 Client Node Challenge to encourage
-        the submission of small scale results. View the requirements for
-        submitting to each list on the
-        <?php echo $this->Html->link(__('IO500 Submissions Webpage'),
-            [ 'controller' => 'pages', 'action' => 'display', 'submission' ],
+        in conjunction with <strong>ISC'26</strong>.  Once again, we will also be
+        accepting submissions to the 10 Client Node Challenge to encourage the
+        submission of small scale results. View the requirements for submitting
+        to each list on the
+        <?php echo $this->Html->link(__('IO500 Benchmark Webpage'),
+            [ 'controller' => 'pages', 'action' => 'display', 'benchmark' ],
             [ 'class' => 'link' ]);
          ?>.
         The new ranked lists will be announced at the
@@ -128,7 +128,7 @@
     <p>
         Once again, we encourage you to
         <?php echo $this->Html->link('submit',
-            [ 'controller' => 'pages', 'action' => 'display', 'submission' ],
+            [ 'controller' => 'pages', 'action' => 'display', 'benchmark' ],
             [ 'class' => 'link' ]);
          ?>
         to join our community, and to attend the

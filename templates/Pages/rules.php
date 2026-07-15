@@ -43,6 +43,17 @@
                 ?>
             </b>
         </li>
+        <li>
+            <b>
+                <?php
+                echo $this->Html->link(__('Submission Data Handling Policy'), [
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'rules-data-handling'
+                ]);
+                ?>
+            </b>
+        </li>
     </ul>
 
     <h3>Steering Committee Rules</h3>
@@ -118,6 +129,32 @@
         </li>
 
     </ul>
+
+    <h3>Community Policies</h3>
+    <ul>
+        <li>
+            <b>
+                <?php
+                echo $this->Html->link(__('Code of Conduct Policy'), [
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'rules-code-of-conduct'
+                ]);
+                ?>
+            </b>
+        </li>
+        <li>
+            <b>
+                <?php
+                echo $this->Html->link(__('Messaging Policy'), [
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'rules-messaging'
+                ]);
+                ?>
+            </b>
+        </li>
+    </ul>
 </div>
 
 <div class="content">
@@ -145,6 +182,15 @@
         </li>
         <li>
           <a href="/files/io500-list-split-proposal.pdf">List Split Proposal (Incorporated)</a>  
+        </li>
+        <li>
+          <a href="/files/io500-messaging-policy-proposal.pdf">Messaging Policy Proposal (Incorporated)</a>  
+        </li>
+        <li>
+          <a href="/files/io500-submission-data-handling-policy-proposal.pdf">Submission Data Handling Policy Proposal (Incorporated)</a>  
+        </li>
+        <li>
+          <a href="/files/io500-code-of-conduct-policy-proposal.pdf">Code of Conduct Policy Proposal (Incorporated)</a>  
         </li>
     </ul>
 </div>

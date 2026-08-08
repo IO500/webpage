@@ -1,9 +1,10 @@
 <footer>
     <div class="container">
         <div class="footer">
-            <strong>IO500 Foundation</strong><br/>
+            <strong>IO500&reg; Foundation</strong><br/>
             <em>io500.org</em><br/>
-            <a href="mailto:committee@io500.org">committee@io500.org</a><br>
+            <a href="mailto:committee@io500.org">committee@io500.org</a><br/>
+            IO500&reg; is a registered trademark of the IO500 Foundation. Use allowed under limited <a href="/pages/rules-messaging">conditions</a>.
         </div>
         <div class="footer">
             <ul class="social-links">

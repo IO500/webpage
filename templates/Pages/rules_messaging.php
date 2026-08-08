@@ -13,7 +13,7 @@
 </nav>
 
 <div class="content">
-    <h2>The IO500 Foundation Steering Committee Rules - Version 2.0</h2>
+    <h2>The IO500&reg; Foundation Steering Committee Rules - Version 2.0</h2>
 
     <h3>Messaging Policy</h3>
 
@@ -28,7 +28,7 @@
     <h4>Verified and Unverified Results</h4>
 
     <p>
-        If a submission is officially listed on a published IO500 List, then mention of the IO500 benchmark result must be listed as “verified”. A “verified” submission has been audited by the committee for correctness of the whole submission package. This includes reviewing the documentation provided by the submitter for correctness, feasibility, and consistency. The term verified must be prominently displayed in the same paragraph as the first mention of the IO500 result.
+        If a submission is officially listed on a published IO500&reg; List, then mention of the IO500 benchmark result must be listed as “verified”. A “verified” submission has been audited by the committee for correctness of the whole submission package. This includes reviewing the documentation provided by the submitter for correctness, feasibility, and consistency. The term verified must be prominently displayed in the same paragraph as the first mention of the IO500 result.
     </p>
 
     <p>
@@ -39,7 +39,7 @@
         Note that the inclusion of the terms “verified” or “unverified” are only required in public statements. This includes blogs, websites, papers, chatrooms, social media, talks, etc. This does not cover mentioning IO500 results within a classroom or other research setting. For example, researchers are encouraged to run IO500 in a variety of novel and innovative configurations, and these comparisons (all of which are unverified), are not required to be listed as such.
     </p>
 
-    <h4>Standards for Using IO500 Results</h4>
+    <h4>Standards for Using IO500&reg; Results</h4>
 
     <p>
         To maintain the integrity of the IO500 lists and results, all participants must adhere to the following rules when referencing verified or unverified results:
@@ -69,7 +69,7 @@
         </li>
     </ul>
 
-    <h4>IO500 Result Usage Examples</h4>
+    <h4>IO500&reg; Result Usage Examples</h4>
 
     <p>
         Examples of acceptable language include:
@@ -77,7 +77,7 @@
 
     <ul>
         <li>
-            “These results are unverified by IO500 Foundation”
+            “These results are unverified by IO500&reg; Foundation”
             <ul>
                 <li>This assumes all the other required details were included in the statement as well.</li>
             </ul>
@@ -92,10 +92,10 @@
             "&lt;Company&gt; achieved the #1 verified bandwidth score on the Research list at ISC25."
         </li>
         <li>
-            &lt;Company&gt; achieved an unverified IO500 bandwidth score that would have achieved 3rd place on the ISC25 Production List.
+            &lt;Company&gt; achieved an unverified IO500&reg; bandwidth score that would have achieved 3rd place on the ISC25 Production List.
         </li>
         <li>
-            We measured the ISC25 edition IO500 benchmarks on product X for testing and achieved an unverified overall score of Y.
+            We measured the ISC25 edition IO500&reg; benchmarks on product X for testing and achieved an unverified overall score of Y.
         </li>
     </ul>
 
@@ -105,13 +105,13 @@
 
     <ul>
         <li>
-            “Running the IO500 on product X, we achieved a score better than rank 1 of the IO500.”
+            “Running the IO500&reg; on product X, we achieved a score better than rank 1 of the IO500&reg;.”
             <ul>
                 <li>
                     This is unacceptable because:
                     <ul>
                         <li>Lacks unverified statement</li>
-                        <li>Does not state which IO500 list (and hence benchmark edition) they are referring to</li>
+                        <li>Does not state which IO500&reg; list (and hence benchmark edition) they are referring to</li>
                         <li>Does not indicate whether they are referring to the overall score, bw score, or metadata score</li>
                         <li>Did not specify changes made to benchmark (if there were any)</li>
                     </ul>
@@ -124,9 +124,9 @@
                 <li>
                     This is unacceptable because:
                     <ul>
-                        <li>‘primary competitors’ is not an IO500 metric</li>
+                        <li>‘primary competitors’ is not an IO500&reg; metric</li>
                         <li>Not listed as verified or unverified</li>
-                        <li>Does not state which IO500 list they are referring to</li>
+                        <li>Does not state which IO500&reg; list they are referring to</li>
                     </ul>
                 </li>
             </ul>
@@ -136,7 +136,7 @@
     <h4>Addressing Violations</h4>
 
     <p>
-        If the IO500 Steering Committee identifies a violation of these guidelines, the following enforcement process will be initiated:
+        If the IO500&reg; Steering Committee identifies a violation of these guidelines, the following enforcement process will be initiated:
     </p>
 
     <ul>
@@ -147,13 +147,13 @@
             <b>Escalated Action:</b> If the party is unresponsive or unwilling to rectify the issue, the Committee may take further action, including but not limited to the following, in order of increasing severity:
             <ul>
                 <li>
-                    <b>Public Notice:</b> Issuing a formal statement on the IO500 website and social media channels.
+                    <b>Public Notice:</b> Issuing a formal statement on the IO500&reg; website and social media channels.
                 </li>
                 <li>
-                    <b>Submission Removal:</b> Removing the relevant entries from the IO500 lists on which they appear.
+                    <b>Submission Removal:</b> Removing the relevant entries from the IO500&reg; lists on which they appear.
                 </li>
                 <li>
-                    <b>Organizational Sanctions:</b> Removing all submissions from the associated organization from the IO500.
+                    <b>Organizational Sanctions:</b> Removing all submissions from the associated organization from the IO500&reg;.
                 </li>
                 <li>
                     <b>Submission Ban:</b> Banning the submitter or organization from making new submissions for a set period (e.g., one year) or indefinitely.
@@ -180,6 +180,6 @@
     <h4>Changes to This Policy</h4>
 
     <p>
-        The IO500 reserves the right to update this policy periodically. If significant changes are made, we will notify the community via a prominent notice on our primary communication channels.
+        The IO500&reg; reserves the right to update this policy periodically. If significant changes are made, we will notify the community via a prominent notice on our primary communication channels.
     </p>
 </div>

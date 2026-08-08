@@ -8,7 +8,7 @@
                     'escape' => false
                 ]
             );
-            ?>
+            ?>&reg;
         </div>
 
         <ul class="links">

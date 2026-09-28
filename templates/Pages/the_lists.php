@@ -55,6 +55,15 @@
     </p>
 
     <p>
+        Storage/cloud vendors that created the storage system CANNOT submit to the Production List.
+        All Production List submissions must be from the institution that are running the
+        <strong>Production Applications</strong>.  If a single organization both develops, sells,
+        and runs the <strong>Production Applications</strong>, then the submission MUST be from
+        a person that executes the <strong>Production Applications</strong> and not an
+        individual from the team, organizational unit, or division that builds and maintains
+        the storage system software.
+    </p>
+    <p>
         A “Production System” is an IO500 submission that:
     </p>
 
@@ -131,9 +140,6 @@
         </li>
         <li>
             To obtain the highest <strong>Reproducibility Score</strong>, any cloud-based submission must list all of the specific cloud vendor’s compute/storage/networking offerings utilized so that anyone from the community could reproduce the IO500 results exactly assuming they could obtain the exact same storage system software.
-        </li>
-        <li>        
-            The Institution in the IO500 submission must be the institution that is running the <strong>Production Applications</strong>, and not a cloud, storage, or any other type of vendor. Vendors may support the submission of an institution or, with their consent, submit on their behalf.
         </li>
     </ol>
 

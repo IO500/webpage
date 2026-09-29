@@ -163,7 +163,7 @@
         </li>
         <li>
             <strong class="link">Fully Reproducible</strong> - The highest level. This represents submissions that provide all the required metadata, a detailed questionnaire, and the system is widely available to anyone without restrictions imposed by the provider.  Software availability is typically via open-souce, a free download, or via a commercial license. Hardware is commercially available or the hardware design has been open-sourced or externally published.
-            To meet this standard, the storage system must be available in multiple countries in two of the following three geographic regions: North America (Mexico, Canada, USA), EU, or Asia (China, India, Japan, etc.). Information (web pages and other public information sources) about the systems must be freely reachable from two of the three aforementioned regions as well.
+            To meet this standard, the storage system must be available in multiple countries in at least two of the following three geographic regions: The Americas, Europe/Middle East/Africa, or Asia/Australia. Information (web pages and other public information sources) about the systems must be freely reachable from two of the three aforementioned regions as well.
         </li>
     </ul>
 

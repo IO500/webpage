@@ -99,10 +99,10 @@
         the storage system software.
     </p>
     <p>
-        The Production List sets a very high bar for inclusion. Submitters
-        introducing a storage system not currently on the Production List,
+        The Production List sets a very high bar for inclusion. It is advisable
+        for submitters introducing a storage system not currently on the Production List,
         targeting an award, or having any questions regarding eligibility
-        should review their submission details with the IO500 Steering
+        to review their submission details with the IO500 Steering
         Committee at least 3 months prior to the release of a new list. Early
         engagement ensures there is sufficient time to verify eligibility and
         prevents submissions from being excluded due to issues that cannot be

@@ -99,14 +99,16 @@
         the storage system software.
     </p>
     <p>
-        The Production List sets a very high bar for inclusion. It is advisable
-        for submitters introducing a storage system not currently on the Production List,
-        targeting an award, or having any questions regarding eligibility
-        to review their submission details with the IO500 Steering
-        Committee at least 3 months prior to the release of a new list. Early
-        engagement ensures there is sufficient time to verify eligibility and
-        prevents submissions from being excluded due to issues that cannot be
-        resolved during the short pre-release review window.
+        The Production List sets a very high bar for inclusion.
+        It is advisable to engage with the committee at least three months
+        in advance with descriptive information (no score required) of your submission to work
+        through any initial eligibility issues for the Production List. 
+        Early engagement ensures the steering committee has sufficient time
+        to engage with submitters on their desired list categorization
+        (i.e., entry on the production list). This is especially
+        encouraged for submitters introducing a storage system not currently
+        on the Production List or believe their their submission score has the
+        potential to win an IO500 award.
     </p>
     <p>
         The IO500 benchmark MUST be executed on the exact file system namespace,

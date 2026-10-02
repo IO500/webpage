@@ -38,24 +38,19 @@
             read freshly written data from a different client node after the
             close operation on the writer has been completed.
         </li>
-        <ol>
-            <li>
-                The stonewall flag must be set to 300 to ensure all
-                create/write run for at least 300 seconds.
-            </li>
-            <ol>
-                <li>
-                    We defined a very high workload for all benchmarks that should satisfy this requirement but you may have to set higher values.
-                </li>
-                <li>
-                    There can be no edits made to the source code including used codes such as <span class="code">IOR</span> beyond changing the allowed variables and adding commands to configure the storage system in <span class="code">io500.sh</span> (e.g. setting striping parameters).
-                </li>
-                <li>An exception to this rule is possible for submitters who
-                    have a legitimate reason by requesting an exception from the
-                    committee via <a href="mailto:committee@io500.org" class="link">committee@io500.org</a>.
-                </li>
-            </ol>
-        </ol>
+        <li>
+            There can be no edits made to the source code including used codes
+            such as <span class="code">IOR</span> beyond changing the allowed
+            variables and adding commands to configure the storage system in
+            <span class="code">io500.sh</span> (e.g. setting striping parameters).
+            An exception to this rule is possible for submitters who
+            have a legitimate reason by contacting the
+            committee via <a href="mailto:committee@io500.org" class="link">committee@io500.org</a>.
+        </li>
+        <li>
+            The stonewall flag must be set to 300 to ensure all
+            create/write phases execute for at least 300 seconds.
+        </li>
         <li>
             The file names for the mdtest and IOR output files may not be pre-created.
         </li>
@@ -70,7 +65,8 @@
             All data must be written to persistent storage within the measured
             time for the individual benchmark, e.g. if a file system caches
             data, it must ensure that data is persistently stored before
-            acknowledging the close.
+            acknowledging the close. Persistent storage is a storage layer
+            that survives a permanent power outage of the entire data center.
         </li>
         <li>
             Data and metadata must be written in its entirety and not reduced based
@@ -85,22 +81,22 @@
             Submitting the results must be done in accordance with the instructions on our submission page. Please verify the correctness of your submission before you submit it.
         </li>
         <li>
-            If a tool other than the included pfind is used for the find phase, then it must follow the same input and output behavior as the included pfind, and the source code must be included in the submission.
-            <ol>
-                It is not required to capture the list of matched files.
-            </ol>
+            If a tool other than the included pfind is used for the find phase,
+            then it must follow the same input and output behavior as the
+            included pfind, and the source code must be included in the submission.
+            It is not required to capture the list of matched files.
         </li>
         <li>
             Please also refer to the <a href="https://github.com/IO500/io500/blob/main/README.md" class="link">README</a> documents in the GitHub repo.
         </li>
         <li>
-            Please read the <a href="https://github.com/IO500/io500/blob/main/CHANGELOG.md" class="link">CHANGELOG.md</a> file for the new changes on the IO500 benchmark
+            Please read the <a href="https://github.com/IO500/io500/blob/main/CHANGELOG.md" class="link">CHANGELOG.md</a> file for the new changes on the IO500 benchmark.
         </li>
         <li>
             Only submissions using at least 10 physical client nodes are
             eligible to win IO500 awards and at least one benchmark process
             must run on each client.
-            <ol>
+            <ul>
                 <li>
                     We accept results on fewer nodes for documentation
                     purposes but they cannot be awarded.
@@ -108,22 +104,22 @@
                 <li>
                     Virtual machines can be used but the above rule must be
                     followed. More than one virtual machine can be run on
-                    each physical node.</li>
+                    each physical node.
                 </li>
                 <li>
-                    For the 10 node challenge, there must be exactly 10 physical client nodes and at least one benchmark process must run on each node.
+                    For the 10 node lists, there must be exactly 10 physical client nodes and at least one benchmark process must run on each node.
                 </li>
                 <li>
                     The only exception to this rule is the find benchmark,
                     which may optionally use fewer nodes/processes.
                 </li>
-            </ol>
+            </ul>
         </li>
         <li>
             Each of the four main phases (IOR easy and hard, mdtest easy and
             hard) has a directory which can be precreated and tuned (e.g.
             using tools such as "<span class="code">lfs setstripe</span>" or
-            "<span class="code">beegfs_ctl</span>"; however, additional
+            "<span class="code">beegfs_ctl</span>"). However, additional
             subdirectories within these directories cannot be precreated.
         </li>
         <li>

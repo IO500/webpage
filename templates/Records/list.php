@@ -1,15 +1,3 @@
-<nav id="breadcrumb">
-    <p>YOU ARE HERE</p>
-
-    <?php
-    $this->Breadcrumbs->add(__('LISTS'), ['controller' => 'submissions', 'action' => 'index']);
-    $this->Breadcrumbs->add(__('CUSTOM LIST'), ['controller' => 'submissions', 'action' => 'customize']);
-    $this->Breadcrumbs->add(h(strtoupper($record->name)), ['controller' => 'records', 'action' => 'list', $record->hash]);
-
-    echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
-    ?>
-</nav>
-
 <div class="submissions index content">
     <h2><?php echo h($record->name); ?></h2>
 

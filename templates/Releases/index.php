@@ -1,15 +1,5 @@
 <?php $this->assign('title', 'Releases'); ?>
 
-<nav id="breadcrumb">
-    <p>YOU ARE HERE</p>
-
-    <?php
-    $this->Breadcrumbs->add(_('RELEASES'), ['controller' => 'releases', 'action' => 'index']);
-
-    echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
-    ?>
-</nav>
-
 <div class="landing landing-lists">
     <h1><?php echo __('IO500 Lists') ?></h1>
 
@@ -52,7 +42,6 @@
         } ?>. Note that these are <strong class="link">unofficial</strong> lists created by the community.
     </p>
 
-    <a href="https://www.freepik.com/free-photos-vectors/business" class="credits">Business vector created by stories - www.freepik.com</a>
 </div>
 
 <div class="submissions index content">

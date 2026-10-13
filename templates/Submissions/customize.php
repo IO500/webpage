@@ -1,14 +1,3 @@
-<nav id="breadcrumb">
-    <p>YOU ARE HERE</p>
-
-    <?php
-    $this->Breadcrumbs->add(__('LISTS'), ['controller' => 'submissions', 'action' => 'index']);
-    $this->Breadcrumbs->add(__('CUSTOM LIST'), ['controller' => 'submissions', 'action' => 'customize']);
-
-    echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
-    ?>
-</nav>
-
 <div class="submissions index content">
     <h2>Your Customized List</h2>
 
@@ -250,7 +239,7 @@
                     <?php
                     if ($equation && $valid) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->equation, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number tb-metric tb-score"><?php echo $this->Number->format($submission->submission->equation, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                     }
 
@@ -268,7 +257,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'io500_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number tb-metric<?php echo $field === 'io500_score' ? ' tb-score' : '' ?>"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -278,7 +267,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'mdtest_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number tb-metric<?php echo $field === 'io500_score' ? ' tb-score' : '' ?>"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -288,7 +277,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'ior_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number tb-metric<?php echo $field === 'io500_score' ? ' tb-score' : '' ?>"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }
@@ -298,7 +287,7 @@
                         foreach ($display['custom-fields'] as $field) {
                             if (strpos($field, 'find_') === 0) {
                     ?>
-                    <td class="tb-number"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
+                    <td class="tb-number tb-metric<?php echo $field === 'io500_score' ? ' tb-score' : '' ?>"><?php echo $this->Number->format($submission->submission->{$field}, ['places' => 2, 'precision' => 2]) ?></td>
                     <?php
                             }
                         }

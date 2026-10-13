@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Cake\Core\Configure;
+use App\Model\Table\SubmissionsTable;
 use Cake\Datasource\ConnectionManager;
-use Cake\Filesystem\File;
+use Cake\Http\Exception\NotFoundException;
+use Cake\Http\Response;
+use Exception;
 use NXP\Exception\IncorrectBracketsException;
 use NXP\Exception\IncorrectExpressionException;
 use NXP\Exception\UnknownOperatorException;
@@ -39,48 +41,111 @@ class SubmissionsController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view(?string $id = null)
     {
-        $submission = $this->Submissions->get($id, [
-            'contain' => [
-                'Releases',
-            ],
-        ]);
+        $submission = $this->Submissions->get($this->idFromUrl($id), contain: ['Releases']);
 
-        // We need to fetch the scores
-        $score = $this->Submissions->ListingsSubmissions->find('all')
-            ->contain([
-                'Listings' => [
-                    'Releases',
-                ],
-            ])
-            ->where([
-                'ListingsSubmissions.submission_id' => $submission->id,
-                'Releases.release_date <=' => date('Y-m-d'),
-            ])
-            ->order([
-                'ListingsSubmissions.score' => 'DESC',
-                'Listings.type_id' => 'DESC',
-                'Releases.release_date' => 'DESC',
-            ])
-            ->first();
+        // The submission's best released list: gates unreleased submissions and gives
+        // the score shown, as stored on the list (D2 in tasks/todo-submission-view.md).
+        $best = $this->Submissions->bestListing($submission);
 
-        if (empty($score)) {
+        if (!$best) {
             $this->Flash->error(__('This submission is not yet available.'));
 
             return $this->redirect('/');
         }
 
-        $submission->io500_score = $score->score;
+        $submission->io500_score = $best->score;
 
         $questionnaire = $this->Submissions->Questionnaires->find('all')
+            ->contain(['ReproducibilityScores'])
             ->where([
                 'Questionnaires.submission_id' => $submission->id,
             ])
             ->first();
 
-        $this->set('submission', $submission);
-        $this->set('questionnaire', $questionnaire);
+        // Ranked lists this submission is on, and the one to compare against first:
+        // ?list=<listing id> when it is one of them, otherwise the latest release's
+        // Production list, otherwise the latest release's best-ranked list.
+        $memberships = $this->Submissions->listMemberships((int)$submission->id);
+        $selected = $this->defaultMembership($memberships, (int)$this->request->getQuery('list'));
+        $comparison = $selected ? [
+            'listing_id' => $selected['listing_id'],
+            'entries' => $this->Submissions->comparisonData($selected['listing_id']),
+            'history' => $this->Submissions->positionHistory((int)$submission->id, $selected['type_id'], $memberships),
+        ] : null;
+
+        $this->set(compact(
+            'submission',
+            'questionnaire',
+            'memberships',
+            'selected',
+            'comparison',
+        ));
+    }
+
+    /**
+     * Comparison data for one ranked list the submission is on, loaded by the summary
+     * page when another list is selected. 404 for any other listing (unreleased,
+     * unranked, or not containing this submission).
+     *
+     * @param string|null $id Submission id.
+     * @param string|null $listingId Listing id.
+     * @return \Cake\Http\Response
+     * @throws \Cake\Http\Exception\NotFoundException
+     */
+    public function compare(?string $id = null, ?string $listingId = null): Response
+    {
+        $id = $this->idFromUrl($id);
+        $listingId = $this->idFromUrl($listingId);
+        $memberships = $this->Submissions->listMemberships($id);
+        $selected = current(array_filter(
+            $memberships,
+            fn(array $m) => $m['listing_id'] === $listingId,
+        ));
+        if (!$selected) {
+            throw new NotFoundException();
+        }
+
+        $payload = [
+            'listing_id' => $selected['listing_id'],
+            'entries' => $this->Submissions->comparisonData($selected['listing_id']),
+            'history' => $this->Submissions->positionHistory($id, $selected['type_id'], $memberships),
+        ];
+        $this->autoRender = false;
+
+        return $this->response
+            ->withType('application/json')
+            ->withHeader('Cache-Control', 'public, max-age=600')
+            ->withStringBody((string)json_encode($payload));
+    }
+
+    /**
+     * Pick the list to compare against first.
+     *
+     * @param array $memberships Output of SubmissionsTable::listMemberships() (newest first).
+     * @param int $requested Listing id from ?list=, or 0.
+     * @return array|null
+     */
+    private function defaultMembership(array $memberships, int $requested): ?array
+    {
+        if (!$memberships) {
+            return null;
+        }
+        foreach ($memberships as $m) {
+            if ($m['listing_id'] === $requested) {
+                return $m;
+            }
+        }
+        $latest = array_filter($memberships, fn(array $m) => $m['release'] === $memberships[0]['release']);
+        foreach ($latest as $m) {
+            if ($m['type_url'] === 'production') {
+                return $m;
+            }
+        }
+        usort($latest, fn(array $a, array $b) => $a['rank'] / $a['total'] <=> $b['rank'] / $b['total']);
+
+        return $latest[0];
     }
 
     /**
@@ -90,22 +155,25 @@ class SubmissionsController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function configuration($id = null)
+    public function configuration(?string $id = null)
     {
-        $submission = $this->Submissions->get($id, [
-            'contain' => [
-                'Releases',
-            ],
-        ]);
+        $submission = $this->Submissions->get($this->idFromUrl($id), contain: ['Releases']);
+
+        // Same gate as view(): only submissions on a released list are shown.
+        if (!$this->Submissions->bestListing($submission)) {
+            $this->Flash->error(__('This submission is not yet available.'));
+
+            return $this->redirect('/');
+        }
 
         $questionnaire = $this->Submissions->Questionnaires->find('all')
+            ->contain(['ReproducibilityScores'])
             ->where([
                 'Questionnaires.submission_id' => $submission->id,
             ])
             ->first();
 
-        $this->set('submission', $submission);
-        $this->set('questionnaire', $questionnaire);
+        $this->set(compact('submission', 'questionnaire'));
     }
 
     /**
@@ -150,11 +218,11 @@ class SubmissionsController extends AppController
      * Allows to create custom lists based on the last historical list available
      * We need to use the last historical list as the score it no longer stored in the submission
      *
-     * @param null $bof Release acronym.
-     * @param null $url Type url.
+     * @param string|null $bof Release acronym.
+     * @param string|null $url Type url.
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function customize($bof = null, $url = null)
+    public function customize(?string $bof = null, ?string $url = null)
     {
         $limit = 1000;
 
@@ -170,24 +238,12 @@ class SubmissionsController extends AppController
         $columns = $tableSchema->columns();
 
         // Remove private fields to prevent them from being exposed, selected, or used in equations
-        $columns = array_values(array_diff($columns, \App\Model\Table\SubmissionsTable::PRIVATE_FIELDS));
+        $columns = array_values(array_diff($columns, SubmissionsTable::PRIVATE_FIELDS));
 
         // This column can be used to compute custom metrics, but it will take the initial value from the last historical list
         array_splice($columns, 8, 0, ['io500_score']);
 
         $display = [];
-
-        $release = $this->Submissions->Releases->find('all')
-            ->contain([
-                'Listings' => [
-                    'Types',
-                ],
-            ])
-            ->where([
-                'Releases.release_date <=' => date('Y-m-d'),
-                'Releases.acronym' => strtoupper($bof),
-            ])
-            ->first();
 
         $listing = $this->Submissions->ListingsSubmissions->Listings->find('all')
             ->contain([
@@ -210,7 +266,7 @@ class SubmissionsController extends AppController
             ->where([
                 'ListingsSubmissions.listing_id' => $listing->id,
             ])
-            ->order([
+            ->orderBy([
                 'ListingsSubmissions.score' => 'DESC',
             ])
             ->limit($limit);
@@ -219,8 +275,8 @@ class SubmissionsController extends AppController
         $equation = false;
         $valid = true;
 
-        $displayPrefixes = \App\Model\Table\SubmissionsTable::DISPLAY_PREFIXES;
-        $extraDisplayFields = \App\Model\Table\SubmissionsTable::EXTRA_DISPLAY_FIELDS;
+        $displayPrefixes = SubmissionsTable::DISPLAY_PREFIXES;
+        $extraDisplayFields = SubmissionsTable::EXTRA_DISPLAY_FIELDS;
 
         foreach ($submissions as $submission) {
             // We will use the latest valid score to display
@@ -233,7 +289,7 @@ class SubmissionsController extends AppController
 
             // Restrict selected fields to known display prefixes/fields and exclude private fields
             $selected_to_display['custom-fields'] = array_values(array_filter(
-                array_diff($selected_to_display['custom-fields'], \App\Model\Table\SubmissionsTable::PRIVATE_FIELDS),
+                array_diff($selected_to_display['custom-fields'], SubmissionsTable::PRIVATE_FIELDS),
                 function ($field) use ($displayPrefixes, $extraDisplayFields) {
                     // Allow wildcard group options (e.g. "information_*")
                     if (str_ends_with($field, '*')) {
@@ -248,7 +304,7 @@ class SubmissionsController extends AppController
                     }
 
                     return in_array($field, $extraDisplayFields, true);
-                }
+                },
             ));
 
             foreach ($selected_to_display['custom-fields'] as $option) {
@@ -273,8 +329,9 @@ class SubmissionsController extends AppController
                 foreach ($submissions as $submission) {
                     // We need to set all the variables available for calculation
                     foreach ($columns as $key => $column) {
-                        if (is_numeric($submission->submission->{$column}) || is_string($submission->submission->{$column})) {
-                            $executor->setVar($column, $submission->submission->{$column});
+                        $value = $submission->submission->{$column};
+                        if (is_numeric($value) || is_string($value)) {
+                            $executor->setVar($column, $value);
                         }
                     }
 
@@ -283,31 +340,48 @@ class SubmissionsController extends AppController
                     } catch (IncorrectExpressionException $e) {
                         $valid = false;
 
-                        $this->Flash->error(__('Sorry, but the expression is invalid! Please, make sure that your are using the correct syntax.'));
+                        $this->Flash->error(__(
+                            'Sorry, but the expression is invalid! '
+                            . 'Please, make sure that your are using the correct syntax.',
+                        ));
 
                         break;
                     } catch (IncorrectBracketsException $e) {
                         $valid = false;
 
-                        $this->Flash->error(__('Sorry, but there are incorrect brackets! Please, make sure that your are using the correct syntax.'));
+                        $this->Flash->error(__(
+                            'Sorry, but there are incorrect brackets! '
+                            . 'Please, make sure that your are using the correct syntax.',
+                        ));
 
                         break;
                     } catch (UnknownOperatorException $e) {
                         $valid = false;
 
-                        $this->Flash->error(__('Sorry, but the operator "{0}" is unknown! Please, make sure that your are using the correct syntax.', $e->getMessage()));
+                        $this->Flash->error(__(
+                            'Sorry, but the operator "{0}" is unknown! '
+                            . 'Please, make sure that your are using the correct syntax.',
+                            $e->getMessage(),
+                        ));
 
                         break;
                     } catch (UnknownVariableException $e) {
                         $valid = false;
 
-                        $this->Flash->error(__('Sorry, but the variable "{0}" is unknown! Please, make sure that your are using the variable names.', $e->getMessage()));
+                        $this->Flash->error(__(
+                            'Sorry, but the variable "{0}" is unknown! '
+                            . 'Please, make sure that your are using the variable names.',
+                            $e->getMessage(),
+                        ));
 
                         break;
-                    } catch (\Exception $e) {
+                    } catch (Exception $e) {
                         $valid = false;
 
-                        $this->Flash->error(__('Sorry, but there was an error when creating the custom list! Please, make sure you are using the correct variables and syntax.'));
+                        $this->Flash->error(__(
+                            'Sorry, but there was an error when creating the custom list! '
+                            . 'Please, make sure you are using the correct variables and syntax.',
+                        ));
 
                         break;
                     }
@@ -368,7 +442,9 @@ class SubmissionsController extends AppController
 
         if (isset($selected_to_display) && $selected_to_display['custom-remove']) {
             foreach ($submissions as $id => $submission) {
-                $key = md5($submission['submission']['information_system'] . $submission['submission']['information_institution'] . $submission['submission']['information_filesystem_type']);
+                $key = md5($submission['submission']['information_system']
+                    . $submission['submission']['information_institution']
+                    . $submission['submission']['information_filesystem_type']);
 
                 if (in_array($key, $unique)) {
                     unset($submissions[$id]);

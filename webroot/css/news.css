@@ -1,0 +1,51 @@
+/* News page (templates/Pages/news.php, templates/cell/NewsTimeline/display.php) */
+.nw{--ink:#16181d;--mute:#6b7079;--line:#e6e7ea;font-variant-numeric:tabular-nums}
+.nw-tabs .nw-count{font-weight:400;color:var(--mute);margin-left:6px;font-size:13px}
+.nw-mute{color:var(--mute);font-weight:400}
+
+/* Announcements */
+.nw h3.nw-year{font-size:18px;font-weight:600;color:var(--ink);margin:30px 0 4px;border:0;padding:0}
+.nw-items{border-top:1px solid var(--ink)}
+.nw-item{display:grid;grid-template-columns:72px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.55;color:var(--ink)}
+.nw-item time{color:var(--mute);font-size:13px;padding-top:2px}
+.nw-text ul{margin:4px 0 0;padding-left:18px;color:#3a3d44}
+.nw-item a{color:#c8102e}
+.nw-head{margin:0 0 6px;font-weight:600}
+.nw-win{width:100%;max-width:760px;border-collapse:collapse;font-size:14px}
+.nw-win th{font-size:12px;font-weight:700;text-transform:uppercase;color:#5a5a5a;text-align:left;padding:0 10px 5px 0;border-bottom:1px solid var(--line)}
+.nw-win td{padding:6px 10px 6px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.nw-win td.k{width:170px}
+.nw-win td.k a{color:var(--mute)}
+.nw-win a.nw-system{color:var(--ink);font-weight:600}
+.nw-win .n{text-align:right}
+.nw-win td.n{color:#c8102e;font-weight:600}
+.nw-new{display:inline-block;font-size:11px;font-weight:600;color:#c8102e;border:1px solid #c8102e;border-radius:3px;padding:0 5px;margin-left:4px;vertical-align:1px}
+
+/* Press, talks, discussion */
+.nw-links{width:100%;border-collapse:collapse;font-size:14px}
+.nw-links td{padding:9px 10px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.nw-links td.d{width:90px;color:var(--mute);font-size:13px;white-space:nowrap}
+.nw-links td.src{width:170px;color:var(--mute);font-size:13px;text-align:right}
+.nw-links a{color:var(--ink)}
+.nw-links a:hover{color:#c8102e}
+.nw h3.nw-sub{font-size:16px;font-weight:600;color:var(--ink);margin:30px 0 6px;border:0;padding:0}
+.nw-section > h3.nw-sub:first-child{margin-top:8px}
+
+/* Publications */
+.nw-pub{padding:16px 0;border-bottom:1px solid var(--line)}
+.nw-pub p{margin:0}
+.nw-pub-title{font-size:15.5px;font-weight:600;color:var(--ink)}
+.nw-pub-title a{color:var(--ink)}
+.nw-pub-title a:hover{color:#c8102e}
+.nw-pub-authors{color:#3a3d44;font-size:14px;margin-top:3px!important}
+.nw-pub-venue{color:var(--mute);font-size:13px;margin-top:2px!important}
+.nw-pub-venue a{color:#c8102e}
+.nw-pub details{margin-top:8px}
+.nw-pub summary{cursor:pointer;font-size:13px;color:var(--mute)}
+.nw-pub pre.bib{font-size:12px;background:#f6f6f7;border-radius:4px;padding:10px 12px;overflow-x:auto;white-space:pre-wrap;margin:8px 0 0}
+
+@media (max-width:760px){
+    .nw-item{grid-template-columns:1fr;gap:2px}
+    .nw-links td.src{display:none}
+    .nw-win td.k{width:auto}
+}

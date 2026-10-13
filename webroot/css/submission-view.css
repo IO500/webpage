@@ -1,0 +1,121 @@
+/* Submission summary page (templates/Submissions/view.php) */
+.sp{--ink:#16181d;--mute:#6b7079;--line:#e6e7ea;--red:#c8102e;--hover:#f6f6f7;font-variant-numeric:tabular-nums}
+.sp h2{font-size:18px;font-weight:600;color:var(--ink);margin:40px 0 12px;border:0;padding:0;letter-spacing:-.01em}
+.sp h3{font-size:13px;font-weight:600;color:var(--ink);margin:0 0 6px;border:0;padding:0}
+.sp .sp-ctx{font-weight:400;color:var(--mute);font-size:15px;margin-left:6px}
+.sp .sp-ctx:not(:empty)::before{content:"· "}
+
+/* Scores */
+.sp-scores{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:6px;margin:26px 0 0}
+.sp-scores>div{padding:18px 22px}
+.sp-scores>div+div{border-left:1px solid var(--line)}
+.sp-scores .v{font-size:30px;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
+.sp-scores .v small{font-size:14px;font-weight:400;color:var(--mute);margin-left:5px}
+.sp-scores .main .v{color:var(--red)}
+.sp-scores .k{font-size:13px;color:var(--mute);margin-top:2px}
+
+/* Tables: shared header style with the list page (uppercase, bold, grey) */
+.sp table{width:100%;border-collapse:collapse;font-size:14px}
+.sp th{text-align:left;font-size:12px;font-weight:700;text-transform:uppercase;color:#5a5a5a;padding:0 10px 7px;border-bottom:1px solid var(--ink);height:26px;vertical-align:bottom}
+.sp th.n,.sp td.n{text-align:right}
+.sp td{padding:7px 10px;border-bottom:1px solid var(--line);color:var(--ink)}
+
+/* System sheet + ranking history, row heights aligned */
+.sp-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin:30px 0 8px;align-items:start}
+.sp-spec th,.sp-spec td{padding-left:0;padding-right:0}
+.sp-spec td,.sp-lists td,.sp-lists th.rel{height:34px;box-sizing:border-box;padding-top:0;padding-bottom:0;vertical-align:middle}
+.sp-spec td.k{color:var(--mute)}
+.sp-scrollx{overflow-x:auto}
+.sp-lists th.rel{font-weight:400;text-transform:none;color:var(--mute);font-size:14px;border-bottom:1px solid var(--line)}
+.sp-lists td{padding:0}
+.sp-lists td.none{padding:0 10px;color:#ccc}
+.sp button.cell{all:unset;box-sizing:border-box;display:block;width:100%;height:33px;line-height:33px;text-align:right;padding:0 10px;cursor:pointer;font-size:14px;color:var(--ink);border-bottom:2px solid transparent}
+.sp button.cell b{font-weight:500}
+.sp button.cell span{color:var(--mute);font-size:12px}
+.sp button.cell:hover{background:var(--hover)}
+.sp button.cell:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+.sp button.cell.on{background:#fdf3f2;border-bottom-color:var(--red)}
+.sp button.cell.on b{color:var(--red);font-weight:600}
+.sp-more{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:8px 0 0;font-size:13px}
+.sp-more #sp-older{all:unset;cursor:pointer;color:var(--mute)}
+.sp-more #sp-older:hover{color:var(--ink);text-decoration:underline}
+.sp-more #sp-older:focus-visible{outline:2px solid var(--red)}
+.sp-more a{color:var(--red);margin-left:auto}
+
+/* Results by phase */
+.sp-h2row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin:40px 0 12px}
+.sp-h2row h2{margin:0}
+.sp-key{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--mute)}
+.sp-key svg{margin-left:10px}
+.sp-res th.cmp{text-transform:none}
+.sp-res tr.g td{background:#f4f5f6;font-weight:600;padding:7px 10px}
+.sp-res tr.g em{font-style:normal;font-weight:400;color:var(--mute);margin-left:10px;font-size:13px}
+.sp-res td.ph{width:120px;text-transform:uppercase;font-size:12.5px;letter-spacing:.04em;font-weight:500;color:#2a2d33}
+.sp-res td.n{width:100px}
+.sp-res td.u,.sp-res th.u{width:60px;color:var(--mute);font-size:13px}
+.sp-res th.u{color:#5a5a5a;font-size:12px}
+.sp-res td.s{min-width:300px;padding-top:3px;padding-bottom:1px}
+.sp-res td.s svg{display:block;cursor:crosshair}
+.sp-res td.rk{width:90px;text-align:right;font-size:13px}
+.sp-res td.rk span{color:var(--mute)}
+
+/* Charts */
+.sp-chart{border:1px solid var(--line);border-radius:6px;padding:10px 12px 4px}
+.sp-chart svg{width:100%;height:auto;display:block}
+.sp-chart .tk{font:11px Inter,sans-serif;fill:#8a9099}
+.sp-chart .at{font:12px Inter,sans-serif;fill:#555}
+.sp-chart .il{font:10px Inter,sans-serif;fill:#aaa}
+.sp-chart .rel{font:12px Inter,sans-serif;fill:#555}
+.sp-chart .rel.sel{fill:var(--red);font-weight:600}
+.sp-chart .ln{fill:none;stroke:#aeb3ba;stroke-width:2.5;stroke-opacity:.55;transition:stroke .1s,stroke-opacity .1s}
+.sp-chart g.o:hover .ln{stroke:var(--ink);stroke-opacity:.9}
+.sp-chart g.o:hover circle{fill:var(--ink)}
+.sp-chart .lbl{font:12px Inter,sans-serif;fill:var(--mute)}
+.sp-chart .me{font:600 12px Inter,sans-serif;fill:var(--red)}
+
+#sp-tip{position:fixed;pointer-events:none;background:#16181d;color:#fff;font:12px/1.4 Inter,sans-serif;padding:6px 9px;border-radius:4px;opacity:0;transition:opacity .08s;z-index:50;max-width:320px;font-variant-numeric:tabular-nums}
+#sp-tip b{font-weight:600}
+#sp-tip span{color:#b9bcc2}
+
+/* Reproducibility tab (templates/Questionnaires/view.php) */
+.sp-level{display:flex;gap:16px;align-items:flex-start;border:1px solid var(--line);border-radius:6px;padding:16px 20px;margin:26px 0 8px}
+.sp-level .badge{width:28px;height:28px;background-size:28px;flex:none;margin:2px 0 0}
+.sp-level b{font-size:16px;color:var(--ink)}
+.sp-level p{margin:4px 0 0;font-size:14px;line-height:1.55}
+.sp-level p a{color:#c8102e}
+.sp-answer h2{margin:34px 0 4px;scroll-margin-top:12px}
+.sp-answer details{margin:0 0 10px}
+.sp-answer summary{cursor:pointer;font-size:13px;color:var(--mute);list-style:none}
+.sp-answer summary::-webkit-details-marker{display:none}
+.sp-answer summary::before{content:"\25B8  "}
+.sp-answer details[open] summary::before{content:"\25BE  "}
+.sp-question{font-size:13px;color:var(--mute);border-left:2px solid var(--line);padding:2px 0 2px 12px;margin:6px 0 0;line-height:1.55}
+.sp-question p{margin:0 0 6px}
+.sp-answer-body{font-size:14.5px;line-height:1.6;color:var(--ink);border-top:1px solid var(--ink);padding-top:10px;overflow-wrap:anywhere}
+.sp-answer-body p{margin:0 0 10px}
+.sp-answer-body a{color:var(--red)}
+.sp-answer-body pre,.sp-answer-body code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:#f6f6f7;border-radius:4px}
+.sp-answer-body pre{padding:10px 12px;overflow-x:auto;white-space:pre;margin:0 0 10px}
+.sp-answer-body code{padding:1px 4px}
+.sp-answer-body pre code{padding:0}
+.sp-answer-body .sp-none{color:var(--mute)}
+
+/* Configuration tab (templates/Submissions/configuration.php): the DCL widget keeps its own
+   style, inside the panel the tab used before. */
+.sp-config #dcl_wrap{position:relative;background:#fff;border:1px solid #dadada;border-radius:10px;padding:26px 20px 18px}
+/* The widget prints Font Awesome's chevron (U+F078); draw it with Bootstrap Icons */
+.sp-config #dcl_wrap a.rollup.fa{font-size:0;text-decoration:none}
+.sp-config #dcl_wrap a.rollup.fa::before{font-family:"bootstrap-icons";content:"\f282";font-size:14px}
+
+@media (max-width:760px){
+    .sp-scores{grid-template-columns:1fr}
+    .sp-scores>div+div{border-left:0;border-top:1px solid var(--line)}
+    .sp-cols{grid-template-columns:1fr;gap:28px}
+    .sp-res thead{display:none}
+    .sp-res tr:not(.g){display:grid;grid-template-columns:1fr auto auto;align-items:baseline;border-bottom:1px solid var(--line)}
+    .sp-res tr:not(.g) td{border:0}
+    .sp-res td.u{display:none}
+    .sp-res td.s{order:5;grid-column:1/-1;min-width:0;padding-top:0}
+    .sp-res td.ph,.sp-res td.n,.sp-res td.rk{width:auto}
+    .subview h1.sv-title{font-size:24px}
+}

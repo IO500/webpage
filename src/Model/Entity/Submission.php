@@ -89,11 +89,11 @@ class Submission extends Entity
      *
      * @var array
      */
-    protected $_hidden = [
+    protected array $_hidden = [
         'information_submitter',
     ];
 
-    protected $_accessible = [
+    protected array $_accessible = [
         'id' => true,
         'release_id' => true,
         'information_system' => true,

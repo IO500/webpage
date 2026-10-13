@@ -1,13 +1,20 @@
+/* Short pages: the footer still sits at the bottom of the window */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body > .main {
+    flex: 1 0 auto;
+}
+
 html {
     color: #222;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
     overflow-x: auto;
     overflow-y: scroll;
-}
-
-body {
-
 }
 
 a {
@@ -15,30 +22,101 @@ a {
     text-decoration: none;
 }
 
+/* Footer (templates/element/footer.php) */
 footer {
-    background: rgb(247,247,247);
-    background: linear-gradient(180deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 75%);
-    border-top: #dadbd8 solid 1px;
-    color: #aaa;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 50px 0;
-    margin: 50px 0 0 0;    
-}
-
-footer strong {
+    background: #f7f7f8;
+    border-top: 1px solid #e6e7ea;
+    color: #6b7079;
     font-size: 14px;
-}
-
-footer em {
-    color: #d63b1e;
-    display: inline-block;
-    font-style: normal;
-    padding: 5px 0 10px;
+    line-height: 1.6;
+    margin: 56px 0 0;
+    padding: 36px 0 28px;
 }
 
 footer a {
-    color: #aaa;
+    color: #6b7079;
+}
+
+footer a:hover {
+    color: #d63b1e;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: start;
+}
+
+.footer-org strong {
+    display: block;
+    color: #16181d;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.footer-org a,
+.footer-legal a {
+    text-decoration: underline;
+    text-decoration-color: #c4c7cc;
+    text-underline-offset: 3px;
+}
+
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+}
+
+.footer-nav,
+.footer-social {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-nav {
+    gap: 4px 18px;
+    font-weight: 500;
+}
+
+.footer-nav a {
+    color: #3a3d44;
+}
+
+.footer-social {
+    gap: 6px 20px;
+}
+
+.footer-social a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.footer-social i {
+    font-size: 16px;
+}
+
+.footer-legal {
+    border-top: 1px solid #e6e7ea;
+    margin-top: 24px;
+    padding-top: 14px;
+    font-size: 12.5px;
+}
+
+@media (max-width: 760px) {
+    .footer-top {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-right {
+        align-items: flex-start;
+    }
 }
 
 .both {
@@ -63,6 +141,7 @@ footer a {
 
     nav div.container {
         display: flex;
+        align-items: center;
     }
 
     nav div.logo {
@@ -77,52 +156,58 @@ footer a {
 
     div.landing {
         display: table-cell;
-        padding: 100px 650px 100px 0;
+        padding: 64px 0 64px 430px;
         vertical-align: middle;
     }
 
-    div.landing-lists, div.landing-bofs, div.landing-graphs, div.landing-running, div.landing-contact {
-        background-position: center right;
+    div.landing-lists, div.landing-bofs, div.landing-graphs, div.landing-running, div.landing-contact, div.landing-news, div.landing-rules {
+        background-position: center left;
         margin: 0;
-        text-align: left;   
+        text-align: left;
     }
 
     div.submissions-action {
         width: 70%;
     }
-
-    a.button, a.button-navigation, a.button-navigation-active {
-        max-width: 100px;
-    }
 }
 
 @media (min-width: 550px) {
+    /* Area-matched so every banner illustration reads at the same visual size. */
     div.landing-lists {
-        background-size: 600px;
+        background-size: 358px;
     }
 
     div.landing-bofs {
-        background-size: 550px;
+        background-size: 384px;
     }
 
     div.landing-graphs {
-        background-size: 600px;
+        background-size: 378px;
     }
 
     div.landing-running {
-        background-size: 500px;
+        background-size: 312px;
     }
 
-    div.landing-contact{
-        background-size: 500px;
+    div.landing-contact {
+        background-size: 385px;
+    }
+
+    div.landing-news {
+        background-size: 346px;
+    }
+
+    div.landing-rules {
+        background-size: 380px;
     }
 }
 
 .logo a {
-    background: url('../img/logo.png');
+    background: url('../img/logo.png') no-repeat left center;
+    background-size: contain;
     display: inline-block;
-    height: 75px;
-    width: 178px;
+    height: 42px;
+    width: 180px;
 }
 
 .content {
@@ -135,7 +220,7 @@ footer a {
     color: #cc1717;    
 }
 
-.landing {    
+.landing {
     background-position: center top;
     background-repeat: no-repeat;
     height: 350px;
@@ -143,9 +228,13 @@ footer a {
     margin: 50px 0 0 0;
     text-align: center;
     position: relative;
-    background-position: center top;
-    background-repeat: no-repeat;
-    text-align: center;
+}
+
+/* Phones: keep the illustration in the space above the text (the wider layout sets its own sizes) */
+@media (max-width: 549px) {
+    div.landing {
+        background-size: auto 340px;
+    }
 }
 
 .landing ul {
@@ -180,12 +269,22 @@ footer a {
 }
 
 .landing-bofs {
-    background-image: url('../img/meeting.svg');
+    background-image: url('../img/example.svg');
     background-size: contain;
 }
 
 .landing-contact {
     background-image: url('../img/contact.svg');
+    background-size: contain;
+}
+
+.landing-news {
+    background-image: url('../img/news.svg');
+    background-size: contain;
+}
+
+.landing-rules {
+    background-image: url('../img/rules.svg');
     background-size: contain;
 }
 
@@ -199,36 +298,97 @@ footer a {
     line-height: 33px;
 }
 
-.button, .button-navigation, .button-navigation-active {
-    border-radius: 3px;
+.button, .button-navigation, .button-navigation-active, .button-highlight {
+    align-items: center;
+    border-radius: 6px;
     box-sizing: border-box;
-    font-weight: bold;
-    padding: 5px 10px;
+    cursor: pointer;
+    display: inline-flex;
+    gap: 8px;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    padding: 8px 16px;
     text-align: center;
-    transition: 0.5s;
-    width: 100px;
-    flex-grow: 1;
-    gap: 10px;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
 }
 
+.button:focus-visible,
+.button-navigation:focus-visible,
+.button-navigation-active:focus-visible,
+.button-highlight:focus-visible,
+input[type=submit]:focus-visible {
+    outline: 2px solid #d63b1e;
+    outline-offset: 2px;
+}
+
+/* Modern micro-interaction: subtle lift on hover, press on active */
+.button:hover, .button-navigation:hover, .button-navigation-active:hover,
+.button-highlight:hover, input[type=submit]:hover {
+    transform: translateY(-1px);
+}
+
+.button:active, .button-navigation:active, .button-navigation-active:active,
+.button-highlight:active, input[type=submit]:active {
+    transform: translateY(0);
+}
+
+.button[disabled], .button-navigation[disabled], .button-navigation-active[disabled],
+.button-highlight[disabled], input[type=submit]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Secondary action: red outline that fills on hover */
 .button {
+    background: transparent;
     border: #d63b1e solid 1px;
     color: #d63b1e;
 }
 
+.button:hover {
+    background: #d63b1e;
+    color: #fff;
+}
+
+/* Tertiary action: neutral outline, red on hover */
 .button-navigation {
-    border: #bbbbbb solid 1px;
-    color: #7b7d82;
+    background: #fff;
+    border: #d0d0d0 solid 1px;
+    color: #5a5a5a;
 }
 
-.button-navigation:hover{
-    border-color: #cc1717;
-    color: #cc1717;
+.button-navigation:hover {
+    border-color: #d63b1e;
+    color: #d63b1e;
 }
 
+/* Current/selected navigation */
 .button-navigation-active {
-    border: #222222 solid 1px;
-    color: #222222;
+    background: #222;
+    border: #222 solid 1px;
+    color: #fff;
+}
+
+/* Tidy row of equal-width buttons (e.g. landing-page navigation) */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    margin: 30px 0;
+    padding: 0;
+}
+
+ul.button-group li {
+    padding: 0;
+}
+
+.button-group .button {
+    min-width: 140px;
 }
 
 nav {
@@ -357,6 +517,11 @@ nav .links > li > a {
     justify-content: center;
 }
 
+/* Error pages: message, then the illustration */
+.error-page{text-align:center;margin:20px 0 0}
+.error-page h1{font-size:28px;margin:0 0 8px}
+.error-page p{color:#6b7079;margin:0 0 16px}
+
 #error-404 {
     background-image: url('../img/404.svg');
     background-size: 600px;
@@ -386,7 +551,7 @@ table {
 }
 
 .tb th {
-    color: #7b7d82;
+    color: #5a5a5a;
     font-weight: 700;
     font-size: 12px;
     padding: 5px;
@@ -409,16 +574,12 @@ table {
 }
 
 .tb th a {
-    color: #7b7d82;
+    color: #5a5a5a;
     display: inline-block;
 }
 
-.tb tr {
-    
-}
-
 .tb tbody tr:hover {
-    background: #efefef;
+    background: #f6f6f7;
 }
 
 .tb td {
@@ -451,14 +612,18 @@ table {
     height: 23px;
     line-height: 22px;
     transition: 0.2s;
-    width: 23px;
+    /* Round for 1-2 digits, a pill for 3-digit ranks */
+    box-sizing: border-box;
+    min-width: 23px;
+    padding: 0 5px;
 }
 
+/* Red circle per rank (white on #d63b1e: 4.66:1); the podium uses medal colours below */
 .rank {
     background: #d63b1e;
 }
 
-.rank:hover, .custom-rank:hover{
+.rank:hover, .custom-rank:hover {
     background: #444;
     color: #fff;
 }
@@ -467,16 +632,117 @@ table {
     background: #222;
 }
 
-input[type=submit], .button-highlight {
-    background: #d63b1e;
-    border-radius: 3px;
-    border: #d63b1e solid 1px;
-    color: #fff;
-    font-weight: bold;
-    padding: 5px 10px;
+/* IO500 measurements: body font, aligned digits */
+.tb td.tb-metric {
+    color: #16181d;
+    font-size: 14px;
 }
 
-.button-highlight:hover {
+/* Score is the headline figure of that readout */
+.tb td.tb-score {
+    color: #d63b1e;
+    font-weight: 700;
+}
+
+/* Align digits across rows in numeric columns */
+.tb .tb-number {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Comfortable but compact rows */
+.tb tbody td {
+    padding: 9px 6px;
+}
+
+/* Keep the rank anchored when scrolling the table horizontally */
+.tb th.tb-id,
+.tb td.tb-id {
+    position: sticky;
+    left: 0;
+    background: #fff;
+    z-index: 1;
+}
+
+.tb tbody tr:hover td.tb-id {
+    background: #f6f6f7;
+}
+
+/* Podium colors for the top three ranks */
+.rank-1 {
+    background: #e6b400;
+}
+
+.rank-1, .rank-2, .rank-3 {
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    width: 23px;
+}
+
+.rank-2 {
+    background: #9ba3ab;
+}
+
+.rank-3 {
+    background: #c77b3c;
+}
+
+/* Compound identity cell: institution + system + filesystem */
+.tb .tb-identity {
+    min-width: 190px;
+}
+
+.identity-institution {
+    display: block;
+    font-weight: 700;
+}
+
+.identity-meta {
+    color: #6b7079;
+    display: block;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.fs-tag {
+    background: #f0f0ef;
+    border-radius: 3px;
+    color: #5a5a5a;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 1px 6px;
+    white-space: nowrap;
+}
+
+/* Secondary sort links (System / FS Type) under the Institution header */
+.tb-identity-sub {
+    display: block;
+    margin-top: 3px;
+}
+
+.tb-identity-sub a {
+    font-size: 11px;
+    font-weight: 400;
+}
+
+/* Primary action: solid red with subtle depth, darkens + lifts on hover */
+input[type=submit], .button-highlight {
+    background: #d63b1e;
+    border-radius: 6px;
+    border: #d63b1e solid 1px;
+    box-shadow: 0 1px 2px rgba(214, 59, 30, 0.25);
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 16px;
+    transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+input[type=submit]:hover, .button-highlight:hover {
+    background: #b8301a;
+    border-color: #b8301a;
+    box-shadow: 0 4px 12px rgba(214, 59, 30, 0.3);
     color: #fff;
 }
 
@@ -503,7 +769,6 @@ label {
 }
 
 input[type=submit] {
-    text-transform: uppercase;
     margin: 10px 0 20px;
 }
 
@@ -523,7 +788,7 @@ li {
 .code, .code-block {
     background: #eee;
     border-radius: 3px;
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Lekton', monospace;
     font-size: 12px;
 }
 
@@ -574,22 +839,108 @@ li {
     color: #d63b1e;
     display: block;
     font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
     left: 20px;
     margin: 0;
     padding: 5px;
     position: absolute;
+    text-transform: uppercase;
     top: -12px;
 }
 
-.information-data, .information-metadata { 
-    border: #bbb solid 1px;
-    border-radius: 3px;
+.information-data, .information-metadata {
+    border: #e6e6e6 solid 1px;
+    border-radius: 4px;
     box-sizing: border-box;
     padding: 15px 20px;
     position: relative;
     flex-basis: 400px;
     flex-grow: 1;
     width: 45%;
+}
+
+/* Submission view: title + subtitle and the headline result */
+.submissions-subtitle {
+    color: #6d6d6d;
+    font-size: 13px;
+    margin: 4px 0 0;
+}
+
+.submissions-name .badge {
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.result-hero {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 22px 0 32px;
+}
+
+.result-metric {
+    flex: 1 1 150px;
+    min-width: 140px;
+    padding: 2px 28px;
+    border-left: 1px solid #e6e6e6;
+}
+
+.result-metric:first-child {
+    border-left: none;
+    padding-left: 4px;
+}
+
+.result-label {
+    color: #6d6d6d;
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.result-value {
+    color: #222;
+    display: block;
+    font-family: 'Lekton', monospace;
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 6px;
+}
+
+.result-metric-primary .result-value {
+    color: #d63b1e;
+    font-weight: 700;
+}
+
+.result-value small {
+    color: #9a9da1;
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: 4px;
+}
+
+/* Submission view: card grid that keeps columns even and lets each card
+   hug its own content instead of stretching to the tallest in the row. */
+.information-grid {
+    display: block;
+    column-width: 400px;
+    column-gap: 22px;
+}
+
+.information-grid .information-metadata,
+.information-grid .information-data {
+    width: 100%;
+    flex-basis: auto;
+    margin: 0 0 22px;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+}
+
+/* Numeric detail tables read as benchmark readouts */
+.tb-info.tb-num td {
+    font-family: 'Lekton', monospace;
+    font-variant-numeric: tabular-nums;
 }
 
 .release-information {
@@ -600,7 +951,7 @@ li {
 }
 
 dt {
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Lekton', monospace;
     font-size: 12px;
     padding: 5px 0;
 }
@@ -635,8 +986,8 @@ dd {
 }
 
 .submissions-lists li {
-    background: #fafaf9;
-    border: #dadbd8 solid 1px;
+    background: #fafafa;
+    border: #dadada solid 1px;
     flex-grow: 1;
     flex-basis: 15%;
     border-radius: 3px;
@@ -676,6 +1027,25 @@ dd {
     color: #fff;
 }
 
+.submissions-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin: 0 0 25px;
+}
+
+.submissions-header h2 {
+    margin: 0;
+}
+
+.submissions-header .submissions-action {
+    width: auto;
+    margin: 0;
+    flex-grow: 0;
+}
+
 .submissions > h2 {
     float: left;
     margin-bottom: 30px;
@@ -710,62 +1080,40 @@ dd {
 }
 
 .submissions-list-types {
-    margin: 15px 0;
     display: flex;
-    width: 100%;
     flex-wrap: wrap;
-    flex-grow: 1;
-    gap: 10px;
-    box-sizing: border-box;
-    justify-content: flex-end;
-}
-
-.submissions-list-types a {
-    max-width: 200px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    text-align: center;
-    gap: 0;
-}
-
-.submissions-list-types i {
-    font-size: 20px;
-    padding-bottom: 5px;
-    flex-basis: 100%;
-}
-
-/* Breadcumb */
-#breadcrumb {
-    color: #bbb;
-    font-size: 10px;
+    gap: 4px;
     margin: 20px 0;
-    padding: 0;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
 }
 
-#breadcrumb ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: inline-block;
+/* List-type tabs; .sv-tab on the submission pages uses the same look */
+.submissions-list-types .tab {
+    color: #5a5a5a;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 16px;
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: 0.2s;
 }
 
-#breadcrumb ul > li {
-    display: inline-block;
+.submissions-list-types .tab:hover {
+    color: #cc1717;
 }
 
-#breadcrumb a {
-    color: #222;
-    margin: 0 3px;
+.submissions-list-types .tab-active {
+    color: #d63b1e;
+    border-bottom-color: #d63b1e;
 }
 
-#breadcrumb p{
-    color: #7b7d82;
-    display: inline-block;
-    padding: 0 10px 0 0;
-    margin: 0;
+.submissions-list-types .tab i {
+    font-size: 16px;
+    margin-right: 7px;
 }
 
 #disqus_thread {
@@ -800,7 +1148,6 @@ dd {
 }
 
 .plot-controls button {
-    background: transparent;
     cursor: pointer;
     flex-grow: 0;
     font-family: inherit;
@@ -815,10 +1162,6 @@ dd {
     padding: 0;
 }
 
-.plots h3 {
-
-}
-
 .plots li {
     background: url('../img/loader.svg') center no-repeat;
     box-sizing: border-box;
@@ -827,50 +1170,114 @@ dd {
 }
 
 .plot-box {
-    border: #bbb solid 1px;
-    border-radius: 3px;
+    border: #e6e6e6 solid 1px;
+    border-radius: 4px;
     box-sizing: border-box;
-    padding: 30px;    
-    margin: 20px 0;
+    padding: 24px 28px;
+    margin: 30px 0 0;
     display: block;
 }
 
-#radio-chart {
-    
-}
-
-.footer {
-    box-sizing: border-box;
-    width: 50%;
-}
-
-footer > .container{
-    display: flex;
-}
-
-.social-links {
-    text-align: right;
-    list-style: none;
+.plot-title {
+    border: none;
+    font-size: 16px;
+    margin: 0 0 4px;
     padding: 0;
-    margin: 0;
 }
 
-.social-links li {
+.plot-caption {
+    color: #6d6d6d;
+    font-size: 12px;
+    margin: 0 0 10px;
+}
+
+/* Parallel-coordinates comparison */
+.parcoords {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.parcoords text {
+    font-family: 'Inter', sans-serif;
+}
+
+.pc-axis {
+    stroke: #d8d8d8;
+    stroke-width: 1;
+}
+
+.pc-axis-label {
+    fill: #5a5a5a;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.pc-axis-cap {
+    fill: #b4b7bb;
+    font-size: 10px;
+}
+
+.pc-line {
+    fill: none;
+    stroke-width: 2;
+    opacity: 0.7;
+    transition: opacity 0.15s, stroke-width 0.15s;
+}
+
+.pc-dot {
+    opacity: 0.85;
+}
+
+.pc-series:hover .pc-line {
+    stroke-width: 4;
+    opacity: 1;
+}
+
+.pc-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    list-style: none;
+    margin: 18px 0 0;
+    padding: 0;
+    font-size: 12px;
+}
+
+.pc-legend li {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.15s;
+}
+
+.pc-legend li.pc-legend-off {
+    opacity: 0.4;
+    text-decoration: line-through;
+}
+
+.pc-legend li:focus-visible {
+    outline: 2px solid #d63b1e;
+    outline-offset: 2px;
+}
+
+.pc-series.pc-hidden {
+    display: none;
+}
+
+.pc-swatch {
     display: inline-block;
-    padding: 0 10px;
+    width: 18px;
+    height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
 }
 
-.social-links svg {
-    fill: #aaa;
-    height: 30px;
-    margin: 0;
-    padding: 0px;
-    transition: 0.2s;
-    width: 30px;
-}
-
-.social-links svg:hover {
-    fill: #e63946;
+.pc-legend-inst {
+    color: #6d6d6d;
 }
 
 .news {
@@ -894,10 +1301,16 @@ footer > .container{
     background-position: 10px center;
     border-radius: 3px;
     color: #777;
+    display: inline-block;
+    font-family: 'Lekton', monospace;
     font-size: 12px;
-    font-weight: bold;
-    padding: 3px 5px 3px 30px;    
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 18px;
+    padding: 3px 8px 3px 26px;
     margin: 0 10px 0 0;
+    vertical-align: middle;
+    white-space: nowrap;
 }
 
 
@@ -961,11 +1374,22 @@ footer > .container{
 }
 
 .call {
-    border: #bbb solid 1px;
-    border-radius: 3px;
-    font-weight: bold;
-    padding: 15px;
-    text-align: center;
+    margin-top: 20px;
+    background: #fdf3f2;
+    border: 1px solid #f3d4d0;
+    border-left: 4px solid #d63b1e;
+    border-radius: 4px;
+    padding: 14px 18px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.call i {
+    color: #d63b1e;
+    font-size: 18px;
+    flex-shrink: 0;
 }
 
 .badge {
@@ -1017,4 +1441,39 @@ footer > .container{
     position: absolute;
     text-transform: uppercase;
     top: -12px;
+}
+
+/* ================= Submission pages: shared header and tabs ================= */
+.subview{margin-top:28px;color:#232323}
+.subview a{color:#b5302e}
+
+.sv-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.subview h1.sv-title{font-size:30px;font-weight:700;margin:4px 0 6px;letter-spacing:-.01em;color:#16181d;font-feature-settings:"calt" 0,"case" 0}
+.sv-lede{font-size:15px;color:#6b7079;margin:0}
+.sv-repro{white-space:nowrap}
+.sv-repro .badge{display:inline-block;width:16px;height:16px;background-size:16px;margin:0 6px 0 0;vertical-align:-3px}
+.sv-actions{display:flex;gap:8px;flex-wrap:wrap}
+
+.sv-tabs{display:flex;gap:2px;border-bottom:1px solid #dadada;margin:18px 0 22px}
+.subview .sv-tab{display:inline-flex;align-items:center;padding:10px 16px;font-size:15px;font-weight:600;color:#5a5a5a;border-bottom:2px solid transparent;margin-bottom:-1px;text-decoration:none;transition:.2s}
+.subview .sv-tab i{font-size:16px;margin-right:7px}
+.subview .sv-tab:hover{color:#cc1717}
+.subview .sv-tab.active{color:#d63b1e;border-bottom-color:#d63b1e}
+
+/* ================= List page table (templates/Listings/list.php) ================= */
+.submissions.index .release-information{color:#6b7079;font-size:14px;line-height:1.55}
+/* Units keep their real case: GiB/s, kIOP/s */
+.tb-list thead tr:nth-child(3) th{text-transform:none}
+/* Lighter group labels; Score is the column the list is ranked by */
+.tb-list thead tr:first-child th[colspan]{font-weight:500;color:#6b7079;font-size:11px;letter-spacing:.08em}
+.tb-list thead th.tb-score a{color:#16181d;font-weight:700}
+/* The system name also links to the submission; the whole row is clickable */
+.identity-system{color:inherit}
+.identity-system:hover{color:#d63b1e;text-decoration:underline}
+.tb-list tbody tr{cursor:pointer}
+.tb-list tbody tr:hover td{background:#f6f6f7}
+/* Phones: rank and identity stay in view while the table scrolls sideways */
+@media (max-width:760px){
+    .tb-list th.tb-id,.tb-list td.tb-id{min-width:44px}
+    .tb-list td.tb-identity,.tb-list th.tb-identity{position:sticky;left:44px;background:#fff;z-index:2;box-shadow:6px 0 6px -6px rgba(0,0,0,.15);min-width:170px;max-width:200px}
 }

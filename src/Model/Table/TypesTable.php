@@ -11,7 +11,6 @@ use Cake\Validation\Validator;
  * Types Model
  *
  * @property \App\Model\Table\ListingsTable&\Cake\ORM\Association\HasMany $Listings
- *
  * @method \App\Model\Entity\Type newEmptyEntity()
  * @method \App\Model\Entity\Type newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Type[] newEntities(array $data, array $options = [])

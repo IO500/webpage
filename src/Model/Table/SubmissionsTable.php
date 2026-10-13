@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\Datasource\EntityInterface;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -70,6 +71,210 @@ class SubmissionsTable extends Table
         $this->hasOne('Questionnaires', [
             'foreignKey' => 'submission_id',
         ]);
+    }
+
+    /**
+     * The submission's best-scoring entry on a released list, or null when it is on
+     * no released list (the Summary, Configuration and Reproducibility tabs then
+     * redirect). Its score is the one the summary shows.
+     *
+     * @param \Cake\Datasource\EntityInterface $submission The submission.
+     * @return \Cake\Datasource\EntityInterface|null The listings_submissions entry.
+     */
+    public function bestListing(EntityInterface $submission): ?EntityInterface
+    {
+        return $this->ListingsSubmissions->find()
+            ->contain(['Listings' => ['Releases']])
+            ->where([
+                'ListingsSubmissions.submission_id' => $submission->id,
+                'Releases.release_date <=' => date('Y-m-d'),
+            ])
+            ->orderBy([
+                'ListingsSubmissions.score' => 'DESC',
+                'Listings.type_id' => 'DESC',
+                'Releases.release_date' => 'DESC',
+            ])
+            ->first();
+    }
+
+    /**
+     * Phase columns shown on the submission page, in display order.
+     */
+    public const PHASES = [
+        'ior_easy_write', 'ior_easy_read', 'ior_hard_write', 'ior_hard_read',
+        'mdtest_easy_write', 'mdtest_easy_stat', 'mdtest_easy_delete',
+        'mdtest_hard_write', 'mdtest_hard_read', 'mdtest_hard_stat', 'mdtest_hard_delete',
+        'find_mixed', 'ior_easy_read_random',
+    ];
+
+    /**
+     * Every released, ranked list a submission is on, newest release first, with its
+     * rank and entry count. Ranks are computed in SQL, comparing stored scores directly
+     * (binding a FLOAT score from PHP rounds it to 14 digits and miscounts):
+     * entries scoring higher, plus equal scores with a lower entry id.
+     *
+     * @param int $submissionId Submission id.
+     * @return list<array{listing_id: int, release: string, type_id: int, type_name: string, type_url: string, type_position: int, rank: int, total: int}>
+     */
+    public function listMemberships(int $submissionId): array
+    {
+        $query = $this->ListingsSubmissions->find();
+        $rows = $query
+            ->select([
+                'listing_id' => 'ListingsSubmissions.listing_id',
+                'release_acronym' => 'Releases.acronym',
+                'type_id' => 'Types.id',
+                'type_name' => 'Types.name',
+                'type_url' => 'Types.url',
+                'type_position' => 'Types.position',
+                'entry_rank' => $query->expr(
+                    '(SELECT COUNT(*) FROM listings_submissions o'
+                    . ' WHERE o.listing_id = ListingsSubmissions.listing_id'
+                    . ' AND (o.score > ListingsSubmissions.score'
+                    . ' OR (o.score = ListingsSubmissions.score AND o.id < ListingsSubmissions.id))) + 1',
+                ),
+                'entry_total' => $query->expr(
+                    '(SELECT COUNT(*) FROM listings_submissions o WHERE o.listing_id = ListingsSubmissions.listing_id)',
+                ),
+            ])
+            ->innerJoinWith('Listings.Releases')
+            ->innerJoinWith('Listings.Types')
+            ->where([
+                'ListingsSubmissions.submission_id' => $submissionId,
+                'Releases.release_date <=' => date('Y-m-d'),
+                'Types.ranked' => true,
+            ])
+            ->orderBy(['Releases.release_date' => 'DESC', 'Types.position' => 'ASC'])
+            ->disableHydration()
+            ->toArray();
+
+        return array_map(fn(array $r) => [
+            'listing_id' => (int)$r['listing_id'],
+            'release' => strtoupper($r['release_acronym']),
+            'type_id' => (int)$r['type_id'],
+            'type_name' => $r['type_name'],
+            'type_url' => $r['type_url'],
+            'type_position' => (int)$r['type_position'],
+            'rank' => (int)$r['entry_rank'],
+            'total' => (int)$r['entry_total'],
+        ], $rows);
+    }
+
+    /**
+     * The entries of one listing in rank order, with only the fields the submission
+     * page compares: identity (for tooltips), bandwidth/metadata and the phase values.
+     * The caller must check the listing is released.
+     *
+     * @param int $listingId Listing id.
+     * @return list<array<string, mixed>>
+     */
+    public function comparisonData(int $listingId): array
+    {
+        $fields = [
+            'submission_id' => 'ListingsSubmissions.submission_id',
+            'system_name' => 'Submissions.information_system',
+            'institution' => 'Submissions.information_institution',
+            'bw' => 'Submissions.io500_bw',
+            'md' => 'Submissions.io500_md',
+        ];
+        foreach (self::PHASES as $phase) {
+            $fields[$phase] = 'Submissions.' . $phase;
+        }
+        $rows = $this->ListingsSubmissions->find()
+            ->select($fields)
+            ->innerJoinWith('Submissions')
+            ->where(['ListingsSubmissions.listing_id' => $listingId])
+            ->orderBy(['ListingsSubmissions.score' => 'DESC', 'ListingsSubmissions.id' => 'ASC'])
+            ->disableHydration()
+            ->toArray();
+
+        $out = [];
+        foreach ($rows as $i => $r) {
+            $row = [
+                'rank' => $i + 1,
+                'submission_id' => (int)$r['submission_id'],
+                'system' => trim((string)preg_replace('/\s+/', ' ', (string)$r['system_name'])),
+                'institution' => trim((string)$r['institution']),
+            ];
+            foreach (['bw', 'md', ...self::PHASES] as $key) {
+                $row[$key] = $r[$key] === null ? null : (float)$r[$key];
+            }
+            $out[] = $row;
+        }
+
+        return $out;
+    }
+
+    /**
+     * Rank of a submission at every released list of one ranked type it is on, plus the
+     * entries within three places of it at the latest of those releases. Ranks follow
+     * list order (score, then entry id), so they match the list page.
+     *
+     * @param int $submissionId Submission id.
+     * @param int $typeId List type id.
+     * @param array|null $memberships listMemberships() output, when the caller already has it.
+     * @return array{releases: list<string>, totals: list<int>, series: list<array<string, mixed>>}
+     */
+    public function positionHistory(int $submissionId, int $typeId, ?array $memberships = null): array
+    {
+        $listings = array_reverse(array_values(array_filter(
+            $memberships ?? $this->listMemberships($submissionId),
+            fn(array $m) => $m['type_id'] === $typeId,
+        )));
+        if (!$listings) {
+            return ['releases' => [], 'totals' => [], 'series' => []];
+        }
+
+        // Rank of every entry, per listing.
+        $entries = $this->ListingsSubmissions->find()
+            ->select([
+                'listing_id' => 'ListingsSubmissions.listing_id',
+                'submission_id' => 'ListingsSubmissions.submission_id',
+                'system_name' => 'Submissions.information_system',
+                'institution' => 'Submissions.information_institution',
+            ])
+            ->innerJoinWith('Submissions')
+            ->where(['ListingsSubmissions.listing_id IN' => array_column($listings, 'listing_id')])
+            ->orderBy([
+                'ListingsSubmissions.listing_id' => 'ASC',
+                'ListingsSubmissions.score' => 'DESC',
+                'ListingsSubmissions.id' => 'ASC',
+            ])
+            ->disableHydration()
+            ->toArray();
+        $ranks = [];
+        $labels = [];
+        foreach ($entries as $e) {
+            $listingId = (int)$e['listing_id'];
+            $ranks[$listingId][(int)$e['submission_id']] = count($ranks[$listingId] ?? []) + 1;
+            $labels[(int)$e['submission_id']] = trim((string)preg_replace('/\s+/', ' ', (string)$e['system_name']))
+                . ' · ' . trim((string)$e['institution']);
+        }
+
+        $latest = $ranks[end($listings)['listing_id']];
+        $own = $latest[$submissionId];
+        $ids = [$submissionId];
+        foreach ($latest as $id => $rank) {
+            if ($id !== $submissionId && abs($rank - $own) <= 3) {
+                $ids[] = $id;
+            }
+        }
+
+        $series = [];
+        foreach ($ids as $id) {
+            $series[] = [
+                'submission_id' => $id,
+                'label' => $labels[$id],
+                'self' => $id === $submissionId,
+                'ranks' => array_map(fn(array $l) => $ranks[$l['listing_id']][$id] ?? null, $listings),
+            ];
+        }
+
+        return [
+            'releases' => array_column($listings, 'release'),
+            'totals' => array_column($listings, 'total'),
+            'series' => $series,
+        ];
     }
 
     /**

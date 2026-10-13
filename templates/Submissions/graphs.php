@@ -5,7 +5,7 @@
         Explore some of the <strong>IO500</strong> plots that we use in our list analysis sessions!<br>
     </p>
 
-    <ul>
+    <ul class="button-group">
         <li>
             <?php
             echo $this->Html->link(__('IOR Graphs'), [
@@ -52,7 +52,6 @@
             ?>
         to download per-release CSVs and create your own visualisations.
     </p>
-    <a href="https://www.freepik.com/free-photos-vectors/business" class="credits">Business vector created by stories - www.freepik.com</a>
 </div>
 
 <div class="submissions index content">

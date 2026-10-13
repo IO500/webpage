@@ -27,7 +27,7 @@ class ListingsSubmission extends Entity
      *
      * @var array
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'id' => true,
         'listing_id' => true,
         'submission_id' => true,

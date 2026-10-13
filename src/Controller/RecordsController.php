@@ -77,7 +77,7 @@ class RecordsController extends AppController
      * @param string|null $hash Record hash.
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function list($hash = null)
+    public function list(?string $hash = null)
     {
         $limit = 1000;
 
@@ -88,7 +88,7 @@ class RecordsController extends AppController
             ->first();
 
         // We need to load the Submissions model to be able to fetch that table
-        $this->loadModel('Submissions');
+        $this->Submissions = $this->fetchTable('Submissions');
 
         $db = ConnectionManager::get('default');
 
@@ -109,18 +109,6 @@ class RecordsController extends AppController
 
         // This column can be used to compute custom metrics, but it will take the initial value from the last historical list
         array_splice($columns, 8, 0, ['io500_score']);
-
-        $release = $this->Submissions->Releases->find('all')
-            ->contain([
-                'Listings' => [
-                    'Types',
-                ],
-            ])
-            ->where([
-                'Releases.release_date <=' => date('Y-m-d'),
-                'Releases.acronym' => strtoupper($display['custom-release']),
-            ])
-            ->first();
 
         $listing = $this->Submissions->ListingsSubmissions->Listings->find('all')
             ->contain([
@@ -143,7 +131,7 @@ class RecordsController extends AppController
             ->where([
                 'ListingsSubmissions.listing_id' => $listing->id,
             ])
-            ->order([
+            ->orderBy([
                 'ListingsSubmissions.score' => 'DESC',
             ])
             ->limit($limit);
@@ -166,8 +154,9 @@ class RecordsController extends AppController
             foreach ($submissions as $submission) {
                 // We need to set all the variables available for calculation
                 foreach ($columns as $key => $column) {
-                    if (is_numeric($submission->submission->{$column}) || is_string($submission->submission->{$column})) {
-                        $executor->setVar($column, $submission->submission->{$column});
+                    $value = $submission->submission->{$column};
+                    if (is_numeric($value) || is_string($value)) {
+                        $executor->setVar($column, $value);
                     }
                 }
 
@@ -196,7 +185,9 @@ class RecordsController extends AppController
 
         if ($display['custom-remove']) {
             foreach ($submissions as $id => $submission) {
-                $key = md5($submission['submission']['information_system'] . $submission['submission']['information_institution'] . $submission['submission']['information_filesystem_type']);
+                $key = md5($submission['submission']['information_system']
+                    . $submission['submission']['information_institution']
+                    . $submission['submission']['information_filesystem_type']);
 
                 if (in_array($key, $unique)) {
                     unset($submissions[$id]);

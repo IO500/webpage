@@ -22,8 +22,6 @@ use Cake\TestSuite\TestCase;
 
 /**
  * PagesControllerTest class
- *
- * @uses \App\Controller\PagesController
  */
 class PagesControllerTest extends TestCase
 {
@@ -36,9 +34,9 @@ class PagesControllerTest extends TestCase
      */
     public function testMultipleGet()
     {
-        $this->get('/');
+        $this->get('/about');
         $this->assertResponseOk();
-        $this->get('/');
+        $this->get('/about');
         $this->assertResponseOk();
     }
 
@@ -49,10 +47,10 @@ class PagesControllerTest extends TestCase
      */
     public function testDisplay()
     {
-        $this->get('/pages/home');
+        $this->get('/pages/about');
         $this->assertResponseOk();
-        $this->assertResponseContains('CakePHP');
-        $this->assertResponseContains('<html>');
+        $this->assertResponseContains('IO500');
+        $this->assertResponseContains('<html');
     }
 
     /**
@@ -66,7 +64,9 @@ class PagesControllerTest extends TestCase
         $this->get('/pages/not_existing');
 
         $this->assertResponseError();
-        $this->assertResponseContains('Error');
+        $this->assertResponseContains('Page not found');
+        // Same layout as the rest of the site (fonts and icons).
+        $this->assertResponseContains('bootstrap-icons');
     }
 
     /**
@@ -92,9 +92,10 @@ class PagesControllerTest extends TestCase
      */
     public function testDirectoryTraversalProtection()
     {
+        Configure::write('debug', false);
         $this->get('/pages/../Layout/ajax');
         $this->assertResponseCode(403);
-        $this->assertResponseContains('Forbidden');
+        $this->assertResponseContains('id="error-404"');
     }
 
     /**
@@ -104,10 +105,11 @@ class PagesControllerTest extends TestCase
      */
     public function testCsrfAppliedError()
     {
-        $this->post('/pages/home', ['hello' => 'world']);
+        Configure::write('debug', false);
+        $this->post('/pages/about', ['hello' => 'world']);
 
         $this->assertResponseCode(403);
-        $this->assertResponseContains('CSRF');
+        $this->assertResponseContains('id="error-404"');
     }
 
     /**
@@ -118,9 +120,9 @@ class PagesControllerTest extends TestCase
     public function testCsrfAppliedOk()
     {
         $this->enableCsrfToken();
-        $this->post('/pages/home', ['hello' => 'world']);
+        $this->post('/pages/about', ['hello' => 'world']);
 
         $this->assertResponseCode(200);
-        $this->assertResponseContains('CakePHP');
+        $this->assertResponseContains('IO500');
     }
 }

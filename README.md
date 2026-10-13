@@ -18,3 +18,17 @@ yamllint -d relaxed .github/ config/                                          # 
 ```
 
 `composer cs-fix` will auto-fix most coding-standard violations.
+
+## Running the tests
+
+The test suite drops and recreates its tables, so it only runs against a throwaway
+local MySQL started with Docker. `tests/bootstrap.php` refuses any other database.
+
+```bash
+bin/test-db.sh up                     # MySQL 8.0 on 127.0.0.1:33306, database io500_test_local
+DATABASE_TEST_URL=mysql://io500:io500@127.0.0.1:33306/io500_test_local composer test
+bin/test-db.sh down                   # remove the container when done
+```
+
+The schema comes from `tests/schema.sql`, a structure-only dump (no data). Regenerate
+it when a script in `sql/` changes one of its tables.

@@ -131,7 +131,10 @@ class QuestionnairesTable extends Table
     {
         $rules->add($rules->isUnique(['id']), ['errorField' => 'id']);
         $rules->add($rules->existsIn(['submission_id'], 'Submissions'), ['errorField' => 'submission_id']);
-        $rules->add($rules->existsIn(['reproducibility_score_id'], 'ReproducibilityScores'), ['errorField' => 'reproducibility_score_id']);
+        $rules->add(
+            $rules->existsIn(['reproducibility_score_id'], 'ReproducibilityScores'),
+            ['errorField' => 'reproducibility_score_id'],
+        );
 
         return $rules;
     }

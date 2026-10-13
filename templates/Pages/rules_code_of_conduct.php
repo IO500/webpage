@@ -1,17 +1,5 @@
 <?php $this->assign('title', 'Code of Conduct'); ?>
 
-<nav id="breadcrumb">
-    <p>YOU ARE HERE</p>
-
-    <?php
-    $this->Breadcrumbs->add(__('HOME'), ['controller' => 'submissions', 'action' => 'latest']);
-    $this->Breadcrumbs->add(__('RULES'), ['controller' => 'pages', 'action' => 'display', 'rules']);
-    $this->Breadcrumbs->add(__('CODE OF CONDUCT'), ['controller' => 'pages', 'action' => 'display', 'rules-code-of-conduct']);
-
-    echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
-    ?>
-</nav>
-
 <div class="content">
     <h2>The IO500 Foundation Steering Committee Rules - Version 2.0</h2>
 

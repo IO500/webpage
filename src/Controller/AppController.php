@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Http\Exception\NotFoundException;
 
 /**
  * Application Controller
@@ -41,7 +42,6 @@ class AppController extends Controller
     {
         parent::initialize();
 
-        $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
 
         /*
@@ -49,5 +49,22 @@ class AppController extends Controller
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
          */
         //$this->loadComponent('FormProtection');
+    }
+
+    /**
+     * A numeric id from the URL, or "not found". Without this, Table::get() fails with
+     * a server error on a missing or non-numeric id (CakePHP 5 converts strictly).
+     *
+     * @param string|null $id Id from the URL.
+     * @return int
+     * @throws \Cake\Http\Exception\NotFoundException
+     */
+    protected function idFromUrl(?string $id): int
+    {
+        if ($id === null || !ctype_digit($id)) {
+            throw new NotFoundException();
+        }
+
+        return (int)$id;
     }
 }

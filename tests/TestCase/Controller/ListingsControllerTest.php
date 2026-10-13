@@ -6,77 +6,87 @@ namespace App\Test\TestCase\Controller;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
-/**
- * App\Controller\ListingsController Test Case
- *
- * @uses \App\Controller\ListingsController
- */
 class ListingsControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
-    /**
-     * Fixtures
-     *
-     * @var array
-     */
-    protected $fixtures = [
-        'app.Listings',
-        'app.Types',
+    protected array $fixtures = [
         'app.Releases',
-        'app.ListSc1810node',
-        'app.ListSc18Io500',
+        'app.Types',
+        'app.Listings',
         'app.Submissions',
         'app.ListingsSubmissions',
     ];
 
     /**
-     * Test index method
-     *
-     * @return void
+     * Tied scores are listed by entry id, matching the rank on the submission page.
      */
-    public function testIndex(): void
+    public function testListBreaksTiesByEntryId(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/list/isc24/production');
+        $this->assertResponseOk();
+
+        $body = (string)$this->_response->getBody();
+        $this->assertLessThan(strpos($body, 'Iota'), strpos($body, 'Theta'));
+        // The system name links to its submission.
+        $this->assertMatchesRegularExpression('#href="/submissions/view/6" class="identity-system">Shaheen-like<#', $body);
     }
 
     /**
-     * Test view method
-     *
-     * @return void
+     * Lists of a release that is not out yet are not served.
      */
-    public function testView(): void
+    public function testHomeServesLatestPublishedRelease(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/');
+        $this->assertResponseOk();
+        $this->assertResponseContains('ISC24');
+        $this->assertResponseNotContains('Future');
+        // The home URL names no list type; the Production tab is still marked active.
+        $this->assertMatchesRegularExpression('#list/isc24/production" class="tab tab-active"#', (string)$this->_response->getBody());
     }
 
     /**
-     * Test add method
-     *
-     * @return void
+     * Entries without an institution still render (link() rejects a null title).
      */
-    public function testAdd(): void
+    public function testListWithMissingInstitution(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/list/isc24/full');
+        $this->assertResponseOk();
+        $this->assertResponseContains('Kappa');
     }
 
     /**
-     * Test edit method
-     *
-     * @return void
+     * Only the columns the table header sorts on are accepted; anything else (SQL,
+     * private columns, arrays) is ignored and the list keeps its ranked order.
      */
-    public function testEdit(): void
+    public function testSortAcceptsOnlyListedColumns(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $ranked = ['Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Shaheen-like', 'Eta', 'Theta', 'Iota'];
+
+        $this->get('/list/isc24/production?sort=information_system&direction=asc');
+        $this->assertResponseOk();
+        $alphabetical = $ranked;
+        sort($alphabetical);
+        $this->assertSame($alphabetical, $this->systems());
+
+        foreach (['RAND()', 'Submissions.information_submitter', 'information_submitter', '(SELECT 1)'] as $sort) {
+            $this->get('/list/isc24/production?sort=' . urlencode($sort) . '&direction=asc');
+            $this->assertResponseOk();
+            $this->assertSame($ranked, $this->systems(), $sort);
+        }
+
+        $this->get('/list/isc24/production?sort[]=x');
+        $this->assertResponseOk();
+        $this->assertSame($ranked, $this->systems());
     }
 
     /**
-     * Test delete method
-     *
-     * @return void
+     * @return list<string> System names in the order the list shows them.
      */
-    public function testDelete(): void
+    private function systems(): array
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        preg_match_all('#class="identity-system">([^<]+)<#', (string)$this->_response->getBody(), $m);
+
+        return $m[1];
     }
 }

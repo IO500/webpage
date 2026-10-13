@@ -1,112 +1,35 @@
-<nav id="breadcrumb">
-    <p>YOU ARE HERE</p>
+<?php
+/**
+ * Configuration tab. The configuration is drawn by the DCL widget from
+ * www.submission.io500.org, which reads /files/submissions/<id>.json there. That host
+ * only allows https://io500.org to fetch it (CORS), so it does not render locally.
+ * submission-view.css restyles the widget's output to match the other tabs.
+ *
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Submission $submission
+ */
+$this->assign('title', h($submission->information_system) . ' - Configuration');
+$this->Html->css('submission-view', ['block' => true]);
+?>
+<div class="subview sp sp-config">
 
-    <?php
-    $this->Breadcrumbs->add(_('LISTS'), ['controller' => 'releases', 'action' => 'index']);
-    $this->Breadcrumbs->add(strtoupper($submission->release->acronym), ['controller' => 'listings', 'action' => 'list', strtolower($submission->release->acronym), 'io500']);
-    $this->Breadcrumbs->add(strtoupper($submission->information_system), ['controller' => 'submissions', 'action' => 'view', $submission->id]);
-    $this->Breadcrumbs->add(_('CONFIGURATION'), ['controller' => 'submissions', 'action' => 'configuration', $submission->id]);
+    <?php echo $this->element('submission_header', ['active' => 'configuration']); ?>
 
-    echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
-    ?>
-</nav>
-
-<div class="row">
-    <div class="column-responsive column-80">
-        <div class="submissions view content">
-            <h2 class="submissions-name">
-                <?php if ($questionnaire) { ?>
-                <div class="badge badge-<?php echo $questionnaire->reproducibility_score_id; ?>"></div>
-                <?php } ?>
-
-                <?php echo h($submission->information_system); ?>
-            </h2>
-
-            <div class="submissions-action">
-                <?php
-                echo $this->Html->link(
-                    _('Summary'),
-                    [
-                        'controller' => 'submissions',
-                        'action' => 'view',
-                        $submission->id
-                    ],
-                    [
-                        'class' => 'button-navigation'
-                    ]
-                );
-            
-                echo $this->Html->link(
-                    _('Configuration'),
-                    [
-                        'controller' => 'submissions',
-                        'action' => 'configuration',
-                        $submission->id
-                    ],
-                    [
-                        'class' => 'button'
-                    ]
-                );
-
-                if ($questionnaire) {
-                    echo $this->Html->link(
-                        _('Reproducibility'),
-                        [
-                            'controller' => 'questionnaires',
-                            'action' => 'view',
-                            $submission->id
-                        ],
-                        [
-                            'class' => 'button-navigation'
-                        ]
-                    );
-                }
-
-                if ($submission->repository_url) {
-                    echo $this->Html->link(
-                        _('Files'),
-                        $submission->repository_url,
-                        [
-                            'target' => '_blank',
-                            'class' => 'button-navigation'
-                        ]
-                    );
-                }
-
-                if ($submission->cdcl_url) {
-                    echo $this->Html->link(
-                        _('Data Center'),
-                        $submission->cdcl_url,
-                        [
-                            'class' => 'button-navigation',
-                            'target' => '_blank'
-                        ]
-                    );
-                }
-                ?>
-            </div>
-
-            <div class="both"></div>
-
-            <div class="submissions index content">
-                <div id="dcl_wrap"></div>
-            </div>
-        </div>
-    </div>
+    <div id="dcl_wrap"></div>
 </div>
-
 
 <?php
 echo $this->Html->css([
     'https://www.submission.io500.org/css/dcl.min.css'
 ]);
 
+// The page already loads jQuery (layout); a second copy from the submission site
+// would replace it and drop its plugins (selectize).
 echo $this->Html->script(
     [
         'https://www.submission.io500.org/js/js-yaml.min.js',
         'https://www.submission.io500.org/js/c3.min.js',
         'https://www.submission.io500.org/js/d3.min.js',
-        'https://www.submission.io500.org/js/jquery.min.js',
         'https://www.submission.io500.org/js/math.min.js',
         'https://unpkg.com/@popperjs/core@2',
         'https://unpkg.com/tippy.js@6',

@@ -23,7 +23,7 @@ class Release extends Entity
      *
      * @var array
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'acronym' => true,
         'release_date' => true,
     ];

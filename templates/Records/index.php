@@ -1,14 +1,3 @@
-<nav id="breadcrumb">
-    <p>YOU ARE HERE</p>
-
-    <?php
-    $this->Breadcrumbs->add(_('LISTS'), ['controller' => 'records', 'action' => 'index']);
-    $this->Breadcrumbs->add(_('CUSTOM LISTS'), ['controller' => 'records', 'action' => 'index']);
-
-    echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
-    ?>
-</nav>
-
 <div class="records index content">
     <h2>User-Defined Lists</h2>
 

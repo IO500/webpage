@@ -22,7 +22,7 @@ class ConfigureHelper extends Helper
      * @param string|null $name The name of the Configure key you want to read
      * @return mixed Values
      */
-    public function read($name = null)
+    public function read(?string $name = null): mixed
     {
         return Configure::read($name);
     }
@@ -35,7 +35,7 @@ class ConfigureHelper extends Helper
      * @param string $name Configure key to check.
      * @return bool
      */
-    public function check($name)
+    public function check(string $name): bool
     {
         return Configure::check($name);
     }
@@ -46,7 +46,7 @@ class ConfigureHelper extends Helper
      * @param string $name The key to read and remove (or a path as sent to Hash.extract).
      * @return mixed The value of the Configure variable, null if not available
      */
-    public function consume($name)
+    public function consume(string $name): mixed
     {
         return Configure::consume($name);
     }
@@ -68,7 +68,7 @@ class ConfigureHelper extends Helper
      * @param string $name Variable to obtain. Use '.' to access array elements.
      * @return mixed Value stored in configure.
      */
-    public function readOrFail($name)
+    public function readOrFail(string $name): mixed
     {
         return Configure::readOrFail($name);
     }
@@ -76,7 +76,7 @@ class ConfigureHelper extends Helper
     /**
      * @return string Current version of CakePHP
      */
-    public function version()
+    public function version(): string
     {
         return Configure::version();
     }

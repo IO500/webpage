@@ -27,7 +27,7 @@ class ReleasesController extends AppController
             ->where([
                 'Releases.release_date <=' => date('Y-m-d'),
             ])
-            ->order([
+            ->orderBy([
                 'Releases.release_date' => 'DESC',
             ]);
 

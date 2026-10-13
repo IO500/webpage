@@ -5,7 +5,7 @@
 use Cake\Core\Configure;
 use Cake\Error\Debugger;
 
-$this->layout = 'error';
+$this->layout = 'default';
 
 if (Configure::read('debug')) :
     $this->layout = 'dev_error';
@@ -36,6 +36,9 @@ if (Configure::read('debug')) :
 endif;
 ?>
 
-<div id="error-500">
-    
+<div class="error-page">
+    <h1><?php echo __('Something went wrong') ?></h1>
+    <p><?php echo __('The page could not be shown. Please try again later.') ?></p>
+    <p><?php echo $this->Html->link(__('Back to the lists'), '/', ['class' => 'button']) ?></p>
 </div>
+<div id="error-500"></div>

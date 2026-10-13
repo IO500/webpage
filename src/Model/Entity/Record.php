@@ -25,7 +25,7 @@ class Record extends Entity
      *
      * @var array
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'name' => true,
         'author' => true,
         'fields' => true,

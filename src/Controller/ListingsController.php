@@ -6,6 +6,9 @@ namespace App\Controller;
 use App\Model\Table\SubmissionsTable;
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
+use Cake\Event\EventInterface;
+use Cake\Http\Exception\NotFoundException;
+use Cake\Http\Response;
 
 /**
  * Listings Controller
@@ -16,13 +19,49 @@ use Cake\Datasource\ConnectionManager;
 class ListingsController extends AppController
 {
     /**
+     * Columns a list can be sorted by: the ones the table header links to. Anything
+     * else in ?sort= is ignored (it reaches ORDER BY, and could also expose private
+     * columns through their ordering).
+     */
+    private const SORTABLE_FIELDS = [
+        'score',
+        'information_institution',
+        'information_system',
+        'information_filesystem_type',
+        'information_storage_vendor',
+        'information_client_nodes',
+        'information_client_total_procs',
+        'io500_bw',
+        'io500_md',
+    ];
+
+    /**
+     * Drop non-string sort parameters (e.g. ?sort[]=x), which make the paginator fail.
+     *
+     * @param \Cake\Event\EventInterface $event The event.
+     * @return void
+     */
+    public function beforeFilter(EventInterface $event): void
+    {
+        parent::beforeFilter($event);
+
+        $query = $this->request->getQueryParams();
+        foreach (['sort', 'direction'] as $key) {
+            if (isset($query[$key]) && !is_string($query[$key])) {
+                unset($query[$key]);
+            }
+        }
+        $this->request = $this->request->withQueryParams($query);
+    }
+
+    /**
      * List method
      *
-     * @param null $bof Release acronym.
-     * @param null $url Type url.
+     * @param string|null $bof Release acronym.
+     * @param string|null $url Type url.
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function list($bof = null, $url = null)
+    public function list(?string $bof = null, ?string $url = null)
     {
         $limit = Configure::read('IO500.pagination');
 
@@ -40,11 +79,11 @@ class ListingsController extends AppController
                     'Types.url' => $url,
                     'Releases.release_date <=' => date('Y-m-d'),
                 ])
-                ->order(['Releases.release_date' => 'DESC'])
+                ->orderBy(['Releases.release_date' => 'DESC'])
                 ->first();
             if ($latest === null) {
-                throw new \Cake\Http\Exception\NotFoundException(
-                    __('No published lists yet')
+                throw new NotFoundException(
+                    __('No published lists yet'),
                 );
             }
             $bof = $latest->release->acronym;
@@ -78,15 +117,16 @@ class ListingsController extends AppController
             ->first();
 
         $settings = [
+            // Entry id breaks score ties, so the order (and the rank shown) is stable
+            // and matches the ranks on the submission pages (SubmissionsTable::listMemberships()).
             'order' => [
                 'score' => 'DESC',
+                'ListingsSubmissions.id' => 'ASC',
             ],
             'limit' => $limit,
         ];
 
-        if (isset($this->request->getParam('?')['sort'])) {
-            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
-        }
+        $settings['sortableFields'] = self::SORTABLE_FIELDS;
 
         $submissions = $this->Listings->ListingsSubmissions->find('all')
             ->contain([
@@ -120,7 +160,7 @@ class ListingsController extends AppController
      *
      * @return \Cake\Http\Response
      */
-    public function plotsData()
+    public function plotsData(): Response
     {
         $rows = $this->Listings->ListingsSubmissions->find('all')
             ->contain([
@@ -131,7 +171,7 @@ class ListingsController extends AppController
                 'Types.url' => 'io500',
                 'Releases.release_date <=' => date('Y-m-d'),
             ])
-            ->order([
+            ->orderBy([
                 'Releases.release_date' => 'ASC',
                 'ListingsSubmissions.score' => 'DESC',
             ])
@@ -192,11 +232,11 @@ class ListingsController extends AppController
     /**
      * Download method
      *
-     * @param null $bof Release acronym.
-     * @param null $url Type url.
+     * @param string|null $bof Release acronym.
+     * @param string|null $url Type url.
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function download($bof = null, $url = null)
+    public function download(?string $bof = null, ?string $url = null)
     {
         $db = ConnectionManager::get('default');
 
@@ -210,7 +250,7 @@ class ListingsController extends AppController
         // (e.g. PII) so the CSV header stays aligned with the serialized rows.
         $columns = array_values(array_diff(
             $tableSchema->columns(),
-            SubmissionsTable::PRIVATE_FIELDS
+            SubmissionsTable::PRIVATE_FIELDS,
         ));
 
         // If empty $bof get the last released one
@@ -224,24 +264,12 @@ class ListingsController extends AppController
                 ->where([
                     'Releases.release_date <=' => date('Y-m-d'),
                 ])
-                ->order([
+                ->orderBy([
                     'Releases.release_date' => 'DESC',
                 ])
                 ->first();
 
             $bof = $release->acronym;
-        } else {
-            $release = $this->Listings->Releases->find('all')
-                ->contain([
-                    'Listings' => [
-                        'Types',
-                    ],
-                ])
-                ->where([
-                    'Releases.release_date <=' => date('Y-m-d'),
-                    'Releases.acronym' => strtoupper($bof),
-                ])
-                ->first();
         }
 
         // If empty $url get the historical one
@@ -259,14 +287,12 @@ class ListingsController extends AppController
                 'Releases.release_date <=' => date('Y-m-d'),
                 'Releases.acronym' => strtoupper($bof),
             ])
-            ->order([
+            ->orderBy([
                 'Releases.release_date' => 'DESC',
             ])
             ->first();
 
-        if (isset($this->request->getParam('?')['sort'])) {
-            $settings['sortWhitelist'][] = $this->request->getParam('?')['sort'];
-        }
+        $settings['sortableFields'] = self::SORTABLE_FIELDS;
 
         $submissions = $this->Listings->ListingsSubmissions->find('all')
             ->contain([
@@ -277,7 +303,7 @@ class ListingsController extends AppController
             ->where([
                 'ListingsSubmissions.listing_id' => $listing->id,
             ])
-            ->order([
+            ->orderBy([
                 'ListingsSubmissions.score' => 'DESC',
             ]);
 

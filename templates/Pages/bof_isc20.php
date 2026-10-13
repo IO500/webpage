@@ -1,17 +1,5 @@
 <?php $this->assign('title', 'Birds-of-a-Feather - ISC 20'); ?>
 
-<nav id="breadcrumb">
-    <p>YOU ARE HERE</p>
-
-    <?php
-    $this->Breadcrumbs->add(__('HOME'), ['controller' => 'submissions', 'action' => 'latest']);
-    $this->Breadcrumbs->add(__('BOF'), ['controller' => 'pages', 'action' => 'display', 'bofs']);
-    $this->Breadcrumbs->add(__("ISC'20"), ['controller' => 'pages', 'action' => 'display', 'bof-isc20']);
-
-    echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
-    ?>
-</nav>
-
 <div class="content">
     <h2>ISC'20</h2>
 

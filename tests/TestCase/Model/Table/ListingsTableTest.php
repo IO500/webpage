@@ -6,73 +6,47 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\ListingsTable;
 use Cake\TestSuite\TestCase;
 
-/**
- * App\Model\Table\ListingsTable Test Case
- */
 class ListingsTableTest extends TestCase
 {
-    /**
-     * Test subject
-     *
-     * @var \App\Model\Table\ListingsTable
-     */
-    protected $Listings;
-
-    /**
-     * Fixtures
-     *
-     * @var array
-     */
-    protected $fixtures = [
-        'app.Listings',
-        'app.Types',
+    protected array $fixtures = [
         'app.Releases',
-        'app.ListSc1810node',
-        'app.ListSc18Io500',
+        'app.Types',
+        'app.Listings',
         'app.Submissions',
+        'app.ListingsSubmissions',
     ];
 
-    /**
-     * setUp method
-     *
-     * @return void
-     */
-    public function setUp(): void
+    protected ListingsTable $Listings;
+
+    protected function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('Listings') ? [] : ['className' => ListingsTable::class];
-        $this->Listings = $this->getTableLocator()->get('Listings', $config);
+        $this->Listings = $this->getTableLocator()->get('Listings');
     }
 
     /**
-     * tearDown method
-     *
-     * @return void
+     * The #1 of each ranked list of a release, in list-type order, and the Full list size.
      */
-    public function tearDown(): void
+    public function testReleaseWinners(): void
     {
-        unset($this->Listings);
+        $winners = $this->Listings->releaseWinners([1, 2]);
 
-        parent::tearDown();
+        // ISC24: Production has a #1; Research (listing 5) is empty, so it is left out.
+        $this->assertSame(2, $winners[2]['full']);
+        $this->assertSame(['Production'], array_column($winners[2]['lists'], 'type'));
+        $this->assertSame(1, $winners[2]['lists'][0]['submission_id']);
+        $this->assertSame('Alpha', $winners[2]['lists'][0]['system']);
+        $this->assertEqualsWithDelta(9000, $winners[2]['lists'][0]['score'], 0.01);
+
+        // SC23: Production then Research (type position); the Research tie goes to the
+        // lower entry id, as on the list page.
+        $this->assertSame(['Production', 'Research'], array_column($winners[1]['lists'], 'type'));
+        $this->assertSame(9, $winners[1]['lists'][1]['submission_id']);
+        $this->assertSame(1, $winners[1]['full']);
     }
 
-    /**
-     * Test validationDefault method
-     *
-     * @return void
-     */
-    public function testValidationDefault(): void
+    public function testReleaseWinnersOfNothing(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     */
-    public function testBuildRules(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertSame([], $this->Listings->releaseWinners([]));
     }
 }

@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
     colors="true"
     processIsolation="false"
     stopOnFailure="false"
+    failOnDeprecation="true"
+    failOnPhpunitDeprecation="true"
+    displayDetailsOnTestsThatTriggerDeprecations="true"
     bootstrap="tests/bootstrap.php"
+    cacheDirectory=".phpunit.cache"
     >
     <php>
         <ini name="memory_limit" value="-1"/>
@@ -18,23 +24,17 @@
         <!-- Add plugin test suites here. -->
     </testsuites>
 
-    <!-- Setup a listener for fixtures -->
-    <listeners>
-        <listener class="Cake\TestSuite\Fixture\FixtureInjector">
-            <arguments>
-                <object class="Cake\TestSuite\Fixture\FixtureManager"/>
-            </arguments>
-        </listener>
-    </listeners>
+    <extensions>
+        <bootstrap class="Cake\TestSuite\Fixture\Extension\PHPUnitExtension"/>
+    </extensions>
 
     <!-- Ignore vendor tests in code coverage reports -->
-    <filter>
-        <whitelist>
+    <source>
+        <include>
             <directory suffix=".php">src/</directory>
-            <directory suffix=".php">plugins/*/src/</directory>
-            <exclude>
-                <file>src/Console/Installer.php</file>
-            </exclude>
-        </whitelist>
-    </filter>
+        </include>
+        <exclude>
+            <file>src/Console/Installer.php</file>
+        </exclude>
+    </source>
 </phpunit>

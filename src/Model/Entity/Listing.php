@@ -30,7 +30,7 @@ class Listing extends Entity
      *
      * @var array
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'type_id' => true,
         'release_id' => true,
         'description' => true,

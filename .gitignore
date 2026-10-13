@@ -42,3 +42,5 @@ nbproject/*
 .vscode
 # Sass preprocessor
 .sass-cache/
+
+/.phpunit.cache/

@@ -30,17 +30,6 @@
             );
             ?>
         </li>
-        <li>
-            <?php
-            echo $this->Html->link(__('Twitter'),
-                'https://twitter.com/io500benchmark',
-                [
-                    'class' => 'button',
-                    'target' => '_blank'
-                ]
-            );
-            ?>
-        </li>
     </ul>
 
     <ul>
@@ -68,10 +57,6 @@
         </li>
     </ul>
 
-    <p class="note">
-        Join us on social networks!
-    </p>
-    
     <h2>Contact the Committee</h2>
     <p>You can reach out to the committee via <?php
             echo $this->Html->link(__('Slack'),
@@ -91,5 +76,4 @@
         );
         ?></p>
 
-    <a href="https://www.freepik.com/vectors/social-media" class="credits">Social media vector created by stories - www.freepik.com</a>
 </div>

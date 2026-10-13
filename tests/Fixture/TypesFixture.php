@@ -6,41 +6,20 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * TypesFixture
+ * Two ranked list types and the unranked Full list, with the ids they have in the real
+ * database (Production 15, Research 1, Full 3), which SubmissionsTable::bestListing() relies on for ties.
  */
 class TypesFixture extends TestFixture
 {
     /**
-     * Fields
-     *
-     * @var array
-     */
-    // phpcs:disable
-    public $fields = [
-        'id' => ['type' => 'biginteger', 'length' => null, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'name' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => '', 'precision' => null],
-        '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
-            'id' => ['type' => 'unique', 'columns' => ['id'], 'length' => []],
-        ],
-        '_options' => [
-            'engine' => 'InnoDB',
-            'collation' => 'utf8mb4_general_ci'
-        ],
-    ];
-    // phpcs:enable
-    /**
-     * Init method
-     *
      * @return void
      */
     public function init(): void
     {
         $this->records = [
-            [
-                'id' => 1,
-                'name' => 'Lorem ipsum dolor sit amet',
-            ],
+            ['id' => 1, 'name' => 'Research', 'url' => 'io500', 'position' => 3, 'ranked' => 1],
+            ['id' => 3, 'name' => 'Full', 'url' => 'full', 'position' => 5, 'ranked' => 0],
+            ['id' => 15, 'name' => 'Production', 'url' => 'production', 'position' => 1, 'ranked' => 1],
         ];
         parent::init();
     }

@@ -5,7 +5,7 @@
 use Cake\Core\Configure;
 use Cake\Error\Debugger;
 
-$this->layout = 'error';
+$this->layout = 'default';
 
 if (Configure::read('debug')) :
     $this->layout = 'dev_error';
@@ -32,6 +32,9 @@ $this->end();
 endif;
 ?>
 
-<div id="error-404">
-    
+<div class="error-page">
+    <h1><?php echo __('Page not found') ?></h1>
+    <p><?php echo __('The page you are looking for does not exist or is not available yet.') ?></p>
+    <p><?php echo $this->Html->link(__('Back to the lists'), '/', ['class' => 'button']) ?></p>
 </div>
+<div id="error-404"></div>

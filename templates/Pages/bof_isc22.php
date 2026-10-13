@@ -3,18 +3,6 @@
  // * vim:expandtab:shiftwidth=4:tabstop=4:
  ?>
 
-<nav id="breadcrumb">
-    <p>YOU ARE HERE</p>
-
-    <?php
-    $this->Breadcrumbs->add(__('HOME'), ['controller' => 'submissions', 'action' => 'latest']);
-    $this->Breadcrumbs->add(__('BOF'), ['controller' => 'pages', 'action' => 'display', 'bofs']);
-    $this->Breadcrumbs->add(__("ISC'22"), ['controller' => 'pages', 'action' => 'display', 'bof-isc22']);
-
-    echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
-    ?>
-</nav>
-
 <div class="content">
     <h2>ISC'22</h2>
 

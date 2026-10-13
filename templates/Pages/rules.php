@@ -1,15 +1,12 @@
 <?php $this->assign('title', 'Rules'); ?>
 
-<nav id="breadcrumb">
-    <p>YOU ARE HERE</p>
+<div class="landing landing-rules">
+    <h1><?php echo __('Rules') ?></h1>
 
-    <?php
-    $this->Breadcrumbs->add(__('HOME'), ['controller' => 'submissions', 'action' => 'latest']);
-    $this->Breadcrumbs->add(__('RULES'), ['controller' => 'pages', 'action' => 'display', 'rules']);
-
-    echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
-    ?>
-</nav>
+    <p>
+        How the IO500 competition is governed, executed, and submitted.
+    </p>
+</div>
 
 <div class="content">
     <h2>The IO500 Foundation Steering Committee Rules - Version 2.0</h2>

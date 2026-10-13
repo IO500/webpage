@@ -1,17 +1,5 @@
 <?php $this->assign('title', 'Birds-of-a-Feather - ISC 21'); ?>
 
-<nav id="breadcrumb">
-    <p>YOU ARE HERE</p>
-
-    <?php
-    $this->Breadcrumbs->add(__('HOME'), ['controller' => 'submissions', 'action' => 'latest']);
-    $this->Breadcrumbs->add(__('BOF'), ['controller' => 'pages', 'action' => 'display', 'bofs']);
-    $this->Breadcrumbs->add(__("ISC'21"), ['controller' => 'pages', 'action' => 'display', 'bof-isc21']);
-
-    echo $this->Breadcrumbs->render([], ['separator' => ' / ']);
-    ?>
-</nav>
-
 <div class="content">
     <h2>ISC'21</h2>
 
@@ -79,7 +67,6 @@
     </p>
 
     <h3>Agenda</h3>
-
 
     <p>Due to the time limitations of BoFs at ISC HPC (virtual), we have organized the session into two parts, the <b>interactive session presented during ISC HPC</b> and <b>supplementary presentations</b> that we release (mostly) before the BoF; please watch the supplementary presentations before the BoF and feel free to ask questions during the question session. </p>
 

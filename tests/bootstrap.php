@@ -15,8 +15,10 @@ declare(strict_types=1);
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
 
+use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
+use Cake\TestSuite\Fixture\SchemaLoader;
 
 /**
  * Test runner bootstrap.
@@ -45,6 +47,43 @@ ConnectionManager::setConfig('test_debug_kit', [
 ]);
 
 ConnectionManager::alias('test_debug_kit', 'debug_kit');
+
+// The suite drops, recreates and truncates tables, so it must only ever run against
+// a throwaway local database (bin/test-db.sh). Build the `test` connection from
+// DATABASE_TEST_URL alone - never from config/app_local.php, which points at a
+// shared server - and refuse anything that is not local and named io500_test_local.
+// This runs before SchemaLoader below and before the fixture extension touches a table.
+$testUrl = getenv('DATABASE_TEST_URL');
+if (!$testUrl) {
+    fwrite(STDERR, "DATABASE_TEST_URL is not set. Start the local test database with bin/test-db.sh up and run:\n"
+        . "  DATABASE_TEST_URL=mysql://io500:io500@127.0.0.1:33306/io500_test_local composer test\n");
+    exit(1);
+}
+ConnectionManager::drop('test');
+ConnectionManager::setConfig('test', ['url' => $testUrl]);
+$testConfig = ConnectionManager::getConfig('test');
+if (
+    !in_array($testConfig['host'] ?? '', ['localhost', '127.0.0.1', '::1'], true)
+    || ($testConfig['database'] ?? '') !== 'io500_test_local'
+) {
+    fwrite(STDERR, sprintf(
+        "Refusing to run tests against %s/%s: the test database must be local and named io500_test_local.\n",
+        $testConfig['host'] ?? '?',
+        $testConfig['database'] ?? '?',
+    ));
+    exit(1);
+}
+
+// Let PHPUnit handle PHP errors and deprecations: it only installs its own handler
+// when none is set, and the app's ErrorTrap (config/bootstrap.php) would otherwise
+// just print them. With failOnDeprecation in phpunit.xml.dist they fail the run.
+restore_error_handler();
+
+// Tests must not read or write tmp/cache, which the web server also owns.
+Cache::disable();
+
+// Recreate the schema in the local test database (drops every table there first).
+(new SchemaLoader())->loadSqlFiles(TESTS . 'schema.sql', 'test');
 
 // Fixate sessionid early on, as php7.2+
 // does not allow the sessionid to be set after stdout

@@ -15,7 +15,6 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\ListSc1810nodeTable&\Cake\ORM\Association\HasMany $ListSc1810node
  * @property \App\Model\Table\ListSc18Io500Table&\Cake\ORM\Association\HasMany $ListSc18Io500
  * @property \App\Model\Table\SubmissionsTable&\Cake\ORM\Association\BelongsToMany $Submissions
- *
  * @method \App\Model\Entity\Listing newEmptyEntity()
  * @method \App\Model\Entity\Listing newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Listing[] newEntities(array $data, array $options = [])
@@ -98,5 +97,72 @@ class ListingsTable extends Table
         $rules->add($rules->existsIn(['release_id'], 'Releases'), ['errorField' => 'release_id']);
 
         return $rules;
+    }
+
+    /**
+     * For the News page: the #1 entry of each ranked list of the given releases, in
+     * list-type order, and the number of entries on each release's Full list. #1 follows
+     * the list page order (score, then entry id); lists without a scored entry are left out.
+     *
+     * @param list<int> $releaseIds Release ids.
+     * @return array<int, array{full: int|null, lists: list<array{type: string, url: string, submission_id: int, system: string, institution: string, score: float}>}>
+     */
+    public function releaseWinners(array $releaseIds): array
+    {
+        if (!$releaseIds) {
+            return [];
+        }
+        $listings = $this->find()
+            ->contain(['Types'])
+            ->where(['Listings.release_id IN' => $releaseIds])
+            ->orderBy(['Types.position' => 'ASC'])
+            ->all();
+
+        $out = [];
+        foreach ($releaseIds as $id) {
+            $out[$id] = ['full' => null, 'lists' => []];
+        }
+
+        $fullIds = [];
+        foreach ($listings as $listing) {
+            if ($listing->type->url === 'full') {
+                $fullIds[$listing->id] = $listing->release_id;
+            }
+            if (!$listing->type->ranked) {
+                continue;
+            }
+            $top = $this->ListingsSubmissions->find()
+                ->contain(['Submissions'])
+                ->where(['ListingsSubmissions.listing_id' => $listing->id, 'ListingsSubmissions.score IS NOT' => null])
+                ->orderBy(['ListingsSubmissions.score' => 'DESC', 'ListingsSubmissions.id' => 'ASC'])
+                ->first();
+            if (!$top || !$top->submission) {
+                continue;
+            }
+            $out[$listing->release_id]['lists'][] = [
+                'type' => $listing->type->name,
+                'url' => $listing->type->url,
+                'submission_id' => (int)$top->submission_id,
+                'system' => trim((string)preg_replace('/\s+/', ' ', (string)$top->submission->information_system)),
+                'institution' => trim(
+                    (string)preg_replace('/\s+/', ' ', (string)$top->submission->information_institution),
+                ),
+                'score' => (float)$top->score,
+            ];
+        }
+
+        if ($fullIds) {
+            $counts = $this->ListingsSubmissions->find()
+                ->select(['listing_id', 'entries' => $this->ListingsSubmissions->find()->func()->count('*')])
+                ->where(['listing_id IN' => array_keys($fullIds)])
+                ->groupBy('listing_id')
+                ->disableHydration()
+                ->all();
+            foreach ($counts as $row) {
+                $out[$fullIds[(int)$row['listing_id']]]['full'] = (int)$row['entries'];
+            }
+        }
+
+        return $out;
     }
 }

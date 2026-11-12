@@ -177,6 +177,13 @@ $data = [
         </tbody>
     </table>
 
+    <?php if ((float)$submission->ior_easy_read_random > 0) : ?>
+        <div class="call call-warn" role="note">
+            <i class="bi bi-exclamation-triangle" aria-hidden="true"></i>
+            <span><strong><?php echo __('Experimental metric:') ?></strong> <?php echo __('The 4 KiB random read phase is still being evaluated by the IO500 committee. Its results are provided for reference, and the phase and how it is measured may be revised in future releases, which might invalidate these initial measurements.') ?></span>
+        </div>
+    <?php endif; ?>
+
     <?php if ($comparison) : ?>
         <section id="sp-bump-section" hidden>
             <h2><?php echo __('Position over time') ?> <span class="sp-ctx" data-type></span></h2>

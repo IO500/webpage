@@ -6,6 +6,29 @@
     <h3>Submission Rules for the Research and Production Lists</h3>
 
     <p>
+        These rules are meant to fulfill the
+        <?php echo $this->Html->link(
+            __('Mission of the IO500'),
+            ['controller' => 'Pages', 'action' => 'display', 'about'],
+            ['class' => 'link']
+        ); ?>,
+        and all submissions are evaluated based on that mission. If a
+        submission meets the rules as written but does not help fulfill the
+        mission of the IO500, the rules may require updating and the submission
+        will be rejected.
+    </p>
+
+    <p>
+        In addition, the goal of the IO500 is not only to showcase the
+        performance of large storage systems, but also to foster storage system
+        development and innovation that helps end users. To this end, any
+        "workarounds" in a storage system or execution scripts (e.g., the
+        <span class="code">find</span> command) that improve the score but are
+        unlikely to improve real-world, general application performance will
+        not be allowed.
+    </p>
+
+    <p>
         The following rules should ensure a fair comparison of the IO500 results between systems and configurations. They serve to reduce mistakes and improve accuracy.
     </p>
 

@@ -4,6 +4,11 @@
     <h2>IO500</h2>
 
     <p>
+        The mission of the IO500 Foundation is to advance high-performance computing
+        storage systems by curating a public research repository of standardized
+        benchmarking and detailed system information, fostering an open community
+        to learn from the evolution of large-scale storage over time.
+        
         The IO500 benchmark has been developed together with the community and its development is still ongoing. 
         The benchmark is actually a benchmark suite bundled with execution rules. It harnesses existing and 
         trusted open source benchmarks.  The results are published in a 

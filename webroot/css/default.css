@@ -1392,6 +1392,17 @@ dd {
     flex-shrink: 0;
 }
 
+.call-warn {
+    background: #fdf8e7;
+    border-color: #f1e2b3;
+    border-left-color: #d4a017;
+    font-weight: 400;
+}
+
+.call-warn i {
+    color: #b8860b;
+}
+
 .badge {
     display: inline-block;
     background-size: 20px;

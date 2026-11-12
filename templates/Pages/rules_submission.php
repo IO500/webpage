@@ -29,6 +29,11 @@
     </p>
 
     <p>
+        Please send any requests for changes to these rules or clarifying questions to
+        <a href="mailto:committee@io500.org" class="link">committee@io500.org</a> or on Slack.
+    </p>
+
+    <p>
         The following rules should ensure a fair comparison of the IO500 results between systems and configurations. They serve to reduce mistakes and improve accuracy.
     </p>
 
@@ -98,12 +103,6 @@
             It is not required to capture the list of matched files.
         </li>
         <li>
-            Please also refer to the <a href="https://github.com/IO500/io500/blob/main/README.md" class="link">README</a> documents in the GitHub repo.
-        </li>
-        <li>
-            Please read the <a href="https://github.com/IO500/io500/blob/main/CHANGELOG.md" class="link">CHANGELOG.md</a> file for the new changes on the IO500 benchmark.
-        </li>
-        <li>
             Only submissions using at least 10 physical client nodes are
             eligible to win IO500 awards and at least one benchmark process
             must run on each client.
@@ -145,16 +144,11 @@
         </li>
     </ol>
 
-    <p>
-        Please send any requests for changes to these rules or clarifying questions to our mailing list.
-    </p>
+    <h3>Reproducibility Score</h3>
 
     <p>
-        The IO500 committee will assign a <?php echo $this->Html->link('reproducibility score', ['controller' => 'pages', 'action' => 'display', 'the-lists', '#' => 'reproducibility-scores'], [ 'class' => 'link' ]); ?> per submission.
-    </p>
-
-    <p>
-        This will impact a submission as follows:
+        The IO500 committee will assign a <?php echo $this->Html->link('reproducibility score', ['controller' => 'pages', 'action' => 'display', 'the-lists', '#' => 'reproducibility-scores'], [ 'class' => 'link' ]); ?>
+        per submission. This will impact a submission as follows:
     </p>
 
     <ul>
@@ -195,4 +189,15 @@
     <p>
         For further details, please see both the <a href="/files/io500-reproducibility-proposal.pdf">IO500 Reproducibility Proposal</a> and <a href="/files/io500-list-split-proposal.pdf">List Split Proposal</a>.
     </p>
+
+    <h3>Further Information</h3>
+
+    <ul>
+        <li>
+            Please also refer to the <a href="https://github.com/IO500/io500/blob/main/README.md" class="link">README</a> documents in the GitHub repo.
+        </li>
+        <li>
+            Please read the <a href="https://github.com/IO500/io500/blob/main/CHANGELOG.md" class="link">CHANGELOG.md</a> file for the new changes on the IO500 benchmark.
+        </li>
+    </ul>
 </div>

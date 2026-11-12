@@ -29,9 +29,8 @@
         This page contains the information about the submission procedure.
         First, you need to
         <?php echo $this->Html->link(__('run the benchmark'),
-            '#running', [ 'class' => 'link' ]);
-         ?>
-        .
+            'https://github.com/IO500/io500', [ 'class' => 'link' ]);
+         ?>.
     </p>
 
     <p>

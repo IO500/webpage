@@ -37,8 +37,19 @@ endif;
 ?>
 
 <div class="error-page">
+    <div class="error-illustration" role="img" aria-label="<?php echo h(__('Mechanic repairing a machine')) ?>"></div>
     <h1><?php echo __('Something went wrong') ?></h1>
     <p><?php echo __('The page could not be shown. Please try again later.') ?></p>
-    <p><?php echo $this->Html->link(__('Back to the lists'), '/', ['class' => 'button']) ?></p>
+    <div class="error-actions">
+        <?php
+        echo $this->Html->link(__('Back to the lists'), '/', [
+            'class' => 'button-highlight'
+        ]);
+        echo $this->Html->link(__('Contact us'), [
+            'controller' => 'pages',
+            'action' => 'display',
+            'contact'
+        ], ['class' => 'button']);
+        ?>
+    </div>
 </div>
-<div id="error-500"></div>

@@ -33,8 +33,18 @@ endif;
 ?>
 
 <div class="error-page">
+    <div class="error-illustration" role="img" aria-label="<?php echo h(__('Mechanic repairing a machine')) ?>"></div>
     <h1><?php echo __('Page not found') ?></h1>
-    <p><?php echo __('The page you are looking for does not exist or is not available yet.') ?></p>
-    <p><?php echo $this->Html->link(__('Back to the lists'), '/', ['class' => 'button']) ?></p>
+    <p><?php echo __('This page does not exist or is not available yet.') ?></p>
+    <div class="error-actions">
+        <?php
+        echo $this->Html->link(__('Back to the lists'), '/', [
+            'class' => 'button-highlight'
+        ]);
+        echo $this->Html->link(__('Browse all lists'), [
+            'controller' => 'releases',
+            'action' => 'index'
+        ], ['class' => 'button']);
+        ?>
+    </div>
 </div>
-<div id="error-404"></div>

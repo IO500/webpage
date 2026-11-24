@@ -507,35 +507,43 @@ nav .links > li > a {
     content: " \2191";
 }
 
-/* Error */
+/* Error pages (templates/Error/error400.php, error500.php) */
 
-.error-container {
-    align-items: center;
+.error-page {
+    margin: 64px 0 80px;
+    text-align: center;
+}
+
+.error-illustration {
+    background-image: url('../img/mechanic.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 360px;
+    margin: 0 auto 8px;
+    max-width: 360px;
+}
+
+.error-page h1 {
+    color: #16181d;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 8px;
+}
+
+.error-page p {
+    color: #6b7079;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 auto 24px;
+    max-width: 440px;
+}
+
+.error-actions {
     display: flex;
-    flex-direction: column;
-    height: 100vh;
+    flex-wrap: wrap;
+    gap: 10px;
     justify-content: center;
-}
-
-/* Error pages: message, then the illustration */
-.error-page{text-align:center;margin:20px 0 0}
-.error-page h1{font-size:28px;margin:0 0 8px}
-.error-page p{color:#6b7079;margin:0 0 16px}
-
-#error-404 {
-    background-image: url('../img/404.svg');
-    background-size: 600px;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 400px;
-}
-
-#error-500 {
-    background-image: url('../img/500.svg');
-    background-size: 600px;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 400px;
 }
 
 /* Tables */
